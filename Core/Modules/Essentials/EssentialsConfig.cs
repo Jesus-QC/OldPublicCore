@@ -14,4 +14,11 @@ public class EssentialsConfig : IConfig
     [Description("Player Management")]
     public List<string> DisallowedWordsInName { get; set; } = new() { ".org" };
     public bool CanCuffedPlayersBeDamaged { get; set; } = false;
+
+    [Description("Tesla Management")]
+    public List<ItemType> ItemsThatDisablesTesla { get; set; } = new()
+    {
+        ItemType.KeycardJanitor,
+        ItemType.KeycardChaosInsurgency
+    };
 }

@@ -17,7 +17,7 @@ namespace Core.Modules.Essentials.Handlers
 
         public void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
         {
-            if (ev.Player.Inventory.UserInventory.Items.Any(x => x.Value.ItemTypeId.IsKeycard()))
+            if (ev.Player.Inventory.UserInventory.Items.Any(x => EssentialsModule.PluginConfig.ItemsThatDisablesTesla.Contains(x.Value.ItemTypeId)))
                 ev.IsTriggerable = false;
         }
 

@@ -26,6 +26,7 @@ public static class ConfigManager
         try
         {
             module.Config.CopyProperties((IConfig)ELoader.Deserializer.Deserialize(File.ReadAllText(GetPath(module)), module.Config.GetType()));
+            File.WriteAllText(GetPath(module), ELoader.Serializer.Serialize(module.Config));
         }
         catch (YamlException e)
         {
