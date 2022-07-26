@@ -7,8 +7,7 @@ namespace Core.Modules.RespawnTimer
 {
     public class RespawnTimerModule : CoreModule<RespawnTimerConfig>
     {
-        public override string Name { get; } = "Core.RespawnTimer";
-        public override string Prefix { get; } = "core_respawntimer";
+        public override string Name { get; } = "RespawnTimer";
 
         private EventHandler _eventHandler;
         

@@ -5,7 +5,6 @@ namespace Core.Loader.Features;
 public interface ICoreModule<out TConfig> where TConfig : IConfig
 {
     string Name { get; }
-    string Prefix { get; }
     byte Priority { get; }
 
     TConfig Config { get; }

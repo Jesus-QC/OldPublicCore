@@ -11,8 +11,7 @@ namespace Core.Modules.Levels
 {
     public class LevelsModule : CoreModule<LevelsConfig>
     {
-        public override string Name { get; } = "Core.Levels";
-        public override string Prefix { get; } = "core_levels";
+        public override string Name { get; } = "Levels";
         public override byte Priority { get; } = 5;
 
         private PlayerHandler _playerHandler;

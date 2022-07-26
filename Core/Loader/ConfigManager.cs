@@ -13,7 +13,7 @@ namespace Core.Loader;
 
 public static class ConfigManager
 {
-    private static string GetPath(this ICoreModule<IConfig> module) => Path.Combine(Paths.Configs, $"Core {Server.Port}", module.Prefix + ".yml");
+    private static string GetPath(this ICoreModule<IConfig> module) => Path.Combine(Paths.Configs, $"Core {Server.Port}", module.Name.ToLowerInvariant() + ".yml");
     
     public static void LoadConfig(ICoreModule<IConfig> module)
     {

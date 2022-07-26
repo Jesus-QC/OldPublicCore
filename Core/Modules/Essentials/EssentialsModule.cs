@@ -8,8 +8,7 @@ namespace Core.Modules.Essentials;
 
 public class EssentialsModule : CoreModule<EssentialsConfig>
 {
-    public override string Name => "Core.Essentials";
-    public override string Prefix => "core_essentials";
+    public override string Name => "Essentials";
 
     public static EssentialsConfig PluginConfig { get; private set; }
 

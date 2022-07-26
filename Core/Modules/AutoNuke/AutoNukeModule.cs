@@ -8,8 +8,7 @@ namespace Core.Modules.AutoNuke
 {
     public class AutoNukeModule : CoreModule<AutoNukeConfig>
     {
-        public override string Name { get; } = "Core.AutoNuke";
-        public override string Prefix { get; } = "core_auto_nuke";
+        public override string Name { get; } = "AutoNuke";
 
         private AlphaManager _utilities;
 

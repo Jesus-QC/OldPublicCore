@@ -9,8 +9,7 @@ namespace Core.Modules.Lobby
 {
     public class LobbyModule : CoreModule<LobbyConfig>
     {
-        public override string Name { get; } = "Core.Lobby";
-        public override string Prefix { get; } = "core_lobby";
+        public override string Name { get; } = "Lobby";
         public override byte Priority { get; } = 15;
 
         private LobbySpawner _lobbySpawner;

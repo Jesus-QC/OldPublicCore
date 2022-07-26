@@ -11,8 +11,7 @@ namespace Core.Modules.Logs
 {
     public class LogsModule : CoreModule<LogsConfig>
     {
-        public override string Name { get; } = "Core.Logs";
-        public override string Prefix { get; } = "core_logs";
+        public override string Name { get; } = "Logs";
 
         public static LogsConfig LogsConfig;
 

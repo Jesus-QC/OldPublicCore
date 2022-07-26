@@ -9,8 +9,7 @@ namespace Core.Modules.EndScreen
 {
     public class EndScreenModule : CoreModule<EndScreenConfig>
     {
-        public override string Name { get; } = "CoreEndScreen";
-        public override string Prefix { get; } = "core_endscreen";
+        public override string Name { get; } = "EndScreen";
 
         private EventHandlers _eventHandlers;
         

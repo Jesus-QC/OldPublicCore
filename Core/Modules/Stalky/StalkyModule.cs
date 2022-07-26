@@ -13,8 +13,7 @@ namespace Core.Modules.Stalky
 {
     public class StalkyModule : CoreModule<EmptyConfig>
     {
-        public override string Name { get; } = "Core.Stalky106";
-        public override string Prefix { get; } = "core_stalky";
+        public override string Name { get; } = "Stalky";
 
         public static readonly Dictionary<Player, StalkController> Controllers = new ();
 
