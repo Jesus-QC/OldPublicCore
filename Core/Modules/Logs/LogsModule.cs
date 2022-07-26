@@ -1,7 +1,5 @@
-﻿using System;
-using Core.Loader.Features;
+﻿using Core.Loader.Features;
 using Core.Modules.Logs.Enums;
-using Exiled.API.Features;
 using HarmonyLib;
 using MEC;
 using Player = Exiled.Events.Handlers.Player;

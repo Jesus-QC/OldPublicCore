@@ -1,6 +1,4 @@
-﻿using System;
-using Core.Loader.Features;
-using Exiled.API.Features;
+﻿using Core.Loader.Features;
 using ServerEvents = Exiled.Events.Handlers.Server;
 using Warhead = Exiled.Events.Handlers.Warhead;
 

@@ -5,7 +5,7 @@ namespace Core.Modules.Subclasses.Features.Handlers
 {
     public class ServerHandler
     {
-        public readonly List<CoroutineHandle> Coroutines = new List<CoroutineHandle>();
+        public readonly List<CoroutineHandle> Coroutines = new();
 
         public void OnRestartingRound()
         {

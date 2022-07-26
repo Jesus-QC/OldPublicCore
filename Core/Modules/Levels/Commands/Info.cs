@@ -5,7 +5,7 @@ namespace Core.Modules.Levels.Commands
 {
     public class Info : ICommand
     {
-        public static Info Instance { get; } = new Info();
+        public static Info Instance { get; } = new();
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

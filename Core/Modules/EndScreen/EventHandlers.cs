@@ -26,7 +26,7 @@ namespace Core.Modules.EndScreen
 
         #region kills
         
-        private readonly Dictionary<Player, int> _killsCounter = new Dictionary<Player, int>();
+        private readonly Dictionary<Player, int> _killsCounter = new();
 
         public void OnDied(DiedEventArgs ev)
         {
@@ -43,7 +43,7 @@ namespace Core.Modules.EndScreen
 
         #region damage
         
-        private readonly Dictionary<Player, int> _damageCounter = new Dictionary<Player, int>();
+        private readonly Dictionary<Player, int> _damageCounter = new();
 
         public void OnHurting(HurtingEventArgs ev)
         {

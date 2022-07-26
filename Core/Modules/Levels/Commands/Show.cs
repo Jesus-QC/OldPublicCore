@@ -7,7 +7,7 @@ namespace Core.Modules.Levels.Commands
 {
     public class Show : ICommand
     {
-        public static Show Instance { get; } = new Show();
+        public static Show Instance { get; } = new();
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

@@ -5,14 +5,14 @@ namespace Core.Modules.Subclasses.Features.Structs.Subclasses.Inventory
 {
     public class Inventory
     {
-        public readonly List<InventoryItem> Slot1 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot2 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot3 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot4 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot5 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot6 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot7 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
-        public readonly List<InventoryItem> Slot8 = new List<InventoryItem> {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot1 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot2 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot3 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot4 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot5 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot6 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot7 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
+        public readonly List<InventoryItem> Slot8 = new() {new InventoryItem { ItemType = ItemType.None, Chance = 100 }};
 
         public List<ItemType> ToList()
         {

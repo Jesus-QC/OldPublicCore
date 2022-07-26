@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.Features.Data;
 using Core.Features.Data.Enums;
 using Exiled.API.Features;
 
@@ -9,9 +8,9 @@ namespace Core.Features.Extensions;
 
 public static class PerkExtensions
 {
-    private static readonly Dictionary<Player, List<Perk>> CachedPerks = new Dictionary<Player, List<Perk>>();
+    private static readonly Dictionary<Player, List<Perk>> CachedPerks = new();
 
-    private static readonly Dictionary<Perk, string> PerksColor = new Dictionary<Perk, string>
+    private static readonly Dictionary<Perk, string> PerksColor = new()
     {
         {
             Perk.Adventurer, "26ff5e"

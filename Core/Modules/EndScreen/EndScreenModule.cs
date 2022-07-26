@@ -1,6 +1,4 @@
-﻿using System;
-using Core.Loader.Features;
-using Exiled.API.Features;
+﻿using Core.Loader.Features;
 using PlayerEvents = Exiled.Events.Handlers.Player;
 using ServerEvents = Exiled.Events.Handlers.Server;
 

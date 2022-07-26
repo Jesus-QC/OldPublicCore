@@ -1,7 +1,4 @@
-﻿using System.Text;
-using Exiled.API.Features;
-
-namespace Core.Features.Logger;
+﻿namespace Core.Features.Logger;
 
 public static class LogUtils
 {

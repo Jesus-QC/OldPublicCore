@@ -9,11 +9,11 @@ namespace Core.Modules.Levels.Commands
 {
     public class Leaderboard : ICommand
     {
-        public static Leaderboard Instance { get; } = new Leaderboard();
+        public static Leaderboard Instance { get; } = new();
         
         private static string _lb = string.Empty;
         private static DateTime _lastUpdate = DateTime.MinValue;
-        private static Dictionary<int, string>  _colorDic = new Dictionary<int, string> { { 1, "#4A235A" }, { 2, "#641E16" }, { 3, "#7D6608" }, { 4, "#1B4F72" }, { 5, "#186A3B" }, };
+        private static Dictionary<int, string>  _colorDic = new() { { 1, "#4A235A" }, { 2, "#641E16" }, { 3, "#7D6608" }, { 4, "#1B4F72" }, { 5, "#186A3B" }, };
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

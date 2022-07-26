@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.Features.Data;
 using Core.Features.Data.Enums;
 using Core.Features.Data.UI;
 using Core.Features.Events;
@@ -12,12 +11,12 @@ namespace Core.Features.Extensions;
 
 public static class LevelExtensions
 {
-    private static readonly Dictionary<Player, Dictionary<Perk, int>> PerksCooldown = new Dictionary<Player, Dictionary<Perk, int>>();
-    private static readonly List<int> LevelsExpList = new List<int>() {
+    private static readonly Dictionary<Player, Dictionary<Perk, int>> PerksCooldown = new();
+    private static readonly List<int> LevelsExpList = new() {
         0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000, 22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000, 38000, 40000, 42500, 45000, 47500, 50000, 55000, 60000, 70000, 80000, 90000, 100000, 100500, 101000, 101500, 102000, 102500, 103000, 104000, 104500, 105000, 106000, 107000, 108000, 109000, 110000, 111000, 112000, 113000, 114000, 115000, 117500, 120000, 122500, 125000, 127500, 130000, 135000, 140000, 145000, 150000, 155000, 160000, 165000, 170000, 175000, 180000, 185000, 190000, 195000, 200000, 220000, 240000, 260000, 280000, 300000, 325000, 350000, 375000, 400000, 450000, 500000, 505000
     };
 
-    private static readonly Dictionary<Player, int> Exp = new Dictionary<Player, int>();
+    private static readonly Dictionary<Player, int> Exp = new();
 
     public static void ResetLevelsCooldown()
     {

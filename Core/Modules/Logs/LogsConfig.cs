@@ -8,7 +8,7 @@ namespace Core.Modules.Logs
     {
         public bool IsEnabled { get; set; } = true;
 
-        public Dictionary<WebhookType, string> Webhooks { get; set; } = new Dictionary<WebhookType, string>()
+        public Dictionary<WebhookType, string> Webhooks { get; set; } = new()
         {
             [WebhookType.CommandLogs] = "https://discord.com/api/webhooks/951559473422548992/SBr5EHUrp8NZzfKbQKJi1bcuiV628uDg5j2FkJ0R3mkVSgCxO397RjtczMuTKg9hTELI",
             [WebhookType.GameLogs] = "https://discord.com/api/webhooks/951559361451397181/4JGB0gsm3Q78_xGdRuKtoRwnO47KYUtj9_Xqz8BwfcSsFxFVWqQbfL7wGEpG91on-rMs",

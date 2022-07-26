@@ -1,6 +1,4 @@
-﻿using System;
-using Core.Loader.Features;
-using Exiled.API.Features;
+﻿using Core.Loader.Features;
 using Server = Exiled.Events.Handlers.Server;
 
 namespace Core.Modules.RespawnTimer

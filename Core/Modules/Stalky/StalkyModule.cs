@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core.Features.Data.Configs;
 using Core.Loader.Features;
 using Core.Modules.Stalky.Components;
-using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using Exiled.Events.Handlers;
 using EPlayer = Exiled.Events.Handlers.Player;

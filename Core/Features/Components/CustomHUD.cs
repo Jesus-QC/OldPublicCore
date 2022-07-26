@@ -93,7 +93,7 @@ public class CustomHUD : MonoBehaviour
         return builder.ToString();
     }
 
-    private readonly Dictionary<Perk, PerkMessage> _levelMessages = new Dictionary<Perk, PerkMessage>();
+    private readonly Dictionary<Perk, PerkMessage> _levelMessages = new();
 
     public void AddPerkMessage(Perk perk, PerkMessage perkMessage)
     {

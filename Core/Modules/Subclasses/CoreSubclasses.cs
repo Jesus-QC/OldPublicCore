@@ -10,7 +10,7 @@ namespace Core.Modules.Subclasses
         public override string Name { get; } = "Subclasses";
         public override string Prefix { get; } = "subclasses";
         public override string Author { get; } = "Jesus-QC";
-        public override Version Version { get; } = new Version(1, 0, 0);
+        public override Version Version { get; } = new(1, 0, 0);
 
         public static Config PluginConfig { get; private set; }
         public static SubclassesManager SubclassesManager { get; private set; }

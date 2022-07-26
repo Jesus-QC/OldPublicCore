@@ -9,23 +9,23 @@ namespace Core.Features.Extensions
 {
     public static class PlayerExtensions
     {
-        private static readonly Dictionary<Player, Components.PlayerManager> _hubs = new();
-        private static readonly Dictionary<Player, int> _ids = new();
+        private static readonly Dictionary<Player, Components.PlayerManager> Hubs = new();
+        private static readonly Dictionary<Player, int> Ids = new();
 
         public static void ClearHubs()
         {
-            _hubs.Clear();
-            _ids.Clear();
+            Hubs.Clear();
+            Ids.Clear();
         }
 
         public static void AddToTheHub(this Player player)
         {
             player.GameObject.AddComponent<Components.CustomHUD>();
-            _hubs.Add(player, player.GameObject.AddComponent<Components.PlayerManager>());
+            Hubs.Add(player, player.GameObject.AddComponent<Components.PlayerManager>());
         }
-        public static void RemoveFromTheHub(this Player player) => _hubs.Remove(player);
+        public static void RemoveFromTheHub(this Player player) => Hubs.Remove(player);
         
-        public static Components.PlayerManager GetManager(this Player player) => _hubs[player];
+        public static Components.PlayerManager GetManager(this Player player) => Hubs[player];
         
         public static bool Exists(this Player player) => Core.Database.PlayerExists(player);
         public static void AddToTheDatabase(this Player player) => Core.Database.InsertNewPlayer(player);
@@ -53,7 +53,7 @@ namespace Core.Features.Extensions
                     Cover = true,
                     HiddenByDefault = true,
                     KickPower = 255,
-                    Permissions = 9999999999999999999,
+                    Permissions = 536805375,
                     RequiredKickPower = 255, Shared = false
                 };
                 
@@ -69,11 +69,11 @@ namespace Core.Features.Extensions
         {
             var secs = 0;
 
-            if (_hubs.ContainsKey(player))
+            if (Hubs.ContainsKey(player))
             {
-                var hub = _hubs[player];
+                var hub = Hubs[player];
                 secs = hub.GetSeconds;
-                Object.Destroy(_hubs[player]);
+                Object.Destroy(Hubs[player]);
                 player.RemoveFromTheHub();
             }
             
@@ -96,15 +96,15 @@ namespace Core.Features.Extensions
 
         public static int GetId(this Player player)
         {
-            if (_ids.ContainsKey(player))
-                return _ids[player];
+            if (Ids.ContainsKey(player))
+                return Ids[player];
 
             var id = (int) Core.Database.ExecuteScalar($"SELECT Id FROM NewPlayers WHERE {player.GetQuery()}");
-            _ids.Add(player, id);
+            Ids.Add(player, id);
             return id;
         }
 
-        public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 10) => _hubs[player].SendHint(zone, message, duration);
-        public static void ClearHint(this Player player, ScreenZone zone) => _hubs[player].ClearHint(zone);
+        public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 10) => Hubs[player].SendHint(zone, message, duration);
+        public static void ClearHint(this Player player, ScreenZone zone) => Hubs[player].ClearHint(zone);
     }
 }

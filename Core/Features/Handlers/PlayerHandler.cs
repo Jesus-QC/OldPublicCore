@@ -1,5 +1,4 @@
 ﻿using System;
-using Core.Features.Data;
 using Core.Features.Events.EventArgs;
 using Core.Features.Extensions;
 using Exiled.Events.EventArgs;

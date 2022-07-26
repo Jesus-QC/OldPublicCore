@@ -6,7 +6,7 @@ namespace Core.Modules.Subclasses.Features.Handlers
 {
     public class PlayerHandler
     {
-        public readonly Dictionary<string, ushort> Subclasses = new Dictionary<string, ushort>();
+        public readonly Dictionary<string, ushort> Subclasses = new();
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {

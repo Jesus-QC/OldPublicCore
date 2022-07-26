@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Core.Features.Logger;
 using Core.Loader.Features;
 using Exiled.API.Extensions;
