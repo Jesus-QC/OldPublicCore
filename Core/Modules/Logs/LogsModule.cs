@@ -33,13 +33,13 @@ namespace Core.Modules.Logs
             Player.Handcuffing += ev => WebhookSender.AddMessage($"`Disarmed 🗝️` {ev.Cuffer.Nickname.DiscordParse()} ({ev.Cuffer.Role}) disarmed {ev.Target.Nickname.DiscordParse()} ({ev.Target.Role})", WebhookType.GameLogs);
             Player.Dying += ev =>
             {
-                if (ev.Killer == null || ev.Target == null)
+                if (ev.Killer is null || ev.Target is null)
                     return;
 
                 WebhookSender.AddMessage($"`Died ☠️` {ev.Killer.Nickname.DiscordParse()} ({ev.Killer.Role}) killed {ev.Target.Nickname.DiscordParse()} ({ev.Target.Role}) with {ev.Handler.Type}", WebhookType.KillLogs);
             };
             
-            Server.RoundEnded += ev => WebhookSender.AddMessage($"`🏁🔴🏁 The round has ended!`", WebhookType.GameLogs);  
+            Server.RoundEnded += _ => WebhookSender.AddMessage($"`🏁🔴🏁 The round has ended!`", WebhookType.GameLogs);  
             Server.RoundStarted += () => WebhookSender.AddMessage($"`🏁🟢🏁 New round has started!`", WebhookType.GameLogs);  
             
             base.OnEnabled();
