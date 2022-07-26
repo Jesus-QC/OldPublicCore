@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{A5FCE637-2364-4AB2-8B4A-C699DB72DE27}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Core</RootNamespace>
+        <AssemblyName>Core</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net472\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Assembly-CSharp-Publicized.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+          <HintPath>..\..\..\..\..\Dependencies\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\CommandSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.API, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.API.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Bootstrap, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Bootstrap.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.CreditTags, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.CreditTags.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.CustomItems, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.CustomItems.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.CustomRoles, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.CustomRoles.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Events, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Events.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Loader, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Loader.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Permissions, Version=5.2.2.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Permissions.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Updater, Version=3.1.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Updater.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror">
+          <HintPath>..\..\..\..\..\Dependencies\Mirror.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib" />
+        <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+          <HintPath>..\packages\MySqlConnector.2.1.11\lib\net471\MySqlConnector.dll</HintPath>
+        </Reference>
+        <Reference Include="NorthwoodLib, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\EXILED.5.2.2\lib\net472\NorthwoodLib.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Transactions" />
+        <Reference Include="System.Xml" />
+        <Reference Include="UnityEngine">
+          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="YamlDotNet, Version=9.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+          <HintPath>..\packages\YamlDotNet.9.1.4\lib\net45\YamlDotNet.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Core.cs" />
+        <Compile Include="Features\Commands\DiscordSync\DiscordDeSyncCommand.cs" />
+        <Compile Include="Features\Commands\DiscordSync\DiscordSyncCommand.cs" />
+        <Compile Include="Features\Components\CustomHUD.cs" />
+        <Compile Include="Features\Components\PlayerManager.cs" />
+        <Compile Include="Features\Data\Configs\CoreConfig.cs" />
+        <Compile Include="Features\Data\Configs\EmptyConfig.cs" />
+        <Compile Include="Features\Data\Database.cs" />
+        <Compile Include="Features\Data\Enums\Perk.cs" />
+        <Compile Include="Features\Data\Enums\ScreenZone.cs" />
+        <Compile Include="Features\Data\Enums\SubscriptionType.cs" />
+        <Compile Include="Features\Data\UI\PerkMessage.cs" />
+        <Compile Include="Features\Events\Core.cs" />
+        <Compile Include="Features\Events\EventArgs\AddingExpEventArgs.cs" />
+        <Compile Include="Features\Events\EventArgs\WarnedEventArgs.cs" />
+        <Compile Include="Features\Events\Levels.cs" />
+        <Compile Include="Features\Extensions\LevelExtensions.cs" />
+        <Compile Include="Features\Extensions\PerkExtensions.cs" />
+        <Compile Include="Features\Extensions\PlayerExtensions.cs" />
+        <Compile Include="Features\Handlers\PlayerHandler.cs" />
+        <Compile Include="Features\Handlers\ServerHandler.cs" />
+        <Compile Include="Features\Logger\LogColor.cs" />
+        <Compile Include="Features\Logger\LogUtils.cs" />
+        <Compile Include="Features\Patches\HintRedirect.cs" />
+        <Compile Include="Features\Wrappers\MapCore.cs" />
+        <Compile Include="Features\Wrappers\ServerCore.cs" />
+        <Compile Include="Loader\ConfigManager.cs" />
+        <Compile Include="Loader\Features\CoreModule.cs" />
+        <Compile Include="Loader\Features\ICoreModule.cs" />
+        <Compile Include="Loader\Features\PriorityComparer.cs" />
+        <Compile Include="Loader\ModuleLoader.cs" />
+        <Compile Include="Modules\AutoNuke\AlphaManager.cs" />
+        <Compile Include="Modules\AutoNuke\Features\WarheadEvent.cs" />
+        <Compile Include="Modules\AutoNuke\AutoNukeModule.cs" />
+        <Compile Include="Modules\AutoNuke\AutoNukeConfig.cs" />
+        <Compile Include="Modules\EndScreen\EndScreenConfig.cs" />
+        <Compile Include="Modules\EndScreen\EventHandlers.cs" />
+        <Compile Include="Modules\EndScreen\EndScreenModule.cs" />
+        <Compile Include="Modules\Essentials\EssentialsConfig.cs" />
+        <Compile Include="Modules\Essentials\EssentialsModule.cs" />
+        <Compile Include="Modules\Essentials\Extensions\PlayerExtensions.cs" />
+        <Compile Include="Modules\Essentials\Handlers\CoroutinesHandler.cs" />
+        <Compile Include="Modules\Essentials\Handlers\PlayerHandler.cs" />
+        <Compile Include="Modules\Essentials\Handlers\ServerHandler.cs" />
+        <Compile Include="Modules\Essentials\Patches\LiftDurationPatch.cs" />
+        <Compile Include="Modules\Essentials\Patches\RaNamesPatch.cs" />
+        <Compile Include="Modules\Essentials\Patches\ScpVoiceChatPatch.cs" />
+        <Compile Include="Modules\Levels\Commands\Info.cs" />
+        <Compile Include="Modules\Levels\Commands\Leaderboard.cs" />
+        <Compile Include="Modules\Levels\Commands\Level.cs" />
+        <Compile Include="Modules\Levels\Commands\Show.cs" />
+        <Compile Include="Modules\Levels\Events\LevelManager.cs" />
+        <Compile Include="Modules\Levels\Events\PlayerHandler.cs" />
+        <Compile Include="Modules\Levels\Events\ServerHandler.cs" />
+        <Compile Include="Modules\Levels\LevelsModule.cs" />
+        <Compile Include="Modules\Levels\LevelsConfig.cs" />
+        <Compile Include="Modules\Lobby\Components\TeamTrigger.cs" />
+        <Compile Include="Modules\Lobby\Enums\LobbyStatus.cs" />
+        <Compile Include="Modules\Lobby\Helpers\SimplifiedLight.cs" />
+        <Compile Include="Modules\Lobby\LobbySpawner.cs" />
+        <Compile Include="Modules\Lobby\LobbyModule.cs" />
+        <Compile Include="Modules\Lobby\LobbyConfig.cs" />
+        <Compile Include="Modules\Logs\Enums\WebhookType.cs" />
+        <Compile Include="Modules\Logs\LogsModule.cs" />
+        <Compile Include="Modules\Logs\LogsConfig.cs" />
+        <Compile Include="Modules\Logs\Patches\CommandLogging.cs" />
+        <Compile Include="Modules\Logs\Patches\ErrorLogs.cs" />
+        <Compile Include="Modules\Logs\WebhookSender.cs" />
+        <Compile Include="Modules\Logs\Webhook\Message.cs" />
+        <Compile Include="Modules\RespawnTimer\RespawnTimerConfig.cs" />
+        <Compile Include="Modules\RespawnTimer\EventHandler.cs" />
+        <Compile Include="Modules\RespawnTimer\RespawnTimerModule.cs" />
+        <Compile Include="Modules\Stalky\Components\StalkController.cs" />
+        <Compile Include="Modules\Stalky\StalkyModule.cs" />
+        <Compile Include="Modules\Subclasses\Config.cs" />
+        <Compile Include="Modules\Subclasses\CoreSubclasses.cs" />
+        <Compile Include="Modules\Subclasses\Features\Extensions\PlayerExtensions.cs" />
+        <Compile Include="Modules\Subclasses\Features\Extensions\RarityExtensions.cs" />
+        <Compile Include="Modules\Subclasses\Features\Extensions\RoleExtensions.cs" />
+        <Compile Include="Modules\Subclasses\Features\Extensions\YamlExtensions.cs" />
+        <Compile Include="Modules\Subclasses\Features\Handlers\PlayerHandler.cs" />
+        <Compile Include="Modules\Subclasses\Features\Handlers\ServerHandler.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Abilities\Ability.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Abilities\AbilityConfig.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Inventory\Inventory.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Inventory\InventoryItem.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Rarity.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Subclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\SubclassGroup.cs" />
+        <Compile Include="Modules\Subclasses\Features\SubclassesManager.cs" />
+        <Compile Include="Modules\Subclasses\Paths.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
