@@ -1,6 +1,6 @@
 ﻿using Core.Loader.Features;
 using Core.Modules.Essentials.Handlers;
-
+using HarmonyLib;
 using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -47,5 +47,12 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         PluginConfig = null;
 
         base.OnDisabled();
+    }
+
+    public override void UnPatch()
+    {
+        Core.Harmony.Unpatch(typeof(Lift).GetMethod(nameof(Lift.UseLift)), HarmonyPatchType.Prefix, Core.Harmony.Id);
+        Core.Harmony.Unpatch(typeof(Radio).GetMethod(nameof(Radio.UserCode_CmdSyncTransmissionStatus)), HarmonyPatchType.Prefix, Core.Harmony.Id);
+        Core.Harmony.Unpatch(typeof(NicknameSync).GetMethod(nameof(NicknameSync.CombinedName)), HarmonyPatchType.Prefix, Core.Harmony.Id);
     }
 }

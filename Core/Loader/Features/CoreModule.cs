@@ -26,4 +26,6 @@ public abstract class CoreModule<TConfig> : ICoreModule<TConfig> where TConfig :
     {
         Log.Info($"{LogUtils.GetBackgroundColor(LogColor.BrightRed)}{LogUtils.GetColor(LogColor.White)}[{Name}]{LogUtils.GetColor(LogColor.Reset)}{LogUtils.GetBackgroundColor(LogColor.Reset)} {LogUtils.GetColor(LogColor.BrightRed)} has been disabled.");
     }
+
+    public virtual void UnPatch() {}
 }

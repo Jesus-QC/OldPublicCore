@@ -20,18 +20,17 @@ namespace Core
 
         public static Core Instance;
         public static Database Database;
+        public static Harmony Harmony;
 
         private PlayerHandler _playerHandler;
         private ServerHandler _serverHandler;
-        
-        private static Harmony _harmony;
-        
+
         public override void OnEnabled()
         {
             Instance = this;
             
-            _harmony = new Harmony("core.patches.all");
-            _harmony.PatchAll();
+            Harmony = new Harmony("core.patches.all");
+            Harmony.PatchAll();
 
             Database = new Database();
             
@@ -50,8 +49,8 @@ namespace Core
             
             Database = null;
             
-            _harmony.UnpatchAll(_harmony.Id);
-            _harmony = null;
+            Harmony.UnpatchAll(Harmony.Id);
+            Harmony = null;
 
             Instance = null;
             

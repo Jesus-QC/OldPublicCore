@@ -11,4 +11,5 @@ public interface ICoreModule<out TConfig> where TConfig : IConfig
 
     void OnEnabled();
     void OnDisabled();
+    void UnPatch();
 }

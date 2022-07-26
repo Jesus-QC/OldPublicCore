@@ -1,7 +1,9 @@
 ﻿using Core.Loader.Features;
 using Core.Modules.Logs.Enums;
+using Exiled.API.Features;
 using HarmonyLib;
 using MEC;
+using RemoteAdmin;
 using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -51,6 +53,12 @@ namespace Core.Modules.Logs
             _harmony = null;
             
             base.OnDisabled();
+        }
+
+        public override void UnPatch()
+        {
+            Core.Harmony.Unpatch(typeof(CommandProcessor).GetMethod(nameof(CommandProcessor.ProcessQuery)), HarmonyPatchType.Prefix, Core.Harmony.Id);
+            Core.Harmony.Unpatch(typeof(Log).GetMethod(nameof(Log.Error)), HarmonyPatchType.Prefix, Core.Harmony.Id);
         }
     }
 }

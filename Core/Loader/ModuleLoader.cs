@@ -49,6 +49,10 @@ public static class ModuleLoader
                     module.OnEnabled();
                     EnabledModules.Add(module);
                 }
+                else
+                {
+                    module.UnPatch();
+                }
             }
             catch (Exception e)
             {
