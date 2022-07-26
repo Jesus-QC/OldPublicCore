@@ -107,7 +107,7 @@ public static class LevelExtensions
 
         return PerksCooldown[player][perk];
     }
-    public static int GetLevel(int exp) => exp / 1000;
+    public static int GetLevel(int exp) => exp / 5000;
     public static int GetLevel(this Player player) => GetLevel(GetExp(player));
 
     public static int GetExp(this Player player)
