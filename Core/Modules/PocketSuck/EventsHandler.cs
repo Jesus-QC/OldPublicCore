@@ -11,20 +11,22 @@ namespace Core.Modules.PocketSuck;
 
 public class EventsHandler
 {
-    private CoroutineHandle PositionCoroutine { get; set; }
-    private GameObject Scp106Portal { get; set; }
+    private CoroutineHandle _positionCoroutine;
+    private GameObject _scp106Portal;
+    private readonly HashSet<Player> _affectedPlayers  = new();
 
-    private HashSet<Player> AffectedPlayers { get; set; } = new();
+    private bool _isActivated = true;
 
     public void OnWaitingForPlayers()
     {
-        PositionCoroutine = Timing.RunCoroutine(CheckPositions());
+        _isActivated = true;
+        _positionCoroutine = Timing.RunCoroutine(CheckPositions());
     }
     
     public void OnRestartingRound()
     {
-        if (PositionCoroutine.IsRunning)
-            Timing.KillCoroutines(PositionCoroutine);
+        if (_positionCoroutine.IsRunning)
+            Timing.KillCoroutines(_positionCoroutine);
     }
     
     public void OnStayingOnEnvironmentalHazard(StayingOnEnvironmentalHazardEventArgs ev)
@@ -33,6 +35,12 @@ public class EventsHandler
         {
             Timing.RunCoroutine(PortalAnimation(ev.Player));
         }
+    }
+
+    public void OnCreatingPortal(CreatingPortalEventArgs ev)
+    {
+        _isActivated = false;
+        Timing.CallDelayed(4, () => _isActivated = true);
     }
     
     private IEnumerator<float> CheckPositions()
@@ -44,8 +52,11 @@ public class EventsHandler
             if (Warhead.IsDetonated)
                 yield break;
 
-            if (Scp106Portal != null)
+            if (_scp106Portal != null)
             {
+                if(!_isActivated)
+                    continue;
+                    
                 foreach (var player in Player.List)
                 {
                     if (player is null
@@ -53,7 +64,7 @@ public class EventsHandler
                         || player.Role.Team == Team.SCP)
                         continue;
 
-                    if (Vector3.Distance(player.Position, Scp106Portal.transform.position) <= 2.5f)
+                    if (Vector3.Distance(player.Position, _scp106Portal.transform.position) <= 2.5f)
                     {
                         Timing.RunCoroutine(PortalAnimation(player));
                     }
@@ -61,17 +72,17 @@ public class EventsHandler
             }
             else
             {
-                Scp106Portal = GameObject.Find("SCP106_PORTAL");
+                _scp106Portal = GameObject.Find("SCP106_PORTAL");
             }
         }
     }
     
     private IEnumerator<float> PortalAnimation(Player player)
     {
-        if(AffectedPlayers.Contains(player))
+        if(_affectedPlayers.Contains(player))
             yield break;
         
-        AffectedPlayers.Add(player);
+        _affectedPlayers.Add(player);
         
         var inGodMode = player.IsGodModeEnabled;
         player.IsGodModeEnabled = true;
@@ -98,6 +109,6 @@ public class EventsHandler
         player.Hurt(10, DamageType.PocketDimension);
         player.EnableEffect<Corroding>();
 
-        AffectedPlayers.Remove(player);
+        _affectedPlayers.Remove(player);
     }
 }

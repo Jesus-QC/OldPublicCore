@@ -36,7 +36,6 @@ public static class ModuleLoader
             var module = ctr.Invoke(null) as ICoreModule<IConfig>;
 
             ConfigManager.LoadConfig(module);
-
             Modules.Add(module!);
         }
 

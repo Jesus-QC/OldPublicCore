@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Core.Features.Logger;
 using Core.Loader.Features;
 using Exiled.API.Extensions;
@@ -16,19 +17,20 @@ public static class ConfigManager
     
     public static void LoadConfig(ICoreModule<IConfig> module)
     {
-        if (!File.Exists(GetPath(module)))
+        var path = GetPath(module);
+        if (!File.Exists(path))
         {
             Log.Warn($"{LogUtils.GetBackgroundColor(LogColor.Magenta)}{LogUtils.GetColor(LogColor.White)}{module.Name} doesn't have default configs, generating...");
-            File.WriteAllText(GetPath(module), ELoader.Serializer.Serialize(module.Config));
+            File.WriteAllText(path, ELoader.Serializer.Serialize(module.Config));
             return;
         }
 
         try
         {
-            module.Config.CopyProperties((IConfig)ELoader.Deserializer.Deserialize(File.ReadAllText(GetPath(module)), module.Config.GetType()));
-            File.WriteAllText(GetPath(module), ELoader.Serializer.Serialize(module.Config));
+            module.Config.CopyProperties((IConfig)ELoader.Deserializer.Deserialize(File.ReadAllText(path), module.Config.GetType()));
+            File.WriteAllText(path, ELoader.Serializer.Serialize(module.Config));
         }
-        catch (YamlException e)
+        catch (Exception e)
         {
             Log.Error($"{LogUtils.GetBackgroundColor(LogColor.BrightRed)}{LogUtils.GetColor(LogColor.Black)}Module {module.Name} configs could not be read.");
             Log.Error(e);

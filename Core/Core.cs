@@ -16,7 +16,7 @@ namespace Core
         public override string Name { get; } = "Core";
         public override string Prefix { get; } = "core";
         public override string Author { get; } = "Jesus-QC";
-        public override PluginPriority Priority { get; } = PluginPriority.Higher;
+        public override PluginPriority Priority { get; } = PluginPriority.Highest;
 
         public static Core Instance;
         public static Database Database;

@@ -1,5 +1,6 @@
 ﻿using Core.Loader.Features;
 using Core.Modules.Essentials.Handlers;
+using Exiled.Events.Handlers;
 using HarmonyLib;
 using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
@@ -22,6 +23,8 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         _serverHandler = new ServerHandler();
         _playerHandler = new PlayerHandler();
             
+        Map.AnnouncingNtfEntrance += _serverHandler.OnAnnouncingMtfEntrance;
+        Server.RespawningTeam += _serverHandler.OnRespawningTeam;
         Server.RestartingRound += _serverHandler.OnRestartingRound;
         Server.WaitingForPlayers += _playerHandler.OnWaitingForPlayers;
             
@@ -40,6 +43,8 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         
         Server.RestartingRound -= _serverHandler.OnRestartingRound;
         Server.WaitingForPlayers -= _playerHandler.OnWaitingForPlayers;
+        Server.RespawningTeam -= _serverHandler.OnRespawningTeam;
+        Map.AnnouncingNtfEntrance -= _serverHandler.OnAnnouncingMtfEntrance;
         
         _playerHandler = null;
         _serverHandler = null;

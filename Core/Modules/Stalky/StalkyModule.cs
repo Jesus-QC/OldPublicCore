@@ -9,16 +9,20 @@ using Player = Exiled.API.Features.Player;
 
 namespace Core.Modules.Stalky
 {
-    public class StalkyModule : CoreModule<EmptyConfig>
+    public class StalkyModule : CoreModule<StalkyConfig>
     {
         public override string Name { get; } = "Stalky";
 
         public static readonly Dictionary<Player, StalkController> Controllers = new ();
 
         public static bool AreTeslasEnabled = true;
+
+        public static StalkyConfig ModuleConfig;
         
         public override void OnEnabled()
         {
+            ModuleConfig = Config;
+            
             EPlayer.ChangingRole += OnChangingRole;
             EPlayer.TriggeringTesla += OnTriggeringTesla;
             Scp106.CreatingPortal += OnCreatingPortal;
@@ -31,6 +35,8 @@ namespace Core.Modules.Stalky
             EPlayer.ChangingRole -= OnChangingRole;
             EPlayer.TriggeringTesla -= OnTriggeringTesla;
             Scp106.CreatingPortal -= OnCreatingPortal;
+
+            ModuleConfig = null;
             
             base.OnDisabled();
         }

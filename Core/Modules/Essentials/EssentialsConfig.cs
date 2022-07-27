@@ -21,4 +21,8 @@ public class EssentialsConfig : IConfig
         ItemType.KeycardJanitor,
         ItemType.KeycardChaosInsurgency
     };
+
+    [Description("Entance Announcements. %unit% for unit name, %unitnumber%, %scps% for number of scps. With chaos only %scps% work.")] 
+    public string MtfAnnouncement { get; set; } = "HELLO WORLD";
+    public string ChaosAnnouncement { get; set; } = "HELLO WORLD";
 }

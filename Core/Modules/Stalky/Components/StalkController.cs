@@ -11,7 +11,7 @@ namespace Core.Modules.Stalky.Components
 {
     public class StalkController : MonoBehaviour
     {
-        private float _cooldown = 30;
+        private float _cooldown = StalkyModule.ModuleConfig.InitialCooldown;
         private bool _inCooldown = true;
 
         private float _lastCreated = -1;
@@ -114,7 +114,7 @@ namespace Core.Modules.Stalky.Components
             Timing.RunCoroutine(StartStalk(raycastHit.point, rndPlayer.CurrentRoom));
             _player.SendHint(ScreenZone.Center, $"\n\n\n\nyou are stalking \n<b><color={rndPlayer.Role.Color.ToHex()}>{rndPlayer.Nickname}</color></b>", 5);
 
-            _cooldown = 60;
+            _cooldown = StalkyModule.ModuleConfig.Cooldown;
             _inCooldown = true;
             return false;
         }

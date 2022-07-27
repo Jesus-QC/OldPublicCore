@@ -118,7 +118,8 @@ public class CustomHUD : MonoBehaviour
             return;
         }
 
-        var builder = new StringBuilder($"<color=#505050>level:</color> {_player.GetLevel()}\n");
+        var exp = _player.GetExp();
+        var builder = new StringBuilder($"<color=#505050>level:</color> {LevelExtensions.GetLevel(exp)} <color=#505050>xp left: {exp % LevelExtensions.Divider}</color>\n");
 
         var i = 0;
 

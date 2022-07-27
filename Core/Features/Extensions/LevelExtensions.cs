@@ -11,6 +11,8 @@ namespace Core.Features.Extensions;
 
 public static class LevelExtensions
 {
+    public const int Divider = 5000; 
+    
     private static readonly Dictionary<Player, Dictionary<Perk, int>> PerksCooldown = new();
 
     private static readonly Dictionary<Player, int> Exp = new();
@@ -107,7 +109,7 @@ public static class LevelExtensions
 
         return PerksCooldown[player][perk];
     }
-    public static int GetLevel(int exp) => exp / 5000;
+    public static int GetLevel(int exp) => exp / Divider;
     public static int GetLevel(this Player player) => GetLevel(GetExp(player));
 
     public static int GetExp(this Player player)

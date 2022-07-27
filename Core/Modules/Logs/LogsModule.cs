@@ -15,14 +15,9 @@ namespace Core.Modules.Logs
 
         public static LogsConfig LogsConfig;
 
-        private Harmony _harmony;
-        
         public override void OnEnabled()
         {
             LogsConfig = Config;
-
-            _harmony = new Harmony($"core.patches.logs");
-            _harmony.PatchAll();
 
             WebhookSender.AddMessage("`SERVER CONNECTED ✨`", WebhookType.GameLogs);
             
@@ -49,9 +44,6 @@ namespace Core.Modules.Logs
         {
             LogsConfig = null;
 
-            _harmony.UnpatchAll("core.patches.logs");
-            _harmony = null;
-            
             base.OnDisabled();
         }
 

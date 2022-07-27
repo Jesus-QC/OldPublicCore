@@ -14,6 +14,7 @@ public class PocketSuckModule : CoreModule<EmptyConfig>
     {
         _events = new EventsHandler();
 
+        Scp106.CreatingPortal += _events.OnCreatingPortal;
         Player.StayingOnEnvironmentalHazard += _events.OnStayingOnEnvironmentalHazard;
 
         Server.RestartingRound += _events.OnRestartingRound;
@@ -27,7 +28,8 @@ public class PocketSuckModule : CoreModule<EmptyConfig>
         Server.RestartingRound -= _events.OnRestartingRound;
         Server.WaitingForPlayers -= _events.OnWaitingForPlayers;
         
-        Player.StayingOnEnvironmentalHazard += _events.OnStayingOnEnvironmentalHazard;
+        Player.StayingOnEnvironmentalHazard -= _events.OnStayingOnEnvironmentalHazard;
+        Scp106.CreatingPortal -= _events.OnCreatingPortal;
         
         _events = null;
         
