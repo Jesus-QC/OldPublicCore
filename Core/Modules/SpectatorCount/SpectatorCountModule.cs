@@ -52,9 +52,6 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
             {
                 if(player is null || player.IsDead)
                     continue;
-                
-                if(!player.CurrentSpectatingPlayers.Any())
-                    continue;
 
                 var builder = StringBuilderPool.Shared.Rent();
                 builder.Append("<align=right><size=75%><color=#555><b>👥 Spectators:</b></color><color=" + player.Role.Color.ToHex() + ">");
@@ -69,11 +66,17 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                     
                     if(count == 5)
                     {
-                        builder.Append($"</color><color=#a7ff85>({player.CurrentSpectatingPlayers.Count() - 4}) more");
+                        builder.Append($"\n</color><color=#a7ff85>({player.CurrentSpectatingPlayers.Count() - 4}) more");
                         break;
                     }
 
-                    builder.Append(spectator.Nickname + " -");
+                    builder.Append("\n" + spectator.Nickname + " -");
+                }
+
+                if (count == 0)
+                {
+                    StringBuilderPool.Shared.Return(builder);
+                    continue;
                 }
 
                 builder.Append("</color></size></align>");
