@@ -18,7 +18,7 @@ namespace Core
         public override string Author { get; } = "Jesus-QC";
         public override PluginPriority Priority { get; } = PluginPriority.Highest;
 
-        public const string GlobalVersion = "2.0.0.1";
+        public const string GlobalVersion = "2.0.0.2";
 
         public static Core Instance;
         public static Database Database;
