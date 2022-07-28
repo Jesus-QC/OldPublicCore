@@ -19,7 +19,7 @@ namespace Core.Features.Patches
             if (type == typeof(TextHint))
             {
                 var t = hint as TextHint;
-                Player.Get(__instance.gameObject).SendHint(ScreenZone.CenterBottom ,t.Text, t.DurationScalar);
+                Player.Get(__instance.gameObject).SendHint(ScreenZone.Center ,t.Text, t.DurationScalar);
                 return false;
             }
 

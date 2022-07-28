@@ -5,7 +5,6 @@ using Core.Loader.Features;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Interfaces;
-using YamlDotNet.Core;
 using ELoader = Exiled.Loader.Loader;
 using EConfigManager = Exiled.Loader.ConfigManager;
 

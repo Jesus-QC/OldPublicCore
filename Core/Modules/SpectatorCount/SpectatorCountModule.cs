@@ -72,7 +72,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                     
                     if(count == 5)
                     {
-                        builder.Append($"\n</color><color=#a7ff85>{player.CurrentSpectatingPlayers.Count() - 4} more");
+                        builder.Append($"\n</color><color={player.Role.Color.ToHex()}>{player.CurrentSpectatingPlayers.Count() - 4} more");
                         break;
                     }
 
@@ -87,7 +87,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
                 builder.Append("</color></size></align>");
                 
-                player.SendHint(ScreenZone.CenterTop, StringBuilderPool.Shared.ToStringReturn(builder), 1);
+                player.SendHint(ScreenZone.Top, StringBuilderPool.Shared.ToStringReturn(builder), 1);
             }
 
             yield return Timing.WaitForSeconds(0.95f);

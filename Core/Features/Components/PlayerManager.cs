@@ -1,6 +1,5 @@
 ﻿using System;
 using Core.Features.Data.Enums;
-using Core.Features.Data.UI;
 using UnityEngine;
 
 namespace Core.Features.Components
@@ -16,6 +15,5 @@ namespace Core.Features.Components
         public void SendHint(ScreenZone z, string msg, float duration) => _playerHUD.AddMessage(z, msg, duration);
         public void ClearHint(ScreenZone z) => _playerHUD.ClearZone(z);
         public int GetSeconds => (int)(DateTime.Now - _startTime).TotalSeconds;
-        public void AddMessage(Perk perk, PerkMessage message) => _playerHUD.AddPerkMessage(perk, message);
     }
 }

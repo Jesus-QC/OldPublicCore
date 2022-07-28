@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Core.Features.Data.Configs;
 using Core.Loader.Features;
 using Core.Modules.Stalky.Components;
 using Exiled.Events.EventArgs;

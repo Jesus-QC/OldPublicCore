@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
+using NorthwoodLib.Pools;
 using Respawning;
 using Random = UnityEngine.Random;
 
@@ -31,7 +32,8 @@ namespace Core.Modules.RespawnTimer
             var tip = "This is a secret message, wow.";
             for (;;)
             {
-                var builder = new StringBuilder("\nY<lowercase>ou will respawn in:</lowercase>\n");
+                var builder = StringBuilderPool.Shared.Rent(Respawn.IsSpawning ? "\n\n\n\nY<lowercase>ou will respawn in:</lowercase>\n" : "\n\n\n\nN<lowercase>ext team is on the way!</lowercase>\n");
+                var tipBuilder = StringBuilderPool.Shared.Rent("\n");
                 
                 if (i == 16)
                 {
@@ -39,31 +41,37 @@ namespace Core.Modules.RespawnTimer
                     tip = Tips[Random.Range(0, Tips.Count)];
                 }
                 
-                yield return Timing.WaitForSeconds(0.95f);
+                yield return Timing.WaitForSeconds(0.98f);
                 
-                var seconds = Respawn.TimeUntilRespawn + (Respawn.IsSpawning ? 0 : 18);
-                var minutes = seconds / 60;
-                if (minutes != 0)
-                    builder.Append(minutes + " minutes ");
-                builder.Append(seconds % 60 + " seconds");
+                if (Respawn.TimeUntilSpawnWave.Minutes != 0)
+                    builder.Append(Respawn.TimeUntilSpawnWave.Minutes + " minutes ");
+                builder.Append(Respawn.TimeUntilSpawnWave.Seconds % 60 + " seconds");
 
+                
                 if (Respawn.NextKnownTeam != SpawnableTeamType.None)
                 {
-                    builder.Append("\n\nAs a ");
+                    tipBuilder.Append("as a ");
                     if (Respawn.NextKnownTeam == SpawnableTeamType.ChaosInsurgency)
-                        builder.Append("<color=#18f240>CHAOS</color>");
+                        tipBuilder.Append("<color=#18f240>chaos</color>");
                     else
-                        builder.Append("<color=#2542e6>M.T.F.</color>");
+                        tipBuilder.Append("<color=#2542e6>m.t.f.</color>");
                 }
+
+                tipBuilder.Append("\n\n" + GetCount() + "<size=70%><color=#9342f5>❓</color>" + tip + "</size>");
 
                 foreach (var player in Player.Get(Team.RIP))
                 {
-                    player.SendHint(ScreenZone.CenterBottom, builder.ToString(), 1.2f);
-                    player.SendHint(ScreenZone.Bottom, "<color=#ab5ae8><u>TIP <sprite=12></u></color>\n<b><size=30>" + tip, 1.2f);
+                    player.SendHint(ScreenZone.Center, StringBuilderPool.Shared.ToStringReturn(builder), 1.2f);
+                    player.SendHint(ScreenZone.Bottom, StringBuilderPool.Shared.ToStringReturn(tipBuilder), 1.2f);
                 }
 
                 i++;
             }
+        }
+
+        private static string GetCount()
+        {
+            return $"<color=#9effe0>👻 spectators:</color> {Player.Get(RoleType.Spectator).Count()} | <color=#9ecfff>⛨ mtf tickets:</color> {Respawn.NtfTickets} | <color=#9effa6>⏣ chaos tickets:</color> {Respawn.ChaosTickets}\n";
         }
     }
 }

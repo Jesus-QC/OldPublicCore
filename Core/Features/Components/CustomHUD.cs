@@ -6,42 +6,50 @@ using Core.Features.Data.UI;
 using Core.Features.Extensions;
 using Exiled.API.Features;
 using Hints;
+using NorthwoodLib.Pools;
 using UnityEngine;
 
 namespace Core.Features.Components;
 
 public class CustomHUD : MonoBehaviour
 {
-    private const string DefaultHUD = $"<line-height=95%><voffset=8em><size=50%><alpha=#44><align=left>W<lowercase>olf</lowercase>P<lowercase>ack</lowercase> (Ver {Core.GlobalVersion}) | [9]</align><alpha=#FF></size>\n<align=right>[0]</align>[1][2][3][4]";
-    private static readonly Dictionary<int, int> MessageLines = new() { [0] = 7, [1] = 6, [2] = 6, [3] = 5, [4] = 3 };
+    private const string DefaultHUD = "<size=93%><line-height=90%><voffset=8.75em><align=right>[1]</align>[2][3][4][5]<size=60%>[0]";
+    private static readonly Dictionary<int, int> MessageLines = new() { [0] = 1, [1] = 6, [2] = 6, [3] = 6, [4] = 6, [5] = 6 };
         
-    private readonly Dictionary<int, float> _timers = new() { [0] = -1, [1] = -1, [2] = -1, [3] = -1, [4] = -1 };
-    private readonly Dictionary<int, string> _messages = new() { [0] = string.Empty, [1] = string.Empty, [2] = string.Empty, [3] = string.Empty, [4] = string.Empty };
+    private readonly Dictionary<int, float> _timers = new() { [1] = -1, [2] = -1, [3] = -1, [4] = -1, [5] = -1 };
+    private readonly Dictionary<int, string> _messages = new() { [1] = string.Empty, [2] = string.Empty, [3] = string.Empty, [4] = string.Empty, [5] = string.Empty };
 
     private float _counter;
-
     private Player _player;
+    private string _cachedMsg;
 
-    private void Start() => _player = Player.Get(gameObject);
+    private void Start()
+    {
+        _player = Player.Get(gameObject);
+        _cachedMsg = $"thewolfpack | {_player.Nickname.ToLower()} ({_player.Id})";
+    }
 
     private void Update()
     {
-        if(!Round.IsStarted)
-            return;
-            
         _counter += Time.deltaTime;
 
-        if (_counter > .99f)
-        {
-            UpdateLevels();
-            var msg = GetMessage();
-            _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[]{ new StringHintParameter(msg) }, null, 1.2f)));
-            _counter = 0;
-        }
+        if (_counter < .99f) 
+            return;
+        
+        UpdateNotifications();
+        var msg = GetMessage();
+        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[]{ new StringHintParameter(msg) }, null, 1.2f)));
+        _counter = 0;
     }
 
     public void AddMessage(ScreenZone zone, string message, float time = 10f)
     {
+        if (zone == ScreenZone.Notifications)
+        {
+            _notifications.Add(new Notification(message));
+            return;
+        }
+        
         var i = (int) zone;
         _messages[i] = message;
         _timers[i] = time;
@@ -49,6 +57,12 @@ public class CustomHUD : MonoBehaviour
 
     public void ClearZone(ScreenZone zone)
     {
+        if (zone == ScreenZone.Notifications)
+        {
+            _notifications.Clear();
+            return;
+        }
+        
         var i = (int) zone;
         _messages[i] = string.Empty;
         _timers[i] = -1;
@@ -56,12 +70,12 @@ public class CustomHUD : MonoBehaviour
 
     private string GetMessage()
     {
-        var builder = new StringBuilder(DefaultHUD);
+        var builder = StringBuilderPool.Shared.Rent(DefaultHUD);
+        
+        builder = builder.Replace("[0]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {Server.Tps}");
+        builder = builder.Replace("[1]", FormatStringForHud(_messages[1], MessageLines[1]));
 
-        builder = builder.Replace("[9]", $"{_player.Nickname} ({_player.Id}) | TPS: {Server.Tps}");
-        builder = builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
-            
-        for (var i = 1; i < _timers.Count; i++)
+        for (var i = 2; i < _timers.Count + 1; i++)
         {
             if (_timers[i] >= 0)
                 _timers[i]--;
@@ -77,7 +91,7 @@ public class CustomHUD : MonoBehaviour
             builder = builder.Replace($"[{i}]", FormatStringForHud(message, MessageLines[i]));
         }
 
-        return builder.ToString();
+        return StringBuilderPool.Shared.ToStringReturn(builder);
     }
         
     private static string FormatStringForHud(string text, int linesNeeded)
@@ -93,54 +107,33 @@ public class CustomHUD : MonoBehaviour
         return builder.ToString();
     }
 
-    private readonly Dictionary<Perk, PerkMessage> _levelMessages = new();
-
-    public void AddPerkMessage(Perk perk, PerkMessage perkMessage)
+    private string GetLevelMessage()
     {
-        if (_levelMessages.ContainsKey(perk))
-        {
-            _levelMessages[perk].ExpAmount += perkMessage.ExpAmount;
-            _levelMessages[perk].DurationLeft += perkMessage.DurationLeft;
-            return;
-        }
-
-        _levelMessages.Add(perk, perkMessage);
-    }
+        if (_player.DoNotTrack)
+            return "do not track";
         
-    private void UpdateLevels()
+        var exp = _player.GetExp();
+        return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider}";
+    }
+
+    private List<Notification> _notifications = new();
+
+    private void UpdateNotifications()
     {
         if (_player.DoNotTrack)
             return;
 
-        if (_player.Role == RoleType.Spectator)
+        var builder = StringBuilderPool.Shared.Rent();
+        
+        for (int i = 0; i < (_notifications.Count > 5 ? 6 : _notifications.Count); i++)
         {
-            _messages[0] = $"<color=#9effe0>spectators:</color> {Player.Get(RoleType.Spectator).Count()}\n<color=#9ecfff>mtf tickets:</color> {Respawn.NtfTickets}\n<color=#9effa6>chaos tickets:</color> {Respawn.ChaosTickets}";
-            return;
+            builder.Append(_notifications[i].Message);
+            _notifications[i].Duration--;
+            
+            if(_notifications[i].Duration <= 0)
+                _notifications.RemoveAt(0);
         }
 
-        var exp = _player.GetExp();
-        var builder = new StringBuilder($"<color=#505050>level:</color> {LevelExtensions.GetLevel(exp)} <color=#505050>next:</color> {5000 - exp % LevelExtensions.Divider} XP\n");
-
-        var i = 0;
-
-        foreach (var perk in _levelMessages.Keys.ToList())
-        {
-            if (i == 6)
-                break;
-
-            var perky = _levelMessages[perk];
-            perky.DurationLeft -= 1;
-
-            if (perky.DurationLeft < 0)
-            {
-                _levelMessages.Remove(perk);
-                continue;
-            }
-
-            builder.Append($"[<color=#{perky.Color}>{perky.Message}</color> | <color=#ffff57>+ {perky.ExpAmount}</color>]\n");
-            i++;
-        }
-
-        _messages[0] = builder.ToString().TrimEnd('\n');
+        _messages[1] = StringBuilderPool.Shared.ToStringReturn(builder).TrimEnd('\n');
     }
 }

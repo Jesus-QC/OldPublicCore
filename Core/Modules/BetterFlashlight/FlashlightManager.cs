@@ -3,7 +3,6 @@ using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using Exiled.Events.EventArgs;
 using MEC;
 
 namespace Core.Modules.BetterFlashlight;
@@ -47,11 +46,11 @@ public class FlashlightManager
                 if (Batteries[serial] == 0)
                 {
                     player.RemoveItem(flashlight);
-                    player.SendHint(ScreenZone.Bottom, "<color=#ff7070>Your flashlight was broken!</color>", 3);
+                    player.SendHint(ScreenZone.Bottom, "\n\n<color=#ff7070>Your flashlight was broken!</color>", 3);
                     Batteries.Remove(serial);
                 }
 
-                player.SendHint(ScreenZone.Bottom, $"Battery: <color=#ffe08c>{Batteries[serial]}%</color>", 1);
+                player.SendHint(ScreenZone.Bottom, $"\n\nBattery: <color=#ffe08c>{Batteries[serial]}%</color>", 1);
                 Batteries[serial]--;
             }
 

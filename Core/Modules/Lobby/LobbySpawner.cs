@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Features.Data.Enums;
+using Core.Features.Wrappers;
 using Core.Modules.Lobby.Components;
 using Core.Modules.Lobby.Enums;
 using Core.Modules.Lobby.Helpers;
@@ -312,12 +314,15 @@ namespace Core.Modules.Lobby
 
         private IEnumerator<float> ServerHUD()
         {
+            var welcome = $"<u>W<lowercase>elcome to</lowercase></u>\n{LobbyModule.LobbyConfig.ServerName}";
+            var discord = $"<align=right><color=#5865F2><u></color>J<lowercase>oin our discord!</lowercase></u>\n{LobbyModule.LobbyConfig.DiscordLink}</align>";
+
             for (;;)
             {
-                var msg = GetMessage(GetStatus(RoundStart.singleton.NetworkTimer));
-                foreach (var player in Player.List)
-                    player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[]{ new StringHintParameter(msg) }, null, 1.5f)));
-                yield return Timing.WaitForSeconds(1);
+                MapCore.SendHint(ScreenZone.Top, welcome, 2);
+                MapCore.SendHint(ScreenZone.Bottom, discord, 2);
+                MapCore.SendHint(ScreenZone.CenterTop, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 2);
+                yield return Timing.WaitForSeconds(0.95f);
             }
         }
 
@@ -335,6 +340,6 @@ namespace Core.Modules.Lobby
             }
         }
 
-        private string GetMessage(string status) => $"<line-height=95%><voffset=8em><size=50%><alpha=#44><align=left>W<lowercase>olf</lowercase>P<lowercase>ack</lowercase> (Ver {Core.Instance.Version})</align><alpha=#FF></size><align=right>\n\n\n\nW<lowercase>elcome to {LobbyModule.LobbyConfig.ServerName}!</lowercase>\n\n\n </align></voffset><voffset=8em>\n\n\n<size=55>T<lowercase>he game will start soon!</lowercase></size>\n{status}</voffset><voffset=8em>\n\n\n\n\n\n\n\n</voffset><voffset=8em>\n\n\njoin our <color=#5865F2>discord</color>!\n{LobbyModule.LobbyConfig.DiscordLink}\n\n</voffset><voffset=8em>\n<sprite=12>\nT<lowercase>ype <color=#57F287>.level</color> in the console</lowercase></voffset>";
+        private string GetMessage(string status) => $"<align=right>T<lowercase>he game will start soon!</lowercase>\n{status}</align>";
     }
 }

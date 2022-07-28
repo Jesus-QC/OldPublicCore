@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Core.Features.Data.Enums;
+using Core.Features.Extensions;
 using Exiled.API.Features;
 using UnityEngine;
 
@@ -17,43 +18,45 @@ namespace Core.Modules.Lobby.Components
             var col = gameObject.AddComponent<CapsuleCollider>();
             col.isTrigger = true;
 
-            _name = $"{LobbyModule.LobbyConfig.TeamSelected} <i>{GetTeamName(team)}</i>";
+            _name = $"<size=150%>{GetTeamName(team)}</size>";
         }
 
+        private float _counter;
+        
+        private void Update()
+        {
+            _counter += Time.deltaTime;
+
+            if (_counter > 0.98f)
+            {
+                foreach (var player in _players)
+                {
+                    player.SendHint(ScreenZone.Center, _name, 2);
+                }
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            try
-            {
-                var ply = Player.Get(other.gameObject);
-                if (ply != null)
-                {
-                    if(_players.Contains(ply))
-                        return;
-                
-                    _players.Add(ply);
-                    ply.ClearBroadcasts();
-                    for (int i = 0; i < 10; i++)
-                    {
-                        ply.Broadcast(100, _name);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
+            var ply = Player.Get(other.gameObject);
+            if (ply is null || _players.Contains(ply))
+                return;
+
+            _players.Add(ply);
+            ply.SendHint(ScreenZone.Center, _name, 2);
         }
 
         private void OnTriggerExit(Collider other)
         {
             var ply = Player.Get(other.gameObject);
-            if (ply != null)
+            
+            if (ply is null)
+                return;
+
+            if (_players.Contains(ply))
             {
-                if (_players.Contains(ply))
-                    _players.Remove(ply);
-                
-                ply.ClearBroadcasts();
+                _players.Remove(ply);
+                ply.ClearHint(ScreenZone.Center);
             }
         }
 

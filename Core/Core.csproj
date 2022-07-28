@@ -125,9 +125,9 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core.cs" />
+        <Compile Include="Features\Commands\CoreVersionCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordDeSyncCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordSyncCommand.cs" />
-        <Compile Include="Features\Commands\HintZoneCmd.cs" />
         <Compile Include="Features\Components\CustomHUD.cs" />
         <Compile Include="Features\Components\PlayerManager.cs" />
         <Compile Include="Features\Data\Configs\CoreConfig.cs" />
@@ -136,7 +136,7 @@
         <Compile Include="Features\Data\Enums\Perk.cs" />
         <Compile Include="Features\Data\Enums\ScreenZone.cs" />
         <Compile Include="Features\Data\Enums\SubscriptionType.cs" />
-        <Compile Include="Features\Data\UI\PerkMessage.cs" />
+        <Compile Include="Features\Data\UI\Notification.cs" />
         <Compile Include="Features\Events\Core.cs" />
         <Compile Include="Features\Events\EventArgs\AddingExpEventArgs.cs" />
         <Compile Include="Features\Events\EventArgs\WarnedEventArgs.cs" />

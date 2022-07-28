@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Core.Features.Data.Enums;
-using Core.Features.Data.UI;
 using Core.Features.Events;
 using Core.Features.Events.EventArgs;
 using Exiled.API.Features;
@@ -57,15 +55,8 @@ public static class LevelExtensions
     {
         if (player.DoNotTrack)
             return;
-            
-        var msg = new PerkMessage
-        {
-            Color = perk.GetColor(),
-            ExpAmount = exp,
-            Message = perk.ToString().Replace("_", " ")
-        };
-            
-        player.GetManager().AddMessage(perk, msg);
+
+        player.SendHint(ScreenZone.Notifications, $"[<color=#{perk.GetColor()}>{perk.ToString().Replace("_", " ")}</color> | <color=#ffff57>+ {exp}</color>]\n");
 
         Exp[player] += exp;
             

@@ -11,4 +11,10 @@ public static class MapCore
         foreach (var player in Player.List)
             player.SendHint(zone, message, duration);
     }
+    
+    public static void ClearHintZone(ScreenZone zone)
+    {
+        foreach (var player in Player.List)
+            player.ClearHint(zone);
+    }
 }

@@ -2,10 +2,10 @@ namespace Core.Features.Data.Enums
 {
     public enum ScreenZone
     {
-        Exp = 0,
+        Notifications = 1,
+        Top,
         CenterTop,
         Center,
-        CenterBottom,
         Bottom
     }
 }
