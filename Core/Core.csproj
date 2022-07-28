@@ -204,6 +204,8 @@
         <Compile Include="Modules\RespawnTimer\RespawnTimerConfig.cs" />
         <Compile Include="Modules\RespawnTimer\EventHandler.cs" />
         <Compile Include="Modules\RespawnTimer\RespawnTimerModule.cs" />
+        <Compile Include="Modules\SpectatorCount\Commands\ToggleListCommand.cs" />
+        <Compile Include="Modules\SpectatorCount\DisabledManager.cs" />
         <Compile Include="Modules\SpectatorCount\SpectatorCountModule.cs" />
         <Compile Include="Modules\Stalky\Components\StalkController.cs" />
         <Compile Include="Modules\Stalky\StalkyConfig.cs" />

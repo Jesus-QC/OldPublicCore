@@ -17,6 +17,9 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     public override void OnEnabled()
     {
+        DisabledManager = new DisabledManager();
+        DisabledManager.Load();
+        
         Server.RestartingRound += OnRestartingRound;
         Server.RoundStarted += OnStartingRound;
         
@@ -27,11 +30,14 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
     {
         Server.RestartingRound -= OnRestartingRound;
         Server.RoundStarted -= OnStartingRound;
+
+        DisabledManager = null;
         
         base.OnDisabled();
     }
 
     private CoroutineHandle _coroutine;
+    public static DisabledManager DisabledManager;
 
     private void OnRestartingRound()
     {
@@ -50,7 +56,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
         {
             foreach (var player in Player.List)
             {
-                if(player is null || player.IsDead)
+                if(player is null || player.IsDead || DisabledManager.IsHidden(player))
                     continue;
 
                 var builder = StringBuilderPool.Shared.Rent();
