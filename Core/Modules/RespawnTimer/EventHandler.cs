@@ -45,7 +45,7 @@ namespace Core.Modules.RespawnTimer
                 
                 if (Respawn.TimeUntilSpawnWave.Minutes != 0)
                     builder.Append(Respawn.TimeUntilSpawnWave.Minutes + " minutes ");
-                builder.Append(Respawn.TimeUntilSpawnWave.Seconds % 60 + " seconds");
+                builder.Append(Respawn.TimeUntilSpawnWave.Seconds + " seconds");
 
                 
                 if (Respawn.NextKnownTeam != SpawnableTeamType.None)
@@ -59,10 +59,13 @@ namespace Core.Modules.RespawnTimer
 
                 tipBuilder.Append("\n\n" + GetCount() + "<size=70%><color=#9342f5>❓</color>" + tip + "</size>");
 
+                var text = StringBuilderPool.Shared.ToStringReturn(builder);
+                var tipText = StringBuilderPool.Shared.ToStringReturn(tipBuilder);
+                
                 foreach (var player in Player.Get(Team.RIP))
                 {
-                    player.SendHint(ScreenZone.Center, StringBuilderPool.Shared.ToStringReturn(builder), 1.2f);
-                    player.SendHint(ScreenZone.Bottom, StringBuilderPool.Shared.ToStringReturn(tipBuilder), 1.2f);
+                    player.SendHint(ScreenZone.Center, text, 1.2f);
+                    player.SendHint(ScreenZone.Bottom, tipText, 1.2f);
                 }
 
                 i++;
