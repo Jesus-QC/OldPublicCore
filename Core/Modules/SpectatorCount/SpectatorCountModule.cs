@@ -66,11 +66,11 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                     
                     if(count == 5)
                     {
-                        builder.Append($"\n</color><color=#a7ff85>({player.CurrentSpectatingPlayers.Count() - 4}) more");
+                        builder.Append($"\n</color><color=#a7ff85>{player.CurrentSpectatingPlayers.Count() - 4} more");
                         break;
                     }
 
-                    builder.Append("\n" + spectator.Nickname + " -");
+                    builder.Append("\n" + spectator.Nickname);
                 }
 
                 if (count == 0)

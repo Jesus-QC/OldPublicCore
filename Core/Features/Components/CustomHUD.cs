@@ -12,7 +12,7 @@ namespace Core.Features.Components;
 
 public class CustomHUD : MonoBehaviour
 {
-    private static readonly string DefaultHUD = $"<line-height=95%><voffset=8em><size=50%><alpha=#44><align=left>W<lowercase>olf</lowercase>P<lowercase>ack</lowercase> (Ver {Core.Instance.Version}) | [9]</align><alpha=#FF></size>\n<align=right>[0]</align>[1][2][3][4]";
+    private const string DefaultHUD = $"<line-height=95%><voffset=8em><size=50%><alpha=#44><align=left>W<lowercase>olf</lowercase>P<lowercase>ack</lowercase> (Ver {Core.GlobalVersion}) | [9]</align><alpha=#FF></size>\n<align=right>[0]</align>[1][2][3][4]";
     private static readonly Dictionary<int, int> MessageLines = new() { [0] = 7, [1] = 6, [2] = 6, [3] = 5, [4] = 3 };
         
     private readonly Dictionary<int, float> _timers = new() { [0] = -1, [1] = -1, [2] = -1, [3] = -1, [4] = -1 };
@@ -58,7 +58,7 @@ public class CustomHUD : MonoBehaviour
     {
         var builder = new StringBuilder(DefaultHUD);
 
-        builder = builder.Replace("[9]", $"{_player.Nickname} ({_player.Id})");
+        builder = builder.Replace("[9]", $"{_player.Nickname} ({_player.Id}) | TPS: {Server.Tps}");
         builder = builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
             
         for (var i = 1; i < _timers.Count; i++)

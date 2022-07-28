@@ -184,6 +184,8 @@
         <Compile Include="Modules\Levels\Events\ServerHandler.cs" />
         <Compile Include="Modules\Levels\LevelsModule.cs" />
         <Compile Include="Modules\Levels\LevelsConfig.cs" />
+        <Compile Include="Modules\Lights\LightsConfig.cs" />
+        <Compile Include="Modules\Lights\LightsModule.cs" />
         <Compile Include="Modules\Lobby\Components\TeamTrigger.cs" />
         <Compile Include="Modules\Lobby\Enums\LobbyStatus.cs" />
         <Compile Include="Modules\Lobby\Helpers\SimplifiedLight.cs" />
