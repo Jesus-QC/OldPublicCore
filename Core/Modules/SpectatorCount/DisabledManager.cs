@@ -14,7 +14,7 @@ public class DisabledManager
         Directory.CreateDirectory(path);
 
         var filePath = Path.Combine(path, "hiddenlist.txt");
-        
+
         if (!File.Exists(filePath))
         {
             File.WriteAllText(filePath, "# This are the players with the spectator list hidden.");

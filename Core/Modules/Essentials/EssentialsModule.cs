@@ -31,6 +31,7 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Player.Hurting += _playerHandler.OnHurting;
         Player.Verified += _playerHandler.OnVerified;
         Player.TriggeringTesla += _playerHandler.OnTriggeringTesla;
+        Player.ChangingRole += _playerHandler.OnChangingRole;
 
         base.OnEnabled();
     }
@@ -40,6 +41,7 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Player.Hurting -= _playerHandler.OnHurting;
         Player.Verified -= _playerHandler.OnVerified;
         Player.TriggeringTesla -= _playerHandler.OnTriggeringTesla;
+        Player.ChangingRole -= _playerHandler.OnChangingRole;
         
         Server.RestartingRound -= _serverHandler.OnRestartingRound;
         Server.WaitingForPlayers -= _playerHandler.OnWaitingForPlayers;
