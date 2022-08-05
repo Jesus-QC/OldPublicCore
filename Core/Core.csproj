@@ -41,7 +41,7 @@
           <HintPath>..\packages\EXILED.5.3.0-beta.4\lib\net472\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
-          <HintPath>..\..\..\..\..\Dependencies\Assembly-CSharp-firstpass.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\EXILED.5.3.0-beta.4\lib\net472\CommandSystem.Core.dll</HintPath>
@@ -74,7 +74,7 @@
           <HintPath>..\packages\EXILED.5.3.0-beta.4\lib\net472\Exiled.Updater.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
-          <HintPath>..\..\..\..\..\Dependencies\Mirror.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\Mirror.dll</HintPath>
         </Reference>
         <Reference Include="mscorlib" />
         <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
@@ -108,16 +108,16 @@
         <Reference Include="System.Transactions" />
         <Reference Include="System.Xml" />
         <Reference Include="UnityEngine">
-          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.PhysicsModule.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UnityWebRequestModule">
-          <HintPath>..\..\..\..\..\Dependencies\UnityEngine.UnityWebRequestModule.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\UnityEngine.UnityWebRequestModule.dll</HintPath>
         </Reference>
         <Reference Include="YamlDotNet, Version=9.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
           <HintPath>..\packages\YamlDotNet.9.1.4\lib\net45\YamlDotNet.dll</HintPath>
