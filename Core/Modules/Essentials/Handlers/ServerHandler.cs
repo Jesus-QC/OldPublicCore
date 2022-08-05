@@ -8,12 +8,19 @@ namespace Core.Modules.Essentials.Handlers
 {
     public class ServerHandler
     {
+        private int _rounds;
+        
         public void OnRestartingRound()
         {
             foreach (var c in CoroutinesHandler.Coroutines)
                 Timing.KillCoroutines(c);
             
             CoroutinesHandler.Coroutines.Clear();
+            
+            _rounds++;
+            
+            if (_rounds == EssentialsModule.PluginConfig.RoundsToRestart)
+                Server.Restart();
         }
 
         public void OnAnnouncingMtfEntrance(AnnouncingNtfEntranceEventArgs ev)
