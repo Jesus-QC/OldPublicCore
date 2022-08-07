@@ -30,9 +30,4 @@ public class BetterFlashlightModule : CoreModule<EmptyConfig>
         
         base.OnDisabled();
     }
-    
-    public override void UnPatch()
-    {
-        Core.Harmony.Unpatch(typeof(FlashlightItem).GetMethod(nameof(FlashlightItem.OnEquipped)), HarmonyPatchType.Prefix, Core.Harmony.Id);
-    }
 }

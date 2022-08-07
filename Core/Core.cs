@@ -16,11 +16,10 @@ namespace Core
         public override string Name { get; } = "Core";
         public override string Prefix { get; } = "core";
         public override string Author { get; } = "Jesus-QC";
-        public override PluginPriority Priority { get; } = PluginPriority.Highest;
+        public override PluginPriority Priority { get; } = PluginPriority.Last;
 
         public const string GlobalVersion = "2.0.0.2";
-
-        public static Core Instance;
+        
         public static Database Database;
         public static Harmony Harmony;
 
@@ -29,9 +28,7 @@ namespace Core
 
         public override void OnEnabled()
         {
-            Instance = this;
-            
-            Harmony = new Harmony("core.patches.all");
+            Harmony = new Harmony("com.core.patches");
             Harmony.PatchAll();
 
             Database = new Database();
@@ -54,8 +51,6 @@ namespace Core
             Harmony.UnpatchAll(Harmony.Id);
             Harmony = null;
 
-            Instance = null;
-            
             base.OnDisabled();
         }
 
