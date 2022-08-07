@@ -91,7 +91,6 @@ public static class LevelExtensions
         if (unlockedPerks.Contains(perk)) return;
             
         unlockedPerks.Add(perk);
-        Core.Database.ExecuteNonQuery($"UPDATE Leveling SET Achievements='{Utf8Json.JsonSerializer.ToJsonString(unlockedPerks)}' WHERE PlayerId='{player.GetId()}'");
     }
     public static int GetUses(this Player player, Perk perk)
     {

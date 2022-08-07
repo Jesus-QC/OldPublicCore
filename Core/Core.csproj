@@ -125,6 +125,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core.cs" />
+        <Compile Include="Features\Commands\CoreHintSendCommand.cs" />
         <Compile Include="Features\Commands\CoreVersionCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordDeSyncCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordSyncCommand.cs" />
@@ -133,9 +134,9 @@
         <Compile Include="Features\Data\Configs\CoreConfig.cs" />
         <Compile Include="Features\Data\Configs\EmptyConfig.cs" />
         <Compile Include="Features\Data\Database.cs" />
+        <Compile Include="Features\Data\Enums\LevelRarity.cs" />
         <Compile Include="Features\Data\Enums\Perk.cs" />
         <Compile Include="Features\Data\Enums\ScreenZone.cs" />
-        <Compile Include="Features\Data\Enums\SubscriptionType.cs" />
         <Compile Include="Features\Data\UI\Notification.cs" />
         <Compile Include="Features\Events\Core.cs" />
         <Compile Include="Features\Events\EventArgs\AddingExpEventArgs.cs" />

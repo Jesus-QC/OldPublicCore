@@ -13,11 +13,11 @@ namespace Core.Features.Components;
 
 public class CustomHUD : MonoBehaviour
 {
-    private const string DefaultHUD = "<size=93%><line-height=90%><voffset=8.75em><align=right>[1]</align>[2][3][4][5]<size=60%>[0]";
-    private static readonly Dictionary<int, int> MessageLines = new() { [0] = 1, [1] = 6, [2] = 6, [3] = 6, [4] = 6, [5] = 6 };
+    private const string DefaultHUD = "<size=90%><line-height=90%><voffset=9.25em><size=60%>[5]</size><align=right>[0]</align>[1][2][3][4]<size=60%>[9]";
+    private static readonly Dictionary<int, int> MessageLines = new() { [0] = 6, [1] = 6, [2] = 6, [3] = 6, [4] = 6, [5] = 1 };
         
-    private readonly Dictionary<int, float> _timers = new() { [1] = -1, [2] = -1, [3] = -1, [4] = -1, [5] = -1 };
-    private readonly Dictionary<int, string> _messages = new() { [1] = string.Empty, [2] = string.Empty, [3] = string.Empty, [4] = string.Empty, [5] = string.Empty };
+    private readonly Dictionary<int, float> _timers = new() { [0] = -1, [1] = -1, [2] = -1, [3] = -1, [4] = -1, [5] = -1 };
+    private readonly Dictionary<int, string> _messages = new() { [0] = string.Empty, [1] = string.Empty, [2] = string.Empty, [3] = string.Empty, [4] = string.Empty, [5] = string.Empty };
 
     private float _counter;
     private Player _player;
@@ -33,12 +33,12 @@ public class CustomHUD : MonoBehaviour
     {
         _counter += Time.deltaTime;
 
-        if (_counter < .99f) 
+        if (_counter < .5f)
             return;
         
         UpdateNotifications();
         var msg = GetMessage();
-        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[]{ new StringHintParameter(msg) }, null, 1.2f)));
+        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[]{ new StringHintParameter(string.Empty) }, null, 1)));
         _counter = 0;
     }
 
@@ -72,13 +72,13 @@ public class CustomHUD : MonoBehaviour
     {
         var builder = StringBuilderPool.Shared.Rent(DefaultHUD);
         
-        builder = builder.Replace("[0]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {Server.Tps}");
-        builder = builder.Replace("[1]", FormatStringForHud(_messages[1], MessageLines[1]));
+        builder = builder.Replace("[9]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {Server.Tps}");
+        builder = builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
 
-        for (var i = 2; i < _timers.Count + 1; i++)
+        for (var i = 1; i < _timers.Count; i++)
         {
             if (_timers[i] >= 0)
-                _timers[i]--;
+                _timers[i] -= 0.5f;
 
             if (_timers[i] < 0)
                 _messages[i] = string.Empty;
@@ -90,7 +90,7 @@ public class CustomHUD : MonoBehaviour
                 
             builder = builder.Replace($"[{i}]", FormatStringForHud(message, MessageLines[i]));
         }
-
+        
         return StringBuilderPool.Shared.ToStringReturn(builder);
     }
         
@@ -134,6 +134,6 @@ public class CustomHUD : MonoBehaviour
                 _notifications.RemoveAt(0);
         }
 
-        _messages[1] = StringBuilderPool.Shared.ToStringReturn(builder).TrimEnd('\n');
+        _messages[0] = StringBuilderPool.Shared.ToStringReturn(builder).TrimEnd('\n');
     }
 }

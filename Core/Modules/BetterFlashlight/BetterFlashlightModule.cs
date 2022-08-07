@@ -1,7 +1,5 @@
 ﻿using Core.Features.Data.Configs;
 using Core.Loader.Features;
-using HarmonyLib;
-using InventorySystem.Items.Flashlight;
 
 namespace Core.Modules.BetterFlashlight;
 

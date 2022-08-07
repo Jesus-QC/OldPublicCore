@@ -65,12 +65,14 @@ public class Database
             Connection.Open();
             var cmd = new MySqlCommand(command, Connection);
             cmd.ExecuteNonQuery();
-            Connection.Close();
         }
         catch (Exception)
         {
-            if (Connection.State != ConnectionState.Closed)
-                Connection.Close();
+            Log.Error($"There was an issue executing the query: {command}");
+        }
+        finally
+        {
+            Connection.Close();
         }
     }
 

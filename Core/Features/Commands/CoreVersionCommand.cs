@@ -3,6 +3,7 @@ using CommandSystem;
 
 namespace Core.Features.Commands;
 
+[CommandHandler(typeof(RemoteAdminCommandHandler)), CommandHandler(typeof(ClientCommandHandler)), CommandHandler(typeof(GameConsoleCommandHandler))]
 public class CoreVersionCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
