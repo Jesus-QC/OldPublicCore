@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using Core.Features.Extensions;
 using Exiled.API.Enums;
 using Exiled.API.Features;
