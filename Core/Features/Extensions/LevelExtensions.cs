@@ -82,15 +82,12 @@ public static class LevelExtensions
         if(player.DoNotTrack)
             return;
             
-        var args = new AddingExpEventArgs(player, exp);
-        Levels.OnAddingExp(args);
-        if(!args.IsAllowed)
-            return;
+        // var args = new AddingExpEventArgs(player, exp);
+        // Levels.OnAddingExp(args);
+        // if(!args.IsAllowed)
+        //     return;
             
-        Task.Run(() =>
-        {
-            Core.Database.ExecuteNonQuery($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
-        });
+        Core.Database.ExecuteNonQuery($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
 
         player.ShowBadge();
     }

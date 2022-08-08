@@ -163,6 +163,8 @@
         <Compile Include="Modules\AutoNuke\AutoNukeConfig.cs" />
         <Compile Include="Modules\BetterFlashlight\BetterFlashlightModule.cs" />
         <Compile Include="Modules\BetterFlashlight\FlashlightManager.cs" />
+        <Compile Include="Modules\DiscordBot\DiscordBotConfig.cs" />
+        <Compile Include="Modules\DiscordBot\DiscordBotModule.cs" />
         <Compile Include="Modules\EndScreen\EndScreenConfig.cs" />
         <Compile Include="Modules\EndScreen\EventHandlers.cs" />
         <Compile Include="Modules\EndScreen\EndScreenModule.cs" />

@@ -33,7 +33,8 @@ public class Scp1162Module : CoreModule<Scp1162Config>
         ev.Player.SendHint(ScreenZone.Center, Config.ItemDropMessage, Config.ItemDropMessageDuration);
         ev.IsAllowed = false;
         ev.Player.RemoveItem(ev.Item);
-        ev.Player.AddExp(LevelToken.Gambling);
+        if(ev.Player.CheckCooldown(LevelToken.Gambling, 3))
+            ev.Player.AddExp(LevelToken.Gambling);
         var newItemType = Config.Chances[Random.Range(0, Config.Chances.Count)];
         var newItem = Item.Create(newItemType);
         ev.Player.AddItem(newItem);
