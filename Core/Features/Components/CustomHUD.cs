@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Data.UI;
 using Core.Features.Extensions;
@@ -35,10 +36,15 @@ public class CustomHUD : MonoBehaviour
 
         if (_counter < .5f)
             return;
+
+        Task.Run(() =>
+        {
+            UpdateNotifications();
+            var msg = GetMessage();
+            _player.Connection.Send(new HintMessage(new TextHint(msg,
+                new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
+        });
         
-        UpdateNotifications();
-        var msg = GetMessage();
-        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[]{ new StringHintParameter(string.Empty) }, null, 1)));
         _counter = 0;
     }
 
@@ -116,7 +122,7 @@ public class CustomHUD : MonoBehaviour
         return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider}";
     }
 
-    private List<Notification> _notifications = new();
+    private readonly List<Notification> _notifications = new();
 
     private void UpdateNotifications()
     {
@@ -127,8 +133,8 @@ public class CustomHUD : MonoBehaviour
         
         for (int i = 0; i < (_notifications.Count > 5 ? 6 : _notifications.Count); i++)
         {
-            builder.Append(_notifications[i].Message);
-            _notifications[i].Duration--;
+            builder.Append(_notifications[i].Message + "\n");
+            _notifications[i].Duration -= 0.5f;
             
             if(_notifications[i].Duration <= 0)
                 _notifications.RemoveAt(0);

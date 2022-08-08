@@ -13,10 +13,8 @@ public class Database
 
     public Database()
     {
-        Log.Warn("Instantiating connection...");
+        Log.Warn("Instantiating connection to database...");
         Connection = new MySqlConnection("Server=213.133.102.104; Port=3306; Database=s1_scpsl; Uid=u1_cPwRAvh4eW; Pwd=kP7u.Lhrvh=OaLIqrQQBsJ3k;");
-        Connection.Open();
-        Connection.Close();
         Log.Warn("Successfully connected!");
     }
 
@@ -44,17 +42,16 @@ public class Database
         ExecuteNonQuery(query);
 
         var id = player.GetId();
-        ExecuteNonQuery($"INSERT INTO Leveling (PlayerId, Exp, Achievements) VALUES ('{id}', 0, '[0]')");
-        ExecuteNonQuery(
-            $"INSERT INTO SlStats (PlayerId, RoundsPlayed, TimePlayed, LastSeen) VALUES ('{id}', 0, 0, '{DateTime.UtcNow.Ticks}')");
+        ExecuteNonQuery($"INSERT INTO Leveling (PlayerId, Exp, Achievements) VALUES ('{id}', 0, '[0]');");
+        ExecuteNonQuery($"INSERT INTO SlStats (PlayerId, RoundsPlayed, TimePlayed, LastSeen) VALUES ('{id}', 0, 0, '{DateTime.UtcNow.Ticks}');");
     }
 
     public bool PlayerExists(Player player)
     {
-        Connection.Open();
-        var cmd = new MySqlCommand($"SELECT EXISTS(SELECT Id FROM NewPlayers WHERE {player.GetQuery()})", Connection);
+        using var con = Connection.Clone();
+        con.Open();
+        using var cmd = new MySqlCommand($"SELECT EXISTS(SELECT Id FROM NewPlayers WHERE {player.GetQuery()});", con);
         var exists = (int)(cmd.ExecuteScalar() ?? 0);
-        Connection.Close();
         return exists != 0;
     }
 
@@ -62,26 +59,24 @@ public class Database
     {
         try
         {
-            Connection.Open();
-            var cmd = new MySqlCommand(command, Connection);
+            using var con = Connection.Clone();
+            con.Open();
+            using var cmd = new MySqlCommand(command, con);
             cmd.ExecuteNonQuery();
         }
-        catch (Exception)
+        catch (Exception e)
         {
             Log.Error($"There was an issue executing the query: {command}");
-        }
-        finally
-        {
-            Connection.Close();
+            Log.Warn(e);
         }
     }
 
     public object ExecuteScalar(string command)
     {
-        Connection.Open();
-        var cmd = new MySqlCommand(command, Connection);
+        using var con = Connection.Clone();
+        con.Open();
+        using var cmd = new MySqlCommand(command, con);
         var obj = cmd.ExecuteScalar();
-        Connection.Close();
         return obj;
     }
 }

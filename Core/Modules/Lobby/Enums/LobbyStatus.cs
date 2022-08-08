@@ -1,9 +1,8 @@
-﻿namespace Core.Modules.Lobby.Enums
+﻿namespace Core.Modules.Lobby.Enums;
+
+public enum LobbyStatus
 {
-    public enum LobbyStatus
-    {
-        Open,
-        Starting,
-        Close
-    }
+    Open,
+    Starting,
+    Close
 }

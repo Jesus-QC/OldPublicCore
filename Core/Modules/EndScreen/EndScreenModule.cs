@@ -3,40 +3,39 @@ using PlayerEvents = Exiled.Events.Handlers.Player;
 using ServerEvents = Exiled.Events.Handlers.Server;
 
 
-namespace Core.Modules.EndScreen
+namespace Core.Modules.EndScreen;
+
+public class EndScreenModule : CoreModule<EndScreenConfig>
 {
-    public class EndScreenModule : CoreModule<EndScreenConfig>
-    {
-        public override string Name { get; } = "EndScreen";
+    public override string Name { get; } = "EndScreen";
 
-        private EventHandlers _eventHandlers;
+    private EventHandlers _eventHandlers;
         
-        public override void OnEnabled()
-        {
-            _eventHandlers = new EventHandlers();
+    public override void OnEnabled()
+    {
+        _eventHandlers = new EventHandlers();
             
-            PlayerEvents.Verified += _eventHandlers.OnVerified;
-            PlayerEvents.Died += _eventHandlers.OnDied;
-            PlayerEvents.Hurting += _eventHandlers.OnHurting;
-            PlayerEvents.Escaping += _eventHandlers.OnEscaping;
+        PlayerEvents.Verified += _eventHandlers.OnVerified;
+        PlayerEvents.Died += _eventHandlers.OnDied;
+        PlayerEvents.Hurting += _eventHandlers.OnHurting;
+        PlayerEvents.Escaping += _eventHandlers.OnEscaping;
 
-            ServerEvents.RoundEnded += _eventHandlers.OnEndedRound;
+        ServerEvents.RoundEnded += _eventHandlers.OnEndedRound;
             
-            base.OnEnabled();
-        }
+        base.OnEnabled();
+    }
 
-        public override void OnDisabled()
-        {
-            PlayerEvents.Verified -= _eventHandlers.OnVerified;
-            PlayerEvents.Died -= _eventHandlers.OnDied;
-            PlayerEvents.Hurting -= _eventHandlers.OnHurting;
-            PlayerEvents.Escaping -= _eventHandlers.OnEscaping;
+    public override void OnDisabled()
+    {
+        PlayerEvents.Verified -= _eventHandlers.OnVerified;
+        PlayerEvents.Died -= _eventHandlers.OnDied;
+        PlayerEvents.Hurting -= _eventHandlers.OnHurting;
+        PlayerEvents.Escaping -= _eventHandlers.OnEscaping;
 
-            ServerEvents.RoundEnded -= _eventHandlers.OnEndedRound;
+        ServerEvents.RoundEnded -= _eventHandlers.OnEndedRound;
 
-            _eventHandlers = null;
+        _eventHandlers = null;
             
-            base.OnDisabled();
-        }
+        base.OnDisabled();
     }
 }

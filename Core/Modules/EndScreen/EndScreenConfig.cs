@@ -1,9 +1,8 @@
 using Exiled.API.Interfaces;
 
-namespace Core.Modules.EndScreen
+namespace Core.Modules.EndScreen;
+
+public class EndScreenConfig : IConfig
 {
-    public class EndScreenConfig : IConfig
-    {
-        public bool IsEnabled { get; set; } = true;
-    }
+    public bool IsEnabled { get; set; } = true;
 }

@@ -28,7 +28,7 @@ public class CoreHintSendCommand : ICommand
         var msg = "";
         for (int i = 2; i < arguments.Count; i++)
         {
-            msg += arguments.At(i);
+            msg += arguments.At(i) + " ";
         }
         
         ply.SendHint(zone, msg);

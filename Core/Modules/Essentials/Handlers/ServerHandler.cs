@@ -4,37 +4,36 @@ using Exiled.Events.EventArgs;
 using MEC;
 using Respawning;
 
-namespace Core.Modules.Essentials.Handlers
+namespace Core.Modules.Essentials.Handlers;
+
+public class ServerHandler
 {
-    public class ServerHandler
-    {
-        private int _rounds;
+    private int _rounds;
         
-        public void OnRestartingRound()
-        {
-            foreach (var c in CoroutinesHandler.Coroutines)
-                Timing.KillCoroutines(c);
+    public void OnRestartingRound()
+    {
+        foreach (var c in CoroutinesHandler.Coroutines)
+            Timing.KillCoroutines(c);
             
-            CoroutinesHandler.Coroutines.Clear();
+        CoroutinesHandler.Coroutines.Clear();
             
-            _rounds++;
+        _rounds++;
             
-            if (_rounds == EssentialsModule.PluginConfig.RoundsToRestart)
-                Server.Restart();
-        }
+        if (_rounds == EssentialsModule.PluginConfig.RoundsToRestart)
+            Server.Restart();
+    }
 
-        public void OnAnnouncingMtfEntrance(AnnouncingNtfEntranceEventArgs ev)
-        {
-            ev.IsAllowed = false;
-            Cassie.Message(EssentialsModule.PluginConfig.MtfAnnouncement.Replace("%unit%", ev.UnitName).Replace("%unitnumber%", ev.UnitNumber.ToString()).Replace("%scps%", ev.ScpsLeft.ToString()));
-        }
+    public void OnAnnouncingMtfEntrance(AnnouncingNtfEntranceEventArgs ev)
+    {
+        ev.IsAllowed = false;
+        Cassie.Message(EssentialsModule.PluginConfig.MtfAnnouncement.Replace("%unit%", ev.UnitName).Replace("%unitnumber%", ev.UnitNumber.ToString()).Replace("%scps%", ev.ScpsLeft.ToString()));
+    }
 
-        public void OnRespawningTeam(RespawningTeamEventArgs ev)
-        {
-            if (ev.NextKnownTeam != SpawnableTeamType.ChaosInsurgency)
-                return;
+    public void OnRespawningTeam(RespawningTeamEventArgs ev)
+    {
+        if (ev.NextKnownTeam != SpawnableTeamType.ChaosInsurgency)
+            return;
                 
-            Cassie.Message(EssentialsModule.PluginConfig.ChaosAnnouncement.Replace("%scps%", Player.Get(Team.SCP).Count().ToString()));
-        }
+        Cassie.Message(EssentialsModule.PluginConfig.ChaosAnnouncement.Replace("%scps%", Player.Get(Team.SCP).Count().ToString()));
     }
 }

@@ -2,25 +2,24 @@
 using Core.Features.Extensions;
 using Exiled.API.Features;
 
-namespace Core.Features.Handlers
+namespace Core.Features.Handlers;
+
+public class ServerHandler
 {
-    public class ServerHandler
+    public void OnRestartingRound()
     {
-        public void OnRestartingRound()
+        try
         {
-            try
-            {
-                foreach (var player in Player.List)
-                    player.Goodbye();
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
-            
-            PlayerExtensions.ClearHubs();
-            LevelExtensions.ResetLevelsCooldown();
-            PerkExtensions.ClearCache();
+            foreach (var player in Player.List)
+                player.Goodbye();
         }
+        catch (Exception e)
+        {
+            Log.Error(e);
+        }
+            
+        PlayerExtensions.ClearHubs();
+        LevelExtensions.ResetLevels();
+        LevelExtensions.ExpMultiplier = DateTime.Today.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday or DayOfWeek.Friday ? 2 : 1;
     }
 }

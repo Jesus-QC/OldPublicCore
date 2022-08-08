@@ -1,10 +1,9 @@
-namespace Core.Modules.Logs.Enums
+namespace Core.Modules.Logs.Enums;
+
+public enum WebhookType
 {
-    public enum WebhookType
-    {
-        GameLogs,
-        CommandLogs,
-        KillLogs,
-        ErrorLogs
-    }
+    GameLogs,
+    CommandLogs,
+    KillLogs,
+    ErrorLogs
 }

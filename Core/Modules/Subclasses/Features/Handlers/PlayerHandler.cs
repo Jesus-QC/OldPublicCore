@@ -2,20 +2,19 @@
 using Core.Modules.Subclasses.Features.Extensions;
 using Exiled.Events.EventArgs;
 
-namespace Core.Modules.Subclasses.Features.Handlers
+namespace Core.Modules.Subclasses.Features.Handlers;
+
+public class PlayerHandler
 {
-    public class PlayerHandler
+    public readonly Dictionary<string, ushort> Subclasses = new();
+
+    public void OnChangingRole(ChangingRoleEventArgs ev)
     {
-        public readonly Dictionary<string, ushort> Subclasses = new();
-
-        public void OnChangingRole(ChangingRoleEventArgs ev)
-        {
-            if(ev.NewRole == RoleType.Spectator)
-                return;
+        if(ev.NewRole == RoleType.Spectator)
+            return;
             
-            ev.Player.SetRandomSubclass(ev.NewRole);
-        }
-
-        public void OnDied(DiedEventArgs ev) => ev.Target?.RemoveSubclass();
+        ev.Player.SetRandomSubclass(ev.NewRole);
     }
+
+    public void OnDied(DiedEventArgs ev) => ev.Target?.RemoveSubclass();
 }

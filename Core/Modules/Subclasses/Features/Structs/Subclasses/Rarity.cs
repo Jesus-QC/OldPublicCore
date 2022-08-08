@@ -1,12 +1,11 @@
-﻿namespace Core.Modules.Subclasses.Features.Structs.Subclasses
+﻿namespace Core.Modules.Subclasses.Features.Structs.Subclasses;
+
+public enum Rarity
 {
-    public enum Rarity
-    {
-        Common,
-        Uncommon,
-        Rare,
-        Epic,
-        Legendary,
-        Mythic,
-    }
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary,
+    Mythic,
 }
