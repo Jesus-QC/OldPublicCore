@@ -52,7 +52,7 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
         while (true)
         {
             await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus()}, 0, 2);
-            await Task.Delay(15000);
+            await Task.Delay(20000);
         }
     }
 

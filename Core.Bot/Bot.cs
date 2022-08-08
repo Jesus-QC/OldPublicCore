@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using Discord;
 using Discord.WebSocket;
 
@@ -17,6 +16,7 @@ public class Bot
     {
         _tcpListener = TcpListener.Create(port);
         _client = new DiscordSocketClient();
+        _client.Ready += async () => await _client.SetStatusAsync(UserStatus.Idle);
     }
     
     public async Task Run()
@@ -43,15 +43,12 @@ public class Bot
         switch (_status)
         {
             case 1:
-                await _client.SetStatusAsync(UserStatus.Online);
                 await _client.SetActivityAsync(new Game(_playerCount + "/40"));
                 break;
             case 2:
-                await _client.SetStatusAsync(UserStatus.Idle);
                 await _client.SetActivityAsync(new Game("Restarting round..."));
                 break;
             case 3:
-                await _client.SetStatusAsync(UserStatus.Idle);
                 await _client.SetActivityAsync(new Game($"Waiting ({_playerCount}/40)"));
                 break;
         }
