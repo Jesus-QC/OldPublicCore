@@ -22,11 +22,13 @@ public class CustomHUD : MonoBehaviour
 
     private float _counter;
     private Player _player;
+    private bool _dnt;
     private string _cachedMsg;
 
     private void Start()
     {
         _player = Player.Get(gameObject);
+        _dnt = _player.DoNotTrack;
         _cachedMsg = $"thewolfpack | {_player.Nickname.ToLower()} ({_player.Id})";
     }
 
@@ -37,13 +39,9 @@ public class CustomHUD : MonoBehaviour
         if (_counter < .5f)
             return;
 
-        Task.Run(() =>
-        {
-            UpdateNotifications();
-            var msg = GetMessage();
-            _player.Connection.Send(new HintMessage(new TextHint(msg,
-                new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
-        }).GetAwaiter().GetResult();
+        UpdateNotifications();
+        var msg = GetMessage();
+        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
         
         _counter = 0;
     }
@@ -115,18 +113,18 @@ public class CustomHUD : MonoBehaviour
 
     private string GetLevelMessage()
     {
-        if (_player.DoNotTrack)
+        if (_dnt)
             return "do not track";
         
         var exp = _player.GetExp();
-        return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider}";
+        return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider} | XP Multiplier:";
     }
 
     private readonly List<Notification> _notifications = new();
 
     private void UpdateNotifications()
     {
-        if (_player.DoNotTrack)
+        if (_dnt)
             return;
 
         var builder = StringBuilderPool.Shared.Rent();

@@ -64,21 +64,18 @@ public static class LevelExtensions
     {
         if (player.DoNotTrack)
             return;
+        
+        var exp = perk.GetExp();
 
-        Task.Run(() =>
-        {
-            var exp = perk.GetExp();
+        exp *= ExpMultiplier;
 
-            exp *= ExpMultiplier;
+        player.SendHint(ScreenZone.Notifications, perk.GetString(exp));
 
-            player.SendHint(ScreenZone.Notifications, perk.GetString(exp));
+        Exp[player] += exp;
+        RoundExp[player] += exp;
 
-            Exp[player] += exp;
-            RoundExp[player] += exp;
-
-            player.AddUse(perk);
-            player.AddExp(exp);
-        }).GetAwaiter().GetResult();
+        player.AddUse(perk);
+        player.AddExp(exp);
     }
     public static void AddExp(this Player player, int exp)
     {
@@ -90,8 +87,11 @@ public static class LevelExtensions
         if(!args.IsAllowed)
             return;
             
-        Core.Database.ExecuteNonQuery($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
-            
+        Task.Run(() =>
+        {
+            Core.Database.ExecuteNonQuery($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
+        });
+
         player.ShowBadge();
     }
 
