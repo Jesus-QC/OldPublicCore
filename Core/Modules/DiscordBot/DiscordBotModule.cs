@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
     {
         try
         {
-            if (!string.IsNullOrEmpty(Config.Path))
+            if (!string.IsNullOrEmpty(Config.Path) && !Process.GetProcesses().Any(x => x.ProcessName is "Core.Bot"))
             {
                 ProcessStartInfo p = new ProcessStartInfo(Config.Path, (Server.Port + 2000).ToString());
                 Process.Start(p);
@@ -46,13 +47,22 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
 
     private static async Task BotTask(int port, string ip)
     {
-        TcpClient c = new TcpClient();
-        await c.ConnectAsync(ip, port);
-
-        while (true)
+        await Task.Delay(15000);
+        
+        try
         {
-            await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus()}, 0, 2);
-            await Task.Delay(20000);
+            TcpClient c = new TcpClient();
+            await c.ConnectAsync(ip, port);
+            
+            while (true)
+            {
+                await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus()}, 0, 2);
+                await Task.Delay(20000);
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Error(e);
         }
     }
 
