@@ -17,7 +17,6 @@ public class Bot
     {
         _tcpListener = TcpListener.Create(port);
         _client = new DiscordSocketClient();
-        _client.Ready += RefreshStatus;
     }
     
     public async Task Run()
@@ -35,6 +34,7 @@ public class Bot
             s.Receive(buf);
             _status = buf[1];
             _playerCount = buf[0];
+            await RefreshStatus();
         }
     }
 
