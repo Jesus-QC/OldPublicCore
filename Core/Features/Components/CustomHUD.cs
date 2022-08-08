@@ -43,7 +43,7 @@ public class CustomHUD : MonoBehaviour
             var msg = GetMessage();
             _player.Connection.Send(new HintMessage(new TextHint(msg,
                 new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
-        });
+        }).GetAwaiter().GetResult();
         
         _counter = 0;
     }

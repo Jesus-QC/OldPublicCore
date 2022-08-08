@@ -78,7 +78,7 @@ public static class LevelExtensions
 
             player.AddUse(perk);
             player.AddExp(exp);
-        });
+        }).GetAwaiter().GetResult();
     }
     public static void AddExp(this Player player, int exp)
     {
