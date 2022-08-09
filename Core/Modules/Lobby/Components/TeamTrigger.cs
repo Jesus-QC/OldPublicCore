@@ -18,7 +18,7 @@ public class TeamTrigger : MonoBehaviour
         var col = gameObject.AddComponent<CapsuleCollider>();
         col.isTrigger = true;
 
-        _name = $"<size=150%>{GetTeamName(team)}</size>";
+        _name = $"\nSelected:\n\n<size=150%>{GetTeamName(team)}</size>";
     }
 
     private float _counter;

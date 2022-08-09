@@ -7,7 +7,9 @@ using Core.Modules.Lobby.Components;
 using Core.Modules.Lobby.Enums;
 using Core.Modules.Lobby.Helpers;
 using Exiled.API.Enums;
+using Exiled.API.Extensions;
 using Exiled.API.Features;
+using Exiled.API.Features.Toys;
 using Exiled.Events.EventArgs;
 using GameCore;
 using Hints;
@@ -48,21 +50,21 @@ public class LobbySpawner
 
         _lobbyRoom = Room.Get(RoomType.Hcz106);
         var localPosition = _lobbyRoom.Transform;
-        var localRotation = _lobbyRoom.Transform.localRotation;
+        // var localRotation = _lobbyRoom.Transform.localRotation;
 
-        _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * -135, RoleType.ClassD, "Class-Ds"));
-        _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * 135, RoleType.FacilityGuard, "Guards"));
-        _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -18.35f)), localRotation.eulerAngles + Vector3.up * 45, RoleType.Scientist, "Scientists"));
-        _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -18.35f)), localRotation.eulerAngles + Vector3.up * -45, RoleType.Scp106, "SCPs"));
+        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * -135, RoleType.ClassD, "Class-Ds"));
+        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * 135, RoleType.FacilityGuard, "Guards"));
+        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -18.35f)), localRotation.eulerAngles + Vector3.up * 45, RoleType.Scientist, "Scientists"));
+        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -18.35f)), localRotation.eulerAngles + Vector3.up * -45, RoleType.Scp106, "SCPs"));
 
         _spawnPosition = localPosition.TransformPoint(new Vector3(7.25f, -17, -14.5f));
             
         _lobbyLights = new GameObject("Lights-Lobby");
 
-        new SimplifiedLight(localPosition.TransformPoint(new Vector3(11.35f, -18.5f, -10.65f)), Color.magenta, 2f, false, 2).Spawn(_lobbyLights.transform);
-        new SimplifiedLight(localPosition.TransformPoint(new Vector3(3.35f, -18.5f, -10.65f)), Color.cyan, 2f, false, 2).Spawn(_lobbyLights.transform);
-        new SimplifiedLight(localPosition.TransformPoint( new Vector3(3.35f, -18.5f, -18.35f)), Color.yellow, 2f, false, 2).Spawn(_lobbyLights.transform);
-        new SimplifiedLight(localPosition.TransformPoint( new Vector3(11.35f, -18.5f, -18.35f)), Color.red, 2f, false, 2).Spawn(_lobbyLights.transform);
+        new SimplifiedLight(localPosition.TransformPoint(new Vector3(11.35f, -18.5f, -10.65f)), RoleType.ClassD.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
+        new SimplifiedLight(localPosition.TransformPoint(new Vector3(3.35f, -18.5f, -10.65f)), RoleType.FacilityGuard.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
+        new SimplifiedLight(localPosition.TransformPoint( new Vector3(3.35f, -18.5f, -18.35f)), RoleType.Scientist.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
+        new SimplifiedLight(localPosition.TransformPoint( new Vector3(11.35f, -18.5f, -18.35f)), RoleType.Scp049.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
 
         _triggers.Add(SpawnTrigger(Team.CDP, localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f))));
         _triggers.Add(SpawnTrigger(Team.MTF, localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -10.65f))));
@@ -267,7 +269,7 @@ public class LobbySpawner
         return Team.TUT;
     }
 
-    private static GameObject SpawnDummy(Vector3 pos, Vector3 rot, RoleType role, string name)
+    /*private static GameObject SpawnDummy(Vector3 pos, Vector3 rot, RoleType role, string name)
     {
         var gameObject = Object.Instantiate(NetworkManager.singleton.playerPrefab);
         var referenceHub = gameObject.GetComponent<ReferenceHub>();
@@ -284,11 +286,11 @@ public class LobbySpawner
         referenceHub.characterClassManager.GodMode = true;
 
         referenceHub.nicknameSync.Network_myNickSync = name;
-
+        
         NetworkServer.Spawn(gameObject);
 
         return referenceHub.gameObject;
-    }
+    }*/
 
     private static TeamTrigger SpawnTrigger(Team team, Vector3 pos)
     {
@@ -324,6 +326,7 @@ public class LobbySpawner
 
         for (;;)
         {
+            MapCore.SendHint(ScreenZone.TopBar, "<b>dummies disabled on lobby while tests are done</b>");
             MapCore.SendHint(ScreenZone.Top, welcome, 2);
             MapCore.SendHint(ScreenZone.Bottom, discord, 2);
             MapCore.SendHint(ScreenZone.CenterTop, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 2);
