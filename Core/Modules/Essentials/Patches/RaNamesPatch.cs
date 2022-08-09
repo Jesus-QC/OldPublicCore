@@ -1,13 +1,29 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
+using HarmonyLib;
+using NorthwoodLib.Pools;
+using static HarmonyLib.AccessTools;
 
 namespace Core.Modules.Essentials.Patches;
 
 [HarmonyPatch(typeof(NicknameSync), nameof(NicknameSync.CombinedName), MethodType.Getter)]
 public class RaNamesPatch
 {
-    static bool Prefix(ref string __result, NicknameSync __instance)
+    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        __result = __instance.MyNick;
-        return false;
+        var newInstructions = ListPool<CodeInstruction>.Shared.Rent();
+        
+        newInstructions.AddRange(new CodeInstruction[]
+        {
+            new (OpCodes.Ldarg_0),
+            new (OpCodes.Callvirt, PropertyGetter(typeof(NicknameSync), nameof(NicknameSync.MyNick))),
+            new (OpCodes.Ret)
+        });
+        
+        foreach (var instruction in newInstructions)
+            yield return instruction;
+
+        ListPool<CodeInstruction>.Shared.Return(newInstructions);
     }
 }

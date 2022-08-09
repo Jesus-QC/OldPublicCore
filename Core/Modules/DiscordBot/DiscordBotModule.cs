@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading.Tasks;
-using Core.Features.Data.Configs;
 using Core.Loader.Features;
 using Exiled.API.Features;
 
@@ -72,13 +69,12 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
         {
             if (Round.IsLobby)
                 return 3;
-            if (Round.IsEnded)
-                return 2;
-            return 1;
         }
         catch
         {
-            return 1;
+            // ignored
         }
+
+        return 1;
     }
 }

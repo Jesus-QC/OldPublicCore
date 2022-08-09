@@ -117,7 +117,7 @@ public class CustomHUD : MonoBehaviour
             return "do not track";
         
         var exp = _player.GetExp();
-        return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider} | XP Multiplier:";
+        return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider}";
     }
 
     private readonly List<Notification> _notifications = new();

@@ -237,7 +237,7 @@ public class PlayerHandler
 
     private void OnIntercom(IntercomSpeakingEventArgs ev)
     {
-        if(LevelManager.IntercomUsedPlayers.Contains(ev.Player))
+        if (ev.Player is null || LevelManager.IntercomUsedPlayers.Contains(ev.Player))
             return;
 
         LevelManager.IntercomUsedPlayers.Add(ev.Player);
