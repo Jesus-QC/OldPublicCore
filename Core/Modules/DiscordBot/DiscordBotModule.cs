@@ -18,8 +18,16 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
     {
         try
         {
-            if (!string.IsNullOrEmpty(Config.Path) && !Process.GetProcesses().Any(x => x.ProcessName is "Core.Bot"))
+            if (!string.IsNullOrEmpty(Config.Path))
             {
+                foreach (var process in Process.GetProcesses())
+                {
+                    if (process.ProcessName is "Core.Bot")
+                    {
+                        process.Kill();
+                    }
+                }
+                
                 ProcessStartInfo p = new ProcessStartInfo(Config.Path, (Server.Port + 2000).ToString());
                 Process.Start(p);
                 Log.Warn("Bot started!");

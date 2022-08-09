@@ -33,7 +33,7 @@ public static class LevelExtensions
     {
         if (player.DoNotTrack)
         {
-            player.DisplayNickname = $"Lvl: DNT | {player.Nickname}";
+            player.DisplayNickname = $"DNT | {player.Nickname}";
             return;
         }
         

@@ -74,12 +74,17 @@ public class LobbySpawner
     {
         if (_status == LobbyStatus.Open)
         {
-            Timing.CallDelayed(0.5f, () =>
+            Timing.CallDelayed(0.5f, () => ev.Player.SetRole(RoleType.Tutorial));
+
+            Timing.CallDelayed(2f, () =>
             {
+                if (!ev.Player.IsOverwatchEnabled)
+                    return;
+               
                 ev.Player.IsOverwatchEnabled = false;
-                ev.Player.SetRole(RoleType.Tutorial);
+                Timing.CallDelayed(5f, () => ev.Player.SetRole(RoleType.Tutorial));
             });
-                
+
         }
     }
         
