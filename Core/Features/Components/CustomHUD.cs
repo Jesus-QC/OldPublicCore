@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Data.UI;
 using Core.Features.Extensions;
@@ -38,11 +39,19 @@ public class CustomHUD : MonoBehaviour
         if (_counter < .5f)
             return;
 
-        UpdateNotifications();
-        var msg = GetMessage();
-        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
+        DrawHud();
         
         _counter = 0;
+    }
+
+    private async void DrawHud()
+    {
+        await Task.Run(() =>
+        {
+            UpdateNotifications();
+            var msg = GetMessage();
+            _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
+        });
     }
 
     public void AddMessage(ScreenZone zone, string message, float time = 10f)

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
@@ -13,29 +15,33 @@ namespace Core.Modules.RespawnTimer;
 
 public class EventHandler
 {
-    private CoroutineHandle? _timerCoroutine;
+    private Task _timerCoroutine;
+    private CancellationTokenSource _cancellation;
+    
     public static List<string> Tips = new();
-
-    public void OnRoundStarted()
-    {
-        if(_timerCoroutine is { IsRunning: true })
-            Timing.KillCoroutines(_timerCoroutine.Value);
-                
-        _timerCoroutine = Timing.RunCoroutine(Timer());
-    }
 
     public void OnEndedRound(RoundEndedEventArgs ev)
     {
-        if(_timerCoroutine.HasValue)
-            Timing.KillCoroutines(_timerCoroutine.Value);
+        _cancellation.Cancel();
     }
 
-    private static IEnumerator<float> Timer()
+    public void OnRoundStarted()
+    {
+        _cancellation.Dispose();
+        _timerCoroutine.Dispose();
+        _cancellation = new CancellationTokenSource();
+        _timerCoroutine = Task.Run(Timer, _cancellation.Token);
+    }
+    
+    private async Task Timer()
     {
         int i = 0;
         var tip = "This is a secret message, wow.";
         for (;;)
         {
+            if(_cancellation.IsCancellationRequested)
+                return;
+            
             var builder = StringBuilderPool.Shared.Rent(Respawn.IsSpawning ? "\n\n\n\nY<lowercase>ou will respawn in:</lowercase>\n" : "\n\n\n\nN<lowercase>ext team is on the way!</lowercase>\n");
             var tipBuilder = StringBuilderPool.Shared.Rent("\n");
                 
@@ -44,8 +50,8 @@ public class EventHandler
                 i = 0;
                 tip = Tips[Random.Range(0, Tips.Count)];
             }
-                
-            yield return Timing.WaitForSeconds(0.99f);
+            
+            await Task.Delay(1000);
                 
             if (Respawn.TimeUntilSpawnWave.Minutes != 0)
                 builder.Append(Respawn.TimeUntilSpawnWave.Minutes + " minutes ");
