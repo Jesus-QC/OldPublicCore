@@ -41,7 +41,7 @@ public static class PlayerExtensions
 
             var id = player.GetId();
                 
-            Core.Database.ExecuteNonQuery($"UPDATE NewPlayers SET Username='{player.Nickname}' WHERE Id='{id}';");
+            Core.Database.ExecuteNonQuery($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("'", "\\'")}' WHERE Id='{id}';");
                 
             if (id != 21045) 
                 return;
@@ -104,6 +104,10 @@ public static class PlayerExtensions
         return id;
     }
 
-    public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 10) => Hubs[player].SendHint(zone, message, duration);
+    public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 10)
+    {
+        if(Hubs.ContainsKey(player))
+            Hubs[player].SendHint(zone, message, duration);
+    }
     public static void ClearHint(this Player player, ScreenZone zone) => Hubs[player].ClearHint(zone);
 }

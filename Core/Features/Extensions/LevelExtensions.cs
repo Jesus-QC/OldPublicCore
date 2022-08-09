@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Core.Features.Data.Enums;
-using Core.Features.Events;
-using Core.Features.Events.EventArgs;
 using Exiled.API.Features;
 
 namespace Core.Features.Extensions;

@@ -28,7 +28,7 @@ public class Database
         switch (player.AuthenticationType)
         {
             case AuthenticationType.Steam:
-                query += $"('{player.RawUserId}', NULL, NULL, '{player.Nickname}', '0');";
+                query += $"('{player.RawUserId}', NULL, NULL, '{player.Nickname.Replace("'", "\\'")}', '0');";
                 break;
             case AuthenticationType.Discord:
                 query += $"(NULL, '{player.RawUserId}', NULL, '{player.Nickname}', '0');";
