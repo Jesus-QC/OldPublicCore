@@ -22,8 +22,7 @@ public static class CoroutinesHandler
                 NetworkServer.Destroy(doll.GameObject);
 
             foreach (var pickup in Map.Pickups)
-                if(pickup.Serial > PickupAi)
-                    pickup.Destroy();
+                pickup.Destroy();
                 
             yield return Timing.WaitForSeconds(600);
         }
