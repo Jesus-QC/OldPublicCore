@@ -326,10 +326,10 @@ public class LobbySpawner
 
         for (;;)
         {
-            MapCore.SendHint(ScreenZone.TopBar, "<b>dummies disabled on lobby while tests are done</b>");
-            MapCore.SendHint(ScreenZone.Top, welcome, 2);
-            MapCore.SendHint(ScreenZone.Bottom, discord, 2);
-            MapCore.SendHint(ScreenZone.CenterTop, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 2);
+            MapCore.SendHint(ScreenZone.TopBar, LobbyModule.LobbyConfig.ServerAnnouncement, 1.2f);
+            MapCore.SendHint(ScreenZone.Top, welcome, 1.2f);
+            MapCore.SendHint(ScreenZone.Bottom, discord, 1.2f);
+            MapCore.SendHint(ScreenZone.CenterTop, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 1.2f);
             yield return Timing.WaitForSeconds(0.95f);
         }
     }

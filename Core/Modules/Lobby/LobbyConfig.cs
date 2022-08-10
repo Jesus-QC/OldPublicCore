@@ -5,6 +5,8 @@ namespace Core.Modules.Lobby;
 public class LobbyConfig : IConfig
 {
     public bool IsEnabled { get; set; } = true;
+
+    public string ServerAnnouncement { get; set; } = "<b><i><color=#3af26b>We are currently looking for new Staff, join the <color=#5865F2>Discord</color> server to apply.</color></i></b>";
     public string ServerName { get; set; } = "<color=#E24B62>T</color><color=#E24E65>h</color><color=#E35269>e</color><color=#E3566C>W</color><color=#E45A70>o</color><color=#E55E73>l</color><color=#E56277>f</color><color=#E6667A>P</color><color=#E76A7E>a</color><color=#E76E81>c</color><color=#E87285>k</color>";
     public string DiscordLink { get; set; } = "<color=#E24B62>d</color><color=#E24D64>i</color><color=#E24F66>s</color><color=#E35268>c</color><color=#E3546A>o</color><color=#E3566C>r</color><color=#E4596F>d</color><color=#E45B71>.</color><color=#E55E73>g</color><color=#E56075>g</color><color=#E56277>/</color><color=#E66579>3</color><color=#E6677C>G</color><color=#E76A7E>j</color><color=#E76C80>Z</color><color=#E76E82>7</color><color=#E87184>B</color><color=#E87386>Z</color>";
         
