@@ -17,14 +17,14 @@ public class ToggleListCommand : ICommand
             return false;
         }
 
-        if (SpectatorCountModule.DisabledManager.IsHidden(player))
+        if (DisabledManager.IsHidden(player))
         {
-            SpectatorCountModule.DisabledManager.Remove(player);
+            DisabledManager.Remove(player);
             response = "Show list: true";
             return true;
         }
         
-        SpectatorCountModule.DisabledManager.Add(player);
+        DisabledManager.Add(player);
         response = "Show list: false";
         return true;
     }

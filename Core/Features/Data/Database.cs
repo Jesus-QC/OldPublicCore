@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Core.Features.Extensions;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -62,6 +63,26 @@ public class Database
             con.Open();
             using var cmd = new MySqlCommand(command, con);
             cmd.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            Log.Error($"There was an issue executing the query: {command}");
+            Log.Warn(e);
+        }
+    }
+    
+    public async Task ExecuteNonQueryAsync(string command)
+    {
+        try
+        {
+            var con = Connection.Clone();
+            await con.OpenAsync(); 
+            
+            var cmd = new MySqlCommand(command, con);
+            await cmd.ExecuteNonQueryAsync();
+            
+            await cmd.DisposeAsync();
+            await con.DisposeAsync();
         }
         catch (Exception e)
         {

@@ -9,11 +9,12 @@ namespace Core.Modules.SCP1162;
 
 public class Scp1162Module : CoreModule<Scp1162Config>
 {
-    public override string Name { get; } = "Scp1162";
+    public override string Name => "Scp1162";
 
     public override void OnEnabled()
     {
         Exiled.Events.Handlers.Player.DroppingItem += OnDroppingItem;
+        Exiled.Events.Handlers.Server.RoundStarted += OnStartedRound;
         
         base.OnEnabled();
     }
@@ -21,13 +22,21 @@ public class Scp1162Module : CoreModule<Scp1162Config>
     public override void OnDisabled()
     {
         Exiled.Events.Handlers.Player.DroppingItem -= OnDroppingItem;
+        Exiled.Events.Handlers.Server.RoundStarted -= OnStartedRound;
         
         base.OnDisabled();
     }
 
+    private Vector3 _cachedPos = Vector3.zero;
+
+    private void OnStartedRound()
+    {
+        _cachedPos = Exiled.API.Extensions.RoleExtensions.GetRandomSpawnProperties(RoleType.Scp173).Item1;
+    }
+    
     private void OnDroppingItem(DroppingItemEventArgs ev)
     {
-        if (!ev.IsAllowed || Vector3.Distance(ev.Player.Position, Exiled.API.Extensions.RoleExtensions.GetRandomSpawnProperties(RoleType.Scp173).Item1) > 8.2f)
+        if (!ev.IsAllowed || Vector3.Distance(ev.Player.Position, _cachedPos) > 8.2f)
             return;
         
         ev.Player.SendHint(ScreenZone.Center, Config.ItemDropMessage, Config.ItemDropMessageDuration);

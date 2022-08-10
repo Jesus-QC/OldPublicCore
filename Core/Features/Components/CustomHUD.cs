@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,22 @@ public class CustomHUD : MonoBehaviour
     private bool _dnt;
     private string _cachedMsg;
 
+    private StringBuilder _builder;
+    private StringBuilder _secondaryBuilder;
+
     private void Start()
     {
+        _builder = StringBuilderPool.Shared.Rent();
+        _secondaryBuilder = StringBuilderPool.Shared.Rent();
         _player = Player.Get(gameObject);
         _dnt = _player.DoNotTrack;
-        _cachedMsg = $"thewolfpack | {_player.Nickname.ToLower()} ({_player.Id})";
+        _cachedMsg = $"thewolfpack | {Core.GlobalVersion} | {_player.Nickname.ToLower()} ({_player.Id})";
+    }
+
+    private void OnDestroy()
+    {
+        StringBuilderPool.Shared.Return(_builder);
+        StringBuilderPool.Shared.Return(_secondaryBuilder);
     }
 
     private void Update()
@@ -46,12 +58,13 @@ public class CustomHUD : MonoBehaviour
 
     private async void DrawHud()
     {
-        await Task.Run(() =>
+        var msg = await Task.Run(() =>
         {
             UpdateNotifications();
-            var msg = GetMessage();
-            _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
+            return GetMessage();
         });
+        
+        _player.Connection.Send(new HintMessage(new TextHint(msg, new HintParameter[] { new StringHintParameter(string.Empty) }, null, 2)));
     }
 
     public void AddMessage(ScreenZone zone, string message, float time = 10f)
@@ -82,10 +95,11 @@ public class CustomHUD : MonoBehaviour
 
     private string GetMessage()
     {
-        var builder = StringBuilderPool.Shared.Rent(DefaultHUD);
-        
-        builder = builder.Replace("[9]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {Server.Tps}");
-        builder = builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
+        _builder.Clear();
+        _builder.Append(DefaultHUD);
+
+        _builder = _builder.Replace("[9]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {Server.Tps}");
+        _builder = _builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
 
         for (var i = 1; i < _timers.Count; i++)
         {
@@ -100,23 +114,23 @@ public class CustomHUD : MonoBehaviour
             if (string.IsNullOrEmpty(message))
                 message = '\n' + message;
                 
-            builder = builder.Replace($"[{i}]", FormatStringForHud(message, MessageLines[i]));
+            _builder = _builder.Replace($"[{i}]", FormatStringForHud(message, MessageLines[i]));
         }
-        
-        return StringBuilderPool.Shared.ToStringReturn(builder);
+
+        return _builder.ToString();
     }
         
-    private static string FormatStringForHud(string text, int linesNeeded)
+    private string FormatStringForHud(string text, int linesNeeded)
     {
-        var builder = new StringBuilder();
-        builder.Append(text);
+        _secondaryBuilder.Clear();
+        _secondaryBuilder.Append(text);
            
         var textLines = text.Count(x => x == '\n');
 
         for (var i = 0; i < linesNeeded - textLines; i++)
-            builder.Append('\n');
+            _secondaryBuilder.Append('\n');
 
-        return builder.ToString();
+        return _secondaryBuilder.ToString();
     }
 
     private string GetLevelMessage()
@@ -135,17 +149,16 @@ public class CustomHUD : MonoBehaviour
         if (_dnt)
             return;
 
-        var builder = StringBuilderPool.Shared.Rent();
-        
+        _builder.Clear();
         for (int i = 0; i < (_notifications.Count > 5 ? 6 : _notifications.Count); i++)
         {
-            builder.Append(_notifications[i].Message + "\n");
+            _builder.Append(_notifications[i].Message + "\n");
             _notifications[i].Duration -= 0.5f;
             
             if(_notifications[i].Duration <= 0)
                 _notifications.RemoveAt(0);
         }
 
-        _messages[0] = StringBuilderPool.Shared.ToStringReturn(builder).TrimEnd('\n');
+        _messages[0] = _builder.ToString().TrimEnd('\n');
     }
 }

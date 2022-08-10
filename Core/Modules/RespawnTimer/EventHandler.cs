@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Features.Data.Enums;
@@ -27,8 +28,11 @@ public class EventHandler
 
     public void OnRoundStarted()
     {
-        _cancellation.Dispose();
-        _timerCoroutine.Dispose();
+        if (_cancellation is not null)
+        {
+            _cancellation.Dispose();
+        }
+        
         _cancellation = new CancellationTokenSource();
         _timerCoroutine = Task.Run(Timer, _cancellation.Token);
     }
@@ -37,13 +41,18 @@ public class EventHandler
     {
         int i = 0;
         var tip = "This is a secret message, wow.";
+        var builder = new StringBuilder();
+        var tipBuilder = new StringBuilder();
         for (;;)
         {
-            if(_cancellation.IsCancellationRequested)
+            if (_cancellation.IsCancellationRequested)
                 return;
-            
-            var builder = StringBuilderPool.Shared.Rent(Respawn.IsSpawning ? "\n\n\n\nY<lowercase>ou will respawn in:</lowercase>\n" : "\n\n\n\nN<lowercase>ext team is on the way!</lowercase>\n");
-            var tipBuilder = StringBuilderPool.Shared.Rent("\n");
+
+            builder.Clear();
+            tipBuilder.Clear();
+
+            builder.Append(Respawn.IsSpawning ? "\n\n\n\nY<lowercase>ou will respawn in:</lowercase>\n" : "\n\n\n\nN<lowercase>ext team is on the way!</lowercase>\n");
+            tipBuilder.AppendLine();
                 
             if (i == 16)
             {
@@ -69,11 +78,14 @@ public class EventHandler
 
             tipBuilder.Append("\n\n" + GetCount() + "<size=70%><color=#9342f5>❓</color>" + tip + "</size>");
 
-            var text = StringBuilderPool.Shared.ToStringReturn(builder);
-            var tipText = StringBuilderPool.Shared.ToStringReturn(tipBuilder);
+            var text = builder.ToString();
+            var tipText = tipBuilder.ToString();
                 
-            foreach (var player in Player.Get(Team.RIP))
+            foreach (var player in Player.List)
             {
+                if(player.Role.Type != RoleType.Spectator)
+                    continue;
+                
                 player.SendHint(ScreenZone.Center, text, 1.2f);
                 player.SendHint(ScreenZone.Bottom, tipText, 1.2f);
             }

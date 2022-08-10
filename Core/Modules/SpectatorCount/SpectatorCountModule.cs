@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Core.Features.Data.Configs;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Core.Loader.Features;
 using Exiled.API.Features;
+using Exiled.Events.EventArgs;
 using MEC;
 using NorthwoodLib.Pools;
 using Server = Exiled.Events.Handlers.Server;
@@ -17,49 +20,58 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     public override void OnEnabled()
     {
-        DisabledManager = new DisabledManager();
         DisabledManager.Load();
         
-        Server.RestartingRound += OnRestartingRound;
-        Server.RoundStarted += OnStartingRound;
+        Server.RoundEnded += OnEndedRound;
+        Server.RoundStarted += OnRoundStarted;
         
         base.OnEnabled();
     }
 
     public override void OnDisabled()
     {
-        Server.RestartingRound -= OnRestartingRound;
-        Server.RoundStarted -= OnStartingRound;
+        Server.RoundEnded -= OnEndedRound;
+        Server.RoundStarted -= OnRoundStarted;
 
-        DisabledManager = null;
-        
         base.OnDisabled();
     }
-
-    private CoroutineHandle _coroutine;
-    public static DisabledManager DisabledManager;
-
-    private void OnRestartingRound()
+    
+    private Task _timerCoroutine;
+    private CancellationTokenSource _cancellation;
+    
+    private void OnEndedRound(RoundEndedEventArgs ev)
     {
-        if (_coroutine.IsRunning)
-            Timing.KillCoroutines(_coroutine);
+        _cancellation.Cancel();
     }
 
-    private void OnStartingRound()
+    private void OnRoundStarted()
     {
-        _coroutine = Timing.RunCoroutine(SpectatorList());
+        if (_cancellation is not null)
+        {
+            _cancellation.Dispose();
+        }
+        
+        _cancellation = new CancellationTokenSource();
+        _timerCoroutine = Task.Run(Timer, _cancellation.Token);
     }
 
-    private IEnumerator<float> SpectatorList()
+    private async Task Timer()
     {
+        var builder = StringBuilderPool.Shared.Rent();
         while (true)
         {
+            if (_cancellation.IsCancellationRequested)
+            {
+                StringBuilderPool.Shared.Return(builder);
+                return;
+            }
+            
             foreach (var player in Player.List)
             {
                 if(player is null || player.IsDead || DisabledManager.IsHidden(player))
                     continue;
 
-                var builder = StringBuilderPool.Shared.Rent();
+                builder.Clear();
                 builder.Append("<align=right><size=75%><color=#555><b>👥 Spectators:</b></color><color=" + player.Role.Color.ToHex() + ">");
 
                 int count = 0;
@@ -72,7 +84,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                     
                     if(count == 5)
                     {
-                        builder.Append($"\n</color><color={player.Role.Color.ToHex()}>{player.CurrentSpectatingPlayers.Count() - 4} more");
+                        builder.Append($"\n</color><color=#555><b>{player.CurrentSpectatingPlayers.Count() - 4} more</b>");
                         break;
                     }
 
@@ -80,17 +92,14 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                 }
 
                 if (count == 0)
-                {
-                    StringBuilderPool.Shared.Return(builder);
                     continue;
-                }
 
                 builder.Append("</color></size></align>");
                 
-                player.SendHint(ScreenZone.Top, StringBuilderPool.Shared.ToStringReturn(builder), 1);
+                player.SendHint(ScreenZone.Top, builder.ToString(), 1);
             }
 
-            yield return Timing.WaitForSeconds(0.95f);
+            await Task.Delay(1000);
         }
     }
 }

@@ -74,7 +74,7 @@ public static class LevelExtensions
         player.AddUse(perk);
         player.AddExp(exp);
     }
-    public static void AddExp(this Player player, int exp)
+    public static async void AddExp(this Player player, int exp)
     {
         if(player.DoNotTrack)
             return;
@@ -84,7 +84,7 @@ public static class LevelExtensions
         // if(!args.IsAllowed)
         //     return;
             
-        Core.Database.ExecuteNonQuery($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
+        await Core.Database.ExecuteNonQueryAsync($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
 
         player.ShowBadge();
     }

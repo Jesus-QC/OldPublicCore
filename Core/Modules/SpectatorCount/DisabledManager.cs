@@ -4,11 +4,11 @@ using Exiled.API.Features;
 
 namespace Core.Modules.SpectatorCount;
 
-public class DisabledManager
+public static class DisabledManager
 {
-    private HashSet<string> _hiddenPlayers = new ();
+    private static HashSet<string> _hiddenPlayers = new ();
 
-    public void Load()
+    public static void Load()
     {
         var path = Path.Combine(Paths.Configs, "Spectator List");
         Directory.CreateDirectory(path);
@@ -29,14 +29,14 @@ public class DisabledManager
         }
     }
 
-    public void Add(Player player)
+    public static void Add(Player player)
     {
         var path = Path.Combine(Paths.Configs, "Spectator List", "hiddenlist.txt");
-        File.WriteAllText(path, File.ReadAllText(path) + "\n" + player.UserId);
+        File.AppendAllText(path, '\n' + player.UserId);
         _hiddenPlayers.Add(player.UserId);
     }
 
-    public void Remove(Player player)
+    public static void Remove(Player player)
     {
         _hiddenPlayers.Remove(player.UserId);
         
@@ -53,7 +53,7 @@ public class DisabledManager
         File.WriteAllLines(path, newList);
     }
 
-    public bool IsHidden(Player player)
+    public static bool IsHidden(Player player)
     {
         return _hiddenPlayers.Contains(player.UserId);
     }
