@@ -25,6 +25,7 @@ public class ServerHandler
         
     public void OnRestartingRound()
     {
+        LevelManager.DoorsDictionary.Clear();
         LevelManager.ClearCoroutines();
         LevelManager.FirstKill = false; 
         LevelManager.IntercomUsedPlayers.Clear();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
@@ -55,7 +56,7 @@ public class PlayerHandler
         Exiled.Events.Handlers.Player.DroppingItem -= OnDroppingItem;
         Exiled.Events.Handlers.Player.FlippingCoin -= OnFlippingCoin;
     }
-    
+
     private void OnVerified(VerifiedEventArgs ev)
     {
         LevelManager.Coroutines.Add(Timing.RunCoroutine(LevelManager.Explorer(ev.Player)));
@@ -276,9 +277,25 @@ public class PlayerHandler
 
     private void OnInteractingDoor(InteractingDoorEventArgs ev)
     {
-        if(!ev.IsAllowed || !ev.Door.IsGate || !ev.Player.CheckCooldown(LevelToken.Port, 3))
+        if(!ev.IsAllowed)
             return;
+
+        var ply = ev.Player;
             
+        if(!LevelManager.DoorsDictionary.ContainsKey(ev.Player))
+            LevelManager.DoorsDictionary.Add(ev.Player, new HashSet<Door>());
+
+        var dic = LevelManager.DoorsDictionary[ev.Player];
+
+        if (!dic.Contains(ev.Door))
+        {
+            ev.Player.AddExp(LevelToken.Traveler);
+            dic.Add(ev.Door);
+        }
+
+        if (!ev.Door.IsGate || !ev.Player.CheckCooldown(LevelToken.Port, 3))
+            return;
+        
         ev.Player.AddExp(LevelToken.Port);
     }
 

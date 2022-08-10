@@ -8,8 +8,9 @@ namespace Core.Modules.Levels.Events;
 
 public static class LevelManager
 {
-    public static readonly HashSet<Player> IntercomUsedPlayers = new HashSet<Player>();
-    public static readonly HashSet<CoroutineHandle> Coroutines = new();
+    public static readonly HashSet<Player> IntercomUsedPlayers = new ();
+    public static readonly HashSet<CoroutineHandle> Coroutines = new ();
+    public static Dictionary<Player, HashSet<Door>> DoorsDictionary = new ();
     public static bool FirstKill = false;
         
     public static void ClearCoroutines()
@@ -21,7 +22,6 @@ public static class LevelManager
         
     public static IEnumerator<float> Explorer(Player player)
     {
-        var roomsVisited = new HashSet<Room>();
         var secondsPlayed = 0;
         var secondsAlive = 0;
         for (;;)
@@ -39,17 +39,12 @@ public static class LevelManager
                 secondsPlayed = 0;
             }
 
-            secondsAlive = 0;
-            
-            if(!Round.IsStarted || player.Role == RoleType.Spectator)
-                continue;
-
-            if (!roomsVisited.Contains(player.CurrentRoom))
+            if (!Round.IsStarted || player.Role == RoleType.Spectator)
             {
-                roomsVisited.Add(player.CurrentRoom);
-                player.AddExp(LevelToken.Traveler);
+                secondsAlive = 0;
+                continue;
             }
-
+            
             secondsAlive++;
 
             if (secondsAlive == 1200)
