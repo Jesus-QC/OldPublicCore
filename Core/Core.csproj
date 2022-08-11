@@ -182,6 +182,9 @@
         <Compile Include="Modules\Levels\Commands\Leaderboard.cs" />
         <Compile Include="Modules\Levels\Commands\Level.cs" />
         <Compile Include="Modules\Levels\Commands\Show.cs" />
+        <Compile Include="Modules\Levels\Commands\Special\ButtonComboCmd.cs" />
+        <Compile Include="Modules\Levels\Commands\Special\LoveJesusCmd.cs" />
+        <Compile Include="Modules\Levels\Commands\Special\WolfPackCmd.cs" />
         <Compile Include="Modules\Levels\Events\LevelManager.cs" />
         <Compile Include="Modules\Levels\Events\PlayerHandler.cs" />
         <Compile Include="Modules\Levels\Events\ServerHandler.cs" />

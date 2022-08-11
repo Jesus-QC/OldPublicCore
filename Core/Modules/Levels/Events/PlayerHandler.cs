@@ -21,6 +21,7 @@ public class PlayerHandler
         Exiled.Events.Handlers.Player.UsedItem += OnUsedItem;
         Exiled.Events.Handlers.Player.PickingUpItem += OnPickingUpItem;
         Exiled.Events.Handlers.Player.Died += OnDied;
+        Exiled.Events.Handlers.Player.Dying += OnDying;
         Exiled.Events.Handlers.Player.Escaping += OnEscaping;
         Exiled.Events.Handlers.Player.RemovingHandcuffs += OnRemovingHandcuffs;
         Exiled.Events.Handlers.Scp914.UpgradingPlayer += OnUpgrading;
@@ -42,6 +43,7 @@ public class PlayerHandler
         Exiled.Events.Handlers.Player.UsedItem -= OnUsedItem;
         Exiled.Events.Handlers.Player.PickingUpItem -= OnPickingUpItem;
         Exiled.Events.Handlers.Player.Died -= OnDied;
+        Exiled.Events.Handlers.Player.Dying -= OnDying;
         Exiled.Events.Handlers.Player.Escaping -= OnEscaping;
         Exiled.Events.Handlers.Player.RemovingHandcuffs -= OnRemovingHandcuffs;
         Exiled.Events.Handlers.Scp914.UpgradingPlayer -= OnUpgrading;
@@ -111,7 +113,7 @@ public class PlayerHandler
     {
         if(ev.Player.CheckCooldown(LevelToken.Collect, 5))
             ev.Player.AddExp(LevelToken.Collect);
-            
+        
         if (ev.Pickup.Type is ItemType.Coin)
         {
             switch (ev.Player.CountItem(ItemType.Coin))
@@ -124,12 +126,26 @@ public class PlayerHandler
                     break;
             }
         }
-        else if(ev.Pickup.Type.IsKeycard() && ev.Player.CheckCooldown(LevelToken.Access, 2))
-            ev.Player.AddExp(LevelToken.Access);
+        else if(ev.Pickup.Type is ItemType.ParticleDisruptor && ev.Player.CheckCooldown(LevelToken.Particles, 1))
+            ev.Player.AddExp(LevelToken.Particles);
         else if(ev.Pickup.Type.IsWeapon() && ev.Player.CheckCooldown(LevelToken.Warlord, 1))
             ev.Player.AddExp(LevelToken.Warlord);
+        else if(ev.Pickup.Type.IsKeycard() && ev.Player.CheckCooldown(LevelToken.Access, 2))
+            ev.Player.AddExp(LevelToken.Access);
     }
+
+    private void OnDying(DyingEventArgs ev)
+    {
+        if(ev.Killer is null || ev.Target is null || ev.Target == ev.Killer)
+            return;
         
+        if(ev.Killer.IsScp || ev.Target.IsScp)
+            return;
+        
+        if(ev.Killer.CheckCooldown(LevelToken.Sharpshooter, 1) && Vector3.Distance(ev.Killer.Position, ev.Target.Position) > 10)
+            ev.Killer.AddExp(LevelToken.Sharpshooter);
+    }
+    
     private void OnDied(DiedEventArgs ev)
     {
         if(ev.Target is null)
@@ -147,7 +163,6 @@ public class PlayerHandler
 
         if (ev.TargetOldRole.GetSide() is Side.Scp)
         {
-
             if (ev.TargetOldRole is RoleType.Scp0492)
             {
                 if(ev.Killer.CheckCooldown(LevelToken.ZombieSlayer, 5))
@@ -155,19 +170,8 @@ public class PlayerHandler
             }
             else
             {
-                Task.Run(() =>
-                {
-                    Collider[] colliders = Array.Empty<Collider>();
-                    Physics.OverlapSphereNonAlloc(ev.Killer.Position, 5f, colliders);
-                    foreach (var go in colliders)
-                    {
-                        if (!Player.TryGet(go.gameObject, out var ply))
-                            return;
-
-                        if (ply.CheckCooldown(LevelToken.MonsterHunter, 3))
-                            ply.AddExp(LevelToken.MonsterHunter);
-                    }
-                });
+                if (ev.Killer.CheckCooldown(LevelToken.MonsterHunter, 3))
+                    ev.Killer.AddExp(LevelToken.MonsterHunter);
             }
         }
 
@@ -196,7 +200,7 @@ public class PlayerHandler
         {
             ev.Killer.AddExp(LevelToken.Erase);
                 
-            if(ev.Killer.GetUses(LevelToken.Erase) == 10)
+            if (ev.Killer.GetUses(LevelToken.Erase) == 10)
                 ev.Killer.AddExp(LevelToken.SerialKiller);
         }
             

@@ -24,11 +24,12 @@ public static class LevelManager
     {
         var secondsPlayed = 0;
         var secondsAlive = 0;
+        byte spectator = 0;
         for (;;)
         {
             yield return Timing.WaitForSeconds(1);
                 
-            if(player == null || !player.IsConnected)
+            if(player is null || !player.IsConnected)
                 yield break;
 
             secondsPlayed++;
@@ -39,8 +40,16 @@ public static class LevelManager
                 secondsPlayed = 0;
             }
 
-            if (!Round.IsStarted || player.Role == RoleType.Spectator)
+            if (player.Role == RoleType.Spectator)
             {
+                spectator++;
+
+                if (spectator is 240)
+                {
+                    spectator = 0;
+                    player.AddExp(LevelToken.Stalker);
+                }
+                
                 secondsAlive = 0;
                 continue;
             }

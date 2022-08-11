@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Core.Features.Data.Enums;
 using Exiled.API.Features;
 
@@ -13,6 +14,7 @@ public static class LevelExtensions
     
     private static readonly Dictionary<Player, Dictionary<LevelToken, int>> PerksCooldown = new();
     private static readonly Dictionary<Player, int> Exp = new();
+    private static readonly Dictionary<Player, string> SpecialAdvancements = new();
     private static readonly Dictionary<Player, int> RoundExp = new();
 
     public static void ResetLevels()
@@ -20,6 +22,7 @@ public static class LevelExtensions
         PerksCooldown.Clear();
         Exp.Clear();
         RoundExp.Clear();
+        SpecialAdvancements.Clear();
     }
         
     public static void ShowBadge(this Player player)
@@ -123,5 +126,21 @@ public static class LevelExtensions
     public static int GetRoundExp(this Player player)
     {
         return RoundExp.ContainsKey(player) ? RoundExp[player] : 0;
+    }
+    
+    public static string GetSpecialAdvancements(this Player player)
+    {
+        if (SpecialAdvancements.ContainsKey(player))
+            return SpecialAdvancements[player];
+            
+        var sp = (string) Core.Database.ExecuteScalar($"SELECT Achievements FROM Leveling WHERE PlayerId='{player.GetId()}';");
+        SpecialAdvancements.Add(player, sp);
+        return sp;
+    }
+    
+    public static async void SaveSpecialAdvancements(this Player player, string buffer)
+    {
+        SpecialAdvancements[player] = buffer;
+        await Core.Database.ExecuteNonQueryAsync($"UPDATE Leveling SET Achievements='{buffer}' WHERE PlayerId='{player.GetId()}';");
     }
 }

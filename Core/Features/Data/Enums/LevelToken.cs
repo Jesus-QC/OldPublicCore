@@ -54,5 +54,13 @@ public enum LevelToken
     Bet,
     Saviors,
     Invaders,
-    Toss
+    Toss,
+    Stalker,
+    Sharpshooter,
+    ButtonCombo,
+    WolfPackForever,
+    TheMask,
+    BigLizard,
+    Particles,
+    JesusSupportCode,
 }
