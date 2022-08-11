@@ -1,0 +1,2 @@
+C:\Users\jesus\RiderProjects\MainCore\Core.Bot\bin\Release\net6.0\linux-x64\publish\Core.Bot.pdb
+C:\Users\jesus\RiderProjects\MainCore\Core.Bot\bin\Release\net6.0\linux-x64\publish\Core.Bot
