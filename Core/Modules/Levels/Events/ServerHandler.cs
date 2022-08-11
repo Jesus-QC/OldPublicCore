@@ -25,10 +25,10 @@ public class ServerHandler
         
     public void OnRestartingRound()
     {
-        LevelManager.DoorsDictionary.Clear();
         LevelManager.ClearCoroutines();
         LevelManager.FirstKill = false; 
         LevelManager.IntercomUsedPlayers.Clear();
+        LevelManager.DoorsDictionary.Clear();
     }
 
     public void OnRoundEnded(RoundEndedEventArgs ev)
@@ -49,13 +49,22 @@ public class ServerHandler
 
     public void OnRespawningTeam(RespawningTeamEventArgs ev)
     {
-        if(ev.NextKnownTeam is SpawnableTeamType.ChaosInsurgency)
-            foreach (var player in ev.Players)
-                if(player.CheckCooldown(LevelToken.Invaders, 1))
-                    player.AddExp(LevelToken.Invaders);
-        if(ev.NextKnownTeam is SpawnableTeamType.NineTailedFox)
-            foreach (var player in ev.Players)
-                if(player.CheckCooldown(LevelToken.Saviors, 1))
-                    player.AddExp(LevelToken.Saviors);
+        switch (ev.NextKnownTeam)
+        {
+            case SpawnableTeamType.ChaosInsurgency:
+            {
+                foreach (var player in ev.Players)
+                    if(player.CheckCooldown(LevelToken.Invaders, 1))
+                        player.AddExp(LevelToken.Invaders);
+                break;
+            }
+            case SpawnableTeamType.NineTailedFox:
+            {
+                foreach (var player in ev.Players)
+                    if(player.CheckCooldown(LevelToken.Saviors, 1))
+                        player.AddExp(LevelToken.Saviors);
+                break;
+            }
+        }
     }
 }

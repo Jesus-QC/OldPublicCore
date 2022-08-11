@@ -53,5 +53,6 @@ public enum LevelToken
     Hate,
     Bet,
     Saviors,
-    Invaders
+    Invaders,
+    Toss
 }

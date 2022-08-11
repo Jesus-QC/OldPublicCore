@@ -21,7 +21,7 @@ public static class TokenExtensions
         return 0;
     }
 
-    public static LevelRarity GetRarity(this LevelToken token)
+    private static LevelRarity GetRarity(this LevelToken token)
     {
         switch (token)
         {
@@ -118,6 +118,8 @@ public static class TokenExtensions
             case LevelToken.Rupture:
                 return LevelRarity.Legendary;
             case LevelToken.Oops:
+                return LevelRarity.Common;
+            case LevelToken.Toss:
                 return LevelRarity.Common;
             case LevelToken.Welcome:
                 return LevelRarity.Common;

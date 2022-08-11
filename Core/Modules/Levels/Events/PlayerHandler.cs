@@ -307,8 +307,19 @@ public class PlayerHandler
 
     private void OnDroppingItem(DroppingItemEventArgs ev)
     {
-        if(ev.IsThrown && ev.Player.CheckCooldown(LevelToken.Oops, 3))
-            ev.Player.AddExp(LevelToken.Oops);
+        switch (ev.IsThrown)
+        {
+            case true when ev.Player.CheckCooldown(LevelToken.Toss, 3):
+            {
+                ev.Player.AddExp(LevelToken.Toss);
+                break;
+            }
+            case false when ev.Player.CheckCooldown(LevelToken.Oops, 3):
+            {
+                ev.Player.AddExp(LevelToken.Oops);
+                break;
+            }
+        }
     }
 
     private void OnFlippingCoin(FlippingCoinEventArgs ev)
