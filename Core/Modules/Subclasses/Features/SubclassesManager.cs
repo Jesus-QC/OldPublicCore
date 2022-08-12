@@ -9,7 +9,7 @@ namespace Core.Modules.Subclasses.Features;
 
 public class SubclassesManager
 {
-    private readonly Dictionary<RoleType, SubclassGroup> _sortedClasses = new();
+   /* private readonly Dictionary<RoleType, SubclassGroup> _sortedClasses = new();
     private readonly Dictionary<ushort, Subclass> _subclasses = new();
 
     public void Load()
@@ -43,5 +43,5 @@ public class SubclassesManager
     }
 
     public SubclassGroup GetRoleSubclasses(RoleType roleType) => _sortedClasses[roleType];
-    public Subclass GetSubclassById(ushort id) => _subclasses[id];
+    public Subclass GetSubclassById(ushort id) => _subclasses[id];*/
 }

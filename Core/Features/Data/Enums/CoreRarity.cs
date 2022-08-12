@@ -1,6 +1,6 @@
 ﻿namespace Core.Features.Data.Enums;
 
-public enum LevelRarity
+public enum CoreRarity
 {
     Common,
     Rare,

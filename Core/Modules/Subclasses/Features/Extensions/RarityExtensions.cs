@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Modules.Subclasses.Features.Extensions;
 
-public static class RarityExtensions
+/*public static class RarityExtensions
 {
     public static Rarity GetRandomRarity()
     {
@@ -19,4 +19,4 @@ public static class RarityExtensions
             return Rarity.Rare;
         return value <= 61 ? Rarity.Uncommon : Rarity.Common;
     }
-}
+}*/

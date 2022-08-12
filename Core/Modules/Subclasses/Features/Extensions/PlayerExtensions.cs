@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.Modules.Subclasses.Features.Extensions;
 
-public static class PlayerExtensions
+/*public static class PlayerExtensions
 {
     public static void RemoveSubclass(this Player player)
     {
@@ -57,4 +57,4 @@ public static class PlayerExtensions
         player.ResetInventory(s.Inventory.ToList());
         player.Position = Vector3.zero;
     }
-}
+}*/

@@ -135,7 +135,7 @@
         <Compile Include="Features\Data\Configs\CoreConfig.cs" />
         <Compile Include="Features\Data\Configs\EmptyConfig.cs" />
         <Compile Include="Features\Data\Database.cs" />
-        <Compile Include="Features\Data\Enums\LevelRarity.cs" />
+        <Compile Include="Features\Data\Enums\CoreRarity.cs" />
         <Compile Include="Features\Data\Enums\LevelToken.cs" />
         <Compile Include="Features\Data\Enums\ScreenZone.cs" />
         <Compile Include="Features\Data\UI\Notification.cs" />
@@ -228,11 +228,7 @@
         <Compile Include="Modules\Subclasses\Features\Handlers\ServerHandler.cs" />
         <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Abilities\Ability.cs" />
         <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Abilities\AbilityConfig.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Inventory\Inventory.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Inventory\InventoryItem.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Rarity.cs" />
         <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Subclass.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\SubclassGroup.cs" />
         <Compile Include="Modules\Subclasses\Features\SubclassesManager.cs" />
         <Compile Include="Modules\Subclasses\Paths.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
