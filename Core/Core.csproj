@@ -206,6 +206,7 @@
         <Compile Include="Modules\Logs\WebhookSender.cs" />
         <Compile Include="Modules\Logs\Webhook\Message.cs" />
         <Compile Include="Modules\PocketSuck\EventsHandler.cs" />
+        <Compile Include="Modules\PocketSuck\PocketSuckConfig.cs" />
         <Compile Include="Modules\PocketSuck\PocketSuckModule.cs" />
         <Compile Include="Modules\RespawnTimer\RespawnTimerConfig.cs" />
         <Compile Include="Modules\RespawnTimer\EventHandler.cs" />
