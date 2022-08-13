@@ -8,7 +8,7 @@ public class EssentialsConfig : IConfig
 {
     public bool IsEnabled { get; set; } = true;
 
-    public int RoundsToRestart { get; set; } = 5;
+    public int RoundsToRestart { get; set; } = 1;
 
     [Description("VoiceChat")]
     public List<RoleType> ScpsAbleToTalk { get; set; } = new() { RoleType.Scp049, RoleType.Scp079, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp0492, RoleType.Scp93953, RoleType.Scp93989 };
