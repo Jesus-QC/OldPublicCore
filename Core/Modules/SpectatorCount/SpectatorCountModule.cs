@@ -36,7 +36,6 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
         base.OnDisabled();
     }
     
-    private Task _timerCoroutine;
     private CancellationTokenSource _cancellation;
     
     private void OnEndedRound(RoundEndedEventArgs ev)
@@ -46,13 +45,9 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     private void OnRoundStarted()
     {
-        if (_cancellation is not null)
-        {
-            _cancellation.Dispose();
-        }
-        
+        _cancellation?.Dispose();
         _cancellation = new CancellationTokenSource();
-        _timerCoroutine = Task.Run(Timer, _cancellation.Token);
+        Task.Run(Timer, _cancellation.Token);
     }
 
     private async Task Timer()

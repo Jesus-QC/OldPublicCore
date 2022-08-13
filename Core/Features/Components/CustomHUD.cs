@@ -35,8 +35,8 @@ public class CustomHUD : MonoBehaviour
         _secondaryBuilder = StringBuilderPool.Shared.Rent();
         _player = Player.Get(gameObject);
         _dnt = _player.DoNotTrack;
-        _cachedMsg = $"thewolfpack | {Core.GlobalVersion} | {_player.Nickname.ToLower()} ({_player.Id})";
-        if (LevelExtensions.ExpMultiplier == 2)
+        _cachedMsg = $"<b>thewolfpack | {Core.GlobalVersion} | {_player.Nickname.ToLower()} ({_player.Id})";
+        if (LevelExtensions.ExpMultiplier != 1)
             _cachedMsg += " | <color=#ffe669>2x XP</color>";
     }
 

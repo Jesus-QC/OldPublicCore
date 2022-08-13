@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
@@ -9,27 +11,30 @@ namespace Core.Modules.BetterFlashlight;
 
 public class FlashlightManager
 {
-    private CoroutineHandle _mainCoroutine;
-    
-    public readonly Dictionary<ushort, int> Batteries = new();
+    private CancellationTokenSource _cancellation;
+
+    private readonly Dictionary<ushort, int> _batteries = new();
 
     public void OnRestartingRound()
     {
-        Batteries.Clear();
-
-        if (_mainCoroutine.IsRunning)
-            Timing.KillCoroutines(_mainCoroutine);
+        _batteries.Clear();
+        _cancellation.Cancel();
     }
 
     public void OnRoundStarted()
     {
-        _mainCoroutine = Timing.RunCoroutine(CheckFlashlights());
+        _cancellation?.Dispose();
+        _cancellation = new CancellationTokenSource();
+        Task.Run(CheckFlashlights, _cancellation.Token);
     }
 
-    private IEnumerator<float> CheckFlashlights()
+    private async Task CheckFlashlights()
     {
         while (true)
         {
+            if(_cancellation.IsCancellationRequested)
+                return;
+            
             foreach (var player in Player.List)
             {
                 if(player is null || player.IsDead || player.CurrentItem is null || player.CurrentItem is not Flashlight flashlight)
@@ -40,21 +45,21 @@ public class FlashlightManager
                     
                 var serial = player.CurrentItem.Serial;
                 
-                if(!Batteries.ContainsKey(serial))
-                    Batteries.Add(serial, 100);
+                if(!_batteries.ContainsKey(serial))
+                    _batteries.Add(serial, 100);
 
-                if (Batteries[serial] == 0)
+                if (_batteries[serial] == 0)
                 {
                     player.RemoveItem(flashlight);
                     player.SendHint(ScreenZone.Bottom, "\n\n<color=#ff7070>Your flashlight was broken!</color>", 3);
-                    Batteries.Remove(serial);
+                    _batteries.Remove(serial);
                 }
 
-                player.SendHint(ScreenZone.Bottom, $"\n\nBattery: <color=#ffe08c>{Batteries[serial]}%</color>", 1);
-                Batteries[serial]--;
+                player.SendHint(ScreenZone.Bottom, $"\n\nBattery: <color=#ffe08c>{_batteries[serial]}%</color>", 1);
+                _batteries[serial] -= 2;
             }
 
-            yield return Timing.WaitForSeconds(1);
+            await Task.Delay(1000);
         }
     }
 }

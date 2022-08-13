@@ -9,7 +9,8 @@ public class PlayerManager : MonoBehaviour
     private DateTime _startTime;
     private CustomHUD _playerHUD;
 
-    private void Awake() => _playerHUD = gameObject.GetComponent<CustomHUD>();
+    private void Awake() => _playerHUD = gameObject.AddComponent<CustomHUD>();
+
     private void Start() => _startTime = DateTime.Now;
 
     public void SendHint(ScreenZone z, string msg, float duration) => _playerHUD.AddMessage(z, msg, duration);

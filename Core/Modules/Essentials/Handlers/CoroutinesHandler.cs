@@ -11,8 +11,7 @@ namespace Core.Modules.Essentials.Handlers;
 public static class CoroutinesHandler
 {
     public static readonly List<CoroutineHandle> Coroutines = new ();
-    public static ushort PickupAi = 160;
-        
+
     public static IEnumerator<float> CleanerCoroutine()
     {
         yield return Timing.WaitForSeconds(600);
@@ -24,7 +23,7 @@ public static class CoroutinesHandler
             foreach (var pickup in Map.Pickups)
                 pickup.Destroy();
                 
-            yield return Timing.WaitForSeconds(600);
+            yield return Timing.WaitForSeconds(300);
         }
     }
         

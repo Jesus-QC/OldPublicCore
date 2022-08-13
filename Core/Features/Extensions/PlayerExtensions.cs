@@ -18,18 +18,14 @@ public static class PlayerExtensions
         Ids.Clear();
     }
 
-    public static void AddToTheHub(this Player player)
-    {
-        player.GameObject.AddComponent<Components.CustomHUD>();
-        Hubs.Add(player, player.GameObject.AddComponent<Components.PlayerManager>());
-    }
+    public static void AddToTheHub(this Player player) => Hubs.Add(player, player.GameObject.AddComponent<Components.PlayerManager>());
     public static void RemoveFromTheHub(this Player player) => Hubs.Remove(player);
         
     public static Components.PlayerManager GetManager(this Player player) => Hubs[player];
 
     public static bool Exists(this Player player) => Core.Database.PlayerExists(player);
     public static void AddToTheDatabase(this Player player) => Core.Database.InsertNewPlayer(player);
-    public static void Authenticate(this Player player)
+    public static async void Authenticate(this Player player)
     {
         if (player.DoNotTrack)
             player.OpenReportWindow("Do Not Track: you have do not track enabled, therefore your data won't be saved, this includes info as exp and stats, in order to level up and have custom stats we recommend you disabling do not track.\n\nPress [ESC] to close this.");
@@ -41,7 +37,7 @@ public static class PlayerExtensions
 
             var id = player.GetId();
                 
-            Core.Database.ExecuteNonQuery($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("'", "\\'")}' WHERE Id='{id}';");
+            await Core.Database.ExecuteNonQueryAsync($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("'", "\\'")}' WHERE Id='{id}';");
                 
             if (id != 21045) 
                 return;

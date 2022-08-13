@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Core.Features.Events.EventArgs;
 using Core.Features.Extensions;
 using Exiled.Events.EventArgs;
@@ -9,9 +10,12 @@ public class PlayerHandler
 {
     public void OnVerified(VerifiedEventArgs ev)
     {
-        ev.Player.Authenticate();
-        ev.Player.AddToTheHub();
-        ev.Player.SetUpLevels();
+        Task.Run(() =>
+        {
+            ev.Player.Authenticate();
+            ev.Player.AddToTheHub();
+            ev.Player.SetUpLevels();
+        });
     }
 
     public void OnLeft(LeftEventArgs ev)
