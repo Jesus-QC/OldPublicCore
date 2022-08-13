@@ -18,7 +18,7 @@ public class Core : Plugin<CoreConfig>
     public override string Author { get; } = "Jesus-QC";
     public override PluginPriority Priority { get; } = PluginPriority.Last;
 
-    public const string GlobalVersion = "2.0.1.1";
+    public const string GlobalVersion = "2.0.1.2";
         
     public static Database Database;
     public static Harmony Harmony;
