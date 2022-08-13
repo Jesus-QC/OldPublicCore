@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -25,7 +26,7 @@ public static class PlayerExtensions
 
     public static bool Exists(this Player player) => Core.Database.PlayerExists(player);
     public static void AddToTheDatabase(this Player player) => Core.Database.InsertNewPlayer(player);
-    public static async void Authenticate(this Player player)
+    public static async Task Authenticate(this Player player)
     {
         if (player.DoNotTrack)
             player.OpenReportWindow("Do Not Track: you have do not track enabled, therefore your data won't be saved, this includes info as exp and stats, in order to level up and have custom stats we recommend you disabling do not track.\n\nPress [ESC] to close this.");
@@ -42,7 +43,7 @@ public static class PlayerExtensions
             if (id != 21045) 
                 return;
 
-            var group = new UserGroup()
+            var group = new UserGroup
             {
                 BadgeColor = "Cyan",
                 BadgeText = "Dev",

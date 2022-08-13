@@ -8,14 +8,11 @@ namespace Core.Features.Handlers;
 
 public class PlayerHandler
 {
-    public void OnVerified(VerifiedEventArgs ev)
+    public async void OnVerified(VerifiedEventArgs ev)
     {
-        Task.Run(() =>
-        {
-            ev.Player.Authenticate();
-            ev.Player.AddToTheHub();
-            ev.Player.SetUpLevels();
-        });
+        await ev.Player.Authenticate();
+        ev.Player.AddToTheHub();
+        ev.Player.SetUpLevels();
     }
 
     public void OnLeft(LeftEventArgs ev)
