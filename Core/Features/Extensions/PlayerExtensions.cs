@@ -62,7 +62,7 @@ public static class PlayerExtensions
             Log.Warn($"Suppressed authentication error for player {player.Nickname}.");
         }
     }
-    public static void Goodbye(this Player player)
+    public static async void Goodbye(this Player player)
     {
         var secs = 0;
 
@@ -75,7 +75,7 @@ public static class PlayerExtensions
         }
             
         var id = player.GetId();
-        Core.Database.ExecuteNonQuery($"UPDATE SlStats SET RoundsPlayed=RoundsPlayed+1, TimePlayed=TimePlayed+{secs}, LastSeen='{DateTime.UtcNow.Ticks}' WHERE PlayerId='{id}';");
+        await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET RoundsPlayed=RoundsPlayed+1, TimePlayed=TimePlayed+{secs}, LastSeen='{DateTime.UtcNow.Ticks}' WHERE PlayerId='{id}';");
     }
 
     public static string GetQuery(this Player player)
@@ -86,6 +86,9 @@ public static class PlayerExtensions
                 return $"SteamId='{player.RawUserId}'";
             case AuthenticationType.Discord:
                 return $"DiscordId='{player.RawUserId}'";
+            case AuthenticationType.Northwood:
+            case AuthenticationType.Patreon:
+            case AuthenticationType.Unknown:
             default:
                 return $"NorthWoodId='{player.UserId}'";
         }
