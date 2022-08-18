@@ -281,11 +281,9 @@ public class PlayerHandler
 
     private void OnInteractingDoor(InteractingDoorEventArgs ev)
     {
-        if(!ev.IsAllowed)
+        if (!ev.IsAllowed || ev.Player is null)
             return;
 
-        var ply = ev.Player;
-            
         if(!LevelManager.DoorsDictionary.ContainsKey(ev.Player))
             LevelManager.DoorsDictionary.Add(ev.Player, new HashSet<Door>());
 
@@ -293,8 +291,8 @@ public class PlayerHandler
 
         if (!dic.Contains(ev.Door))
         {
-            ev.Player.AddExp(LevelToken.Traveler);
             dic.Add(ev.Door);
+            ev.Player.AddExp(LevelToken.Traveler);
         }
 
         if (!ev.Door.IsGate || !ev.Player.CheckCooldown(LevelToken.Port, 3))

@@ -31,6 +31,9 @@ public class EventsHandler
     
     public void OnStayingOnEnvironmentalHazard(StayingOnEnvironmentalHazardEventArgs ev)
     {
+        if (ev.Player is null || ev.Player.IsScp)
+            return;
+        
         if (ev.EnvironmentalHazard is SinkholeEnvironmentalHazard && Vector3.Distance(ev.Player.Position, ev.EnvironmentalHazard.transform.position) < 3.5f)
         {
             Timing.RunCoroutine(PortalAnimation(ev.Player));
