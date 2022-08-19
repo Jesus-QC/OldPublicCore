@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Core.Modules.Subclasses.Features.Extensions;
-using Core.Modules.Subclasses.Features.Structs.Subclasses;
-using Exiled.API.Features;
-
-namespace Core.Modules.Subclasses.Features;
+﻿namespace Core.Modules.Subclasses.Features;
 
 public class SubclassesManager
 {

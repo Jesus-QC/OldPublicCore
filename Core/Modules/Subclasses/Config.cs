@@ -1,6 +1,4 @@
-﻿using Exiled.API.Interfaces;
-
-namespace Core.Modules.Subclasses;
+﻿namespace Core.Modules.Subclasses;
 
 /*public class Config : IConfig
 {

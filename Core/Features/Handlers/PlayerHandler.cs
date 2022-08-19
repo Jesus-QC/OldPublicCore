@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Core.Features.Events.EventArgs;
 using Core.Features.Extensions;
 using Exiled.Events.EventArgs;

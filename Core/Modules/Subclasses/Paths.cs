@@ -1,5 +1,4 @@
-﻿using System.IO;
-using EPaths = Exiled.API.Features.Paths;
+﻿using EPaths = Exiled.API.Features.Paths;
 
 namespace Core.Modules.Subclasses;
 

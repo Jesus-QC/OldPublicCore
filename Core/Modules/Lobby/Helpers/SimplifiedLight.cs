@@ -1,5 +1,4 @@
-﻿using AdminToys;
-using Exiled.API.Features.Toys;
+﻿using Exiled.API.Features.Toys;
 using Mirror;
 using UnityEngine;
 

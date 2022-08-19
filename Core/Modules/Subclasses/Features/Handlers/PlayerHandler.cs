@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Core.Modules.Subclasses.Features.Extensions;
-using Exiled.Events.EventArgs;
-
-namespace Core.Modules.Subclasses.Features.Handlers;
+﻿namespace Core.Modules.Subclasses.Features.Handlers;
 
 /*public class PlayerHandler
 {

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Features.Data.Configs;
@@ -8,7 +7,6 @@ using Core.Features.Extensions;
 using Core.Loader.Features;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
-using MEC;
 using NorthwoodLib.Pools;
 using Server = Exiled.Events.Handlers.Server;
 

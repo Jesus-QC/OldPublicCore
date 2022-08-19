@@ -1,9 +1,4 @@
-﻿using System;
-using Core.Modules.Subclasses.Features;
-using Core.Modules.Subclasses.Features.Handlers;
-using Exiled.API.Features;
-
-namespace Core.Modules.Subclasses;
+﻿namespace Core.Modules.Subclasses;
 
 public class CoreSubclasses
 {

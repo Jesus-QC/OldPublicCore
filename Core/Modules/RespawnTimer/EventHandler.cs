@@ -7,8 +7,6 @@ using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
-using MEC;
-using NorthwoodLib.Pools;
 using Respawning;
 using Random = UnityEngine.Random;
 

@@ -5,7 +5,6 @@ using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using MEC;
 
 namespace Core.Modules.BetterFlashlight;
 

@@ -1,7 +1,4 @@
-﻿using Core.Modules.Subclasses.Features.Structs.Subclasses;
-using UnityEngine;
-
-namespace Core.Modules.Subclasses.Features.Extensions;
+﻿namespace Core.Modules.Subclasses.Features.Extensions;
 
 /*public static class RarityExtensions
 {

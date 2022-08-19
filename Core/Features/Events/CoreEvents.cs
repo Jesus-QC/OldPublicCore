@@ -1,7 +1,5 @@
-﻿using System;
-using Core.Features.Events.EventArgs;
+﻿using Core.Features.Events.EventArgs;
 using Exiled.Events.Extensions;
-using UnityEngine.Events;
 
 namespace Core.Features.Events;
 

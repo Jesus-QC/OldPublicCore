@@ -1,10 +1,8 @@
 ﻿using Core.Features.Data.Configs;
 using Core.Loader.Features;
-using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs;
 using Interactables.Interobjects.DoorUtils;
-using InventorySystem.Items.Keycards;
 
 namespace Core.Modules.RemoteKeycard;
 

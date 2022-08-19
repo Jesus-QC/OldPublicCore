@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using Core.Modules.Subclasses.Features.Structs.Subclasses;
-using Exiled.API.Features;
-using MEC;
-using UnityEngine;
-
-namespace Core.Modules.Subclasses.Features.Extensions;
+﻿namespace Core.Modules.Subclasses.Features.Extensions;
 
 /*public static class PlayerExtensions
 {

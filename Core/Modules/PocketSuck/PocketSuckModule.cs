@@ -1,5 +1,4 @@
-﻿using Core.Features.Data.Configs;
-using Core.Loader.Features;
+﻿using Core.Loader.Features;
 using Exiled.Events.Handlers;
 
 namespace Core.Modules.PocketSuck;
