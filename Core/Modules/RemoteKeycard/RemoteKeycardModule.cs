@@ -1,5 +1,6 @@
 ﻿using Core.Features.Data.Configs;
 using Core.Loader.Features;
+using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs;
 using Interactables.Interobjects.DoorUtils;
@@ -35,10 +36,13 @@ public class RemoteKeycardModule : CoreModule<EmptyConfig>
     {
         if(ev.IsAllowed)
             return;
-        
+
+        if (ev.Door.IsCheckpoint)
+            ev.Door.RequiredPermissions.RequiredPermissions = KeycardPermissions.Checkpoints;
+
         foreach (var item in ev.Player.Items)
         {
-            if (item is not Keycard key || !key.Base.Permissions.HasFlagFast(ev.Door.Base.RequiredPermissions.RequiredPermissions))
+            if (item is not Keycard key || !key.Base.Permissions.HasFlagFast(ev.Door.RequiredPermissions.RequiredPermissions))
                 continue;
             
             ev.IsAllowed = true;
