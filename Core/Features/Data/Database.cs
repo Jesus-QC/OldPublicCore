@@ -93,10 +93,18 @@ public class Database
 
     public object ExecuteScalar(string command)
     {
-        using var con = Connection.Clone();
-        con.Open();
-        using var cmd = new MySqlCommand(command, con);
-        var obj = cmd.ExecuteScalar();
-        return obj;
+        try
+        {
+            using var con = Connection.Clone();
+            con.Open();
+            using var cmd = new MySqlCommand(command, con);
+            return cmd.ExecuteScalar();
+        }
+        catch (Exception e)
+        {
+            Log.Error($"There was an issue executing the scalar: {command}");
+            Log.Warn(e);
+            return null;
+        }
     }
 }

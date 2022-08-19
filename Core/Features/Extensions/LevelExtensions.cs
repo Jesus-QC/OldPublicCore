@@ -41,7 +41,7 @@ public static class LevelExtensions
 
         if(!RoundExp.ContainsKey(player))
             RoundExp.Add(player, 0);
-        
+
         player.ShowBadge();
 
         var lastSeen = new DateTime((long) Core.Database.ExecuteScalar($"SELECT LastSeen FROM SlStats WHERE PlayerId='{player.GetId()}';"));
