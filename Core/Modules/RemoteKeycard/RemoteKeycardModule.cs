@@ -36,7 +36,15 @@ public class RemoteKeycardModule : CoreModule<EmptyConfig>
             return;
 
         if (ev.Door.IsCheckpoint)
-            ev.Door.RequiredPermissions.RequiredPermissions = KeycardPermissions.Checkpoints;
+        {
+            if (ev.Player.IsScp)
+            {
+                ev.IsAllowed = true;
+                return;
+            }
+        
+            ev.Door.RequiredPermissions.RequiredPermissions = KeycardPermissions.Checkpoints;    
+        }
 
         foreach (var item in ev.Player.Items)
         {
