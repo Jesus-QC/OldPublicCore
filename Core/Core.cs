@@ -5,6 +5,7 @@ using Core.Features.Data;
 using Exiled.API.Features;
 using Core.Features.Handlers;
 using Core.Features.Data.Configs;
+using Core.Features.Wrappers;
 using Core.Loader;
 using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
@@ -37,7 +38,9 @@ public class Core : Plugin<CoreConfig>
         RegisterEvents();
             
         ModuleLoader.Load();
-            
+        
+        Task.Run(ServerCore.CheckTps);
+
         base.OnEnabled();
     }
 

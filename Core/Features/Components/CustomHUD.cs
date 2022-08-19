@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Data.UI;
 using Core.Features.Extensions;
+using Core.Features.Wrappers;
 using Exiled.API.Features;
 using Hints;
 using NorthwoodLib.Pools;
@@ -100,7 +101,7 @@ public class CustomHUD : MonoBehaviour
         _builder.Clear();
         _builder.Append(DefaultHUD);
 
-        _builder = _builder.Replace("[9]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {Server.Tps}");
+        _builder = _builder.Replace("[9]", $"<color={_player.Role.Color.ToHex()}>{_cachedMsg} | {GetLevelMessage()}  | tps: {ServerCore.Tps}");
         _builder = _builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
 
         for (var i = 1; i < _timers.Count; i++)
