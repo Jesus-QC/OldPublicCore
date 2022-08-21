@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Exiled.API.Features;
+using UnityEngine;
 
 namespace Core.Features.Wrappers;
 
@@ -11,7 +13,7 @@ public static class ServerCore
     {
         while (true)
         {
-            Tps = Server.Tps;
+            Tps = Math.Round(1.0 / Time.deltaTime);
             await Task.Delay(1000);
         }
     }
