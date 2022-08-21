@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Exiled.API.Features;
 using UnityEngine;
 
 namespace Core.Features.Wrappers;

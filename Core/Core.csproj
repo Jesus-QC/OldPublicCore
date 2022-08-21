@@ -233,7 +233,6 @@
         <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Subclass.cs" />
         <Compile Include="Modules\Subclasses\Features\SubclassesManager.cs" />
         <Compile Include="Modules\Subclasses\Paths.cs" />
-        <Compile Include="Modules\SuperProfiler\SuperProfilerModule.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
