@@ -13,7 +13,7 @@ public static class ServerCore
     {
         while (true)
         {
-            Tps = Math.Round(1.0 / Time.deltaTime);
+            Tps = Math.Round(1.0 / Time.smoothDeltaTime);
             await Task.Delay(1000);
         }
     }
