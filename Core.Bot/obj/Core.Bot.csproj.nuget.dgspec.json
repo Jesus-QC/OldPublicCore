@@ -41,6 +41,10 @@
             "Discord.Net": {
               "target": "Package",
               "version": "[3.7.2, )"
+            },
+            "EXILED": {
+              "target": "Package",
+              "version": "[5.3.0-rc.1, )"
             }
           },
           "imports": [

@@ -70,22 +70,20 @@ public class LobbySpawner
         _triggers.Add(SpawnTrigger(Team.SCP, localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -18.35f))));
     }
 
+    public void OnTogglingOverwatch(TogglingOverwatchEventArgs ev)
+    {
+        if (_status != LobbyStatus.Open)
+            return;
+
+        ev.IsAllowed = false;
+    }
+    
     public void OnVerified(VerifiedEventArgs ev)
     {
-        if (_status == LobbyStatus.Open)
-        {
-            Timing.CallDelayed(0.5f, () => ev.Player.SetRole(RoleType.Tutorial));
-
-            Timing.CallDelayed(2f, () =>
-            {
-                if (!ev.Player.IsOverwatchEnabled)
-                    return;
-               
-                ev.Player.IsOverwatchEnabled = false;
-                Timing.CallDelayed(5f, () => ev.Player.SetRole(RoleType.Tutorial));
-            });
-
-        }
+        if (_status != LobbyStatus.Open)
+            return;
+        
+        Timing.CallDelayed(0.5f, () => ev.Player.SetRole(RoleType.Tutorial));
     }
         
     public void OnChangingRole(ChangingRoleEventArgs ev)

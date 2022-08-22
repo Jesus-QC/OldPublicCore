@@ -21,6 +21,7 @@ public class LobbyModule : CoreModule<LobbyConfig>
         Server.WaitingForPlayers += _lobbySpawner.OnWaitingForPlayers;
         Server.RoundStarted += _lobbySpawner.OnStarting;
 
+        Player.TogglingOverwatch += _lobbySpawner.OnTogglingOverwatch;
         Player.ChangingRole += _lobbySpawner.OnChangingRole;
         Player.Spawning += _lobbySpawner.OnSpawning;
         Player.Verified += _lobbySpawner.OnVerified;
@@ -33,6 +34,7 @@ public class LobbyModule : CoreModule<LobbyConfig>
         Server.WaitingForPlayers -= _lobbySpawner.OnWaitingForPlayers;
         Server.RoundStarted -= _lobbySpawner.OnStarting;
             
+        Player.TogglingOverwatch -= _lobbySpawner.OnTogglingOverwatch;
         Player.ChangingRole -= _lobbySpawner.OnChangingRole;
         Player.Spawning -= _lobbySpawner.OnSpawning;
         Player.Verified -= _lobbySpawner.OnVerified;

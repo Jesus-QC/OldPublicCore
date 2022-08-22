@@ -95,6 +95,37 @@
           "lib/net6.0/Discord.Net.WebSocket.dll": {}
         }
       },
+      "EXILED/5.3.0-rc.1": {
+        "type": "package",
+        "compile": {
+          "lib/net472/Assembly-CSharp-Publicized.dll": {},
+          "lib/net472/CommandSystem.Core.dll": {},
+          "lib/net472/Exiled.API.dll": {},
+          "lib/net472/Exiled.Bootstrap.dll": {},
+          "lib/net472/Exiled.CreditTags.dll": {},
+          "lib/net472/Exiled.CustomItems.dll": {},
+          "lib/net472/Exiled.CustomRoles.dll": {},
+          "lib/net472/Exiled.Events.dll": {},
+          "lib/net472/Exiled.Loader.dll": {},
+          "lib/net472/Exiled.Permissions.dll": {},
+          "lib/net472/Exiled.Updater.dll": {},
+          "lib/net472/NorthwoodLib.dll": {}
+        },
+        "runtime": {
+          "lib/net472/Assembly-CSharp-Publicized.dll": {},
+          "lib/net472/CommandSystem.Core.dll": {},
+          "lib/net472/Exiled.API.dll": {},
+          "lib/net472/Exiled.Bootstrap.dll": {},
+          "lib/net472/Exiled.CreditTags.dll": {},
+          "lib/net472/Exiled.CustomItems.dll": {},
+          "lib/net472/Exiled.CustomRoles.dll": {},
+          "lib/net472/Exiled.Events.dll": {},
+          "lib/net472/Exiled.Loader.dll": {},
+          "lib/net472/Exiled.Permissions.dll": {},
+          "lib/net472/Exiled.Updater.dll": {},
+          "lib/net472/NorthwoodLib.dll": {}
+        }
+      },
       "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
         "type": "package",
         "compile": {
@@ -308,6 +339,39 @@
         "lib/netstandard2.1/Discord.Net.WebSocket.xml"
       ]
     },
+    "EXILED/5.3.0-rc.1": {
+      "sha512": "sO2jSYlLkh8mn7c5xGpSGPHQlMyWmFXbGpTJ9Mw0TVpsmu9anxAwbn4ot8uJ0TJ3ihAvciTz0mOs8IkWbndDgw==",
+      "type": "package",
+      "path": "exiled/5.3.0-rc.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "exiled.5.3.0-rc.1.nupkg.sha512",
+        "exiled.nuspec",
+        "images/Exiled_Icon.jpg",
+        "lib/net472/Assembly-CSharp-Publicized.dll",
+        "lib/net472/CommandSystem.Core.dll",
+        "lib/net472/Exiled.API.dll",
+        "lib/net472/Exiled.API.xml",
+        "lib/net472/Exiled.Bootstrap.dll",
+        "lib/net472/Exiled.Bootstrap.xml",
+        "lib/net472/Exiled.CreditTags.dll",
+        "lib/net472/Exiled.CreditTags.xml",
+        "lib/net472/Exiled.CustomItems.dll",
+        "lib/net472/Exiled.CustomItems.xml",
+        "lib/net472/Exiled.CustomRoles.dll",
+        "lib/net472/Exiled.CustomRoles.xml",
+        "lib/net472/Exiled.Events.dll",
+        "lib/net472/Exiled.Events.xml",
+        "lib/net472/Exiled.Loader.dll",
+        "lib/net472/Exiled.Loader.xml",
+        "lib/net472/Exiled.Permissions.dll",
+        "lib/net472/Exiled.Permissions.xml",
+        "lib/net472/Exiled.Updater.dll",
+        "lib/net472/Exiled.Updater.xml",
+        "lib/net472/NorthwoodLib.dll"
+      ]
+    },
     "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
       "sha512": "ORj7Zh81gC69TyvmcUm9tSzytcy8AVousi+IVRAI8nLieQjOFryRusSFh7+aLk16FN9pQNqJAiMd7BTKINK0kA==",
       "type": "package",
@@ -503,7 +567,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Discord.Net >= 3.7.2"
+      "Discord.Net >= 3.7.2",
+      "EXILED >= 5.3.0-rc.1"
     ]
   },
   "packageFolders": {
@@ -546,6 +611,10 @@
           "Discord.Net": {
             "target": "Package",
             "version": "[3.7.2, )"
+          },
+          "EXILED": {
+            "target": "Package",
+            "version": "[5.3.0-rc.1, )"
           }
         },
         "imports": [
@@ -566,5 +635,17 @@
         "runtimeIdentifierGraphPath": "C:\\Users\\jesus\\.dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'EXILED 5.3.0-rc.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "EXILED",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

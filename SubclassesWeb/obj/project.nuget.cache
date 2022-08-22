@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Adpv1M0UuoZWRhTHU8WYNOkmOfJi6RYC7vPKkJai56U90av8IzVtIxmtAzBEmqEDZHk/7OGUj//c+4ywuFBRqQ==",
+  "dgSpecHash": "59EX7RttcNGqQfuMrm5yRYnO1a3Q6PWW5jelpH0ic2nyq6mWA5chWHM3987048cjkHKQKhuC/oUboEp70d0xhg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jesus\\RiderProjects\\MainCore\\SubclassesWeb\\SubclassesWeb.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jesus\\.nuget\\packages\\exiled\\5.3.0-rc.1\\exiled.5.3.0-rc.1.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.8\\microsoft.aspnetcore.mvc.razor.extensions.6.0.8.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.8\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.8.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.8\\microsoft.aspnetcore.razor.language.6.0.8.nupkg.sha512",
@@ -23,5 +24,16 @@
     "C:\\Users\\jesus\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'EXILED 5.3.0-rc.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "EXILED",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

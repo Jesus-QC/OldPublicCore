@@ -7,5 +7,6 @@ public enum ScreenZone
     CenterTop,
     Center,
     Bottom,
-    TopBar
+    TopBar,
+    TopBarSecondary
 }
