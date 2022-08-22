@@ -70,7 +70,9 @@ public static class LevelExtensions
 
         player.SendHint(ScreenZone.Notifications, perk.GetString(exp));
 
-        Exp[player] += exp;
+        if(Exp.ContainsKey(player))
+            Exp[player] += exp;
+        
         RoundExp[player] += exp;
 
         player.AddUse(perk);

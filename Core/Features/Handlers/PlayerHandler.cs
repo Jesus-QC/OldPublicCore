@@ -32,7 +32,7 @@ public class PlayerHandler
 
     public void OnKicking(KickingEventArgs ev)
     {
-        if (ev.Target is null)
+        if (ev.Target is null || ev.Reason is null)
             return;
             
         var tId = ev.Target.GetId();

@@ -94,10 +94,10 @@ public class EventHandlers
         var kills = GetMax(_killsCounter);
         var damage = GetMax(_damageCounter);
 
-        var killsText = kills == null ? "<color=#baffe8>Nobody</color> did any <color=#ffbaf8>kill</color>" : $"<color=#baffe8>{kills.Nickname}</color> made a total of <color=#ffbaf8>{_killsCounter[kills]} kills</color>";
-        var damageText = damage == null ? "<color=#fc90e5>Nobody</color> did <color=#fcc390>damage</color>" : $"<color=#fc90e5>{damage.Nickname}</color> did a total of <color=#fcc390>{_damageCounter[damage]} of damage</color>";
+        var killsText = kills == null ? "<color=#baffe8>Nobody</color> did any <color=#ffbaf8>kill</color>" : $"<color=#baffe8>{kills.Nickname}</color> killed a total of <color=#ffbaf8>{_killsCounter[kills]} people</color>";
+        var damageText = damage == null ? "<color=#fc90e5>Nobody</color> did <color=#fcc390>damage</color>" : $"<color=#fc90e5>{damage.Nickname}</color> did a total of <color=#fcc390>{_damageCounter[damage]} damage</color>";
         var escapeText = _firstEscapist == null ? "<color=#6cd0f5>Nobody</color> did <color=#86eb5b>escape</color>" : $"<color=#6cd0f5>{_firstEscapist.Nickname}</color> was the first one to <color=#86eb5b>escape</color>";
-        var scpKillsText = RoundSummary.KilledBySCPs < 1 ? "<color=#854ede>SCPs</color> made no <color=#ed3b41>kills</color>" : $"<color=#854ede>SCPs </color>made a total of <color=#ed3b41>{RoundSummary.KilledBySCPs} human kills</color>";
+        var scpKillsText = RoundSummary.KilledBySCPs < 1 ? "<color=#854ede>SCPs</color> made no <color=#ed3b41>kills</color>" : $"<color=#854ede>SCPs </color>killed a total of <color=#ed3b41>{RoundSummary.KilledBySCPs} humans</color>";
             
         return $"<size=28><b>✮ MVP SCREEN ✮</b>\n«────── « ⋅ʚ♡ɞ⋅ » ──────»\n{killsText}\n{damageText}\n{escapeText}\n{scpKillsText}\n</size>";
     }

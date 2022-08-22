@@ -139,7 +139,7 @@ public class CustomHUD : MonoBehaviour
     {
         if (_dnt)
             return "do not track";
-        
+
         var exp = _player.GetExp();
         return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider}";
     }
