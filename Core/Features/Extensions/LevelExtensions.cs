@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Features.Commands;
 using Core.Features.Data.Enums;
 using Exiled.API.Features;
 
@@ -26,6 +27,12 @@ public static class LevelExtensions
         
     public static void ShowBadge(this Player player)
     {
+        if (DisguiseCommand.DisguisedStaff.ContainsKey(player.UserId))
+        {
+            player.DisplayNickname = $"Lvl: {player.GetLevel()} |  {DisguiseCommand.DisguisedStaff[player.UserId]}";
+            return;
+        }
+        
         player.DisplayNickname = $"Lvl: {player.GetLevel()} |  {player.Nickname}";
     }
     public static void SetUpLevels(this Player player)

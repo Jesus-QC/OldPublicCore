@@ -129,6 +129,7 @@
         <Compile Include="Features\Commands\CoreVersionCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordDeSyncCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordSyncCommand.cs" />
+        <Compile Include="Features\Commands\DisguiseCommand.cs" />
         <Compile Include="Features\Commands\TpsViewerCommand.cs" />
         <Compile Include="Features\Components\CustomHUD.cs" />
         <Compile Include="Features\Components\PlayerManager.cs" />

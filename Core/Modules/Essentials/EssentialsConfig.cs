@@ -30,4 +30,10 @@ public class EssentialsConfig : IConfig
 
     [Description("Flashlight chance")]
     public int FlashlightChance { get; set; } = 80;
+
+    [Description("Disguise")]
+    public List<string> DisguiseNicknames { get; set; } = new ()
+    {
+        "John Doe", "Cookiemonster87", "Someone"
+    };
 }
