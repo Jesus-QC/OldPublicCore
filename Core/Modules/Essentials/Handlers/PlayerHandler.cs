@@ -2,6 +2,7 @@
 using Core.Modules.Essentials.Extensions;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
 using UnityEngine;
@@ -40,6 +41,28 @@ public class PlayerHandler
             ev.Items.Add(ItemType.Flashlight);
     }
 
+    public void OnDied(DiedEventArgs ev)
+    {
+        if (Player.Get(ev.TargetOldRole.GetTeam()) is not Player[] { Length: 1 } players)
+            return;
+        
+        foreach (var player in players)
+        {
+            player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
+        }
+    }
+
+    public void OnLeft(LeftEventArgs ev)
+    {
+        if (Player.Get(ev.Player.Role.Team) is not Player[] { Length: 2 } players)
+            return;
+        
+        foreach (var player in players)
+        {
+            player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
+        }
+    }
+    
     public void OnWaitingForPlayers()
     {
         CoroutinesHandler.Coroutines.Add(Timing.RunCoroutine(CoroutinesHandler.BetterDisarm()));

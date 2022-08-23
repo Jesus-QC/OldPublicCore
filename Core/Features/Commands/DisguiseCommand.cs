@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Core.Features.Commands;
 
+[CommandHandler(typeof(ClientCommandHandler)), CommandHandler(typeof(RemoteAdminCommandHandler))]
 public class DisguiseCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

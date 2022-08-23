@@ -30,6 +30,8 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Server.WaitingForPlayers += _playerHandler.OnWaitingForPlayers;
             
         Player.Hurting += _playerHandler.OnHurting;
+        Player.Died += _playerHandler.OnDied;
+        Player.Left += _playerHandler.OnLeft;
         Player.Verified += _playerHandler.OnVerified;
         Player.TriggeringTesla += _playerHandler.OnTriggeringTesla;
         Player.ChangingRole += _playerHandler.OnChangingRole;
