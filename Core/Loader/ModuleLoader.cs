@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Core.Features.Logger;
 using Core.Loader.Features;
@@ -27,7 +28,7 @@ public static class ModuleLoader
                 continue;
             }
             
-            if (!type.BaseType.IsGenericType || type.BaseType.GetGenericTypeDefinition() != typeof(CoreModule<>))
+            if (!type.BaseType.IsGenericType || type.BaseType.GetGenericTypeDefinition() != typeof(CoreModule<>) || type.GetCustomAttributes(typeof(DisabledModuleAttribute), false).Any())
             {
                 continue;
             }

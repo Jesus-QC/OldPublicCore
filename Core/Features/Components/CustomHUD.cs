@@ -100,7 +100,7 @@ public class CustomHUD : MonoBehaviour
         _builder.Clear();
         _builder.Append(DefaultHUD);
 
-        _builder = _builder.Replace("[8]", $"<color={_player.Role.Color.ToHex()}><b><size=55%>TheWolfPack - {Core.GlobalVersion}</size>\n");
+        _builder = _builder.Replace("[8]", $"<color={_player.Role.Color.ToHex()}><b><size=55%><color=#ff0077>T</color><color=#ba2bbb>h</color><color=#7455ff>e</color><color=#ba2bbb>W</color><color=#ff0077>o</color><color=#ba2bbb>l</color><color=#7455ff>f</color><color=#ba2bbb>P</color><color=#ff0077>a</color><color=#ba2bbb>c</color><color=#7455ff>k</color> - {Core.GlobalVersion}</size>\n");
         _builder = _builder.Replace("[9]", $"{_cachedMsg} | {GetLevelMessage()} | tps: {ServerCore.Tps}");
         _builder = _builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
 

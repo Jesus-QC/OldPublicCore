@@ -94,6 +94,6 @@ public class EventHandler
 
     private static string GetCount()
     {
-        return $"<color=#9effe0>👻 spectators:</color> {Player.Get(RoleType.Spectator).Count()} | <color=#9ecfff>⛨ mtf tickets:</color> {Respawn.NtfTickets} | <color=#9effa6>⏣ chaos tickets:</color> {Respawn.ChaosTickets}\n";
+        return $"<color=#9effe0>👻 spectators:</color> {Player.Get(RoleType.Spectator).Count()} | <color=#9ecfff>🛡️ mtf tickets:</color> {Respawn.NtfTickets} | <color=#9effa6>☢ chaos tickets:</color> {Respawn.ChaosTickets}\n";
     }
 }
