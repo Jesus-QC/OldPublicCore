@@ -22,17 +22,18 @@ public class AfkCheckerComponent : MonoBehaviour
             var pos = Player.Position;
             var rot = Player.Rotation;
             
-            if (Player.Role != RoleType.Spectator && _lastPos == pos && _lastRot == rot)
+            if (Player.Role != RoleType.Spectator && Player.Role != RoleType.Tutorial && _lastPos == pos && _lastRot == rot)
             {
                 _afkTime++;
-
+                
                 if (_afkTime >= AfkCheckerModule.StaticConfig.AfkTime - 10)
                 {
-                    Player.Broadcast(1, $"<b><color=#ff4940>You were detected as afk.</color>\nMove in less than {AfkCheckerModule.StaticConfig.AfkTime - _afkTime} or you will be kicked.</b>");
+                    Player.Broadcast(1, $"<b><color=#ff4940>You were detected as afk.</color>\nMove in less than {AfkCheckerModule.StaticConfig.AfkTime - _afkTime} seconds or you will be kicked.</b>");
 
                     if (_afkTime >= AfkCheckerModule.StaticConfig.AfkTime)
                     {
                         Player.Kick("Detected as AFK. [Kicked by a Plugin]", "AfkChecker");
+                        Destroy(this);
                     }
                 }
             }
@@ -40,9 +41,10 @@ public class AfkCheckerComponent : MonoBehaviour
             {
                 _lastPos = pos;
                 _lastRot = rot;
-                
                 _afkTime = 0;
             }
+
+            _counter = 0;
         }
     }
 }

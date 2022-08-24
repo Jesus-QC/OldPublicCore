@@ -88,9 +88,9 @@ public static class PlayerExtensions
                 return $"DiscordId='{player.RawUserId}'";
             case AuthenticationType.Northwood:
             case AuthenticationType.Patreon:
-            case AuthenticationType.Unknown:
-            default:
                 return $"NorthWoodId='{player.UserId}'";
+            default:
+                return "Id='0'";
         }
     }
 

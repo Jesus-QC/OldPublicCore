@@ -13,14 +13,14 @@ using CorePlayer = Core.Features.Events.CoreEvents;
 
 namespace Core;
 
-public class Core : Plugin<CoreConfig>
+public class Core : Plugin<EmptyConfig>
 {
     public override string Name { get; } = "Core";
     public override string Prefix { get; } = "core";
     public override string Author { get; } = "Jesus-QC";
     public override PluginPriority Priority { get; } = PluginPriority.Last;
 
-    public const string GlobalVersion = "2.0.1.3";
+    public const string GlobalVersion = "2.0.1.4";
         
     public static Database Database;
     public static Harmony Harmony;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Core.Features.Events.EventArgs;
 using Core.Features.Extensions;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 
 namespace Core.Features.Handlers;
@@ -34,7 +35,7 @@ public class PlayerHandler
     {
         if (ev.Target is null || ev.Reason is null)
             return;
-            
+
         var tId = ev.Target.GetId();
         var iId = ev.Issuer?.GetId() ?? 0;
         Core.Database.ExecuteNonQuery($"INSERT INTO SlKicks (PlayerId, IssuerId, Reason, Date) VALUES ('{tId}', '{iId}', '{ev.Reason}', '{DateTime.UtcNow.Ticks}')");

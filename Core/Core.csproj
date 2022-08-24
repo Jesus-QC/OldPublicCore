@@ -133,7 +133,6 @@
         <Compile Include="Features\Commands\TpsViewerCommand.cs" />
         <Compile Include="Features\Components\CustomHUD.cs" />
         <Compile Include="Features\Components\PlayerManager.cs" />
-        <Compile Include="Features\Data\Configs\CoreConfig.cs" />
         <Compile Include="Features\Data\Configs\EmptyConfig.cs" />
         <Compile Include="Features\Data\Database.cs" />
         <Compile Include="Features\Data\Enums\CoreRarity.cs" />
