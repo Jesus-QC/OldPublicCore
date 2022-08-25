@@ -1,7 +1,6 @@
 ﻿using Core.Loader.Features;
 using Exiled.Events.EventArgs;
 using Exiled.Events.Handlers;
-using RemoteAdmin;
 
 namespace Core.Modules.AfkChecker;
 
@@ -31,7 +30,7 @@ public class AfkCheckerModule : CoreModule<AfkCheckerConfig>
 
     private void OnVerified(VerifiedEventArgs ev)
     {
-        if (/*CommandProcessor.CheckPermissions(ev.Player.Sender, PlayerPermissions.AFKImmunity) || */ev.Player.GameObject.TryGetComponent(out AfkCheckerComponent _))
+        if (ev.Player.GameObject.TryGetComponent(out AfkCheckerComponent _))
             return;
         
         ev.Player.GameObject.AddComponent<AfkCheckerComponent>().Player = ev.Player;

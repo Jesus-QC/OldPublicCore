@@ -347,3 +347,15 @@ C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\obj\Release\net6.0\Subclasse
 C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\obj\Release\net6.0\ref\SubclassesWeb.dll
 C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\obj\Release\net6.0\SubclassesWeb.pdb
 C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\obj\Release\net6.0\SubclassesWeb.genruntimeconfig.cache
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Assembly-CSharp-Publicized.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\CommandSystem.Core.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.API.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.Bootstrap.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.CreditTags.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.CustomItems.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.CustomRoles.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.Events.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.Loader.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.Permissions.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\Exiled.Updater.dll
+C:\Users\jesus\RiderProjects\MainCore\SubclassesWeb\bin\Release\net6.0\NorthwoodLib.dll

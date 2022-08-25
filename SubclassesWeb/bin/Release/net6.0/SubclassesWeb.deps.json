@@ -34,6 +34,7 @@
     ".NETCoreApp,Version=v6.0": {
       "SubclassesWeb/1.0.0": {
         "dependencies": {
+          "EXILED": "5.3.0-rc.1",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.8",
           "Microsoft.AspNetCore.Antiforgery": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "6.0.0.0",
@@ -329,6 +330,72 @@
         },
         "compile": {
           "SubclassesWeb.dll": {}
+        }
+      },
+      "EXILED/5.3.0-rc.1": {
+        "runtime": {
+          "lib/net472/Assembly-CSharp-Publicized.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "lib/net472/CommandSystem.Core.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "lib/net472/Exiled.API.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.Bootstrap.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.CreditTags.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.CustomItems.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.CustomRoles.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.Events.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.Loader.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.Permissions.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
+          },
+          "lib/net472/Exiled.Updater.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.1.1.0"
+          },
+          "lib/net472/NorthwoodLib.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        },
+        "compile": {
+          "lib/net472/Assembly-CSharp-Publicized.dll": {},
+          "lib/net472/CommandSystem.Core.dll": {},
+          "lib/net472/Exiled.API.dll": {},
+          "lib/net472/Exiled.Bootstrap.dll": {},
+          "lib/net472/Exiled.CreditTags.dll": {},
+          "lib/net472/Exiled.CustomItems.dll": {},
+          "lib/net472/Exiled.CustomRoles.dll": {},
+          "lib/net472/Exiled.Events.dll": {},
+          "lib/net472/Exiled.Loader.dll": {},
+          "lib/net472/Exiled.Permissions.dll": {},
+          "lib/net472/Exiled.Updater.dll": {},
+          "lib/net472/NorthwoodLib.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.8": {
@@ -2283,6 +2350,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "EXILED/5.3.0-rc.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sO2jSYlLkh8mn7c5xGpSGPHQlMyWmFXbGpTJ9Mw0TVpsmu9anxAwbn4ot8uJ0TJ3ihAvciTz0mOs8IkWbndDgw==",
+      "path": "exiled/5.3.0-rc.1",
+      "hashPath": "exiled.5.3.0-rc.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.8": {
       "type": "package",

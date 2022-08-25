@@ -123,8 +123,12 @@ public class LobbySpawner
             _status = LobbyStatus.Starting;
             
             Map.ClearBroadcasts();
-            foreach(var player in Player.List)
-                player.Connection.Send(new HintMessage(new TextHint("", new HintParameter[]{ new StringHintParameter("") }, null, 1)));
+            MapCore.ClearHintZone(ScreenZone.Bottom);
+            MapCore.ClearHintZone(ScreenZone.Center);
+            MapCore.ClearHintZone(ScreenZone.Top);
+            MapCore.ClearHintZone(ScreenZone.CenterTop);
+            MapCore.ClearHintZone(ScreenZone.TopBar);
+            MapCore.ClearHintZone(ScreenZone.TopBarSecondary);
 
             var classElections = new Dictionary<Team, List<int>>() { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new(), [Team.TUT] = new()};
 
