@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CommandSystem;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
@@ -13,13 +14,18 @@ public class ButtonComboCmd : ICommand
     {
         if (Player.TryGet(sender, out var ply))
         {
-            if(ply.CheckCooldown(LevelToken.ButtonCombo, 1))
+            if (!_alreadyUsed.Contains(ply.UserId))
+            {
+                _alreadyUsed.Add(ply.UserId);
                 ply.AddExp(LevelToken.ButtonCombo);
+            }
         }
 
         response = "Ch34t2 3n4bl3d";
         return true;
     }
+
+    private static readonly HashSet<string> _alreadyUsed = new ();
 
     public string Command { get; } = "enablecheats1";
     public string[] Aliases { get; } = Array.Empty<string>();

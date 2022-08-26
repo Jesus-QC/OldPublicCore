@@ -32,6 +32,12 @@ public class AfkCheckerComponent : MonoBehaviour
 
                     if (_afkTime >= AfkCheckerModule.StaticConfig.AfkTime)
                     {
+                        if (PermissionsHandler.IsPermitted(Player.Group.Permissions, PlayerPermissions.AFKImmunity))
+                        {
+                            Destroy(this);
+                            return;
+                        }
+                        
                         Player.Kick("Detected as AFK. [Kicked by a Plugin]", "AfkChecker");
                         Destroy(this);
                     }
