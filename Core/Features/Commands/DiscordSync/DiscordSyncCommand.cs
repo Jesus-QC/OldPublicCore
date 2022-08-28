@@ -14,7 +14,7 @@ public class DiscordSyncCommand : ICommand
         response = "This command is disabled right now.";
         return false;
         
-        var ply = Player.Get(sender);
+        /*var ply = Player.Get(sender);
             
         if (Core.Database.ExecuteScalar($"SELECT DiscordId FROM NewPlayers WHERE Id='{ply.GetId()}'") is not DBNull)
         {
@@ -36,7 +36,7 @@ public class DiscordSyncCommand : ICommand
         Core.Database.ExecuteNonQuery($"INSERT INTO SyncQueue (Code, PlayerId) VALUES ({newGeneratedCode}, {ply.GetId()})");
         ply.Broadcast(10, $"<i><color=red>Sync code:</color></i> <b><color=#03f8fc>{newGeneratedCode}</color></b>\n<b>Use</b> /sync code:{newGeneratedCode}\n<b>Inside our discord!</b>");
         response = $"Your new sync code: ({newGeneratedCode})";
-        return true;
+        return true;*/
     }
 
     public string Command { get; } = "sync";

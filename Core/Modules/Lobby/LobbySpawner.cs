@@ -321,7 +321,7 @@ public class LobbySpawner
 
     private IEnumerator<float> ServerHUD()
     {
-        var welcome = $"<u>W<lowercase>elcome to</lowercase></u>\n{LobbyModule.LobbyConfig.ServerName}";
+        var welcome = $"<u>W<lowercase>elcome to</lowercase></u>\n{LobbyModule.LobbyConfig.ServerName}\n<color=#c09ad8>(</color><color=#b7a8e2>∩</color><color=#aeb6ec>｀</color><color=#a5c4f5>-</color><color=#9cd2ff>´</color><color=#a5d6f7>)</color><color=#aed9ee>⊃</color><color=#b7dde6>━</color><color=#c0e1de>━</color><color=#c9e4d5>☆</color><color=#d2e8cd>ﾟ</color><color=#dbebc4>.</color><color=#e4efbc>*</color><color=#edf3b4>･</color><color=#f6f6ab>｡</color><color=#fffaa3>ﾟ</color>";
         var discord = $"<align=right><color=#5865F2><u></color>J<lowercase>oin our discord!</lowercase></u>\n{LobbyModule.LobbyConfig.DiscordLink}</align>";
 
         for (;;)
