@@ -17,7 +17,7 @@ public class LoveJesusCmd : ICommand
             var achievements = ply.GetSpecialAdvancements();
             if (!achievements.Contains('1'))
             {
-                ply.AddExp(LevelToken.JesusSupportCode);
+                ply.AddExp(LevelToken.JesusSupportCode, 5000);
                 ply.SaveSpecialAdvancements(achievements+'1');
             }
         }

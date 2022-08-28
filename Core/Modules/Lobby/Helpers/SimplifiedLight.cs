@@ -21,7 +21,7 @@ public class SimplifiedLight
         _castShadows = shadowCast;
     }
 
-    public GameObject Spawn(Transform parent)
+    public void Spawn(Transform parent)
     {
         var light = Object.Instantiate(ToysHelper.LightBaseObject, parent);
 
@@ -32,7 +32,5 @@ public class SimplifiedLight
         light.NetworkLightRange = _range;
             
         NetworkServer.Spawn(light.gameObject);
-
-        return light.gameObject;
     }
 }

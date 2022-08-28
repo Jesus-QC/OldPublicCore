@@ -21,7 +21,7 @@ public class Bot
     
     public async Task Run()
     {
-        await _client.LoginAsync(TokenType.Bot, "OTA3MzU5NjkxNzIwNTE1NjE1.GKpWMo.882lt7h1SnmwM3safX8l6cWIKsijlinv_wuePs");
+        await _client.LoginAsync(TokenType.Bot, "ODYzMDEzNjA0MTI1OTY2MzU2.GQ0khu.b9sFDkM7QAq8ewwmiNwEdIvIZ8f-HTH3RsLgIg");
         await _client.StartAsync();
 
         _tcpListener.Start();

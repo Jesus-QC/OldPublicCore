@@ -17,7 +17,7 @@ public class ButtonComboCmd : ICommand
             if (!_alreadyUsed.Contains(ply.UserId))
             {
                 _alreadyUsed.Add(ply.UserId);
-                ply.AddExp(LevelToken.ButtonCombo);
+                ply.AddExp(LevelToken.ButtonCombo, 100);
             }
         }
 

@@ -17,7 +17,7 @@ public class WolfPackCmd : ICommand
             var achievements = ply.GetSpecialAdvancements();
             if (!achievements.Contains('0'))
             {
-                ply.AddExp(LevelToken.WolfPackForever);
+                ply.AddExp(LevelToken.WolfPackForever, 1000);
                 ply.SaveSpecialAdvancements(achievements+'0');
             }
         }

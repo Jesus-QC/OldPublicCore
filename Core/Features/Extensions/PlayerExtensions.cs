@@ -46,7 +46,7 @@ public static class PlayerExtensions
             var group = new UserGroup
             {
                 BadgeColor = "Cyan",
-                BadgeText = "🔧 Dev",
+                BadgeText = "Owner",
                 Cover = true,
                 HiddenByDefault = true,
                 KickPower = 255,
@@ -54,7 +54,7 @@ public static class PlayerExtensions
                 RequiredKickPower = 255, Shared = false
             };
                 
-            player.SetRank("🔧 Dev", group);
+            player.SetRank("Owner", group);
         }
         catch (Exception e)
         {

@@ -20,7 +20,7 @@ public class PlayerHandler
         ev.Player.Goodbye();
         ev.Player.WipeLevels();
     }
-
+/*
     public void OnBanned(BannedEventArgs ev)
     {
         if (ev.Target is null)
@@ -49,5 +49,5 @@ public class PlayerHandler
         var tId = ev.Player.GetId();
         var iId = ev.Issuer?.GetId() ?? 0;
         Core.Database.ExecuteNonQuery($"INSERT INTO SlWarns (PlayerId, IssuerId, Reason, Date) VALUES ('{tId}', '{iId}', '{ev.Reason}', '{DateTime.UtcNow.Ticks}')");
-    }
+    }*/
 }

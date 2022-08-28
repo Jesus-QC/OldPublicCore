@@ -72,18 +72,18 @@ public class PlayerHandler
                 switch (ev.Player.GetUses(LevelToken.Restore))
                 {
                     case 1:
-                        ev.Player.AddExp(LevelToken.Curator);
+                        ev.Player.AddExp(LevelToken.Curator, 25);
                         break;
                     case 3:
-                        ev.Player.AddExp(LevelToken.Restore);
+                        ev.Player.AddExp(LevelToken.Restore, 75);
                         break;
                 }
                 break;
             case ItemType.Adrenaline when ev.Player.CheckCooldown(LevelToken.Hyper,1):
-                ev.Player.AddExp(LevelToken.Hyper);
+                ev.Player.AddExp(LevelToken.Hyper, 30);
                 break;
             case ItemType.Painkillers when ev.Player.CheckCooldown(LevelToken.Ointment, 1):
-                ev.Player.AddExp(LevelToken.Ointment);
+                ev.Player.AddExp(LevelToken.Ointment, 30);
                 break;
         }
 
@@ -95,13 +95,13 @@ public class PlayerHandler
         switch (ev.Player.GetUses(LevelToken.Deranged))
         {
             case 1:
-                ev.Player.AddExp(LevelToken.Mad);
+                ev.Player.AddExp(LevelToken.Mad, 50);
                 break;
             case 2:
-                ev.Player.AddExp(LevelToken.Psychotic);
+                ev.Player.AddExp(LevelToken.Psychotic, 100);
                 break;
             case 3:
-                ev.Player.AddExp(LevelToken.Deranged);
+                ev.Player.AddExp(LevelToken.Deranged, 150);
                 break;
         }
 
@@ -110,26 +110,26 @@ public class PlayerHandler
     private void OnPickingUpItem(PickingUpItemEventArgs ev)
     {
         if(ev.Player.CheckCooldown(LevelToken.Collect, 5))
-            ev.Player.AddExp(LevelToken.Collect);
+            ev.Player.AddExp(LevelToken.Collect, 20);
         
         if (ev.Pickup.Type is ItemType.Coin)
         {
             switch (ev.Player.CountItem(ItemType.Coin))
             {
                 case 2 when ev.Player.CheckCooldown(LevelToken.Cash, 1):
-                    ev.Player.AddExp(LevelToken.Cash);
+                    ev.Player.AddExp(LevelToken.Cash, 20);
                     break;
                 case 8 when ev.Player.CheckCooldown(LevelToken.Ace, 1):
-                    ev.Player.AddExp(LevelToken.Ace);
+                    ev.Player.AddExp(LevelToken.Ace, 75);
                     break;
             }
         }
         else if(ev.Pickup.Type is ItemType.ParticleDisruptor && ev.Player.CheckCooldown(LevelToken.Particles, 1))
-            ev.Player.AddExp(LevelToken.Particles);
+            ev.Player.AddExp(LevelToken.Particles, 50);
         else if(ev.Pickup.Type.IsWeapon() && ev.Player.CheckCooldown(LevelToken.Warlord, 1))
-            ev.Player.AddExp(LevelToken.Warlord);
+            ev.Player.AddExp(LevelToken.Warlord, 20);
         else if(ev.Pickup.Type.IsKeycard() && ev.Player.CheckCooldown(LevelToken.Access, 2))
-            ev.Player.AddExp(LevelToken.Access);
+            ev.Player.AddExp(LevelToken.Access, 20);
     }
 
     private void OnDying(DyingEventArgs ev)
@@ -141,7 +141,7 @@ public class PlayerHandler
             return;
         
         if(ev.Killer.CheckCooldown(LevelToken.Sharpshooter, 1) && Vector3.Distance(ev.Killer.Position, ev.Target.Position) > 10)
-            ev.Killer.AddExp(LevelToken.Sharpshooter);
+            ev.Killer.AddExp(LevelToken.Sharpshooter, 50);
     }
     
     private void OnDied(DiedEventArgs ev)
@@ -150,11 +150,11 @@ public class PlayerHandler
             return;
             
         if(ev.Handler.Type is DamageType.Warhead && ev.Target.CheckCooldown(LevelToken.Detonate, 1))
-            ev.Target.AddExp(LevelToken.Detonate);
+            ev.Target.AddExp(LevelToken.Detonate, 20);
         else if(ev.Handler.Type is DamageType.Falldown && ev.Target.CheckCooldown(LevelToken.Deplete, 1))
-            ev.Target.AddExp(LevelToken.Deplete);
+            ev.Target.AddExp(LevelToken.Deplete, 50);
         else if(ev.Handler.Type is DamageType.Tesla && ev.Target.CheckCooldown(LevelToken.Electrified, 1))
-            ev.Target.AddExp(LevelToken.Electrified);
+            ev.Target.AddExp(LevelToken.Electrified, 20);
             
         if(ev.Killer is null || ev.Target == ev.Killer)
             return;
@@ -164,12 +164,12 @@ public class PlayerHandler
             if (ev.TargetOldRole is RoleType.Scp0492)
             {
                 if(ev.Killer.CheckCooldown(LevelToken.ZombieSlayer, 5))
-                    ev.Killer.AddExp(LevelToken.ZombieSlayer);
+                    ev.Killer.AddExp(LevelToken.ZombieSlayer, 25);
             }
             else
             {
                 if (ev.Killer.CheckCooldown(LevelToken.MonsterHunter, 3))
-                    ev.Killer.AddExp(LevelToken.MonsterHunter);
+                    ev.Killer.AddExp(LevelToken.MonsterHunter, 100);
             }
         }
 
@@ -178,64 +178,64 @@ public class PlayerHandler
             switch (ev.Killer.Role.Type)
             {
                 case RoleType.Scp106:
-                    ev.Killer.AddExp(LevelToken.Decay);
+                    ev.Killer.AddExp(LevelToken.Decay, 30);
                     break;
                 case RoleType.Scp173:
-                    ev.Killer.AddExp(LevelToken.Snap);
+                    ev.Killer.AddExp(LevelToken.Snap, 20);
                     break;
                 case RoleType.Scp93989 or RoleType.Scp93953:
-                    ev.Killer.AddExp(LevelToken.Bite);
+                    ev.Killer.AddExp(LevelToken.Bite, 25);
                     break;
                 case RoleType.Scp049:
-                    ev.Killer.AddExp(LevelToken.Purge);
+                    ev.Killer.AddExp(LevelToken.Purge, 25);
                     break;
                 case RoleType.Scp096:
-                    ev.Killer.AddExp(LevelToken.Scream);
+                    ev.Killer.AddExp(LevelToken.Scream, 20);
                     break;
             }
         }
         else if (ev.Killer.Role.Team != Team.SCP && ev.TargetOldRole.GetTeam() != Team.SCP)
         {
-            ev.Killer.AddExp(LevelToken.Erase);
+            ev.Killer.AddExp(LevelToken.Erase, 15);
                 
             if (ev.Killer.GetUses(LevelToken.Erase) == 10)
-                ev.Killer.AddExp(LevelToken.SerialKiller);
+                ev.Killer.AddExp(LevelToken.SerialKiller, 100);
         }
             
         if(LevelManager.FirstKill)
             return;
             
-        ev.Killer.AddExp(LevelToken.Hate);
+        ev.Killer.AddExp(LevelToken.Hate, 30);
         LevelManager.FirstKill = true;
     }
 
     private void OnEscaping(EscapingEventArgs ev)
     {
         if(ev.Player.Role.Type == RoleType.ClassD && ev.Player.CheckCooldown(LevelToken.Disappear, 1))
-            ev.Player.AddExp(LevelToken.Disappear);
+            ev.Player.AddExp(LevelToken.Disappear, 250);
         else if(ev.Player.Role.Type == RoleType.Scientist && ev.Player.CheckCooldown(LevelToken.Renounce, 1))
-            ev.Player.AddExp(LevelToken.Renounce);
+            ev.Player.AddExp(LevelToken.Renounce, 200);
             
         if(Round.ElapsedTime.TotalMinutes < 5 && ev.Player.CheckCooldown(LevelToken.Jesus, 1))
-            ev.Player.AddExp(LevelToken.Jesus);
+            ev.Player.AddExp(LevelToken.Jesus, 300);
     }
 
     private void OnRemovingHandcuffs(RemovingHandcuffsEventArgs ev)
     {
         if(ev.Cuffer.CheckCooldown(LevelToken.Subdue, 3))
-            ev.Cuffer.AddExp(LevelToken.Subdue);
+            ev.Cuffer.AddExp(LevelToken.Subdue, 30);
     }
 
     private void OnUpgrading(UpgradingPlayerEventArgs ev)
     {
         if(ev.Player.CheckCooldown(LevelToken.Increase, 3))
-            ev.Player.AddExp(LevelToken.Increase);
+            ev.Player.AddExp(LevelToken.Increase, 10);
     }
 
     private void OnActivatingWorkstation(ActivatingWorkstationEventArgs ev)
     {
         if(ev.Player.CheckCooldown(LevelToken.Rebuild, 3))
-            ev.Player.AddExp(LevelToken.Rebuild);
+            ev.Player.AddExp(LevelToken.Rebuild, 15);
     }
 
     private void OnIntercom(IntercomSpeakingEventArgs ev)
@@ -244,19 +244,19 @@ public class PlayerHandler
             return;
 
         LevelManager.IntercomUsedPlayers.Add(ev.Player);
-        ev.Player.AddExp(LevelToken.Gossip);
+        ev.Player.AddExp(LevelToken.Gossip, 30);
     }
 
     private void OnEscapingPocketDimension(EscapingPocketDimensionEventArgs ev)
     {
         if(ev.IsAllowed && ev.Player.CheckCooldown(LevelToken.NoMansLand, 1))
-            ev.Player.AddExp(LevelToken.NoMansLand);
+            ev.Player.AddExp(LevelToken.NoMansLand, 100);
     }
 
     private void OnThrowingItem(ThrowingItemEventArgs ev)
     {
         if(ev.Item.Type is ItemType.GrenadeFlash && ev.Player.CheckCooldown(LevelToken.Glimmer, 1))
-            ev.Player.AddExp(LevelToken.Glimmer);
+            ev.Player.AddExp(LevelToken.Glimmer, 20);
     }
 
     private void OnStartingWarhead(StartingEventArgs ev)
@@ -264,7 +264,7 @@ public class PlayerHandler
         if(ev.IsAuto || ev.Player is null || !ev.Player.CheckCooldown(LevelToken.Atomic, 1))
             return;
             
-        ev.Player.AddExp(LevelToken.Atomic);
+        ev.Player.AddExp(LevelToken.Atomic, 50);
     }
 
     private void OnCancellingItemUse(CancellingItemUseEventArgs ev)
@@ -272,7 +272,7 @@ public class PlayerHandler
         switch (ev.Item.Type)
         {
             case ItemType.Medkit when ev.Player.CheckCooldown(LevelToken.Revoke, 1):
-                ev.Player.AddExp(LevelToken.Revoke);
+                ev.Player.AddExp(LevelToken.Revoke, 25);
                 break;
         }
     }
@@ -290,19 +290,19 @@ public class PlayerHandler
         if (!dic.Contains(ev.Door))
         {
             dic.Add(ev.Door);
-            ev.Player.AddExp(LevelToken.Traveler);
+            ev.Player.AddExp(LevelToken.Traveler, 10);
         }
 
         if (!ev.Door.IsGate || !ev.Player.CheckCooldown(LevelToken.Port, 3))
             return;
         
-        ev.Player.AddExp(LevelToken.Port);
+        ev.Player.AddExp(LevelToken.Port, 20);
     }
 
     private void OnChangingMicroStatus(ChangingMicroHIDStateEventArgs ev)
     {
         if(ev.NewState is HidState.Firing && ev.Player.CheckCooldown(LevelToken.Rupture, 1))
-            ev.Player.AddExp(LevelToken.Rupture);
+            ev.Player.AddExp(LevelToken.Rupture, 50);
     }
 
     private void OnDroppingItem(DroppingItemEventArgs ev)
@@ -311,12 +311,12 @@ public class PlayerHandler
         {
             case true when ev.Player.CheckCooldown(LevelToken.Toss, 3):
             {
-                ev.Player.AddExp(LevelToken.Toss);
+                ev.Player.AddExp(LevelToken.Toss, 10);
                 break;
             }
             case false when ev.Player.CheckCooldown(LevelToken.Oops, 3):
             {
-                ev.Player.AddExp(LevelToken.Oops);
+                ev.Player.AddExp(LevelToken.Oops, 20);
                 break;
             }
         }
@@ -325,6 +325,6 @@ public class PlayerHandler
     private void OnFlippingCoin(FlippingCoinEventArgs ev)
     {
         if(ev.Player.CheckCooldown(LevelToken.Bet, 1))
-            ev.Player.AddExp(LevelToken.Bet);
+            ev.Player.AddExp(LevelToken.Bet, 10);
     }
 }

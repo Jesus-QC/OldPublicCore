@@ -35,15 +35,15 @@ public class ServerHandler
     {
         if (ev.LeadingTeam is LeadingTeam.ChaosInsurgency)
             foreach (var ply in Player.Get(Side.ChaosInsurgency))
-                ply.AddExp(LevelToken.Control);
+                ply.AddExp(LevelToken.CrimesPay, 20);
         if(ev.LeadingTeam is LeadingTeam.Anomalies)
             foreach (var ply in Player.Get(Team.SCP))
-                ply.AddExp(LevelToken.Destruction);
+                ply.AddExp(LevelToken.Destruction, 20);
 
         foreach (var player in Player.List)
         {
             if(player.GetRoundExp() > 4999)
-                player.AddExp(LevelToken.Cursed);
+                player.AddExp(LevelToken.Cursed, 250);
         }
     }
 
@@ -55,14 +55,14 @@ public class ServerHandler
             {
                 foreach (var player in ev.Players)
                     if(player.CheckCooldown(LevelToken.Invaders, 1))
-                        player.AddExp(LevelToken.Invaders);
+                        player.AddExp(LevelToken.Invaders, 20);
                 break;
             }
             case SpawnableTeamType.NineTailedFox:
             {
                 foreach (var player in ev.Players)
                     if(player.CheckCooldown(LevelToken.Saviors, 1))
-                        player.AddExp(LevelToken.Saviors);
+                        player.AddExp(LevelToken.Saviors, 20);
                 break;
             }
         }

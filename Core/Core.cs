@@ -65,9 +65,6 @@ public class Core : Plugin<EmptyConfig>
 
         Player.Verified += _playerHandler.OnVerified;
         Player.Left += _playerHandler.OnLeft;
-        Player.Banned += _playerHandler.OnBanned;
-        Player.Kicking += _playerHandler.OnKicking;
-        CorePlayer.Warned += _playerHandler.OnWarned;
 
         Server.RestartingRound += _serverHandler.OnRestartingRound;
     }
@@ -76,9 +73,6 @@ public class Core : Plugin<EmptyConfig>
     {
         Player.Verified -= _playerHandler.OnVerified;
         Player.Left -= _playerHandler.OnLeft;
-        Player.Banned -= _playerHandler.OnBanned;
-        Player.Kicking -= _playerHandler.OnKicking;
-        CorePlayer.Warned -= _playerHandler.OnWarned;
 
         Server.RestartingRound -= _serverHandler.OnRestartingRound;
 

@@ -13,15 +13,8 @@ public class ServerHandler
     
     public void OnRestartingRound()
     {
-        try
-        {
-            foreach (var player in Player.List)
-                player.Goodbye();
-        }
-        catch (Exception e)
-        {
-            Log.Error(e);
-        }
+        foreach (var player in Player.List)
+            player.Goodbye();
             
         PlayerExtensions.ClearHubs();
         LevelExtensions.ResetLevels();

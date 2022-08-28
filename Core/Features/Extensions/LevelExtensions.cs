@@ -54,7 +54,7 @@ public static class LevelExtensions
         var lastSeen = new DateTime((long) Core.Database.ExecuteScalar($"SELECT LastSeen FROM SlStats WHERE PlayerId='{player.GetId()}';"));
 
         if (lastSeen.DayOfYear < DateTime.UtcNow.DayOfYear || lastSeen.Year < DateTime.UtcNow.Year) 
-            player.AddExp(LevelToken.Welcome);
+            player.AddExp(LevelToken.Welcome, 50);
     }
     public static void WipeLevels(this Player player)
     {
@@ -66,12 +66,10 @@ public static class LevelExtensions
             RoundExp.Remove(player);
     }
         
-    public static void AddExp(this Player player, LevelToken perk)
+    public static void AddExp(this Player player, LevelToken perk, int exp)
     {
         if (player.DoNotTrack)
             return;
-        
-        var exp = perk.GetExp();
 
         exp *= ExpMultiplier;
 

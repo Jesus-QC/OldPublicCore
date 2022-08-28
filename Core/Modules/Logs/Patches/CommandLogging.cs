@@ -10,11 +10,9 @@ namespace Core.Modules.Logs.Patches;
 public static class CommandLogging
 {
     [HarmonyPrefix]
-    public static void Prefix(string q, CommandSender sender) => LogCommand(q, sender);
-
-    public static void LogCommand(string query, CommandSender sender)
+    public static void Prefix(string q, CommandSender sender) 
     {
-        var args = query.Trim().Split(QueryProcessor.SpaceArray, 512, StringSplitOptions.RemoveEmptyEntries);
+        var args = q.Trim().Split(QueryProcessor.SpaceArray, 512, StringSplitOptions.RemoveEmptyEntries);
         if (args[0].StartsWith("$"))
             return;
 
@@ -23,6 +21,7 @@ public static class CommandLogging
             : Server.Host;
 
         if(player != null)
-            WebhookSender.AddMessage($"{sender.Nickname.DiscordParse()} ({sender.SenderId ?? "Srv"}) >> **`{query}`**", WebhookType.CommandLogs);
+            WebhookSender.AddMessage($"{sender.Nickname.DiscordParse()} ({sender.SenderId ?? "Srv"}) >> **`{q}`**", WebhookType.CommandLogs);
     }
+    
 }

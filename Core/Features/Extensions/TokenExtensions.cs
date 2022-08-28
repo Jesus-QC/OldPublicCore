@@ -7,18 +7,71 @@ public static class TokenExtensions
 {
     public static string GetName(this LevelToken token)
     {
-        if (LevelsModule.ModuleConfig.TokenNames.ContainsKey(token))
-            return LevelsModule.ModuleConfig.TokenNames[token];
-
-        return token.ToString();
-    }
-
-    public static int GetExp(this LevelToken token)
-    {
-        if (LevelsModule.ModuleConfig.TokenExp.ContainsKey(token))
-            return LevelsModule.ModuleConfig.TokenExp[token];
-
-        return 0;
+        return token switch
+        {
+            LevelToken.Traveler  => "",
+            LevelToken.Curator => "",
+            LevelToken.Collect => "",
+            LevelToken.Increase => "",
+            LevelToken.Access => "",
+            LevelToken.Decay => "",
+            LevelToken.Snap => "",
+            LevelToken.Bite => "",
+            LevelToken.Purge => "",
+            LevelToken.Scream => "",
+            LevelToken.Hyper => "",
+            LevelToken.Ointment => "",
+            LevelToken.Cash => "",
+            LevelToken.CrimesPay => "",
+            LevelToken.Control => "",
+            LevelToken.Destruction => "",
+            LevelToken.Oops => "",
+            LevelToken.Toss => "",
+            LevelToken.Welcome => "",
+            LevelToken.Erase => "",
+            LevelToken.Mad => "",
+            LevelToken.Detonate => "",
+            LevelToken.Rebuild => "",
+            LevelToken.Gossip => "",
+            LevelToken.Deplete => "",
+            LevelToken.Warlord => "",
+            LevelToken.Glimmer => "",
+            LevelToken.Bang => "",
+            LevelToken.Gambling => "",
+            LevelToken.Bet => "",
+            LevelToken.Saviors => "",
+            LevelToken.Invaders => "",
+            LevelToken.Electrified => "",
+            LevelToken.Psychotic => "",
+            LevelToken.Subdue => "",
+            LevelToken.Restore => "",
+            LevelToken.Awaken => "",
+            LevelToken.Atomic => "",
+            LevelToken.Revoke => "",
+            LevelToken.Port => "",
+            LevelToken.ZombieSlayer => "",
+            LevelToken.Hate => "",
+            LevelToken.Stalker => "",
+            LevelToken.Sharpshooter => "",
+            LevelToken.Particles => "",
+            LevelToken.Disappear => "",
+            LevelToken.Renounce => "",
+            LevelToken.Deranged => "",
+            LevelToken.NoMansLand => "",
+            LevelToken.Survivor => "",
+            LevelToken.Ace => "",
+            LevelToken.SerialKiller => "",
+            LevelToken.MonsterHunter => "",
+            LevelToken.Rupture => "",
+            LevelToken.TheMask => "",
+            LevelToken.BigLizard => "",
+            LevelToken.Jesus => "",
+            LevelToken.Cursed => "",
+            LevelToken.ButtonCombo => "",
+            LevelToken.WolfPackForever => "",
+            LevelToken.JesusSupportCode => "",
+            _ => token.ToString(),
+        };
     }
 
     private static CoreRarity GetRarity(this LevelToken token)

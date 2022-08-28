@@ -36,7 +36,7 @@ public static class LevelManager
 
             if (secondsPlayed is 300)
             {
-                player.AddExp(LevelToken.Awaken);
+                player.AddExp(LevelToken.Awaken, 20);
                 secondsPlayed = 0;
             }
 
@@ -47,7 +47,7 @@ public static class LevelManager
                 if (spectator is 240)
                 {
                     spectator = 0;
-                    player.AddExp(LevelToken.Stalker);
+                    player.AddExp(LevelToken.Stalker, 50);
                 }
                 
                 secondsAlive = 0;
@@ -58,7 +58,7 @@ public static class LevelManager
 
             if (secondsAlive == 1200)
             {
-                player.AddExp(LevelToken.Survivor);
+                player.AddExp(LevelToken.Survivor, 100);
                 secondsAlive = 0;
             }
         }

@@ -14,7 +14,6 @@ namespace Core.Modules.RespawnTimer;
 
 public class EventHandler
 {
-    private Task _timerCoroutine;
     private CancellationTokenSource _cancellation;
     
     public static List<string> Tips = new();
@@ -32,7 +31,7 @@ public class EventHandler
         }
         
         _cancellation = new CancellationTokenSource();
-        _timerCoroutine = Task.Run(Timer, _cancellation.Token);
+        Task.Run(Timer, _cancellation.Token);
     }
     
     private async Task Timer()
