@@ -10,7 +10,7 @@ public static class DisabledManager
 
     public static void Load()
     {
-        var path = Path.Combine(Paths.Configs, "Spectator List");
+        var path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List");
         Directory.CreateDirectory(path);
 
         var filePath = Path.Combine(path, "hiddenlist.txt");
@@ -31,7 +31,7 @@ public static class DisabledManager
 
     public static void Add(Player player)
     {
-        var path = Path.Combine(Paths.Configs, "Spectator List", "hiddenlist.txt");
+        var path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List", "hiddenlist.txt");
         File.AppendAllText(path, '\n' + player.UserId);
         _hiddenPlayers.Add(player.UserId);
     }
@@ -40,13 +40,13 @@ public static class DisabledManager
     {
         _hiddenPlayers.Remove(player.UserId);
         
-        var path = Path.Combine(Paths.Configs, "Spectator List", "hiddenlist.txt");
+        var path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List", "hiddenlist.txt");
 
         var newList = new List<string>();
 
         foreach (var line in File.ReadLines(path))
         {
-            if(line != player.UserId)
+            if(line != player.UserId && !string.IsNullOrEmpty(line))
                 newList.Add(line);
         }
         
