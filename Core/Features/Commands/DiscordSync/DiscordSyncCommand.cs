@@ -11,6 +11,9 @@ public class DiscordSyncCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
+        response = "This command is disabled right now.";
+        return false;
+        
         var ply = Player.Get(sender);
             
         if (Core.Database.ExecuteScalar($"SELECT DiscordId FROM NewPlayers WHERE Id='{ply.GetId()}'") is not DBNull)

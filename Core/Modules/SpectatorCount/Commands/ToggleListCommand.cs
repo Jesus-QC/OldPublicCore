@@ -30,6 +30,6 @@ public class ToggleListCommand : ICommand
     }
 
     public string Command { get; } = "spectatorlist";
-    public string[] Aliases { get; } = { };
+    public string[] Aliases { get; } = {"spectatorcount"};
     public string Description { get; } = "Toggles the spectator list.";
 }
