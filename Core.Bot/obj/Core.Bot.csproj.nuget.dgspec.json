@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jesus\\RiderProjects\\MainCore\\Core.Bot\\Core.Bot.csproj": {}
+    "D:\\_Coding\\SCPSL\\Plugins\\Exiled\\Private\\_Paid\\TheWolfPack\\MainCore\\Core.Bot\\Core.Bot.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jesus\\RiderProjects\\MainCore\\Core.Bot\\Core.Bot.csproj": {
+    "D:\\_Coding\\SCPSL\\Plugins\\Exiled\\Private\\_Paid\\TheWolfPack\\MainCore\\Core.Bot\\Core.Bot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jesus\\RiderProjects\\MainCore\\Core.Bot\\Core.Bot.csproj",
+        "projectUniqueName": "D:\\_Coding\\SCPSL\\Plugins\\Exiled\\Private\\_Paid\\TheWolfPack\\MainCore\\Core.Bot\\Core.Bot.csproj",
         "projectName": "Core.Bot",
-        "projectPath": "C:\\Users\\jesus\\RiderProjects\\MainCore\\Core.Bot\\Core.Bot.csproj",
+        "projectPath": "D:\\_Coding\\SCPSL\\Plugins\\Exiled\\Private\\_Paid\\TheWolfPack\\MainCore\\Core.Bot\\Core.Bot.csproj",
         "packagesPath": "C:\\Users\\jesus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jesus\\RiderProjects\\MainCore\\Core.Bot\\obj\\",
+        "outputPath": "D:\\_Coding\\SCPSL\\Plugins\\Exiled\\Private\\_Paid\\TheWolfPack\\MainCore\\Core.Bot\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jesus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\jesus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\jesus\\.dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
