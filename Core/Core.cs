@@ -20,7 +20,7 @@ public class Core : Plugin<EmptyConfig>
     public override string Author { get; } = "Jesus-QC";
     public override PluginPriority Priority { get; } = PluginPriority.Last;
 
-    public const string GlobalVersion = "2.0.1.5";
+    public const string GlobalVersion = "1.0.1.5";
         
     public static Database Database;
     public static Harmony Harmony;

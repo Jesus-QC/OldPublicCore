@@ -290,7 +290,7 @@ public class PlayerHandler
         if (!dic.Contains(ev.Door))
         {
             dic.Add(ev.Door);
-            ev.Player.AddExp(LevelToken.Traveler, 10);
+            ev.Player.AddExp(LevelToken.Traveler, 5);
         }
 
         if (!ev.Door.IsGate || !ev.Player.CheckCooldown(LevelToken.Port, 3))

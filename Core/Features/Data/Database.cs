@@ -14,7 +14,7 @@ public class Database
     public Database()
     {
         Log.Warn("Instantiating connection to database...");
-        Connection = new MySqlConnection("Server=213.133.102.104; Port=3306; Database=s6_cursedsl; Uid=u6_nbNtPlPeUw; Pwd=xV@4FBzmbRf!eUia69zInu0L;");
+        Connection = new MySqlConnection("Server=213.133.103.149; Port=3306; Database=s1_scpsl; Uid=u1_HJ9YFjKFvJ; Pwd=GlY^yN.33rK.f2tMHb6D@oG2;");
         Log.Warn("Successfully connected!");
     }
 
