@@ -86,7 +86,7 @@ public class StalkController : MonoBehaviour
         var availablePlayers = new List<Player>();
 
         foreach (var player in Player.List)
-            if ((player.Role.Team == Team.CDP || player.Role.Team == Team.MTF || player.Role.Team == Team.RSC) && player.CurrentRoom is { Type: RoomType.Pocket })
+            if ((player.Role.Team == Team.CDP || player.Role.Team == Team.MTF || player.Role.Team == Team.RSC) && player.CurrentRoom is not { Type: RoomType.Pocket })
                 availablePlayers.Add(player);
 
         if (availablePlayers.Count == 0)

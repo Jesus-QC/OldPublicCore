@@ -39,6 +39,7 @@ public static class LevelExtensions
     {
         if (player.DoNotTrack)
         {
+            player.OpenReportWindow("Do Not Track: you have do not track enabled, therefore your data won't be saved, this includes info as exp and stats, in order to level up and have custom stats we recommend you disabling do not track.\n\nPress [ESC] to close this.");
             player.DisplayNickname = $"DNT | {player.Nickname}";
             return;
         }
