@@ -1,19 +1,21 @@
-﻿namespace Core.Modules.Subclasses.Features.Extensions;
+﻿using Core.Features.Data.Enums;
+using UnityEngine;
 
-/*public static class RarityExtensions
+namespace Core.Modules.Subclasses.Features.Extensions;
+
+public static class RarityExtensions
 {
-    public static Rarity GetRandomRarity()
+    public static CoreRarity GetRandomRarity()
     {
         var value = Random.Range(0, 101);
 
-        if (value <= 1)
-            return Rarity.Mythic;
-        if (value <= 6)
-            return Rarity.Legendary;
-        if (value <= 17)
-            return Rarity.Epic;
-        if (value <= 34)
-            return Rarity.Rare;
-        return value <= 61 ? Rarity.Uncommon : Rarity.Common;
+        return value switch
+        {
+            <= 1 => CoreRarity.Mythic,
+            <= 6 => CoreRarity.Legendary,
+            <= 17 => CoreRarity.Epic,
+            <= 34 => CoreRarity.Rare,
+            _ => CoreRarity.Common // 42%
+        };
     }
-}*/
+}

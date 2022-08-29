@@ -1,10 +1,9 @@
-﻿using Core.Loader.Features;
+﻿using Core.Features.Attribute;
+using Core.Loader.Features;
 using Core.Modules.Subclasses.Features;
-using Exiled.API.Features;
 
 namespace Core.Modules.Subclasses;
 
-[DisabledModule]
 public class SubclassesModule : CoreModule<SubclassesConfig>
 {
     public override string Name { get; } = "Subclasses";
@@ -15,18 +14,18 @@ public class SubclassesModule : CoreModule<SubclassesConfig>
     public override void OnEnabled()
     {
         PluginConfig = Config;
-            
-        //Paths.Load();
 
         SubclassesManager = new SubclassesManager();
-        //SubclassesManager.Load();
+        SubclassesManager.Load();
 
         base.OnEnabled();
     }
 
     public override void OnDisabled()
     {
-            
+        PluginConfig = null;
+
+        SubclassesManager = null;
             
             
         base.OnDisabled();

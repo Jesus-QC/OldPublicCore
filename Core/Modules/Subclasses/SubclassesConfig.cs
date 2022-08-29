@@ -5,5 +5,4 @@ namespace Core.Modules.Subclasses;
 public class SubclassesConfig : IConfig
 {
     public bool IsEnabled { get; set; } = true;
-    public bool IsDebugEnabled { get; set; } = false;
 }

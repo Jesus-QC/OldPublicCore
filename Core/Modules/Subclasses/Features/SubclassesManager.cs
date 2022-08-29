@@ -1,40 +1,51 @@
-﻿namespace Core.Modules.Subclasses.Features;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Core.Features.Attribute;
+using Core.Features.Data.Enums;
+using Core.Modules.Subclasses.Features.Subclasses.ClassD;
+using Core.Modules.Subclasses.Features.Subclasses.Scientist;
+
+namespace Core.Modules.Subclasses.Features;
 
 public class SubclassesManager
 {
-   /* private readonly Dictionary<RoleType, SubclassGroup> _sortedClasses = new();
-    private readonly Dictionary<ushort, Subclass> _subclasses = new();
-
     public void Load()
     {
-        _sortedClasses.Clear();
-        foreach (var role in Enum.GetValues(typeof(RoleType)))
-            _sortedClasses.Add((RoleType)role, new SubclassGroup());
-            
-        _subclasses.Clear();
-
-        foreach (var file in Directory.GetFiles(Paths.MainFolder, "*.json"))
-        {
-            Log.Info(file);
-            var subclass = File.ReadAllText(file).ToSubclass(file);
-
-            if (subclass == null)
-            {
-                Log.Debug($"The subclass with the path \"{file}\" is null. (Skipping)", CoreSubclasses.PluginConfig.IsDebugEnabled);
-                continue;
-            }
-
-            Log.Info(subclass);
-                
-            var id = (ushort) _subclasses.Count;
-
-            _subclasses.Add(id, subclass);
-
-            foreach (var role in subclass.AffectedRoles)
-                _sortedClasses[role].AddSubclass(id, subclass);
-        }
+        RegisterSubclass(typeof(Subclasses.ClassD.DefaultSubclass));
+        RegisterSubclass(typeof(AdventurerSubclass));
+        RegisterSubclass(typeof(CleanerSubclass));
+        RegisterSubclass(typeof(CollectorSubclass));
+        RegisterSubclass(typeof(DoctorSubclass));
+        RegisterSubclass(typeof(FighterSubclass));
+        RegisterSubclass(typeof(MidgetSubclass));
+        
+        RegisterSubclass(typeof(Subclasses.Scientist.DefaultSubclass));
+        RegisterSubclass(typeof(InsiderSubclass));
+        RegisterSubclass(typeof(RunnerSubclass));
     }
 
-    public SubclassGroup GetRoleSubclasses(RoleType roleType) => _sortedClasses[roleType];
-    public Subclass GetSubclassById(ushort id) => _subclasses[id];*/
+    public readonly Dictionary<int, Subclass> SubclassesById = new ();
+    public readonly Dictionary<RoleType, Dictionary<CoreRarity, List<Subclass>>> SubclassesByRole = new();
+
+    private void RegisterSubclass(Type type)
+    {
+        if(Activator.CreateInstance(type) is not Subclass subclass || type.GetCustomAttributes(typeof(DisabledFeatureAttribute), false).Any())
+            return;
+
+        var count = SubclassesById.Count;
+        subclass.Id = count;
+        SubclassesById.Add(count, subclass);
+
+        foreach (var role in subclass.AffectedRoles)
+        {
+            if(!SubclassesByRole.ContainsKey(role))
+                SubclassesByRole.Add(role, new Dictionary<CoreRarity, List<Subclass>>());
+
+            if(!SubclassesByRole[role].ContainsKey(subclass.Rarity))
+                SubclassesByRole[role].Add(subclass.Rarity, new List<Subclass>());
+
+            SubclassesByRole[role][subclass.Rarity].Add(subclass);
+        }
+    }
 }

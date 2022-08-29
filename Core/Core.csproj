@@ -125,6 +125,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core.cs" />
+        <Compile Include="Features\Attribute\DisabledFeatureAttribute.cs" />
         <Compile Include="Features\Commands\CoreHintSendCommand.cs" />
         <Compile Include="Features\Commands\CoreVersionCommand.cs" />
         <Compile Include="Features\Commands\DiscordSync\DiscordDeSyncCommand.cs" />
@@ -156,7 +157,6 @@
         <Compile Include="Loader\ConfigManager.cs" />
         <Compile Include="Loader\Features\CoreModule.cs" />
         <Compile Include="Loader\Features\ICoreModule.cs" />
-        <Compile Include="Loader\Features\DisabledModuleAttribute.cs" />
         <Compile Include="Loader\Features\PriorityComparer.cs" />
         <Compile Include="Loader\ModuleLoader.cs" />
         <Compile Include="Modules\AfkChecker\AfkCheckerComponent.cs" />
@@ -224,17 +224,26 @@
         <Compile Include="Modules\Stalky\Components\StalkController.cs" />
         <Compile Include="Modules\Stalky\StalkyConfig.cs" />
         <Compile Include="Modules\Stalky\StalkyModule.cs" />
+        <Compile Include="Modules\Subclasses\Commands\TestRarity.cs" />
+        <Compile Include="Modules\Subclasses\Features\Enums\SubclassAbility.cs" />
+        <Compile Include="Modules\Subclasses\Features\Extensions\RoleExtensions.cs" />
+        <Compile Include="Modules\Subclasses\Features\ISubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\AdventurerSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CleanerSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CollectorSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DefaultSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DoctorSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\FighterSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\MidgetSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\DefaultSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\InsiderSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\RunnerSubclass.cs" />
         <Compile Include="Modules\Subclasses\SubclassesConfig.cs" />
         <Compile Include="Modules\Subclasses\SubclassesModule.cs" />
         <Compile Include="Modules\Subclasses\Features\Extensions\PlayerExtensions.cs" />
         <Compile Include="Modules\Subclasses\Features\Extensions\RarityExtensions.cs" />
-        <Compile Include="Modules\Subclasses\Features\Extensions\RoleExtensions.cs" />
-        <Compile Include="Modules\Subclasses\Features\Extensions\YamlExtensions.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Abilities\Ability.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Abilities\AbilityConfig.cs" />
-        <Compile Include="Modules\Subclasses\Features\Structs\Subclasses\Subclass.cs" />
         <Compile Include="Modules\Subclasses\Features\SubclassesManager.cs" />
-        <Compile Include="Modules\Subclasses\Paths.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
