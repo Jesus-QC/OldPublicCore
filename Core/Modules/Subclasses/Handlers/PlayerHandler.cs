@@ -17,8 +17,7 @@ public class PlayerHandler
             ev.Player.ClearHint(ScreenZone.TopBar);
             ev.Player.ClearHint(ScreenZone.TopBarSecondary);
             ev.Player.CustomInfo = string.Empty;
-            if(ev.Player.Scale != Vector3.one)
-                ev.Player.Scale = Vector3.one;
+            ev.Player.SetSubclass(null);
             return;
         }
 
@@ -29,8 +28,7 @@ public class PlayerHandler
             ev.Player.ClearHint(ScreenZone.TopBar);
             ev.Player.ClearHint(ScreenZone.TopBarSecondary);
             ev.Player.CustomInfo = string.Empty;
-            if(ev.Player.Scale != Vector3.one)
-                ev.Player.Scale = Vector3.one;
+            ev.Player.SetSubclass(null);
             return;
         }
         
@@ -67,8 +65,12 @@ public class PlayerHandler
             return;
 
         var s = ev.Player.GetSubclass();
-        if(s is null)
+        if (s is null)
+        {
+            if(ev.Player.Scale != Vector3.one)
+                ev.Player.Scale = Vector3.one;
             return;
+        }
 
         if (s.Health > 0)
             ev.Player.Health = s.Health;
@@ -84,6 +86,8 @@ public class PlayerHandler
         
         if (s.Scale != Vector3.one)
             ev.Player.Scale = s.Scale;
+        else if(ev.Player.Scale != Vector3.one)
+            ev.Player.Scale = Vector3.one;
 
         s.OnSpawning(ev.Player);
     }

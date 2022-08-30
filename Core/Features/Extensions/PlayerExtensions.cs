@@ -90,5 +90,10 @@ public static class PlayerExtensions
         if(Hubs.ContainsKey(player))
             Hubs[player].SendHint(zone, message, duration);
     }
-    public static void ClearHint(this Player player, ScreenZone zone) => Hubs[player].ClearHint(zone);
+
+    public static void ClearHint(this Player player, ScreenZone zone)
+    {
+        if (Hubs.ContainsKey(player))
+            Hubs[player].ClearHint(zone);
+    }
 }
