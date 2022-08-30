@@ -1,6 +1,10 @@
-﻿namespace Core.Modules.Subclasses.Features.Enums;
+﻿using System;
 
-public enum SubclassAbility
+namespace Core.Modules.Subclasses.Features.Enums;
+
+[Flags]
+public enum SubclassAbility 
 {
+    None,
     HealCmd
 }

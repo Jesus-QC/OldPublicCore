@@ -45,7 +45,6 @@ public class LogsModule : CoreModule<LogsConfig>
     public override void UnPatch()
     {
         Core.Harmony.Unpatch(typeof(CommandProcessor).GetMethod(nameof(CommandProcessor.ProcessQuery)), HarmonyPatchType.Prefix, Core.Harmony.Id);
-        Core.Harmony.Unpatch(typeof(Log).GetMethod(nameof(Log.Error)), HarmonyPatchType.Prefix, Core.Harmony.Id);
     }
 
     private void OnVerified(VerifiedEventArgs ev) => WebhookSender.AddMessage($"`Join ✨` >> {ev.Player.Nickname.DiscordParse()} ({ev.Player.UserId}) [{ev.Player.IPAddress}]", WebhookType.GameLogs);

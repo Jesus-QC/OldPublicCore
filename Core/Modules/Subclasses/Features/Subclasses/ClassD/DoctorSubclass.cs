@@ -8,7 +8,8 @@ namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 [DisabledFeature]
 public class DoctorSubclass : Subclass
 {
-    public override string Name { get; set; } = "Doctor";
+    public override string Name { get; set; } = "doctor";
+    public override string Color { get; set; } = "#98e3ff";
     public override string Description { get; set; } = "You were once a medical student.\nYou can heal allies without items.";
     public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;
     public override List<RoleType> AffectedRoles { get; set; } = new List<RoleType>() { RoleType.ClassD };
@@ -20,8 +21,5 @@ public class DoctorSubclass : Subclass
         ItemType.Medkit, ItemType.Painkillers, ItemType.Adrenaline
     };
 
-    public override List<SubclassAbility> Abilities { get; set; } = new List<SubclassAbility>()
-    {
-        SubclassAbility.HealCmd
-    };
+    public override SubclassAbility Abilities { get; set; } = SubclassAbility.HealCmd;
 }

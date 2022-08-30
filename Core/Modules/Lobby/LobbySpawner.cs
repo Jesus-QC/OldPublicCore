@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Features.Data.Enums;
+using Core.Features.Extensions;
 using Core.Features.Wrappers;
 using Core.Modules.Lobby.Components;
 using Core.Modules.Lobby.Enums;
@@ -83,7 +84,11 @@ public class LobbySpawner
         if (_status != LobbyStatus.Open)
             return;
         
-        Timing.CallDelayed(0.5f, () => ev.Player.SetRole(RoleType.Tutorial));
+        Timing.CallDelayed(0.5f, () =>
+        {
+            ev.Player.SetRole(RoleType.Tutorial);
+            ev.Player.SendHint(ScreenZone.TopBar, LobbyModule.LobbyConfig.ServerAnnouncement);
+        });
     }
         
     public void OnChangingRole(ChangingRoleEventArgs ev)
@@ -326,7 +331,6 @@ public class LobbySpawner
 
         for (;;)
         {
-            MapCore.SendHint(ScreenZone.TopBar, LobbyModule.LobbyConfig.ServerAnnouncement, 1.2f);
             MapCore.SendHint(ScreenZone.Top, welcome, 1.2f);
             MapCore.SendHint(ScreenZone.Bottom, discord, 1.2f);
             MapCore.SendHint(ScreenZone.CenterTop, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 1.2f);

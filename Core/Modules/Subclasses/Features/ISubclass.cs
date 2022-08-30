@@ -10,6 +10,7 @@ namespace Core.Modules.Subclasses.Features;
 public interface ISubclass
 {
     string Name { get; set; }
+    string Color { get; set; }
     string Description { get; set; }
     CoreRarity Rarity { get; set; }
     List<RoleType> AffectedRoles { get; set; }
@@ -17,10 +18,10 @@ public interface ISubclass
     Team Team { get; set; }
     string CustomTeam { get; set; }
     List<RoomType> SpawnLocations { get; set; }
-    double DamageMultiplier { get; set; }
+    float DamageMultiplier { get; set; }
     List<ItemType> SpawnInventory { get; set; }
-    Dictionary<AmmoType, uint> SpawnAmmo { get; set; }
-    List<SubclassAbility> Abilities { get; set; }
+    Dictionary<ItemType, ushort> SpawnAmmo { get; set; }
+    SubclassAbility Abilities { get; set; }
     Vector3 Scale { get; set; }
     float Health { get; set; }
     float Ahp { get; set; }

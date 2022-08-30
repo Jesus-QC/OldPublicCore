@@ -15,16 +15,19 @@ namespace Core.Features.Components;
 
 public class CustomHUD : MonoBehaviour
 {
-    private const string DefaultHUD = "<size=86%><line-height=90%><voffset=9.75em><size=60%>[5][6]</size><align=right>[0]</align>[1][2][3][4]<size=60%>[8][9]";
-    private static readonly Dictionary<int, int> MessageLines = new() { [0] = 6, [1] = 6, [2] = 6, [3] = 6, [4] = 6, [5] = 1, [6] = 1 };
+    private const string DefaultHUD = $"<size=86%><line-height=90%><voffset=9.75em><size=60%>[5][6]</size><align=right>[0]</align>[1][2][3][4]<size=60%>[8]<b><size=55%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}</size>\n[9]";
+    private static readonly Dictionary<int, int> MessageLines = new() { [0] = 6, [1] = 6, [2] = 6, [3] = 6, [4] = 6 };
         
-    private readonly Dictionary<int, float> _timers = new() { [0] = -1, [1] = -1, [2] = -1, [3] = -1, [4] = -1, [5] = -1, [6] = -1 };
-    private readonly Dictionary<int, string> _messages = new() { [0] = string.Empty, [1] = string.Empty, [2] = string.Empty, [3] = string.Empty, [4] = string.Empty, [5] = string.Empty, [6] = string.Empty };
+    private readonly Dictionary<int, float> _timers = new() { [0] = -1, [1] = -1, [2] = -1, [3] = -1, [4] = -1 };
+    private readonly Dictionary<int, string> _messages = new() { [0] = string.Empty, [1] = string.Empty, [2] = string.Empty, [3] = string.Empty, [4] = string.Empty };
 
     private float _counter;
     private Player _player;
     private bool _dnt;
     private string _cachedMsg;
+
+    private string _topBar = string.Empty;
+    private string _secondaryTopBar = string.Empty;
     
     private StringBuilder _builder;
     private StringBuilder _secondaryBuilder;
@@ -36,6 +39,7 @@ public class CustomHUD : MonoBehaviour
         _player = Player.Get(gameObject);
         _dnt = _player.DoNotTrack;
         _cachedMsg = $"{_player.Nickname.ToLower()} ({_player.Id})";
+        
         if (LevelExtensions.ExpMultiplier != 1)
             _cachedMsg += " | <color=#ffe669>2x XP</color>";
     }
@@ -76,7 +80,19 @@ public class CustomHUD : MonoBehaviour
             _notifications.Add(new Notification(message));
             return;
         }
-        
+
+        if (zone is ScreenZone.TopBar)
+        {
+            _topBar = message;
+            return;
+        }
+
+        if (zone is ScreenZone.TopBarSecondary)
+        {
+            _secondaryTopBar = message;
+            return;
+        }
+
         var i = (int) zone;
         _messages[i] = message;
         _timers[i] = time;
@@ -90,6 +106,18 @@ public class CustomHUD : MonoBehaviour
             return;
         }
         
+        if (zone is ScreenZone.TopBar)
+        {
+            _topBar = string.Empty;
+            return;
+        }
+
+        if (zone is ScreenZone.TopBarSecondary)
+        {
+            _secondaryTopBar = string.Empty;
+            return;
+        }
+        
         var i = (int) zone;
         _messages[i] = string.Empty;
         _timers[i] = -1;
@@ -100,10 +128,14 @@ public class CustomHUD : MonoBehaviour
         _builder.Clear();
         _builder.Append(DefaultHUD);
 
-        _builder = _builder.Replace("[8]", $"<color={_player.Role.Color.ToHex()}><b><size=55%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}</size>\n");
+        var color = _player.Role.Color.ToHex();
+        
+        _builder = _builder.Replace("[8]", $"<color={color}>");
         _builder = _builder.Replace("[9]", $"{_cachedMsg} | {GetLevelMessage()} | tps: {ServerCore.Tps}");
         _builder = _builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
-
+        _builder = _builder.Replace("[5]", $"<color={color}>" + _topBar + '\n');
+        _builder = _builder.Replace("[6]", _secondaryTopBar + "</color>\n");
+        
         for (var i = 1; i < _timers.Count; i++)
         {
             if (_timers[i] >= 0)

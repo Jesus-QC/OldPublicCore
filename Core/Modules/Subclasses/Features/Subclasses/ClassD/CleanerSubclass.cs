@@ -5,7 +5,8 @@ namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 
 public class CleanerSubclass : Subclass
 {
-    public override string Name { get; set; } = "Cleaner";
+    public override string Name { get; set; } = "cleaner";
+    public override string Color { get; set; } = "#ffb7f7";
     public override string Description { get; set; } = "You have more trust than other class-ds\n you have a Janitor's KeyCard.";
     public override CoreRarity Rarity { get; set; } = CoreRarity.Common;
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.ClassD };

@@ -7,7 +7,8 @@ namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 
 public class AdventurerSubclass : Subclass
 {
-    public override string Name { get; set; } = "Adventurer";
+    public override string Name { get; set; } = "adventurer";
+    public override string Color { get; set; } = "#80d0c4";
     public override string Description { get; set; } = "You enjoy the adventure!\nYou like to play with others and you feel confident.";
     public override CoreRarity Rarity { get; set; } = CoreRarity.Common;
     public override List<RoleType> AffectedRoles { get; set; } = new () { RoleType.ClassD };

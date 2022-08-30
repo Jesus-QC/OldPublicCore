@@ -6,7 +6,8 @@ namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 
 public class CollectorSubclass : Subclass
 {
-    public override string Name { get; set; } = "Collector";
+    public override string Name { get; set; } = "collector";
+    public override string Color { get; set; } = "#c2ffb7";
     public override string Description { get; set; } = "You love picking up any item you find in the facility.";
     public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.ClassD };
