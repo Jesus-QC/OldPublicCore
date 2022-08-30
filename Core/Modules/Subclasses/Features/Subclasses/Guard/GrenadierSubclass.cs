@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
 using Core.Modules.Subclasses.Features.Enums;
+using Exiled.API.Features;
+using MEC;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.Guard;
 
@@ -21,4 +23,9 @@ public class GrenadierSubclass : Subclass
     };
 
     public override SubclassAbility Abilities { get; set; } = SubclassAbility.GrenadeImmunity;
+    
+    public override void OnSpawning(Player player)
+    {
+        Timing.CallDelayed(1, () => player.AddAmmo(ItemType.Ammo12gauge, 90));
+    }
 }

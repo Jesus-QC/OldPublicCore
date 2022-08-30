@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
+using Exiled.API.Features;
+using MEC;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.Guard;
 
@@ -18,4 +20,9 @@ public class BreacherSubclass : Subclass
         ItemType.GunShotgun, ItemType.GrenadeFlash, ItemType.ArmorLight, ItemType.Medkit, ItemType.Radio,
         ItemType.KeycardGuard
     };
+
+    public override void OnSpawning(Player player)
+    {
+        Timing.CallDelayed(1, () => player.AddAmmo(ItemType.Ammo12gauge, 90));
+    }
 }
