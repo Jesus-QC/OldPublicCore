@@ -23,6 +23,16 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Scientist.DefaultSubclass));
         RegisterSubclass(typeof(InsiderSubclass));
         RegisterSubclass(typeof(RunnerSubclass));
+        RegisterSubclass(typeof(ChaosSpySubclass));
+        
+        RegisterSubclass(typeof(Subclasses.Guard.DefaultSubclass));
+        RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
+        RegisterSubclass(typeof(Subclasses.Guard.GrenadierSubclass));
+        
+        RegisterSubclass(typeof(Subclasses.MTF.DefaultSubclass));
+        
+        RegisterSubclass(typeof(Subclasses.Chaos.DefaultSubclass));
+        RegisterSubclass(typeof(Subclasses.Chaos.ChaosJuggernautSubclass));
     }
 
     public readonly Dictionary<int, Subclass> SubclassesById = new ();

@@ -6,5 +6,7 @@ namespace Core.Modules.Subclasses.Features.Enums;
 public enum SubclassAbility 
 {
     None,
-    HealCmd
+    HealCmd,
+    GrenadeImmunity,
+    Disguised
 }

@@ -1,7 +1,8 @@
-﻿using Core.Features.Data.Enums;
+﻿using System.Linq;
+using Core.Features.Data.Enums;
 using Core.Features.Extensions;
+using Core.Modules.Subclasses.Features.Enums;
 using Core.Modules.Subclasses.Features.Extensions;
-using Exiled.API.Extensions;
 using Exiled.Events.EventArgs;
 using UnityEngine;
 
@@ -15,6 +16,9 @@ public class PlayerHandler
         {
             ev.Player.ClearHint(ScreenZone.TopBar);
             ev.Player.ClearHint(ScreenZone.TopBarSecondary);
+            ev.Player.CustomInfo = string.Empty;
+            if(ev.Player.Scale != Vector3.one)
+                ev.Player.Scale = Vector3.one;
             return;
         }
 
@@ -24,6 +28,9 @@ public class PlayerHandler
         {
             ev.Player.ClearHint(ScreenZone.TopBar);
             ev.Player.ClearHint(ScreenZone.TopBarSecondary);
+            ev.Player.CustomInfo = string.Empty;
+            if(ev.Player.Scale != Vector3.one)
+                ev.Player.Scale = Vector3.one;
             return;
         }
         
@@ -49,6 +56,9 @@ public class PlayerHandler
             foreach (var ammo in subclass.SpawnAmmo)
                 ev.Ammo.Add(ammo.Key, ammo.Value);
         }
+
+        if (ev.NewRole != subclass.SpawnAs && subclass.SpawnAs != RoleType.None)
+            ev.NewRole = subclass.SpawnAs;
     }
 
     public void OnSpawning(SpawningEventArgs ev)
@@ -66,10 +76,15 @@ public class PlayerHandler
             ev.Player.AddAhp(s.Ahp);
         
         ev.Player.Broadcast(10, "\n<b>" + s.Description + "</b>", shouldClearPrevious: true);
-
+        
+        if(s.Abilities.HasFlag(SubclassAbility.Disguised))
+            ev.Player.CustomInfo = $"<color=#50C878>Default\n(Custom Subclass)</color>";
+        else
+            ev.Player.CustomInfo = $"<color=#50C878>{s.Name}\n(Custom Subclass)</color>";
+        
         if (s.Scale != Vector3.one)
             ev.Player.Scale = s.Scale;
-            
+
         s.OnSpawning(ev.Player);
     }
 
@@ -83,5 +98,17 @@ public class PlayerHandler
             return;
 
         ev.Amount *= s.DamageMultiplier;
+    }
+
+    public void OnExplodingGrenade(ExplodingGrenadeEventArgs ev)
+    {
+        foreach (var target in ev.TargetsToAffect.ToArray())
+        {
+            var subclass = target.GetSubclass();
+            if(subclass is null || !subclass.Abilities.HasFlag(SubclassAbility.GrenadeImmunity))
+                return;
+
+            ev.TargetsToAffect.Remove(target);
+        }
     }
 }

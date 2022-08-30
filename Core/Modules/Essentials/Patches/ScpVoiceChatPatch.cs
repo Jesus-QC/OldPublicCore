@@ -18,10 +18,12 @@ public class ScpVoiceChatPatch
         
         newInstructions.InsertRange(0, new []
         {
+            new CodeInstruction(OpCodes.Ldsfld, Field(typeof(ScpVoiceChatPatch), nameof(AllowedScps))),
             new CodeInstruction(OpCodes.Ldarg_0),
             new CodeInstruction(OpCodes.Ldfld, Field(typeof(Radio), nameof(Radio._hub))),
             new CodeInstruction(OpCodes.Ldfld, Field(typeof(ReferenceHub), nameof(ReferenceHub.characterClassManager))),
             new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(CharacterClassManager), nameof(CharacterClassManager.NetworkCurClass))),
+            new CodeInstruction(OpCodes.Callvirt, Method(typeof(List<RoleType>), nameof(List<RoleType>.Contains))),
             new CodeInstruction(OpCodes.Brfalse_S, lab),
             new CodeInstruction(OpCodes.Ldarg_0),
             new CodeInstruction(OpCodes.Ldfld, Field(typeof(Radio), nameof(Radio._dissonanceSetup))),
@@ -35,4 +37,10 @@ public class ScpVoiceChatPatch
         
         ListPool<CodeInstruction>.Shared.Return(newInstructions);
     }
+
+    private static readonly List<RoleType> AllowedScps = new ()
+    {
+        RoleType.Scp049, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp0492, RoleType.Scp93953,
+        RoleType.Scp93989
+    };
 }

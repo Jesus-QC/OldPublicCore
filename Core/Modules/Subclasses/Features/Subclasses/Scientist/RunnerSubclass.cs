@@ -2,7 +2,6 @@
 using Core.Features.Data.Enums;
 using Exiled.API.Features;
 using MEC;
-using UnityEngine;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.Scientist;
 

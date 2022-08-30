@@ -229,6 +229,8 @@
         <Compile Include="Modules\Subclasses\Features\Extensions\RoleExtensions.cs" />
         <Compile Include="Modules\Subclasses\Features\ISubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\ChaosJuggernautSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\AdventurerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CleanerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CollectorSubclass.cs" />
@@ -236,6 +238,11 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DoctorSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\FighterSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\MidgetSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\DefaultSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\BreacherSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\GrenadierSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\DefaultSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\ChaosSpySubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\InsiderSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\RunnerSubclass.cs" />
