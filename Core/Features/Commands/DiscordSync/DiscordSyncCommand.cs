@@ -1,8 +1,5 @@
 ﻿using System;
 using CommandSystem;
-using Core.Features.Extensions;
-using Exiled.API.Features;
-using Random = UnityEngine.Random;
 
 namespace Core.Features.Commands.DiscordSync;
 

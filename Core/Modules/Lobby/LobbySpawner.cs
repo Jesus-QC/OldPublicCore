@@ -12,7 +12,6 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using GameCore;
-using Hints;
 using InventorySystem.Configs;
 using MEC;
 using UnityEngine;

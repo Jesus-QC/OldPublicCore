@@ -1,7 +1,4 @@
-﻿using System;
-using Core.Features.Events.EventArgs;
-using Core.Features.Extensions;
-using Exiled.API.Features;
+﻿using Core.Features.Extensions;
 using Exiled.Events.EventArgs;
 
 namespace Core.Features.Handlers;

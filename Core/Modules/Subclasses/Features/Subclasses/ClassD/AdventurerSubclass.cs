@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
-using Exiled.API.Enums;
-using Exiled.API.Features;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 

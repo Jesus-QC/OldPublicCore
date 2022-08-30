@@ -1,6 +1,5 @@
 ﻿using Core.Loader.Features;
 using Core.Modules.Logs.Enums;
-using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using HarmonyLib;
 using MEC;

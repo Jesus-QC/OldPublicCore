@@ -1,5 +1,4 @@
 ﻿using Core.Features.Data.Enums;
-using Core.Modules.Levels;
 
 namespace Core.Features.Extensions;
 

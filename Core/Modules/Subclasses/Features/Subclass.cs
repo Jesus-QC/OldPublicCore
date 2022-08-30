@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
 using Core.Modules.Subclasses.Features.Enums;
 using Exiled.API.Enums;

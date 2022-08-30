@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Core.Features.Data.Enums;
-using Exiled.API.Interfaces;
+﻿using Exiled.API.Interfaces;
 
 namespace Core.Modules.Levels;
 

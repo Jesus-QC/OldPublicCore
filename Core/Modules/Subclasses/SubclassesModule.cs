@@ -1,5 +1,4 @@
-﻿using Core.Features.Attribute;
-using Core.Loader.Features;
+﻿using Core.Loader.Features;
 using Core.Modules.Subclasses.Features;
 using Core.Modules.Subclasses.Handlers;
 
