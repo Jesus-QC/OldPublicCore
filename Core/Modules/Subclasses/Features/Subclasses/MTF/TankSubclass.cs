@@ -13,7 +13,7 @@ public class TankSubclass : Subclass
     public override Team Team { get; set; } = Team.MTF;
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
-    { ItemType.Radio, ItemType.KeycardNTFCommander, ItemType.ArmorHeavy, ItemType.Medkit, ItemType.Medkit, ItemType.Medkit, ItemType.Medkit, ItemType.Medkit };
+    { ItemType.Radio, ItemType.KeycardNTFCommander, ItemType.ArmorHeavy, ItemType.Medkit, ItemType.Medkit, ItemType.Medkit, ItemType.Medkit, ItemType.GunFSP9 };
     
     public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
     {

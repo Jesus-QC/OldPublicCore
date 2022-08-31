@@ -14,7 +14,7 @@ public class EngineerSubclass : Subclass
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
     {
-        ItemType.Flashlight, ItemType.KeycardResearchCoordinator, ItemType.Radio, ItemType.ArmorLight, ItemType.Medkit,
+        ItemType.GunFSP9, ItemType.KeycardResearchCoordinator, ItemType.Radio, ItemType.ArmorLight, ItemType.Medkit,
         ItemType.GrenadeFlash, ItemType.GrenadeHE
     };
 }

@@ -1,8 +1,10 @@
-﻿using Core.Features.Data.Enums;
+﻿using System.Collections.Generic;
+using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Core.Modules.Subclasses.Features.Enums;
 using Core.Modules.Subclasses.Features.Extensions;
 using Exiled.API.Extensions;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using UnityEngine;
 
@@ -10,6 +12,8 @@ namespace Core.Modules.Subclasses.Handlers;
 
 public class PlayerHandler
 {
+    private readonly HashSet<Player> _undisguisedPlayers = new HashSet<Player>();
+
     public void OnChangingRole(ChangingRoleEventArgs ev)
     {
         if (ev.NewRole is RoleType.Tutorial or RoleType.Spectator)
@@ -101,8 +105,9 @@ public class PlayerHandler
 
         if (tS is not null)
         {
-            if (tS.Abilities.HasFlag(SubclassAbility.Disguised))
+            if (tS.Abilities.HasFlag(SubclassAbility.Disguised) && !_undisguisedPlayers.Contains(ev.Target))
             {
+                _undisguisedPlayers.Add(ev.Target);
                 ev.Target.ChangeAppearance(tS.SpawnAs);
                 ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
             }
@@ -113,6 +118,17 @@ public class PlayerHandler
             return;
 
         ev.Amount *= s.DamageMultiplier;
+        
+        if (s.Abilities.HasFlag(SubclassAbility.Disguised))
+        {
+            if(_undisguisedPlayers.Contains(ev.Attacker))
+                return;
+            
+            _undisguisedPlayers.Add(ev.Attacker);
+            
+            ev.Target.ChangeAppearance(tS.SpawnAs);
+            ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
+        }
     }
 
     public void OnExplodingGrenade(ExplodingGrenadeEventArgs ev)

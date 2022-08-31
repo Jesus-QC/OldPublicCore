@@ -12,7 +12,7 @@ public class MtfSpySubclass : Subclass
     public override string Name { get; set; } = "chaos spy";
     public override string Color { get; set; } = "#49a5f5";
     public override string Description { get; set; } = "You are an infiltrated chaos, help class-ds.";
-    public override CoreRarity Rarity { get; set; } = CoreRarity.Common;
+    public override CoreRarity Rarity { get; set; } = CoreRarity.Epic;
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.NtfPrivate, RoleType.NtfSergeant, RoleType.NtfSpecialist };
     public override Team Team { get; set; } = Team.CHI;
 
