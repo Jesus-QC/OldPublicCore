@@ -210,6 +210,7 @@
         <Compile Include="Modules\Logs\Patches\ErrorLogs.cs" />
         <Compile Include="Modules\Logs\WebhookSender.cs" />
         <Compile Include="Modules\Logs\Webhook\Message.cs" />
+        <Compile Include="Modules\Pets\PetsModule.cs" />
         <Compile Include="Modules\PocketSuck\EventsHandler.cs" />
         <Compile Include="Modules\PocketSuck\PocketSuckConfig.cs" />
         <Compile Include="Modules\PocketSuck\PocketSuckModule.cs" />
@@ -242,10 +243,10 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\MidgetSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\BreacherSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\FacilityManagerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\GrenadierSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\EngineerSubclass.cs" />
-        <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\FacilityManagerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\HackerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\MtfSpySubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\ReconSubclass.cs" />

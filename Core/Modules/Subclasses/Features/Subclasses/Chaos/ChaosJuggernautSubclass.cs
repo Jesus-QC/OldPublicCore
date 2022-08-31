@@ -7,7 +7,7 @@ public class ChaosJuggernautSubclass : Subclass
 {
     public override string Name { get; set; } = "juggernaut";
     public override string Color { get; set; } = "#99ffb8";
-    public override CoreRarity Rarity { get; set; } = CoreRarity.Epic;
+    public override CoreRarity Rarity { get; set; } = CoreRarity.Legendary;
     public override List<RoleType> AffectedRoles { get; set; } = new () { RoleType.ChaosConscript, RoleType.ChaosMarauder, RoleType.ChaosRepressor, RoleType.ChaosRifleman };
     public override RoleType SpawnAs { get; set; } = RoleType.None;
     public override Team Team { get; set; } = Team.CHI;

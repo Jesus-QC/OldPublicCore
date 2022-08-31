@@ -30,10 +30,10 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Guard.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.GrenadierSubclass));
+        RegisterSubclass(typeof(Subclasses.Guard.FacilityManagerSubclass));
         
         RegisterSubclass(typeof(Subclasses.MTF.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.EngineerSubclass));
-        RegisterSubclass(typeof(Subclasses.MTF.FacilityManagerSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.HackerSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.MtfSpySubclass));
         RegisterSubclass(typeof(Subclasses.MTF.ReconSubclass));

@@ -12,7 +12,7 @@ namespace Core.Modules.Subclasses.Handlers;
 
 public class PlayerHandler
 {
-    private readonly HashSet<Player> _undisguisedPlayers = new HashSet<Player>();
+    private readonly HashSet<Player> _undisguisedPlayers = new ();
 
     public void OnChangingRole(ChangingRoleEventArgs ev)
     {
@@ -59,6 +59,9 @@ public class PlayerHandler
                 ev.Ammo.Add(ammo.Key, ammo.Value);
         }
 
+        if (_undisguisedPlayers.Contains(ev.Player))
+            _undisguisedPlayers.Remove(ev.Player);
+            
         if (ev.NewRole != subclass.SpawnAs && subclass.SpawnAs != RoleType.None)
             ev.NewRole = subclass.SpawnAs;
     }
@@ -107,9 +110,9 @@ public class PlayerHandler
         {
             if (tS.Abilities.HasFlag(SubclassAbility.Disguised) && !_undisguisedPlayers.Contains(ev.Target))
             {
+                ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
                 _undisguisedPlayers.Add(ev.Target);
                 ev.Target.ChangeAppearance(tS.SpawnAs);
-                ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
             }
         }
         
@@ -124,10 +127,9 @@ public class PlayerHandler
             if(_undisguisedPlayers.Contains(ev.Attacker))
                 return;
             
-            _undisguisedPlayers.Add(ev.Attacker);
-            
-            ev.Target.ChangeAppearance(tS.SpawnAs);
             ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
+            _undisguisedPlayers.Add(ev.Attacker);
+            ev.Target.ChangeAppearance(s.SpawnAs);
         }
     }
 
