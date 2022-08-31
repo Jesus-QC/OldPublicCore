@@ -77,7 +77,7 @@ public class PlayerHandler
         if (s.Ahp > 0)
             ev.Player.AddAhp(s.Ahp);
         
-        ev.Player.Broadcast(10, "\n<b>" + s.Description + "</b>", shouldClearPrevious: true);
+        ev.Player.Broadcast(10, $"\n<b><color={s.SpawnAs.GetColor().ToHex()}>{s.Description}</color></b>", shouldClearPrevious: true);
         
         ev.Player.CustomInfo = $"<color=#50C878>{(s.Abilities.HasFlag(SubclassAbility.Disguised) ? "Default" : s.Name)}\n(Custom Subclass)</color>";
         
