@@ -21,8 +21,9 @@ public class BreacherSubclass : Subclass
         ItemType.KeycardGuard
     };
 
-    public override void OnSpawning(Player player)
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
     {
-        Timing.CallDelayed(1, () => player.AddAmmo(ItemType.Ammo12gauge, 90));
-    }
+        [ItemType.Ammo9x19] = 20, [ItemType.Ammo556x45] = 30, [ItemType.Ammo762x39] = 50, [ItemType.Ammo12gauge] = 80,
+        [ItemType.Ammo44cal] = 28
+    };
 }

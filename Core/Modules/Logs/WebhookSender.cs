@@ -72,7 +72,7 @@ public static class WebhookSender
         }
     }
 
-    private static readonly Dictionary<WebhookType, List<string>> MsgQueue = new() {[WebhookType.CommandLogs] = new List<string>(), [WebhookType.GameLogs] = new List<string>(), [WebhookType.KillLogs] = new List<string>(), [WebhookType.ErrorLogs] = new List<string>()};
+    private static readonly Dictionary<WebhookType, List<string>> MsgQueue = new() {[WebhookType.CommandLogs] = new List<string>(), [WebhookType.GameLogs] = new List<string>(), [WebhookType.KillLogs] = new List<string>(), [WebhookType.ErrorLogs] = new List<string>(), [WebhookType.ConsoleCommandLogs] = new List<string>()};
 
     public static string DiscordParse(this string content) => content.Replace("*", "\\*").Replace(":", "\\:").Replace("<", "\\<").Replace(">", "\\>").Replace("_", "\\_").Replace("|", "\\|").Replace("`", "\\`").Replace("~", "\\~");
 }

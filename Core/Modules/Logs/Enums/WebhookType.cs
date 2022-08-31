@@ -4,6 +4,7 @@ public enum WebhookType
 {
     GameLogs,
     CommandLogs,
+    ConsoleCommandLogs,
     KillLogs,
     ErrorLogs
 }

@@ -2,6 +2,7 @@
 using Core.Features.Extensions;
 using Core.Modules.Subclasses.Features.Enums;
 using Core.Modules.Subclasses.Features.Extensions;
+using Exiled.API.Extensions;
 using Exiled.Events.EventArgs;
 using UnityEngine;
 
@@ -78,16 +79,16 @@ public class PlayerHandler
         
         ev.Player.Broadcast(10, "\n<b>" + s.Description + "</b>", shouldClearPrevious: true);
         
-        if(s.Abilities.HasFlag(SubclassAbility.Disguised))
-            ev.Player.CustomInfo = $"<color=#50C878>Default\n(Custom Subclass)</color>";
-        else
-            ev.Player.CustomInfo = $"<color=#50C878>{s.Name}\n(Custom Subclass)</color>";
+        ev.Player.CustomInfo = $"<color=#50C878>{(s.Abilities.HasFlag(SubclassAbility.Disguised) ? "Default" : s.Name)}\n(Custom Subclass)</color>";
         
         if (s.Scale != Vector3.one)
             ev.Player.Scale = s.Scale;
         else if(ev.Player.Scale != Vector3.one)
             ev.Player.Scale = Vector3.one;
 
+        if (s.SpawnLocation != RoleType.None)
+            ev.Position = s.SpawnLocation.GetRandomSpawnProperties().Item1;
+        
         s.OnSpawning(ev.Player);
     }
 
@@ -95,6 +96,17 @@ public class PlayerHandler
     {
         if(ev.Attacker is null || ev.Target is null || ev.Attacker == ev.Target)
             return;
+
+        var tS = ev.Target.GetSubclass();
+
+        if (tS is not null)
+        {
+            if (tS.Abilities.HasFlag(SubclassAbility.Disguised))
+            {
+                ev.Target.ChangeAppearance(tS.SpawnAs);
+                ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
+            }
+        }
         
         var s = ev.Attacker.GetSubclass();
         if(s is null)

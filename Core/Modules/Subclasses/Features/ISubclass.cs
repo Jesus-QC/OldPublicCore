@@ -17,7 +17,7 @@ public interface ISubclass
     RoleType SpawnAs { get; set; }
     Team Team { get; set; }
     string CustomTeam { get; set; }
-    List<RoomType> SpawnLocations { get; set; }
+    RoleType SpawnLocation { get; set; }
     float DamageMultiplier { get; set; }
     List<ItemType> SpawnInventory { get; set; }
     Dictionary<ItemType, ushort> SpawnAmmo { get; set; }

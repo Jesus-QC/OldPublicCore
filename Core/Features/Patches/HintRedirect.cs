@@ -25,4 +25,28 @@ public static class HintRedirect
 
         return true;
     }
+
+   /* public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions,
+        ILGenerator generator)
+    {
+        var newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
+
+        var typeLocal = generator.DeclareLocal(typeof(Type));
+        
+        newInstructions.InsertRange(0, new []
+        {
+            new CodeInstruction(OpCodes.Ldarg_1),
+            new CodeInstruction(OpCodes.Box),
+            new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(object), nameof(GetType))),
+            new CodeInstruction(OpCodes.Stloc_S, typeLocal.LocalIndex),
+            new CodeInstruction(OpCodes.Ldloc_S, typeLocal.LocalIndex),
+            new CodeInstruction(Ldtoken, )
+
+        });
+
+        foreach (var instruction in newInstructions)
+            yield return instruction;
+        
+        ListPool<CodeInstruction>.Shared.Return(newInstructions);
+    }*/
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Features.Attribute;
 using Core.Features.Data.Enums;
+using Core.Features.Logger;
 using Core.Modules.Subclasses.Features.Subclasses.ClassD;
 using Core.Modules.Subclasses.Features.Subclasses.Scientist;
+using Exiled.API.Features;
 
 namespace Core.Modules.Subclasses.Features;
 
@@ -30,9 +32,19 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Guard.GrenadierSubclass));
         
         RegisterSubclass(typeof(Subclasses.MTF.DefaultSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.EngineerSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.FacilityManagerSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.HackerSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.MtfSpySubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.ReconSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.SniperSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.SpecialistSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.TankSubclass));
         
         RegisterSubclass(typeof(Subclasses.Chaos.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Chaos.ChaosJuggernautSubclass));
+        RegisterSubclass(typeof(Subclasses.Chaos.JammerSubclass));
+        RegisterSubclass(typeof(Subclasses.Chaos.DynamiterSubclass));
     }
 
     public readonly Dictionary<int, Subclass> SubclassesById = new ();
@@ -57,5 +69,7 @@ public class SubclassesManager
 
             SubclassesByRole[role][subclass.Rarity].Add(subclass);
         }
+        
+        Log.Info($"Subclass: {LogUtils.GetColor(LogColor.Magenta)}{subclass.Name} {LogUtils.GetColor(LogColor.Cyan)}has been registered!");
     }
 }

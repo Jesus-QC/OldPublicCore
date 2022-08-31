@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
+using Core.Modules.Subclasses.Features.Enums;
 using Exiled.API.Features;
 using MEC;
 
@@ -10,7 +11,7 @@ public class RunnerSubclass : Subclass
     public override string Name { get; set; } = "runner";
     public override string Color { get; set; } = "#c4fff6";
     public override string Description { get; set; } = "You have researched about human lungs and discovered a lot of things.\nYou have infinite stamina.";
-    public override CoreRarity Rarity { get; set; } = CoreRarity.Common;
+    public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;
 
     public override List<RoleType> AffectedRoles { get; set; } = new ()
     {
@@ -25,4 +26,6 @@ public class RunnerSubclass : Subclass
     {
         Timing.CallDelayed(1, () => player.IsUsingStamina = false);
     }
+
+    public override SubclassAbility Abilities { get; set; } = SubclassAbility.InfiniteStamina;
 }

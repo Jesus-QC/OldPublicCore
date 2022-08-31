@@ -4,4 +4,9 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C_005FCoding_005CSCPSL_005CPlugins_005CExiled_005CDependencies_005CUnityEngine_002ECoreModule_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C_005FCoding_005CSCPSL_005CPlugins_005CExiled_005CDependencies_005CUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C_005FCoding_005CSCPSL_005CPlugins_005CExiled_005CDependencies_005CUnityEngine_002EPhysicsModule_002Edll/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C_005FCoding_005CSCPSL_005CPlugins_005CExiled_005CDependencies_005CUnityEngine_002EUnityWebRequestModule_002Edll/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C_005FCoding_005CSCPSL_005CPlugins_005CExiled_005CDependencies_005CUnityEngine_002EUnityWebRequestModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CAB0A567F30704CA99AA3EC249E3153/Description/@EntryValue">&amp;Subclass</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CAB0A567F30704CA99AA3EC249E3153/UITag/@EntryValue">Subclass</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BBBB5E28EC58D5479BB62F502ABA367E/Description/@EntryValue">&amp;Subclass</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BBBB5E28EC58D5479BB62F502ABA367E/Field/=CLASS/Expression/@EntryValue">getAlphaNumericFileNameWithoutExtension()</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BBBB5E28EC58D5479BB62F502ABA367E/Field/=NAMESPACE/Expression/@EntryValue">fileDefaultNamespace()</s:String></wpf:ResourceDictionary>

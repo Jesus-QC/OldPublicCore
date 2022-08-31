@@ -12,16 +12,23 @@ public static class CommandLogging
     [HarmonyPrefix]
     public static void Prefix(string q, CommandSender sender) 
     {
-        var args = q.Trim().Split(QueryProcessor.SpaceArray, 512, StringSplitOptions.RemoveEmptyEntries);
-        if (args[0].StartsWith("$"))
-            return;
+        try
+        {
+            var args = q.Trim().Split(QueryProcessor.SpaceArray, 512, StringSplitOptions.RemoveEmptyEntries);
+            if (args[0].StartsWith("$"))
+                return;
 
-        var player = sender is PlayerCommandSender playerCommandSender
-            ? Player.Get(playerCommandSender)
-            : Server.Host;
+            var player = sender is PlayerCommandSender playerCommandSender
+                ? Player.Get(playerCommandSender)
+                : Server.Host;
 
-        if(player != null)
-            WebhookSender.AddMessage($"{sender.Nickname.DiscordParse()} ({sender.SenderId ?? "Srv"}) >> **`{q}`**", WebhookType.CommandLogs);
+            if(player != null)
+                WebhookSender.AddMessage($"{sender.Nickname.DiscordParse()} ({sender.SenderId ?? "Srv"}) >> **`{q}`**", WebhookType.CommandLogs);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e);
+        }
     }
     
 }

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Attribute;
 using Core.Features.Data.Enums;
+using Core.Modules.Subclasses.Features.Enums;
+using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using MEC;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.Scientist;
 
-[DisabledFeature]
 public class ChaosSpySubclass : Subclass
 {
     public override string Name { get; set; } = "chaos spy";
@@ -20,9 +21,12 @@ public class ChaosSpySubclass : Subclass
         RoleType.Scientist
     };
 
+    public override RoleType SpawnLocation { get; set; } = RoleType.Scientist;
     public override RoleType SpawnAs { get; set; } = RoleType.ChaosConscript;
     public override Team Team { get; set; } = Team.CHI;
     public override float Ahp { get; set; } = 20;
+
+    public override SubclassAbility Abilities { get; set; } = SubclassAbility.Disguised;
 
     public override void OnSpawning(Player player)
     {

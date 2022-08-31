@@ -24,8 +24,9 @@ public class GrenadierSubclass : Subclass
 
     public override SubclassAbility Abilities { get; set; } = SubclassAbility.GrenadeImmunity;
     
-    public override void OnSpawning(Player player)
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
     {
-        Timing.CallDelayed(1, () => player.AddAmmo(ItemType.Ammo12gauge, 90));
-    }
+        [ItemType.Ammo9x19] = 50, [ItemType.Ammo556x45] = 50, [ItemType.Ammo762x39] = 50, [ItemType.Ammo12gauge] = 100,
+        [ItemType.Ammo44cal] = 20
+    };
 }

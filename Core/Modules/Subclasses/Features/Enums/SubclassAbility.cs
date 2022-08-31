@@ -8,5 +8,6 @@ public enum SubclassAbility
     None,
     HealCmd,
     GrenadeImmunity,
-    Disguised
+    Disguised,
+    InfiniteStamina
 }

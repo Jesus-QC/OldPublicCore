@@ -16,10 +16,10 @@ public abstract class Subclass : ISubclass
     public virtual string Description { get; set; } = string.Empty;
     public virtual CoreRarity Rarity { get; set; } = CoreRarity.Common;
     public virtual List<RoleType> AffectedRoles { get; set; } = new ();
-    public virtual RoleType SpawnAs { get; set; } = RoleType.Spectator;
+    public virtual RoleType SpawnAs { get; set; } = RoleType.None;
     public virtual Team Team { get; set; } = Team.RIP;
     public virtual string CustomTeam { get; set; } = string.Empty;
-    public virtual List<RoomType> SpawnLocations { get; set; } = null;
+    public virtual RoleType SpawnLocation { get; set; } = RoleType.None;
     public virtual float DamageMultiplier { get; set; } = 1;
     public virtual List<ItemType> SpawnInventory { get; set; } = null;
     public virtual Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = null;
