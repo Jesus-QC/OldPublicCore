@@ -9,7 +9,7 @@ public class FacilityManagerSubclass : Subclass
     public override string Name { get; set; } = "facility manager";
     public override string Color { get; set; } = "#85bcd4";
     public override string Description { get; set; } = "You are the manager of the facility, help your team contain the breach.";
-    public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;
+    public override CoreRarity Rarity { get; set; } = CoreRarity.Legendary;
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.FacilityGuard };
     public override Team Team { get; set; } = Team.MTF;
 
