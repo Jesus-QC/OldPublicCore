@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
+using UnityEngine;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.Chaos;
 
@@ -19,4 +20,6 @@ public class ChaosJuggernautSubclass : Subclass
         ItemType.GunLogicer, ItemType.ArmorCombat, ItemType.KeycardChaosInsurgency, ItemType.Flashlight,
         ItemType.GrenadeHE, ItemType.GrenadeFlash
     };
+
+    public override Vector3 Scale { get; set; } = Vector3.one * 1.1f;
 }

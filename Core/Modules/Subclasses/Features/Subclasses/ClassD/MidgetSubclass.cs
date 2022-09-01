@@ -13,6 +13,6 @@ public class MidgetSubclass : Subclass
     public override List<RoleType> AffectedRoles { get; set; } = new List<RoleType>() { RoleType.ClassD };
     public override RoleType SpawnAs { get; set; } = RoleType.ClassD;
     public override Team Team { get; set; } = Team.CDP;
-    public override Vector3 Scale { get; set; } = new (0.6f, 0.7f, 0.6f);
+    public override Vector3 Scale { get; set; } = new (1.1f, 0.6f, 1.1f);
     public override float Health { get; set; } = 25f;
 }

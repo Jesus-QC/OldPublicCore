@@ -210,6 +210,8 @@
         <Compile Include="Modules\Logs\Patches\ErrorLogs.cs" />
         <Compile Include="Modules\Logs\WebhookSender.cs" />
         <Compile Include="Modules\Logs\Webhook\Message.cs" />
+        <Compile Include="Modules\Pets\Commands\HatCommand.cs" />
+        <Compile Include="Modules\Pets\PetsManager.cs" />
         <Compile Include="Modules\Pets\PetsModule.cs" />
         <Compile Include="Modules\PocketSuck\EventsHandler.cs" />
         <Compile Include="Modules\PocketSuck\PocketSuckConfig.cs" />

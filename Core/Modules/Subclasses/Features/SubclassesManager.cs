@@ -15,17 +15,17 @@ public class SubclassesManager
     public void Load()
     {
         RegisterSubclass(typeof(Subclasses.ClassD.DefaultSubclass));
-        RegisterSubclass(typeof(AdventurerSubclass));
-        RegisterSubclass(typeof(CleanerSubclass));
-        RegisterSubclass(typeof(CollectorSubclass));
-        RegisterSubclass(typeof(DoctorSubclass));
-        RegisterSubclass(typeof(FighterSubclass));
-        RegisterSubclass(typeof(MidgetSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.AdventurerSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.CleanerSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.CollectorSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.DoctorSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.FighterSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.MidgetSubclass));
         
         RegisterSubclass(typeof(Subclasses.Scientist.DefaultSubclass));
-        RegisterSubclass(typeof(InsiderSubclass));
-        RegisterSubclass(typeof(RunnerSubclass));
-        RegisterSubclass(typeof(ChaosSpySubclass));
+        RegisterSubclass(typeof(Subclasses.Scientist.InsiderSubclass));
+        RegisterSubclass(typeof(Subclasses.Scientist.RunnerSubclass));
+        RegisterSubclass(typeof(Subclasses.Scientist.ChaosSpySubclass));
         
         RegisterSubclass(typeof(Subclasses.Guard.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
