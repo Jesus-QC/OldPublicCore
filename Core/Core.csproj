@@ -242,6 +242,7 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DoctorSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\FighterSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\HusterSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\MidgetSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\BreacherSubclass.cs" />
