@@ -73,6 +73,9 @@ public class PlayerHandler
             
         if (ev.NewRole != subclass.SpawnAs && subclass.SpawnAs != RoleType.None)
             ev.NewRole = subclass.SpawnAs;
+
+        if(!ev.Player.IsUsingStamina)
+            ev.Player.IsUsingStamina = true;
     }
 
     public void OnSpawning(SpawningEventArgs ev)
@@ -110,7 +113,7 @@ public class PlayerHandler
 
     public void OnHurting(HurtingEventArgs ev)
     {
-        if(ev.Attacker is null || ev.Target is null || ev.Attacker == ev.Target)
+        if(ev.Attacker is null || ev.Target is null || ev.Attacker == ev.Target || ev.Target.Role.Team == ev.Attacker.Role.Team)
             return;
 
         var tS = ev.Target.GetSubclass();
@@ -121,27 +124,18 @@ public class PlayerHandler
 
         if (tS.Team == s.Team)
         {
+            ev.Amount = 0;
             ev.IsAllowed = false;
             return;
         }
-
-        if (tS.Abilities.HasFlag(SubclassAbility.Disguised) && !_undisguisedPlayers.Contains(ev.Target))
-        {
-            ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
-            _undisguisedPlayers.Add(ev.Target);
-            ev.Target.ChangeAppearance(tS.SpawnAs);
-        }
-
-        ev.Amount *= s.DamageMultiplier;
         
-        if (s.Abilities.HasFlag(SubclassAbility.Disguised))
+        ev.Amount *= s.DamageMultiplier;
+
+        if (s.Abilities.HasFlag(SubclassAbility.Disguised) && !_undisguisedPlayers.Contains(ev.Attacker))
         {
-            if(_undisguisedPlayers.Contains(ev.Attacker))
-                return;
-            
-            ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
+            ev.Attacker.Broadcast(5, "\n<b>You have been discovered!</b>");
             _undisguisedPlayers.Add(ev.Attacker);
-            ev.Target.ChangeAppearance(s.SpawnAs);
+            ev.Attacker.ChangeAppearance(s.SpawnAs);
         }
     }
 

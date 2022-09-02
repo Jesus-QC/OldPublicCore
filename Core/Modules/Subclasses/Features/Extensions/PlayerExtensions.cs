@@ -13,6 +13,7 @@ public static class PlayerExtensions
             SubclassesByPlayer.Add(player, null);
 
         SubclassesByPlayer[player] = subclass;
+        Log.Info($"{player.Nickname} is now a {subclass?.Name ?? "null"} subclass.");
     }
     
     public static Subclass GetSubclass(this Player player)

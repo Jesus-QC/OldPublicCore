@@ -24,7 +24,9 @@ public class HatCommand : ICommand
             return true;
         }
 
-        NetworkServer.Destroy(PetsManager.Pets[player]);
+        foreach (var pet in PetsManager.Pets[player])
+            NetworkServer.Destroy(pet);
+        
         PetsManager.Pets.Remove(player);
         response = "Removed your hat.";
         return true;

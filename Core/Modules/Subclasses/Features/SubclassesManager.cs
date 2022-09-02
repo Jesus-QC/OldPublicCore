@@ -4,6 +4,7 @@ using System.Linq;
 using Core.Features.Attribute;
 using Core.Features.Data.Enums;
 using Core.Features.Logger;
+using Core.Modules.Subclasses.Features.Enums;
 using Core.Modules.Subclasses.Features.Subclasses.ClassD;
 using Core.Modules.Subclasses.Features.Subclasses.Scientist;
 using Exiled.API.Features;

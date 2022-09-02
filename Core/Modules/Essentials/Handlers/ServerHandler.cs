@@ -36,6 +36,6 @@ public class ServerHandler
             return;
                 
         Cassie.MessageTranslated(EssentialsModule.PluginConfig.ChaosAnnouncement,
-            "Emergency Alert, Unauthorized Military Group... Scaning thread... Thread designated as <color=green>Chaos Insurgency</color>");
+            "Emergency Alert, Unauthorized Military Group... Scaning threat... Threat designated as <color=green>Chaos Insurgency</color>");
     }
 }
