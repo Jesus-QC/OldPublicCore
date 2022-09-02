@@ -20,9 +20,6 @@ public static class CoroutinesHandler
             foreach (var doll in Map.Ragdolls)
                 NetworkServer.Destroy(doll.GameObject);
 
-            foreach (var pickup in Map.Pickups)
-                pickup.Destroy();
-                
             yield return Timing.WaitForSeconds(300);
         }
     }

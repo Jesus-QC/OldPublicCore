@@ -13,7 +13,7 @@ namespace Core.Modules.Subclasses.Handlers;
 public class PlayerHandler
 {
     private readonly HashSet<Player> _undisguisedPlayers = new ();
-
+    
     public void OnChangingRole(ChangingRoleEventArgs ev)
     {
         if (ev.NewRole is RoleType.Tutorial or RoleType.Spectator)
@@ -33,17 +33,26 @@ public class PlayerHandler
             ev.Player.ClearHint(ScreenZone.TopBarSecondary);
             ev.Player.CustomInfo = string.Empty;
             ev.Player.SetSubclass(null);
+            
+            foreach (var player in ev.Player.CurrentSpectatingPlayers)
+            {
+                player.ClearHint(ScreenZone.TopBar);
+                player.ClearHint(ScreenZone.TopBarSecondary);
+            }
+            
             return;
         }
         
         ev.Player.SetSubclass(subclass);
+        
+        foreach (var player in ev.Player.CurrentSpectatingPlayers)
+        {
+            player.SendHint(ScreenZone.TopBar, subclass.TopBar);
+            player.SendHint(ScreenZone.TopBarSecondary, subclass.SecondaryTopBar);
+        }
 
-        ev.Player.SendHint(ScreenZone.TopBar,
-            subclass.Color is null
-                ? $"subclass: {subclass.Name} ({subclass.Rarity.ToString().ToLower()})"
-                : $"subclass: <color={subclass.Color}>{subclass.Name} ({subclass.Rarity.ToString().ToLower()})</color>");
-
-        ev.Player.SendHint(ScreenZone.TopBarSecondary, "abilities: " + subclass.Abilities.ToString().ToLower());
+        ev.Player.SendHint(ScreenZone.TopBar, subclass.TopBar);
+        ev.Player.SendHint(ScreenZone.TopBarSecondary, subclass.SecondaryTopBar);
 
         if (subclass.SpawnInventory is not null)
         {
@@ -105,20 +114,23 @@ public class PlayerHandler
             return;
 
         var tS = ev.Target.GetSubclass();
-
-        if (tS is not null)
-        {
-            if (tS.Abilities.HasFlag(SubclassAbility.Disguised) && !_undisguisedPlayers.Contains(ev.Target))
-            {
-                ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
-                _undisguisedPlayers.Add(ev.Target);
-                ev.Target.ChangeAppearance(tS.SpawnAs);
-            }
-        }
-        
         var s = ev.Attacker.GetSubclass();
-        if(s is null)
+        
+        if (tS is null || s is null)
             return;
+
+        if (tS.Team == s.Team)
+        {
+            ev.IsAllowed = false;
+            return;
+        }
+
+        if (tS.Abilities.HasFlag(SubclassAbility.Disguised) && !_undisguisedPlayers.Contains(ev.Target))
+        {
+            ev.Target.Broadcast(5, "\n<b>You have been discovered!</b>");
+            _undisguisedPlayers.Add(ev.Target);
+            ev.Target.ChangeAppearance(tS.SpawnAs);
+        }
 
         ev.Amount *= s.DamageMultiplier;
         
@@ -143,5 +155,23 @@ public class PlayerHandler
 
             ev.TargetsToAffect.Remove(target);
         }
+    }
+    
+    public void OnChangingSpectatedPlayer(ChangingSpectatedPlayerEventArgs ev)
+    {
+        if(ev.Player == ev.NewTarget)
+            return;
+
+        var subclass = ev.NewTarget.GetSubclass();
+        
+        if (subclass is null)
+        {
+            ev.Player.ClearHint(ScreenZone.TopBar);
+            ev.Player.ClearHint(ScreenZone.TopBarSecondary);
+            return;
+        }
+        
+        ev.Player.SendHint(ScreenZone.TopBar, subclass.TopBar);
+        ev.Player.SendHint(ScreenZone.TopBarSecondary, subclass.SecondaryTopBar);
     }
 }

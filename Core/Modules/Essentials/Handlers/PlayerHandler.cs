@@ -5,6 +5,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
+using Scp914;
 using UnityEngine;
 
 namespace Core.Modules.Essentials.Handlers;
@@ -60,6 +61,17 @@ public class PlayerHandler
         foreach (var player in players)
         {
             player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
+        }
+    }
+
+    public void OnUpgradingPlayer(UpgradingPlayerEventArgs ev)
+    {
+        if (ev.IsAllowed && ev.KnobSetting is Scp914KnobSetting.VeryFine)
+        {
+            if (Random.Range(0, 101) < 10)
+            {
+                ev.OutputPosition = RoleType.Scp93989.GetRandomSpawnProperties().Item1;
+            }
         }
     }
     

@@ -25,6 +25,7 @@ public class SubclassesModule : CoreModule<SubclassesConfig>
         Exiled.Events.Handlers.Player.Spawning += _playerHandler.OnSpawning;
         Exiled.Events.Handlers.Player.Hurting += _playerHandler.OnHurting;
         Exiled.Events.Handlers.Map.ExplodingGrenade += _playerHandler.OnExplodingGrenade;
+        Exiled.Events.Handlers.Player.ChangingSpectatedPlayer += _playerHandler.OnChangingSpectatedPlayer;
 
         base.OnEnabled();
     }
@@ -33,9 +34,14 @@ public class SubclassesModule : CoreModule<SubclassesConfig>
     {
         PluginConfig = null;
 
+        Exiled.Events.Handlers.Player.ChangingRole -= _playerHandler.OnChangingRole;
+        Exiled.Events.Handlers.Player.Spawning -= _playerHandler.OnSpawning;
+        Exiled.Events.Handlers.Player.Hurting -= _playerHandler.OnHurting;
+        Exiled.Events.Handlers.Map.ExplodingGrenade -= _playerHandler.OnExplodingGrenade;
+        Exiled.Events.Handlers.Player.ChangingSpectatedPlayer -= _playerHandler.OnChangingSpectatedPlayer;
+        
         SubclassesManager = null;
-            
-            
+
         base.OnDisabled();
     }
 }

@@ -248,7 +248,6 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\FacilityManagerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\GrenadierSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\DefaultSubclass.cs" />
-        <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\EngineerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\HackerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\MtfSpySubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\ReconSubclass.cs" />
@@ -257,6 +256,7 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\TankSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\ChaosSpySubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\DefaultSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\EngineerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\InsiderSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\RunnerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Handlers\PlayerHandler.cs" />

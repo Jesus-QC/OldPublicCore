@@ -26,6 +26,7 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Scientist.InsiderSubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.RunnerSubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.ChaosSpySubclass));
+        RegisterSubclass(typeof(Subclasses.Scientist.EngineerSubclass));
         
         RegisterSubclass(typeof(Subclasses.Guard.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
@@ -33,7 +34,6 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Guard.FacilityManagerSubclass));
         
         RegisterSubclass(typeof(Subclasses.MTF.DefaultSubclass));
-        RegisterSubclass(typeof(Subclasses.MTF.EngineerSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.HackerSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.MtfSpySubclass));
         RegisterSubclass(typeof(Subclasses.MTF.ReconSubclass));
@@ -57,6 +57,12 @@ public class SubclassesManager
 
         var count = SubclassesById.Count;
         subclass.Id = count;
+        
+        subclass.TopBar = subclass.Color is null
+            ? $"subclass: {subclass.Name} ({subclass.Rarity.ToString().ToLower()})"
+            : $"subclass: <color={subclass.Color}>{subclass.Name} ({subclass.Rarity.ToString().ToLower()})</color>";
+        subclass.SecondaryTopBar = "abilities: " + subclass.Abilities.ToString().ToLower();
+        
         SubclassesById.Add(count, subclass);
 
         foreach (var role in subclass.AffectedRoles)

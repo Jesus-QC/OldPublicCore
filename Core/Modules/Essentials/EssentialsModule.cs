@@ -35,6 +35,7 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Player.Verified += _playerHandler.OnVerified;
         Player.TriggeringTesla += _playerHandler.OnTriggeringTesla;
         Player.ChangingRole += _playerHandler.OnChangingRole;
+        Exiled.Events.Handlers.Scp914.UpgradingPlayer += _playerHandler.OnUpgradingPlayer;
 
         base.OnEnabled();
     }
@@ -42,6 +43,8 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
     public override void OnDisabled()
     {
         Player.Hurting -= _playerHandler.OnHurting;
+        Player.Died -= _playerHandler.OnDied;
+        Player.Left -= _playerHandler.OnLeft;
         Player.Verified -= _playerHandler.OnVerified;
         Player.TriggeringTesla -= _playerHandler.OnTriggeringTesla;
         Player.ChangingRole -= _playerHandler.OnChangingRole;
@@ -50,6 +53,8 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Server.WaitingForPlayers -= _playerHandler.OnWaitingForPlayers;
         Server.RespawningTeam -= _serverHandler.OnRespawningTeam;
         Map.AnnouncingNtfEntrance -= _serverHandler.OnAnnouncingMtfEntrance;
+        
+        Exiled.Events.Handlers.Scp914.UpgradingPlayer -= _playerHandler.OnUpgradingPlayer;
         
         _playerHandler = null;
         _serverHandler = null;

@@ -26,7 +26,7 @@ public class GrenadierSubclass : Subclass
     
     public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
     {
-        [ItemType.Ammo9x19] = 50, [ItemType.Ammo556x45] = 50, [ItemType.Ammo762x39] = 50, [ItemType.Ammo12gauge] = 100,
-        [ItemType.Ammo44cal] = 20
+        [ItemType.Ammo9x19] = 100, [ItemType.Ammo556x45] = 100, [ItemType.Ammo762x39] = 100, [ItemType.Ammo12gauge] = 100,
+        [ItemType.Ammo44cal] = 100
     };
 }

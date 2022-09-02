@@ -27,4 +27,6 @@ public interface ISubclass
     float Ahp { get; set; }
 
     void OnSpawning(Player player);
+    public string TopBar { get; set; }
+    public string SecondaryTopBar { get; set; }
 }

@@ -29,4 +29,7 @@ public abstract class Subclass : ISubclass
     public virtual float Ahp { get; set; } = -1;
     
     public virtual void OnSpawning(Player player) { }
+    
+    public string TopBar { get; set; }
+    public string SecondaryTopBar { get; set; }
 }
