@@ -236,7 +236,9 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\DynamiterSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\JammerSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\PeaceBreakerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\AdventurerSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\ChadSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CleanerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CollectorSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DefaultSubclass.cs" />
@@ -244,14 +246,17 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\FighterSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\HusterSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\MidgetSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\CommanderSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\BreacherSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\FacilityManagerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\GrenadierSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\BomberSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\HackerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\MtfSpySubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\ReconSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\SlayerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\SniperSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\SpecialistSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\TankSubclass.cs" />

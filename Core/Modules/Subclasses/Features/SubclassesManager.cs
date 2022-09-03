@@ -21,7 +21,10 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.ClassD.CollectorSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.DoctorSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.FighterSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.ChadSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.MidgetSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.HusterSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.ChadSubclass));
         
         RegisterSubclass(typeof(Subclasses.Scientist.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.InsiderSubclass));
@@ -33,6 +36,7 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.GrenadierSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.FacilityManagerSubclass));
+        RegisterSubclass(typeof(Subclasses.Guard.CommanderSubclass));
         
         RegisterSubclass(typeof(Subclasses.MTF.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.HackerSubclass));
@@ -41,11 +45,14 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.MTF.SniperSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.SpecialistSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.TankSubclass));
-        
+        RegisterSubclass(typeof(Subclasses.MTF.BomberSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.SlayerSubclass));
+
         RegisterSubclass(typeof(Subclasses.Chaos.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Chaos.ChaosJuggernautSubclass));
         RegisterSubclass(typeof(Subclasses.Chaos.JammerSubclass));
         RegisterSubclass(typeof(Subclasses.Chaos.DynamiterSubclass));
+        RegisterSubclass(typeof(Subclasses.Chaos.PeaceBreakerSubclass));
     }
 
     public readonly Dictionary<int, Subclass> SubclassesById = new ();

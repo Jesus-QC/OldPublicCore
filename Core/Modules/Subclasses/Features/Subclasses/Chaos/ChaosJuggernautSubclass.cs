@@ -15,7 +15,7 @@ public class ChaosJuggernautSubclass : Subclass
     public override float Health { get; set; } = 200;
     public override float Ahp { get; set; } = 100;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new ()
     {
         ItemType.GunLogicer, ItemType.ArmorCombat, ItemType.KeycardChaosInsurgency, ItemType.Flashlight,
         ItemType.GrenadeHE, ItemType.GrenadeFlash
