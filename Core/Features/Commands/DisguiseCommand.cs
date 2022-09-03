@@ -4,6 +4,7 @@ using CommandSystem;
 using Core.Features.Extensions;
 using Core.Modules.Essentials;
 using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
 using Random = UnityEngine.Random;
 
 namespace Core.Features.Commands;
@@ -15,6 +16,12 @@ public class DisguiseCommand : ICommand
     {
         if (Player.TryGet(sender, out var player))
         {
+            if (!sender.CheckPermission("staff.disguise"))
+            {
+                response = "You don't have perms to do that.";
+                return false;
+            }
+        
             if (DisguisedStaff.ContainsKey(player.UserId))
             {
                 DisguisedStaff.Remove(player.UserId);
