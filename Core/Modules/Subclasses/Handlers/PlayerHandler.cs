@@ -3,6 +3,7 @@ using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Core.Modules.Subclasses.Features.Enums;
 using Core.Modules.Subclasses.Features.Extensions;
+using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
@@ -123,6 +124,13 @@ public class PlayerHandler
             return;
 
         if (tS.Team == s.Team)
+        {
+            ev.Amount = 0;
+            ev.IsAllowed = false;
+            return;
+        }
+        
+        if (ev.Handler.Type is DamageType.Explosion && tS.Abilities.HasFlag(SubclassAbility.GrenadeImmunity))
         {
             ev.Amount = 0;
             ev.IsAllowed = false;
