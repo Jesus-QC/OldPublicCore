@@ -24,6 +24,6 @@ public class DynamiterSubclass : Subclass
         [ItemType.Ammo44cal] = 20
     };
 
-    public override Vector3 Scale { get; set; } = new Vector3(1.1f, 1, 1.1f);
+    public override Vector3 Scale { get; set; } = new Vector3(1.1f, 1.1f, 1.1f);
     public override float Ahp { get; set; } = 50;
 }

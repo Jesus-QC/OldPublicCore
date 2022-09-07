@@ -44,15 +44,6 @@ public class PlayerHandler
         }
         
         ev.Player.SetSubclass(subclass);
-        
-        foreach (var player in ev.Player.CurrentSpectatingPlayers)
-        {
-            player.SendHint(ScreenZone.TopBar, subclass.TopBar);
-            player.SendHint(ScreenZone.TopBarSecondary, subclass.SecondaryTopBar);
-        }
-
-        ev.Player.SendHint(ScreenZone.TopBar, subclass.TopBar);
-        ev.Player.SendHint(ScreenZone.TopBarSecondary, subclass.SecondaryTopBar);
 
         if (subclass.SpawnInventory is not null)
         {
@@ -99,6 +90,15 @@ public class PlayerHandler
         ev.Player.Broadcast(10, $"\n<b><color={s.SpawnAs.GetColor().ToHex()}>{s.Description}</color></b>", shouldClearPrevious: true);
         
         ev.Player.CustomInfo = $"<color=#50C878>{(s.Abilities.HasFlag(SubclassAbility.Disguised) ? "Default" : s.Name)}\n(Custom Subclass)</color>";
+        
+        foreach (var player in ev.Player.CurrentSpectatingPlayers)
+        {
+            player.SendHint(ScreenZone.TopBar, s.TopBar);
+            player.SendHint(ScreenZone.TopBarSecondary, s.SecondaryTopBar);
+        }
+
+        ev.Player.SendHint(ScreenZone.TopBar, s.TopBar);
+        ev.Player.SendHint(ScreenZone.TopBarSecondary, s.SecondaryTopBar);
         
         if (s.Scale != Vector3.one)
             ev.Player.Scale = s.Scale;

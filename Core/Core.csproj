@@ -249,7 +249,6 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\CommanderSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\BreacherSubclass.cs" />
-        <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\FacilityManagerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\GrenadierSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\BomberSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\DefaultSubclass.cs" />

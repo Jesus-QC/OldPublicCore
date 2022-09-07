@@ -24,8 +24,8 @@ namespace Core.Modules.Lobby;
 public class LobbySpawner
 {
     private GameObject _lobbyLights;
-    private readonly List<GameObject> _dummies = new();
-    private readonly List<TeamTrigger> _triggers = new();
+    //private readonly HashSet<GameObject> _dummies = new();
+    private readonly HashSet<TeamTrigger> _triggers = new();
 
     private static Room _lobbyRoom;
     private static Vector3 _spawnPosition;
@@ -35,6 +35,8 @@ public class LobbySpawner
     private readonly Dictionary<int, RoleType> _spawnQueue = new();
 
     private CoroutineHandle _hudCoroutine;
+
+    private readonly HashSet<Player> _overwatch = new ();
 
     public void OnWaitingForPlayers()
     {
@@ -64,10 +66,13 @@ public class LobbySpawner
         new SimplifiedLight(localPosition.TransformPoint( new Vector3(3.35f, -18.5f, -18.35f)), RoleType.Scientist.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
         new SimplifiedLight(localPosition.TransformPoint( new Vector3(11.35f, -18.5f, -18.35f)), RoleType.Scp049.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
 
+        _triggers.Clear();
         _triggers.Add(SpawnTrigger(Team.CDP, localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f))));
         _triggers.Add(SpawnTrigger(Team.MTF, localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -10.65f))));
         _triggers.Add(SpawnTrigger(Team.RSC, localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -18.35f))));
         _triggers.Add(SpawnTrigger(Team.SCP, localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -18.35f))));
+        
+        _overwatch.Clear();
     }
 
     public void OnTogglingOverwatch(TogglingOverwatchEventArgs ev)
@@ -76,6 +81,7 @@ public class LobbySpawner
             return;
 
         ev.IsAllowed = false;
+        _overwatch.Add(ev.Player);
     }
     
     public void OnVerified(VerifiedEventArgs ev)
@@ -109,6 +115,9 @@ public class LobbySpawner
             ev.Items.AddRange(inv.Items);
             foreach (var am in inv.Ammo)
                 ev.Ammo.Add(am.Key, am.Value);
+
+            if (_overwatch.Contains(ev.Player))
+                ev.Player.IsOverwatchEnabled = true;
         }
     }
 
@@ -308,11 +317,11 @@ public class LobbySpawner
 
     private void ClearDummies()
     {
-        foreach (var dummy in _dummies.ToList())
+        /*foreach (var dummy in _dummies.ToList())
         {
             Object.Destroy(dummy);
             _dummies.Remove(dummy);
-        }
+        }*/
 
         foreach (var trigger in _triggers.ToList())
         {

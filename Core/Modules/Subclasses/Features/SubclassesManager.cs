@@ -35,7 +35,6 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.Guard.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.GrenadierSubclass));
-        RegisterSubclass(typeof(Subclasses.Guard.FacilityManagerSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.CommanderSubclass));
         
         RegisterSubclass(typeof(Subclasses.MTF.DefaultSubclass));
