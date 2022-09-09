@@ -8,13 +8,13 @@ public static class MapCore
 {
     public static void SendHint(ScreenZone zone, string message, float duration = 10)
     {
-        foreach (var player in Player.List)
+        foreach (Player player in Player.List)
             player.SendHint(zone, message, duration);
     }
     
     public static void ClearHintZone(ScreenZone zone)
     {
-        foreach (var player in Player.List)
+        foreach (Player player in Player.List)
             player.ClearHint(zone);
     }
 }

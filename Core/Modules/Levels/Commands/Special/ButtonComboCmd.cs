@@ -12,7 +12,7 @@ public class ButtonComboCmd : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        if (Player.TryGet(sender, out var ply))
+        if (Player.TryGet(sender, out Player ply))
         {
             if (!_alreadyUsed.Contains(ply.UserId))
             {

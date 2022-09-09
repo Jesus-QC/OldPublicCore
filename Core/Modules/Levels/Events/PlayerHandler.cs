@@ -285,7 +285,7 @@ public class PlayerHandler
         if(!LevelManager.DoorsDictionary.ContainsKey(ev.Player))
             LevelManager.DoorsDictionary.Add(ev.Player, new HashSet<Door>());
 
-        var dic = LevelManager.DoorsDictionary[ev.Player];
+        HashSet<Door> dic = LevelManager.DoorsDictionary[ev.Player];
 
         if (!dic.Contains(ev.Door))
         {

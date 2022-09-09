@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Features.Data.Configs;
@@ -50,7 +51,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     private async Task Timer()
     {
-        var builder = StringBuilderPool.Shared.Rent();
+        StringBuilder builder = StringBuilderPool.Shared.Rent();
         while (true)
         {
             if (_cancellation.IsCancellationRequested)
@@ -59,7 +60,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                 return;
             }
             
-            foreach (var player in Player.List)
+            foreach (Player player in Player.List)
             {
                 if(player is null || player.IsDead || DisabledManager.IsHidden(player))
                     continue;
@@ -68,7 +69,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                 builder.Append("<align=right><size=75%><color=#555><b>👥 Spectators:</b></color><color=" + player.Role.Color.ToHex() + ">");
 
                 int count = 0;
-                foreach (var spectator in player.CurrentSpectatingPlayers)
+                foreach (Player spectator in player.CurrentSpectatingPlayers)
                 {
                     if(spectator is null || spectator == player || spectator.IsGlobalModerator || spectator.IsOverwatchEnabled)
                         continue;

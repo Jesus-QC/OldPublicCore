@@ -25,7 +25,7 @@ public class Database
 
     public void InsertNewPlayer(Player player)
     {
-        var query = "INSERT INTO NewPlayers (SteamId, DiscordId, NorthWoodId, Username, SubscriptionType) VALUES ";
+        string query = "INSERT INTO NewPlayers (SteamId, DiscordId, NorthWoodId, Username, SubscriptionType) VALUES ";
         switch (player.AuthenticationType)
         {
             case AuthenticationType.Steam:
@@ -41,17 +41,17 @@ public class Database
 
         ExecuteNonQuery(query);
 
-        var id = player.GetId();
+        int id = player.GetId();
         ExecuteNonQuery($"INSERT INTO Leveling (PlayerId, Exp, Achievements) VALUES ('{id}', 0, '');");
         ExecuteNonQuery($"INSERT INTO SlStats (PlayerId, RoundsPlayed, TimePlayed, LastSeen) VALUES ('{id}', 0, 0, '{DateTime.UtcNow.Ticks}');");
     }
 
     public bool PlayerExists(Player player)
     {
-        using var con = Connection.Clone();
+        using MySqlConnection con = Connection.Clone();
         con.Open();
-        using var cmd = new MySqlCommand($"SELECT EXISTS(SELECT Id FROM NewPlayers WHERE {player.GetQuery()});", con);
-        var exists = (int)(cmd.ExecuteScalar() ?? 0);
+        using MySqlCommand cmd = new MySqlCommand($"SELECT EXISTS(SELECT Id FROM NewPlayers WHERE {player.GetQuery()});", con);
+        int exists = (int)(cmd.ExecuteScalar() ?? 0);
         return exists != 0;
     }
 
@@ -59,9 +59,9 @@ public class Database
     {
         try
         {
-            using var con = Connection.Clone();
+            using MySqlConnection con = Connection.Clone();
             con.Open();
-            using var cmd = new MySqlCommand(command, con);
+            using MySqlCommand cmd = new MySqlCommand(command, con);
             cmd.ExecuteNonQuery();
         }
         catch (Exception e)
@@ -75,10 +75,10 @@ public class Database
     {
         try
         {
-            var con = Connection.Clone();
+            MySqlConnection con = Connection.Clone();
             await con.OpenAsync(); 
             
-            var cmd = new MySqlCommand(command, con);
+            MySqlCommand cmd = new MySqlCommand(command, con);
             await cmd.ExecuteNonQueryAsync();
             
             await cmd.DisposeAsync();
@@ -95,9 +95,9 @@ public class Database
     {
         try
         {
-            using var con = Connection.Clone();
+            using MySqlConnection con = Connection.Clone();
             con.Open();
-            using var cmd = new MySqlCommand(command, con);
+            using MySqlCommand cmd = new MySqlCommand(command, con);
             return cmd.ExecuteScalar();
         }
         catch (Exception e)

@@ -17,15 +17,15 @@ public class CoreHintSendCommand : ICommand
             return false;
         }
 
-        if (!Player.TryGet(arguments.At(0), out var ply))
+        if (!Player.TryGet(arguments.At(0), out Player ply))
         {
             response = "Player not found";
             return false;
         }
 
-        var zone = (ScreenZone)int.Parse(arguments.At(1));
+        ScreenZone zone = (ScreenZone)int.Parse(arguments.At(1));
 
-        var msg = "";
+        string msg = "";
         for (int i = 2; i < arguments.Count; i++)
         {
             msg += arguments.At(i) + " ";

@@ -47,7 +47,7 @@ public class PlayerHandler
         if (Player.Get(ev.TargetOldRole.GetTeam()) is not Player[] { Length: 1 } players)
             return;
         
-        foreach (var player in players)
+        foreach (Player player in players)
         {
             player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
         }
@@ -58,7 +58,7 @@ public class PlayerHandler
         if (Player.Get(ev.Player.Role.Team) is not Player[] { Length: 2 } players)
             return;
         
-        foreach (var player in players)
+        foreach (Player player in players)
         {
             player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
         }

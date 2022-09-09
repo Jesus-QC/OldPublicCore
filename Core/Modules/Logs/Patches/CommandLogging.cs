@@ -14,11 +14,11 @@ public static class CommandLogging
     {
         try
         {
-            var args = q.Trim().Split(QueryProcessor.SpaceArray, 512, StringSplitOptions.RemoveEmptyEntries);
+            string[] args = q.Trim().Split(QueryProcessor.SpaceArray, 512, StringSplitOptions.RemoveEmptyEntries);
             if (args[0].StartsWith("$"))
                 return;
 
-            var player = sender is PlayerCommandSender playerCommandSender
+            Player player = sender is PlayerCommandSender playerCommandSender
                 ? Player.Get(playerCommandSender)
                 : Server.Host;
 

@@ -15,7 +15,7 @@ public class Leaderboard : ICommand
         
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        var ply = Player.Get(sender);
+        Player ply = Player.Get(sender);
         if (ply == null || ply == Server.Host)
         {
             response = "You have to be in-game";
@@ -35,24 +35,24 @@ public class Leaderboard : ICommand
             
         _lastUpdate = DateTime.Now;
             
-        var msg = "<size=25%><i>LEVEL</i><b>LEADERBOARD</b>";
+        string msg = "<size=25%><i>LEVEL</i><b>LEADERBOARD</b>";
         
-        using var anotherCon = Core.Database.Connection.Clone();
+        using MySqlConnection anotherCon = Core.Database.Connection.Clone();
         anotherCon.Open();
-        using var cmd = new MySqlCommand("SELECT PlayerId, Exp FROM Leveling ORDER BY Exp DESC LIMIT 5", anotherCon);
+        using MySqlCommand cmd = new MySqlCommand("SELECT PlayerId, Exp FROM Leveling ORDER BY Exp DESC LIMIT 5", anotherCon);
             
-        var number = 0;
+        int number = 0;
 
-        using var newCon = Core.Database.Connection.Clone();
+        using MySqlConnection newCon = Core.Database.Connection.Clone();
         newCon.Open();
             
-        using var obj = cmd.ExecuteReader();
+        using MySqlDataReader obj = cmd.ExecuteReader();
             
         if (obj.HasRows)
         {
             while (obj.Read())
             {
-                var name = new MySqlCommand($"SELECT Username FROM NewPlayers WHERE Id='{obj.GetValue(0)}'", newCon).ExecuteScalar();
+                object name = new MySqlCommand($"SELECT Username FROM NewPlayers WHERE Id='{obj.GetValue(0)}'", newCon).ExecuteScalar();
                 msg += $"\n<b>#{number}</b> <i><color={_colorList[number]}>{name}</color></i> with <i><color=#ffe81c>{obj.GetValue(1)}</color></i> exp ({LevelExtensions.GetLevel((int)obj.GetValue(1))})";
                 number++;
             }

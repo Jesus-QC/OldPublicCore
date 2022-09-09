@@ -37,9 +37,9 @@ public class EventHandler
     private async Task Timer()
     {
         int i = 0;
-        var tip = "This is a secret message, wow.";
-        var builder = new StringBuilder();
-        var tipBuilder = new StringBuilder();
+        string tip = "This is a secret message, wow.";
+        StringBuilder builder = new StringBuilder();
+        StringBuilder tipBuilder = new StringBuilder();
         for (;;)
         {
             if (_cancellation.IsCancellationRequested)
@@ -74,10 +74,10 @@ public class EventHandler
 
             tipBuilder.Append("\n\n" + GetCount() + "<size=70%><color=#9342f5>❓</color>" + tip + "</size>");
 
-            var text = builder.ToString();
-            var tipText = tipBuilder.ToString();
+            string text = builder.ToString();
+            string tipText = tipBuilder.ToString();
                 
-            foreach (var player in Player.List)
+            foreach (Player player in Player.List)
             {
                 if(player.Role.Type != RoleType.Spectator)
                     continue;

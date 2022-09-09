@@ -9,7 +9,7 @@ public class ToggleListCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        var player = Player.Get(sender);
+        Player player = Player.Get(sender);
 
         if (player is null)
         {

@@ -9,14 +9,14 @@ public class Show : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        var ply = Player.Get(sender);
+        Player ply = Player.Get(sender);
         if (ply == null || ply == Server.Host)
         {
             response = "You have to be in-game";
             return false;
         }
 
-        var lvl = ply.GetLevel();
+        int lvl = ply.GetLevel();
             
         response = $"Your level is {lvl}.";
         return true;

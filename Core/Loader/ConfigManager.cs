@@ -16,7 +16,7 @@ public static class ConfigManager
     
     public static void LoadConfig(ICoreModule<IConfig> module)
     {
-        var path = GetPath(module);
+        string path = GetPath(module);
         if (!File.Exists(path))
         {
             Log.Warn($"{LogUtils.GetBackgroundColor(LogColor.Magenta)}{LogUtils.GetColor(LogColor.White)}{module.Name} doesn't have default configs, generating...");

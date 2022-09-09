@@ -52,7 +52,7 @@ public static class LevelExtensions
 
         player.ShowBadge();
 
-        var lastSeen = new DateTime((long) Core.Database.ExecuteScalar($"SELECT LastSeen FROM SlStats WHERE PlayerId='{player.GetId()}';"));
+        DateTime lastSeen = new DateTime((long) Core.Database.ExecuteScalar($"SELECT LastSeen FROM SlStats WHERE PlayerId='{player.GetId()}';"));
 
         if (lastSeen.DayOfYear < DateTime.UtcNow.DayOfYear || lastSeen.Year < DateTime.UtcNow.Year) 
             player.AddExp(LevelToken.Welcome, 50);
@@ -125,7 +125,7 @@ public static class LevelExtensions
         if (Exp.ContainsKey(player))
             return Exp[player];
             
-        var exp = (int) Core.Database.ExecuteScalar($"SELECT Exp FROM Leveling WHERE PlayerId='{player.GetId()}';");
+        int exp = (int) Core.Database.ExecuteScalar($"SELECT Exp FROM Leveling WHERE PlayerId='{player.GetId()}';");
         Exp.Add(player, exp);
         return exp;
     }
@@ -140,7 +140,7 @@ public static class LevelExtensions
         if (SpecialAdvancements.ContainsKey(player))
             return SpecialAdvancements[player];
             
-        var sp = (string) Core.Database.ExecuteScalar($"SELECT Achievements FROM Leveling WHERE PlayerId='{player.GetId()}';");
+        string sp = (string) Core.Database.ExecuteScalar($"SELECT Achievements FROM Leveling WHERE PlayerId='{player.GetId()}';");
         SpecialAdvancements.Add(player, sp);
         return sp;
     }

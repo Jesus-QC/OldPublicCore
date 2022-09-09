@@ -14,7 +14,7 @@ public class DisguiseCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        if (Player.TryGet(sender, out var player))
+        if (Player.TryGet(sender, out Player player))
         {
             if (!sender.CheckPermission("staff.disguise"))
             {

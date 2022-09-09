@@ -11,7 +11,7 @@ public class RaNamesPatch
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        var newInstructions = ListPool<CodeInstruction>.Shared.Rent();
+        List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent();
         
         newInstructions.AddRange(new CodeInstruction[]
         {
@@ -20,7 +20,7 @@ public class RaNamesPatch
             new (OpCodes.Ret)
         });
         
-        foreach (var instruction in newInstructions)
+        foreach (CodeInstruction instruction in newInstructions)
             yield return instruction;
 
         ListPool<CodeInstruction>.Shared.Return(newInstructions);

@@ -60,7 +60,7 @@ public class EventsHandler
                 if(!_isActivated)
                     continue;
                     
-                foreach (var player in Player.List)
+                foreach (Player player in Player.List)
                 {
                     if (player is null
                         || !player.IsAlive
@@ -87,13 +87,13 @@ public class EventsHandler
         
         _affectedPlayers.Add(player);
         
-        var inGodMode = player.IsGodModeEnabled;
+        bool inGodMode = player.IsGodModeEnabled;
         player.IsGodModeEnabled = true;
         player.CanSendInputs = false;
 
         player.ReferenceHub.scp106PlayerScript.GrabbedPosition = player.Position + (Vector3.up * 1.5f);
         Vector3 startPosition = player.Position, endPosition = player.Position -= Vector3.up * 1.23f * player.GameObject.transform.localScale.y;
-        for (var i = 0; i < 30; i++)
+        for (int i = 0; i < 30; i++)
         {
             player.Position = Vector3.Lerp(startPosition, endPosition, i / 30f);
             yield return 0f;

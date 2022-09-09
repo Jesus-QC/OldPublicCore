@@ -59,7 +59,7 @@ public class StalkController : MonoBehaviour
 
     private IEnumerator<float> AnnounceCooldown(int cooldown)
     {
-        for (var i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (cooldown - i < 0)
                 yield break;
@@ -83,9 +83,9 @@ public class StalkController : MonoBehaviour
             return false;
         }
             
-        var availablePlayers = new List<Player>();
+        List<Player> availablePlayers = new List<Player>();
 
-        foreach (var player in Player.List)
+        foreach (Player player in Player.List)
             if ((player.Role.Team == Team.CDP || player.Role.Team == Team.MTF || player.Role.Team == Team.RSC) && player.CurrentRoom is not { Type: RoomType.Pocket or RoomType.Unknown })
                 availablePlayers.Add(player);
 
@@ -95,9 +95,9 @@ public class StalkController : MonoBehaviour
             return true;
         }
 
-        var script = _player.ReferenceHub.scp106PlayerScript;
+        Scp106PlayerScript script = _player.ReferenceHub.scp106PlayerScript;
 
-        var rndPlayer = availablePlayers[Random.Range(0, availablePlayers.Count)];
+        Player rndPlayer = availablePlayers[Random.Range(0, availablePlayers.Count)];
 
         if (rndPlayer is null)
         {
@@ -105,7 +105,7 @@ public class StalkController : MonoBehaviour
             return true;
         }
             
-        if (!Physics.Raycast(rndPlayer.Position, Vector3.down, out var raycastHit, 10f, script.teleportPlacementMask))
+        if (!Physics.Raycast(rndPlayer.Position, Vector3.down, out RaycastHit raycastHit, 10f, script.teleportPlacementMask))
         {
             _player.SendHint(ScreenZone.Center, "\n\n\n<color=red>ERROR</color>", 3);
             return false;
@@ -121,7 +121,7 @@ public class StalkController : MonoBehaviour
 
     private IEnumerator<float> StartStalk(Vector3 pos, Room room)
     {
-        var script = _player.ReferenceHub.scp106PlayerScript;
+        Scp106PlayerScript script = _player.ReferenceHub.scp106PlayerScript;
             
         script.NetworkportalPosition = pos;
 

@@ -11,7 +11,7 @@ public class CoreVersionCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        if (Player.TryGet(sender, out var player))
+        if (Player.TryGet(sender, out Player player))
         {
             player.SendHint(ScreenZone.Notifications, $"⌈ <color=#aeff70>◉</color> | Core Test Token | <color=#aeff70>+ 0XP</color> ⌋");
             player.SendHint(ScreenZone.Notifications, $"⌈ <color=#70b0ff>◈</color> | Core Test Token | <color=#70b0ff>+ 0XP</color> ⌋");

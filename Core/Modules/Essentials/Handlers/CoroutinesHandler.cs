@@ -17,7 +17,7 @@ public static class CoroutinesHandler
         yield return Timing.WaitForSeconds(600);
         for(;;)
         {
-            foreach (var doll in Map.Ragdolls)
+            foreach (Exiled.API.Features.Ragdoll doll in Map.Ragdolls)
                 NetworkServer.Destroy(doll.GameObject);
 
             yield return Timing.WaitForSeconds(300);
@@ -26,7 +26,7 @@ public static class CoroutinesHandler
         
     public static IEnumerator<float> BetterDisarm()
     {
-        var escapeZone = Vector3.zero;
+        Vector3 escapeZone = Vector3.zero;
 
         for (;;)
         {

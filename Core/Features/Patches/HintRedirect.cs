@@ -1,3 +1,4 @@
+using System;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
@@ -11,14 +12,14 @@ public static class HintRedirect
 {
     public static bool Prefix(HintDisplay __instance, Hint hint)
     {
-        var type = hint.GetType();
+        Type type = hint.GetType();
             
         if (type == typeof(TranslationHint))
             return false;
             
         if (type == typeof(TextHint))
         {
-            var t = hint as TextHint;
+            TextHint t = hint as TextHint;
             Player.Get(__instance.gameObject).SendHint(ScreenZone.Center ,t.Text, t.DurationScalar);
             return false;
         }

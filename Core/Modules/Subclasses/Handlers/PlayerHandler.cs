@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
+using Core.Modules.Subclasses.Features;
 using Core.Modules.Subclasses.Features.Enums;
 using Core.Modules.Subclasses.Features.Extensions;
 using Exiled.API.Enums;
@@ -26,7 +27,7 @@ public class PlayerHandler
             return;
         }
 
-        var subclass = ev.NewRole.GetRandomSubclass();
+        Subclass subclass = ev.NewRole.GetRandomSubclass();
 
         if (subclass is null)
         {
@@ -35,7 +36,7 @@ public class PlayerHandler
             ev.Player.CustomInfo = string.Empty;
             ev.Player.SetSubclass(null);
             
-            foreach (var player in ev.Player.CurrentSpectatingPlayers)
+            foreach (Player player in ev.Player.CurrentSpectatingPlayers)
             {
                 player.ClearHint(ScreenZone.TopBar);
                 player.ClearHint(ScreenZone.TopBarSecondary);
@@ -56,7 +57,7 @@ public class PlayerHandler
         {
             ev.Ammo.Clear();
 
-            foreach (var ammo in subclass.SpawnAmmo)
+            foreach (KeyValuePair<ItemType, ushort> ammo in subclass.SpawnAmmo)
                 ev.Ammo.Add(ammo.Key, ammo.Value);
         }
 
@@ -75,7 +76,7 @@ public class PlayerHandler
         if(ev.RoleType is RoleType.Tutorial or RoleType.Spectator)
             return;
 
-        var s = ev.Player.GetSubclass();
+        Subclass s = ev.Player.GetSubclass();
         if (s is null)
         {
             if(ev.Player.Scale != Vector3.one)
@@ -92,7 +93,7 @@ public class PlayerHandler
         
         ev.Player.CustomInfo = $"<color=#50C878>{(s.Abilities.HasFlag(SubclassAbility.Disguised) ? "Default" : s.Name)}\n(Custom Subclass)</color>";
         
-        foreach (var player in ev.Player.CurrentSpectatingPlayers)
+        foreach (Player player in ev.Player.CurrentSpectatingPlayers)
         {
             player.SendHint(ScreenZone.TopBar, s.TopBar);
             player.SendHint(ScreenZone.TopBarSecondary, s.SecondaryTopBar);
@@ -117,8 +118,8 @@ public class PlayerHandler
         if(ev.Attacker is null || ev.Target is null || ev.Attacker == ev.Target || ev.Target.Role.Team == ev.Attacker.Role.Team)
             return;
 
-        var tS = ev.Target.GetSubclass();
-        var s = ev.Attacker.GetSubclass();
+        Subclass tS = ev.Target.GetSubclass();
+        Subclass s = ev.Attacker.GetSubclass();
         
         if (tS is null || s is null)
             return;
@@ -149,9 +150,9 @@ public class PlayerHandler
 
     public void OnExplodingGrenade(ExplodingGrenadeEventArgs ev)
     {
-        foreach (var target in ev.TargetsToAffect.ToArray())
+        foreach (Player target in ev.TargetsToAffect.ToArray())
         {
-            var subclass = target.GetSubclass();
+            Subclass subclass = target.GetSubclass();
             if(subclass is null || !subclass.Abilities.HasFlag(SubclassAbility.GrenadeImmunity))
                 return;
 
@@ -164,7 +165,7 @@ public class PlayerHandler
         if(ev.Player == ev.NewTarget)
             return;
 
-        var subclass = ev.NewTarget.GetSubclass();
+        Subclass subclass = ev.NewTarget.GetSubclass();
         
         if (subclass is null)
         {

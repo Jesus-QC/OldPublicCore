@@ -7,7 +7,7 @@ public class PriorityComparer : IComparer<ICoreModule<IConfig>>
 {
     public int Compare(ICoreModule<IConfig> x, ICoreModule<IConfig> y)
     {
-        var value = y.Priority.CompareTo(x.Priority);
+        int value = y.Priority.CompareTo(x.Priority);
         if (value == 0)
             value = x.GetHashCode().CompareTo(y.GetHashCode());
 

@@ -10,17 +10,17 @@ public static class DisabledManager
 
     public static void Load()
     {
-        var path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List");
+        string path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List");
         Directory.CreateDirectory(path);
 
-        var filePath = Path.Combine(path, "hiddenlist.txt");
+        string filePath = Path.Combine(path, "hiddenlist.txt");
 
         if (!File.Exists(filePath))
         {
             File.WriteAllText(filePath, "# This are the players with the spectator list hidden.");
         }
 
-        foreach (var line in File.ReadLines(filePath))
+        foreach (string line in File.ReadLines(filePath))
         {
             if(line.StartsWith("#"))
                 continue;
@@ -31,7 +31,7 @@ public static class DisabledManager
 
     public static void Add(Player player)
     {
-        var path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List", "hiddenlist.txt");
+        string path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List", "hiddenlist.txt");
         File.AppendAllText(path, '\n' + player.UserId);
         _hiddenPlayers.Add(player.UserId);
     }
@@ -40,11 +40,11 @@ public static class DisabledManager
     {
         _hiddenPlayers.Remove(player.UserId);
         
-        var path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List", "hiddenlist.txt");
+        string path = Path.Combine(Paths.Configs, "Core " + Server.Port, "Spectator List", "hiddenlist.txt");
 
-        var newList = new List<string>();
+        List<string> newList = new List<string>();
 
-        foreach (var line in File.ReadLines(path))
+        foreach (string line in File.ReadLines(path))
         {
             if(line != player.UserId && !string.IsNullOrEmpty(line))
                 newList.Add(line);

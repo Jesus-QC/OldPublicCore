@@ -7,7 +7,7 @@ public static class RarityExtensions
 {
     public static CoreRarity GetRandomRarity()
     {
-        var value = Random.Range(0, 101);
+        int value = Random.Range(0, 101);
 
         return value switch
         {

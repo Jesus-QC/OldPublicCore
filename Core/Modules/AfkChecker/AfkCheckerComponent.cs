@@ -19,8 +19,8 @@ public class AfkCheckerComponent : MonoBehaviour
         if (_counter < 1)
             return;
         
-        var pos = Player.Position; 
-        var rot = Player.Rotation;
+        Vector3 pos = Player.Position; 
+        Vector2 rot = Player.Rotation;
             
         if (Player.Role != RoleType.Spectator && Player.Role != RoleType.Tutorial && _lastPos == pos && _lastRot == rot)
         {

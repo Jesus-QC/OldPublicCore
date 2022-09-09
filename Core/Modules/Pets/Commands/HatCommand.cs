@@ -3,6 +3,7 @@ using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using Mirror;
+using UnityEngine;
 
 namespace Core.Modules.Pets.Commands;
 
@@ -11,7 +12,7 @@ public class HatCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        if (!sender.CheckPermission("pet.hat") || !Player.TryGet(sender, out var player))
+        if (!sender.CheckPermission("pet.hat") || !Player.TryGet(sender, out Player player))
         {
             response = "You don't have enough perms to do that.";
             return true;
@@ -24,7 +25,7 @@ public class HatCommand : ICommand
             return true;
         }
 
-        foreach (var pet in PetsManager.Pets[player])
+        foreach (GameObject pet in PetsManager.Pets[player])
             NetworkServer.Destroy(pet);
         
         PetsManager.Pets.Remove(player);

@@ -6,7 +6,7 @@ public static class PlayerExtensions
 {
     public static bool HasIllegalName(this Player player)
     {
-        foreach (var disallowedWord in EssentialsModule.PluginConfig.DisallowedWordsInName)
+        foreach (string disallowedWord in EssentialsModule.PluginConfig.DisallowedWordsInName)
         {
             if (player.Nickname.Contains(disallowedWord))
                 return true;

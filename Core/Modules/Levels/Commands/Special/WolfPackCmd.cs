@@ -12,9 +12,9 @@ public class WolfPackCmd : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        if (Player.TryGet(sender, out var ply))
+        if (Player.TryGet(sender, out Player ply))
         {
-            var achievements = ply.GetSpecialAdvancements();
+            string achievements = ply.GetSpecialAdvancements();
             if (!achievements.Contains('0'))
             {
                 ply.AddExp(LevelToken.WolfPackForever, 1000);

@@ -19,7 +19,7 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
         {
             if (!string.IsNullOrEmpty(Config.Path))
             {
-                foreach (var process in Process.GetProcesses())
+                foreach (Process process in Process.GetProcesses())
                 {
                     if (process.ProcessName is "Core.Bot")
                     {

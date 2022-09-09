@@ -62,7 +62,7 @@ public class SubclassesManager
         if(Activator.CreateInstance(type) is not Subclass subclass || type.GetCustomAttributes(typeof(DisabledFeatureAttribute), false).Any())
             return;
 
-        var count = SubclassesById.Count;
+        int count = SubclassesById.Count;
         subclass.Id = count;
         
         subclass.TopBar = subclass.Color is null
@@ -72,7 +72,7 @@ public class SubclassesManager
         
         SubclassesById.Add(count, subclass);
 
-        foreach (var role in subclass.AffectedRoles)
+        foreach (RoleType role in subclass.AffectedRoles)
         {
             if(!SubclassesByRole.ContainsKey(role))
                 SubclassesByRole.Add(role, new Dictionary<CoreRarity, List<Subclass>>());

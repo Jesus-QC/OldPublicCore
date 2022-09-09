@@ -14,7 +14,7 @@ public static class ConsoleCommandLogging
     {
         try
         {
-            var player = Player.Get(__instance._hub);
+            Player player = Player.Get(__instance._hub);
             if(player != null)
                 WebhookSender.AddMessage($"{player.Nickname.DiscordParse()} ({player.UserId ?? "Srv"}) >> **`{query.DiscordParse()}`**", WebhookType.ConsoleCommandLogs);
         }

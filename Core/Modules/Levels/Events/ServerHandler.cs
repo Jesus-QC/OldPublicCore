@@ -34,13 +34,13 @@ public class ServerHandler
     public void OnRoundEnded(RoundEndedEventArgs ev)
     {
         if (ev.LeadingTeam is LeadingTeam.ChaosInsurgency)
-            foreach (var ply in Player.Get(Side.ChaosInsurgency))
+            foreach (Player ply in Player.Get(Side.ChaosInsurgency))
                 ply.AddExp(LevelToken.CrimesPay, 20);
         if(ev.LeadingTeam is LeadingTeam.Anomalies)
-            foreach (var ply in Player.Get(Team.SCP))
+            foreach (Player ply in Player.Get(Team.SCP))
                 ply.AddExp(LevelToken.Destruction, 20);
 
-        foreach (var player in Player.List)
+        foreach (Player player in Player.List)
         {
             if(player.GetRoundExp() > 4999)
                 player.AddExp(LevelToken.Cursed, 250);
@@ -53,14 +53,14 @@ public class ServerHandler
         {
             case SpawnableTeamType.ChaosInsurgency:
             {
-                foreach (var player in ev.Players)
+                foreach (Player player in ev.Players)
                     if(player.CheckCooldown(LevelToken.Invaders, 1))
                         player.AddExp(LevelToken.Invaders, 20);
                 break;
             }
             case SpawnableTeamType.NineTailedFox:
             {
-                foreach (var player in ev.Players)
+                foreach (Player player in ev.Players)
                     if(player.CheckCooldown(LevelToken.Saviors, 1))
                         player.AddExp(LevelToken.Saviors, 20);
                 break;

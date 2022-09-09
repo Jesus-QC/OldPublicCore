@@ -22,7 +22,7 @@ public static class ModuleLoader
         
         Log.Info("Loading modules");
         
-        foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
+        foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
         {
             if (type.IsAbstract || type.IsInterface)
             {
@@ -34,14 +34,14 @@ public static class ModuleLoader
                 continue;
             }
 
-            var ctr = type.GetConstructor(Type.EmptyTypes)!;
-            var module = ctr.Invoke(null) as ICoreModule<IConfig>;
+            ConstructorInfo ctr = type.GetConstructor(Type.EmptyTypes)!;
+            ICoreModule<IConfig> module = ctr.Invoke(null) as ICoreModule<IConfig>;
 
             ConfigManager.LoadConfig(module);
             Modules.Add(module!);
         }
 
-        foreach (var module in Modules)
+        foreach (ICoreModule<IConfig> module in Modules)
         {
             try
             {
@@ -65,7 +65,7 @@ public static class ModuleLoader
 
     public static void UnLoad()
     {
-        foreach (var module in EnabledModules)
+        foreach (ICoreModule<IConfig> module in EnabledModules)
         {
             module.OnDisabled();
         }

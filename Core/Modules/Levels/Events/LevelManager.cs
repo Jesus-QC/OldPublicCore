@@ -15,15 +15,15 @@ public static class LevelManager
         
     public static void ClearCoroutines()
     {
-        foreach (var c in Coroutines)
+        foreach (CoroutineHandle c in Coroutines)
             Timing.KillCoroutines(c);
         Coroutines.Clear();
     }
         
     public static IEnumerator<float> Explorer(Player player)
     {
-        var secondsPlayed = 0;
-        var secondsAlive = 0;
+        int secondsPlayed = 0;
+        int secondsAlive = 0;
         byte spectator = 0;
         for (;;)
         {

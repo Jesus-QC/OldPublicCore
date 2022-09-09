@@ -47,7 +47,7 @@ public class LightsModule : CoreModule<LightsConfig>
         {
             yield return Timing.WaitForSeconds(Random.Range(Config.MinRandomInterval, Config.MaxRandomInterval));
 
-            var time = Random.Range(Config.MinRandomBlackoutTime, Config.MaxRandomBlackoutTime);
+            int time = Random.Range(Config.MinRandomBlackoutTime, Config.MaxRandomBlackoutTime);
             
             Cassie.Message(Config.CassieMessage);
             Map.TurnOffAllLights(time);

@@ -33,7 +33,7 @@ public static class PlayerExtensions
             if(!player.Exists())
                 player.AddToTheDatabase();
 
-            var id = player.GetId();
+            int id = player.GetId();
                 
             await Core.Database.ExecuteNonQueryAsync($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("'", "\\'")}' WHERE Id='{id}';");
         }
@@ -45,17 +45,17 @@ public static class PlayerExtensions
     }
     public static async void Goodbye(this Player player)
     {
-        var secs = 0;
+        int secs = 0;
 
         if (Hubs.ContainsKey(player))
         {
-            var hub = Hubs[player];
+            Components.PlayerManager hub = Hubs[player];
             secs = hub.GetSeconds;
             Object.Destroy(Hubs[player]);
             player.RemoveFromTheHub();
         }
             
-        var id = player.GetId();
+        int id = player.GetId();
         await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET RoundsPlayed=RoundsPlayed+1, TimePlayed=TimePlayed+{secs}, LastSeen='{DateTime.UtcNow.Ticks}' WHERE PlayerId='{id}';");
     }
 
@@ -80,7 +80,7 @@ public static class PlayerExtensions
         if (Ids.ContainsKey(player))
             return Ids[player];
 
-        var id = (int)Core.Database.ExecuteScalar($"SELECT Id FROM NewPlayers WHERE {player.GetQuery()};");
+        int id = (int)Core.Database.ExecuteScalar($"SELECT Id FROM NewPlayers WHERE {player.GetQuery()};");
         Ids.Add(player, id);
         return id;
     }

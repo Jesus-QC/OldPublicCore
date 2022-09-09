@@ -12,9 +12,9 @@ public class ScpVoiceChatPatch
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
     {
-        var newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
+        List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
 
-        var lab = generator.DefineLabel();
+        Label lab = generator.DefineLabel();
         
         newInstructions.InsertRange(0, new []
         {
@@ -32,7 +32,7 @@ public class ScpVoiceChatPatch
             new CodeInstruction(OpCodes.Nop).WithLabels(lab)
         });
 
-        foreach (var instruction in newInstructions)
+        foreach (CodeInstruction instruction in newInstructions)
             yield return instruction;
         
         ListPool<CodeInstruction>.Shared.Return(newInstructions);

@@ -64,7 +64,7 @@ public class CustomHUD : MonoBehaviour
 
     private async void DrawHud()
     {
-        var msg = await Task.Run(() =>
+        string msg = await Task.Run(() =>
         {
             UpdateNotifications();
             return GetMessage();
@@ -93,7 +93,7 @@ public class CustomHUD : MonoBehaviour
             return;
         }
 
-        var i = (int) zone;
+        int i = (int) zone;
         _messages[i] = message;
         _timers[i] = time;
     }
@@ -118,7 +118,7 @@ public class CustomHUD : MonoBehaviour
             return;
         }
         
-        var i = (int) zone;
+        int i = (int) zone;
         _messages[i] = string.Empty;
         _timers[i] = -1;
     }
@@ -128,7 +128,7 @@ public class CustomHUD : MonoBehaviour
         _builder.Clear();
         _builder.Append(DefaultHUD);
 
-        var color = _player.Role.Color.ToHex();
+        string color = _player.Role.Color.ToHex();
         
         _builder = _builder.Replace("[8]", $"<color={color}>");
         _builder = _builder.Replace("[9]", $"{_cachedMsg} | {GetLevelMessage()} | tps: {ServerCore.Tps}");
@@ -136,7 +136,7 @@ public class CustomHUD : MonoBehaviour
         _builder = _builder.Replace("[5]", $"<color={color}>" + _topBar + '\n');
         _builder = _builder.Replace("[6]", _secondaryTopBar + "</color>\n");
         
-        for (var i = 1; i < _timers.Count; i++)
+        for (int i = 1; i < _timers.Count; i++)
         {
             if (_timers[i] >= 0)
                 _timers[i] -= 0.5f;
@@ -144,7 +144,7 @@ public class CustomHUD : MonoBehaviour
             if (_timers[i] < 0)
                 _messages[i] = string.Empty;
 
-            var message = _messages[i].TrimEnd('\n');
+            string message = _messages[i].TrimEnd('\n');
                 
             if (string.IsNullOrEmpty(message))
                 message = '\n' + message;
@@ -160,9 +160,9 @@ public class CustomHUD : MonoBehaviour
         _secondaryBuilder.Clear();
         _secondaryBuilder.Append(text);
            
-        var textLines = text.Count(x => x == '\n');
+        int textLines = text.Count(x => x == '\n');
 
-        for (var i = 0; i < linesNeeded - textLines; i++)
+        for (int i = 0; i < linesNeeded - textLines; i++)
             _secondaryBuilder.Append('\n');
 
         return _secondaryBuilder.ToString();
@@ -173,7 +173,7 @@ public class CustomHUD : MonoBehaviour
         if (_dnt)
             return "do not track";
 
-        var exp = _player.GetExp();
+        int exp = _player.GetExp();
         return $"level: {LevelExtensions.GetLevel(exp)} | next: {exp % LevelExtensions.Divider}/{LevelExtensions.Divider}";
     }
 

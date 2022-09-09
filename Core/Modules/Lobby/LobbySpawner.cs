@@ -12,6 +12,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using GameCore;
+using InventorySystem;
 using InventorySystem.Configs;
 using MEC;
 using UnityEngine;
@@ -24,7 +25,8 @@ namespace Core.Modules.Lobby;
 public class LobbySpawner
 {
     private GameObject _lobbyLights;
-    //private readonly HashSet<GameObject> _dummies = new();
+    
+    private readonly HashSet<GameObject> _map = new();
     private readonly HashSet<TeamTrigger> _triggers = new();
 
     private static Room _lobbyRoom;
@@ -49,7 +51,7 @@ public class LobbySpawner
         GameObject.Find("StartRound").transform.localScale = Vector3.zero;
 
         _lobbyRoom = Room.Get(RoomType.Hcz106);
-        var localPosition = _lobbyRoom.Transform;
+        Transform localPosition = _lobbyRoom.Transform;
         // var localRotation = _lobbyRoom.Transform.localRotation;
 
         // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * -135, RoleType.ClassD, "Class-Ds"));
@@ -103,7 +105,7 @@ public class LobbySpawner
             
         else if (_status == LobbyStatus.Starting)
         {
-            var role = _spawnQueue.ContainsKey(ev.Player.Id) ? _spawnQueue[ev.Player.Id] : RoleType.ClassD;
+            RoleType role = _spawnQueue.ContainsKey(ev.Player.Id) ? _spawnQueue[ev.Player.Id] : RoleType.ClassD;
             ev.NewRole = role;
                 
             ev.Items.Clear();
@@ -111,9 +113,9 @@ public class LobbySpawner
 
             if (!StartingInventories.DefinedInventories.ContainsKey(role)) 
                 return;
-            var inv = StartingInventories.DefinedInventories[role];
+            InventoryRoleInfo inv = StartingInventories.DefinedInventories[role];
             ev.Items.AddRange(inv.Items);
-            foreach (var am in inv.Ammo)
+            foreach (KeyValuePair<ItemType, ushort> am in inv.Ammo)
                 ev.Ammo.Add(am.Key, am.Value);
 
             if (_overwatch.Contains(ev.Player))
@@ -143,15 +145,15 @@ public class LobbySpawner
             MapCore.ClearHintZone(ScreenZone.TopBar);
             MapCore.ClearHintZone(ScreenZone.TopBarSecondary);
 
-            var classElections = new Dictionary<Team, List<int>>() { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new(), [Team.TUT] = new()};
+            Dictionary<Team, List<int>> classElections = new Dictionary<Team, List<int>>() { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new(), [Team.TUT] = new()};
 
-            foreach (var player in Player.List)
+            foreach (Player player in Player.List)
                 classElections[GetPlayerElection(player)].Add(player.Id);
 
             ClearDummies();
 
-            var classCounts = new Dictionary<Team, ushort> {[Team.CDP] = 0, [Team.RSC] = 0, [Team.MTF] = 0, [Team.SCP] = 0, [Team.TUT] = 0};
-            var queue = ConfigFile.ServerConfig.GetString("team_respawn_queue", "401431403144144");
+            Dictionary<Team, ushort> classCounts = new Dictionary<Team, ushort> {[Team.CDP] = 0, [Team.RSC] = 0, [Team.MTF] = 0, [Team.SCP] = 0, [Team.TUT] = 0};
+            string queue = ConfigFile.ServerConfig.GetString("team_respawn_queue", "401431403144144");
 
             for (int i = 0; i < Player.Dictionary.Count; i++)
             {
@@ -175,50 +177,50 @@ public class LobbySpawner
                 }
             }
 
-            var notChosenIds = Player.List.Select(player => player.Id).ToList();
-            var chosenTeams = new Dictionary<Team, List<int>> { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new()};
+            List<int> notChosenIds = Player.List.Select(player => player.Id).ToList();
+            Dictionary<Team, List<int>> chosenTeams = new Dictionary<Team, List<int>> { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new()};
 
-            foreach (var team in chosenTeams.Keys.ToList())
+            foreach (Team team in chosenTeams.Keys.ToList())
             {
-                var maxAmount = classCounts[team];
+                ushort maxAmount = classCounts[team];
 
                 if (maxAmount == 0) continue;
 
-                var elections = classElections[team];
+                List<int> elections = classElections[team];
                 
                 if (elections.Count <= maxAmount)
                 {
                     chosenTeams[team] = elections;
-                    foreach (var plyId in elections)
+                    foreach (int plyId in elections)
                         notChosenIds.Remove(plyId);
                 }
                 else
                     for (int i = 0; i < maxAmount; i++)
                     {
-                        var rndId = elections[Random.Range(0, elections.Count)];
+                        int rndId = elections[Random.Range(0, elections.Count)];
                         chosenTeams[team].Add(rndId);
                         notChosenIds.Remove(rndId);
                         elections.Remove(rndId);
                     }
             }
             
-            foreach (var team in chosenTeams.Keys.ToList())
+            foreach (Team team in chosenTeams.Keys.ToList())
             {
-                var maxAmount = classCounts[team];
+                ushort maxAmount = classCounts[team];
 
                 if (maxAmount == 0) continue;
 
-                var emptySlots = maxAmount - chosenTeams[team].Count;
+                int emptySlots = maxAmount - chosenTeams[team].Count;
 
                 for (int i = 0; i < emptySlots; i++)
                 {
-                    var rndId = notChosenIds[Random.Range(0, notChosenIds.Count)];
+                    int rndId = notChosenIds[Random.Range(0, notChosenIds.Count)];
                     chosenTeams[team].Add(rndId);
                     notChosenIds.Remove(rndId);
                 }
             }
 
-            foreach (var team in chosenTeams)
+            foreach (KeyValuePair<Team, List<int>> team in chosenTeams)
             {
                 if (team.Key == Team.SCP)
                     continue;
@@ -239,21 +241,21 @@ public class LobbySpawner
                         throw new ArgumentOutOfRangeException();
                 }
 
-                foreach (var playerId in team.Value)
+                foreach (int playerId in team.Value)
                 {
                     if(!_spawnQueue.ContainsKey(playerId))
                         _spawnQueue.Add(playerId, role);
                 }
             }
             
-            var scpRoles = new List<RoleType> { RoleType.Scp049, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp93953, RoleType.Scp93989 };
+            List<RoleType> scpRoles = new List<RoleType> { RoleType.Scp049, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp93953, RoleType.Scp93989 };
 
             if(Server.PlayerCount > 15)
                 scpRoles.Add(RoleType.Scp079);
                 
-            foreach (var scp in chosenTeams[Team.SCP])
+            foreach (int scp in chosenTeams[Team.SCP])
             {
-                var rndScp = scpRoles[Random.Range(0, scpRoles.Count)];
+                RoleType rndScp = scpRoles[Random.Range(0, scpRoles.Count)];
                 if (_spawnQueue.ContainsKey(scp))
                     _spawnQueue.Remove(scp);
                 
@@ -271,7 +273,7 @@ public class LobbySpawner
 
     private Team GetPlayerElection(Player player)
     {
-        foreach (var t in _triggers)
+        foreach (TeamTrigger t in _triggers)
         {
             if (t.ContainsPlayer(player))
             {
@@ -307,10 +309,10 @@ public class LobbySpawner
 
     private static TeamTrigger SpawnTrigger(Team team, Vector3 pos)
     {
-        var trigger = new GameObject($"{team}-trigger");
+        GameObject trigger = new GameObject($"{team}-trigger");
         trigger.transform.position = pos;
         trigger.transform.localScale = Vector3.one * 5;
-        var tt = trigger.AddComponent<TeamTrigger>();
+        TeamTrigger tt = trigger.AddComponent<TeamTrigger>();
         tt.team = team;
         return tt;
     }
@@ -323,7 +325,7 @@ public class LobbySpawner
             _dummies.Remove(dummy);
         }*/
 
-        foreach (var trigger in _triggers.ToList())
+        foreach (TeamTrigger trigger in _triggers.ToList())
         {
             Object.Destroy(trigger);
             _triggers.Remove(trigger);
@@ -334,8 +336,8 @@ public class LobbySpawner
 
     private IEnumerator<float> ServerHUD()
     {
-        var welcome = $"<u>W<lowercase>elcome to</lowercase></u>\n{LobbyModule.LobbyConfig.ServerName}\n<color=#c09ad8>(</color><color=#b7a8e2>∩</color><color=#aeb6ec>｀</color><color=#a5c4f5>-</color><color=#9cd2ff>´</color><color=#a5d6f7>)</color><color=#aed9ee>⊃</color><color=#b7dde6>━</color><color=#c0e1de>━</color><color=#c9e4d5>☆</color><color=#d2e8cd>ﾟ</color><color=#dbebc4>.</color><color=#e4efbc>*</color><color=#edf3b4>･</color><color=#f6f6ab>｡</color><color=#fffaa3>ﾟ</color>";
-        var discord = $"<align=right><color=#5865F2><u></color>J<lowercase>oin our discord!</lowercase></u>\n{LobbyModule.LobbyConfig.DiscordLink}</align>";
+        string welcome = $"<u>W<lowercase>elcome to</lowercase></u>\n{LobbyModule.LobbyConfig.ServerName}\n<color=#c09ad8>(</color><color=#b7a8e2>∩</color><color=#aeb6ec>｀</color><color=#a5c4f5>-</color><color=#9cd2ff>´</color><color=#a5d6f7>)</color><color=#aed9ee>⊃</color><color=#b7dde6>━</color><color=#c0e1de>━</color><color=#c9e4d5>☆</color><color=#d2e8cd>ﾟ</color><color=#dbebc4>.</color><color=#e4efbc>*</color><color=#edf3b4>･</color><color=#f6f6ab>｡</color><color=#fffaa3>ﾟ</color>";
+        string discord = $"<align=right><color=#5865F2><u></color>J<lowercase>oin our discord!</lowercase></u>\n{LobbyModule.LobbyConfig.DiscordLink}</align>";
 
         for (;;)
         {

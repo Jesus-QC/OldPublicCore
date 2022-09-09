@@ -15,7 +15,7 @@ public class TeamTrigger : MonoBehaviour
 
     public void Start()
     {
-        var col = gameObject.AddComponent<CapsuleCollider>();
+        CapsuleCollider col = gameObject.AddComponent<CapsuleCollider>();
         col.isTrigger = true;
 
         _name = $"\nSelected:\n\n<size=150%>{GetTeamName(team)}</size>";
@@ -29,7 +29,7 @@ public class TeamTrigger : MonoBehaviour
 
         if (_counter > 0.98f)
         {
-            foreach (var player in _players)
+            foreach (Player player in _players)
             {
                 player.SendHint(ScreenZone.Center, _name, 2);
             }
@@ -38,7 +38,7 @@ public class TeamTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var ply = Player.Get(other.gameObject);
+        Player ply = Player.Get(other.gameObject);
         if (ply is null || _players.Contains(ply))
             return;
 
@@ -48,7 +48,7 @@ public class TeamTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        var ply = Player.Get(other.gameObject);
+        Player ply = Player.Get(other.gameObject);
             
         if (ply is null)
             return;

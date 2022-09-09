@@ -19,7 +19,7 @@ public class AlphaManager
     {
         _canBeDisabled = true;
             
-        foreach (var coroutine in _coroutineHandles)
+        foreach (CoroutineHandle coroutine in _coroutineHandles)
             Timing.KillCoroutines(coroutine);
             
         _coroutineHandles.Clear();
@@ -27,7 +27,7 @@ public class AlphaManager
 
     public void OnRoundStarted()
     {
-        foreach (var ev in _config.Events)
+        foreach (WarheadEvent ev in _config.Events)
             PlayAnnouncement(ev);
         _coroutineHandles.Add(Timing.RunCoroutine(Explode(_config.TimeToInitTheProcedure)));
     }
@@ -43,7 +43,7 @@ public class AlphaManager
 
     public void OnDetonated()
     {
-        foreach (var coroutine in _coroutineHandles)
+        foreach (CoroutineHandle coroutine in _coroutineHandles)
             Timing.KillCoroutines(coroutine);
         _coroutineHandles.Clear();
     }

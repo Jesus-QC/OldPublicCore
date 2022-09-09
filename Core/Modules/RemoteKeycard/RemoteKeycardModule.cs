@@ -46,7 +46,7 @@ public class RemoteKeycardModule : CoreModule<EmptyConfig>
             ev.Door.RequiredPermissions.RequiredPermissions = KeycardPermissions.Checkpoints;    
         }
 
-        foreach (var item in ev.Player.Items)
+        foreach (Item item in ev.Player.Items)
         {
             if (item is not Keycard key || !key.Base.Permissions.HasFlagFast(ev.Door.RequiredPermissions.RequiredPermissions))
                 continue;
@@ -60,7 +60,7 @@ public class RemoteKeycardModule : CoreModule<EmptyConfig>
         if(ev.IsAllowed)
             return;
         
-        foreach (var item in ev.Player.Items)
+        foreach (Item item in ev.Player.Items)
         {
             if (item is not Keycard key || (key.Base.Permissions & ev.Chamber.RequiredPermissions) == 0)
                 continue;
@@ -74,7 +74,7 @@ public class RemoteKeycardModule : CoreModule<EmptyConfig>
         if(ev.IsAllowed)
             return;
         
-        foreach (var item in ev.Player.Items)
+        foreach (Item item in ev.Player.Items)
         {
             if (item is not Keycard key || !key.Base.Permissions.HasFlagFast(ev.Generator.Base._requiredPermission))
                 continue;
@@ -88,7 +88,7 @@ public class RemoteKeycardModule : CoreModule<EmptyConfig>
         if(ev.IsAllowed)
             return;
         
-        foreach (var item in ev.Player.Items)
+        foreach (Item item in ev.Player.Items)
         {
             if (item is not Keycard key || !key.Base.Permissions.HasFlagFast(KeycardPermissions.AlphaWarhead))
                 continue;

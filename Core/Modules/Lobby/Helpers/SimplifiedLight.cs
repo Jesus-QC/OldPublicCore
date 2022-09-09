@@ -1,4 +1,5 @@
-﻿using Exiled.API.Features.Toys;
+﻿using AdminToys;
+using Exiled.API.Features.Toys;
 using Mirror;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class SimplifiedLight
 
     public void Spawn(Transform parent)
     {
-        var light = Object.Instantiate(ToysHelper.LightBaseObject, parent);
+        LightSourceToy light = Object.Instantiate(ToysHelper.LightBaseObject, parent);
 
         light.transform.localPosition = _position;
         light.NetworkLightColor = _color;

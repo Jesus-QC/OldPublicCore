@@ -26,7 +26,7 @@ public class Bot
 
         _tcpListener.Start();
 
-        var s = await _tcpListener.AcceptSocketAsync();
+        Socket? s = await _tcpListener.AcceptSocketAsync();
         
         byte[] buf = new byte[2];
         while (true)

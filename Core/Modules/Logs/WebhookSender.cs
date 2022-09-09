@@ -21,13 +21,13 @@ public static class WebhookSender
         
     private static IEnumerator<float> SendMessage(Message message, WebhookType type)
     {
-        var url = LogsModule.LogsConfig.Webhooks[type];
+        string url = LogsModule.LogsConfig.Webhooks[type];
 
         if (string.IsNullOrWhiteSpace(url))
             yield break;
 
-        var webRequest = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
-        var uploadHandler = new UploadHandlerRaw(JsonSerializer.Serialize(message));
+        UnityWebRequest webRequest = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
+        UploadHandlerRaw uploadHandler = new UploadHandlerRaw(JsonSerializer.Serialize(message));
         uploadHandler.contentType = "application/json";
         webRequest.uploadHandler = uploadHandler;
 
@@ -43,11 +43,11 @@ public static class WebhookSender
     {
         while (true)
         {
-            foreach (var webhook in MsgQueue)
+            foreach (KeyValuePair<WebhookType, List<string>> webhook in MsgQueue)
             {
-                var builder = new StringBuilder("");
+                StringBuilder builder = new StringBuilder("");
 
-                foreach (var message in webhook.Value.ToList())
+                foreach (string message in webhook.Value.ToList())
                 {
                     if (builder.Length + message.Length < 2000)
                     {
@@ -60,7 +60,7 @@ public static class WebhookSender
                     }
                 }
 
-                var content = builder.ToString();
+                string content = builder.ToString();
 
                 if(string.IsNullOrWhiteSpace(content))
                     continue;

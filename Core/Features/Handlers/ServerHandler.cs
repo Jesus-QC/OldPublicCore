@@ -13,7 +13,7 @@ public class ServerHandler
     
     public void OnRestartingRound()
     {
-        foreach (var player in Player.List)
+        foreach (Player player in Player.List)
             player.Goodbye();
             
         PlayerExtensions.ClearHubs();

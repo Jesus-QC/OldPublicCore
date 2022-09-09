@@ -34,7 +34,7 @@ public class FlashlightManager
             if(_cancellation.IsCancellationRequested)
                 return;
             
-            foreach (var player in Player.List)
+            foreach (Player player in Player.List)
             {
                 if(player is null || player.IsDead || player.CurrentItem is null || player.CurrentItem is not Flashlight flashlight)
                     continue;
@@ -42,7 +42,7 @@ public class FlashlightManager
                 if(!flashlight.Active)
                     continue;
                     
-                var serial = player.CurrentItem.Serial;
+                ushort serial = player.CurrentItem.Serial;
                 
                 if(!_batteries.ContainsKey(serial))
                     _batteries.Add(serial, 100);
