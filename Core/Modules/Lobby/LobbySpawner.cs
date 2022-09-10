@@ -6,16 +6,16 @@ using Core.Features.Extensions;
 using Core.Features.Wrappers;
 using Core.Modules.Lobby.Components;
 using Core.Modules.Lobby.Enums;
-using Core.Modules.Lobby.Helpers;
-using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
+using Exiled.API.Features.Toys;
 using Exiled.Events.EventArgs;
 using GameCore;
 using InventorySystem;
 using InventorySystem.Configs;
 using MEC;
 using UnityEngine;
+using Light = Exiled.API.Features.Toys.Light;
 using Log = Exiled.API.Features.Log;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -24,13 +24,10 @@ namespace Core.Modules.Lobby;
 
 public class LobbySpawner
 {
-    private GameObject _lobbyLights;
-    
     private readonly HashSet<GameObject> _map = new();
     private readonly HashSet<TeamTrigger> _triggers = new();
-
-    private static Room _lobbyRoom;
-    private static Vector3 _spawnPosition;
+    
+    private static readonly Vector3 SpawnPosition = Vector3.forward * 300 + Vector3.up;
 
     private LobbyStatus _status = LobbyStatus.Close;
 
@@ -49,32 +46,61 @@ public class LobbySpawner
         _status = LobbyStatus.Open;
             
         GameObject.Find("StartRound").transform.localScale = Vector3.zero;
-
-        _lobbyRoom = Room.Get(RoomType.Hcz106);
-        Transform localPosition = _lobbyRoom.Transform;
-        // var localRotation = _lobbyRoom.Transform.localRotation;
-
-        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * -135, RoleType.ClassD, "Class-Ds"));
-        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -10.65f)), localRotation.eulerAngles + Vector3.up * 135, RoleType.FacilityGuard, "Guards"));
-        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -18.35f)), localRotation.eulerAngles + Vector3.up * 45, RoleType.Scientist, "Scientists"));
-        // _dummies.Add(SpawnDummy(localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -18.35f)), localRotation.eulerAngles + Vector3.up * -45, RoleType.Scp106, "SCPs"));
-
-        _spawnPosition = localPosition.TransformPoint(new Vector3(7.25f, -17, -14.5f));
-            
-        _lobbyLights = new GameObject("Lights-Lobby");
-
-        new SimplifiedLight(localPosition.TransformPoint(new Vector3(11.35f, -18.5f, -10.65f)), RoleType.ClassD.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
-        new SimplifiedLight(localPosition.TransformPoint(new Vector3(3.35f, -18.5f, -10.65f)), RoleType.FacilityGuard.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
-        new SimplifiedLight(localPosition.TransformPoint( new Vector3(3.35f, -18.5f, -18.35f)), RoleType.Scientist.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
-        new SimplifiedLight(localPosition.TransformPoint( new Vector3(11.35f, -18.5f, -18.35f)), RoleType.Scp049.GetColor(), 2f, false, 2).Spawn(_lobbyLights.transform);
-
-        _triggers.Clear();
-        _triggers.Add(SpawnTrigger(Team.CDP, localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -10.65f))));
-        _triggers.Add(SpawnTrigger(Team.MTF, localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -10.65f))));
-        _triggers.Add(SpawnTrigger(Team.RSC, localPosition.TransformPoint(new Vector3(3.35f, -16.4f, -18.35f))));
-        _triggers.Add(SpawnTrigger(Team.SCP, localPosition.TransformPoint(new Vector3(11.35f, -16.4f, -18.35f))));
+        
+        SpawnMap();
         
         _overwatch.Clear();
+    }
+
+    private void SpawnMap()
+    {
+        GameObject parent = new ("LobbyMap") { transform = { position = SpawnPosition} };
+        Transform t = parent.transform;
+
+        CreateToy(t, new Vector3(0,-.05f, 0), new Vector3(50,0.01f, 50), new Color(.47f,0.76f,1));
+        CreateToy(t, new Vector3(0,-.03f, 0), new Vector3(30,0.01f, 30), Color.grey);
+        
+        Transform classD = CreateToy(t, new Vector3(0,0, 7.5f), new Vector3(4,.1f,4), RoleType.ClassD.GetColor());
+        Transform scientist = CreateToy(t, new Vector3(0,0, -7.5f), new Vector3(4,.1f,4), RoleType.Scientist.GetColor());
+        Transform scp = CreateToy(t, new Vector3(7.5f,0, 0), new Vector3(4,.1f,4), RoleType.Scp049.GetColor());
+        Transform mtf = CreateToy(t, new Vector3(-7.5f,0, 0), new Vector3(4,.1f,4), RoleType.NtfSergeant.GetColor());
+     
+        _triggers.Clear();
+        _triggers.Add(SpawnTrigger(Team.CDP, classD.position));
+        _triggers.Add(SpawnTrigger(Team.MTF, mtf.position));
+        _triggers.Add(SpawnTrigger(Team.RSC, scientist.position));
+        _triggers.Add(SpawnTrigger(Team.SCP, scp.position));
+
+        Light.Create(SpawnPosition + Vector3.up * 2).Base.transform.SetParent(t);
+        Light.Create(classD.position + Vector3.up * 2).Base.transform.SetParent(t);
+        Light.Create(mtf.position + Vector3.up * 2).Base.transform.SetParent(t);
+        Light.Create(scientist.position + Vector3.up * 2).Base.transform.SetParent(t);
+        Light.Create(scp.position + Vector3.up * 2).Base.transform.SetParent(t);
+
+        GameObject go = new ("jump trigger")
+        {
+            transform =
+            {
+                position = SpawnPosition + Vector3.down * 20,
+                localScale = new Vector3(100,0.1f,100)
+            }
+        };
+        go.AddComponent<JumpTrigger>();
+        
+        _map.Add(go);
+        _map.Add(parent);
+    }
+
+    private Transform CreateToy(Transform parent, Vector3 pos, Vector3 scale, Color color)
+    {
+        Primitive big = Primitive.Create(PrimitiveType.Cylinder, null, null, scale, false);
+        Transform bigT = big.Base.transform;
+        bigT.SetParent(parent);
+        bigT.localPosition = pos;
+        big.Color = color;
+        big.Spawn();
+
+        return bigT;
     }
 
     public void OnTogglingOverwatch(TogglingOverwatchEventArgs ev)
@@ -126,7 +152,7 @@ public class LobbySpawner
     public void OnSpawning(SpawningEventArgs ev)
     {
         if (_status == LobbyStatus.Open)
-            ev.Position = _spawnPosition;
+            ev.Position = SpawnPosition;
     }
 
     public void OnStarting()
@@ -309,9 +335,14 @@ public class LobbySpawner
 
     private static TeamTrigger SpawnTrigger(Team team, Vector3 pos)
     {
-        GameObject trigger = new GameObject($"{team}-trigger");
-        trigger.transform.position = pos;
-        trigger.transform.localScale = Vector3.one * 5;
+        GameObject trigger = new($"{team}-trigger")
+        {
+            transform =
+            {
+                position = pos,
+                localScale = Vector3.one * 5
+            }
+        };
         TeamTrigger tt = trigger.AddComponent<TeamTrigger>();
         tt.team = team;
         return tt;
@@ -319,19 +350,17 @@ public class LobbySpawner
 
     private void ClearDummies()
     {
-        /*foreach (var dummy in _dummies.ToList())
+        foreach (var obj in _map.ToList())
         {
-            Object.Destroy(dummy);
-            _dummies.Remove(dummy);
-        }*/
+            Object.Destroy(obj);
+            _map.Remove(obj);
+        }
 
         foreach (TeamTrigger trigger in _triggers.ToList())
         {
             Object.Destroy(trigger);
             _triggers.Remove(trigger);
         }
-            
-        Object.Destroy(_lobbyLights);
     }
 
     private IEnumerator<float> ServerHUD()

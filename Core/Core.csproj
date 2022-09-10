@@ -196,9 +196,9 @@
         <Compile Include="Modules\Levels\LevelsConfig.cs" />
         <Compile Include="Modules\Lights\LightsConfig.cs" />
         <Compile Include="Modules\Lights\LightsModule.cs" />
+        <Compile Include="Modules\Lobby\Components\JumpTrigger.cs" />
         <Compile Include="Modules\Lobby\Components\TeamTrigger.cs" />
         <Compile Include="Modules\Lobby\Enums\LobbyStatus.cs" />
-        <Compile Include="Modules\Lobby\Helpers\SimplifiedLight.cs" />
         <Compile Include="Modules\Lobby\LobbySpawner.cs" />
         <Compile Include="Modules\Lobby\LobbyModule.cs" />
         <Compile Include="Modules\Lobby\LobbyConfig.cs" />

@@ -3,6 +3,7 @@ using CommandSystem;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Exiled.API.Features;
+using UnityEngine;
 
 namespace Core.Features.Commands;
 
@@ -18,6 +19,7 @@ public class CoreVersionCommand : ICommand
             player.SendHint(ScreenZone.Notifications, $"⌈ <color=#e070ff>❖</color> | Core Test Token | <color=#e070ff>+ 0XP</color> ⌋");
             player.SendHint(ScreenZone.Notifications, $"⌈ <color=#ffc670>✴</color> | Core Test Token | <color=#ffc670>+ 0XP</color> ⌋");
             player.SendHint(ScreenZone.Notifications, $"⌈ <color=#f7ff66>✽</color> | Core Test Token | <color=#f7ff66>+ 0XP</color> ⌋");
+            player.Position = Vector3.forward * 300 + Vector3.up * 5;
         }
         
         response = "The server is running the version: " + Core.GlobalVersion;
