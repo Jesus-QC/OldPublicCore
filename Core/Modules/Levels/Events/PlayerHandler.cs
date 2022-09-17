@@ -86,6 +86,8 @@ public class PlayerHandler
                 ev.Player.AddExp(LevelToken.Ointment, 30);
                 break;
         }
+        
+        ev.Player.AddMedicalItemUse();
 
         if (!ev.Item.IsScp)
             return;
@@ -105,6 +107,7 @@ public class PlayerHandler
                 break;
         }
 
+        ev.Player.AddScpItemUse();
     }
 
     private void OnPickingUpItem(PickingUpItemEventArgs ev)
@@ -148,6 +151,8 @@ public class PlayerHandler
     {
         if(ev.Target is null)
             return;
+        
+        ev.Target.AddDeath();
             
         if(ev.Handler.Type is DamageType.Warhead && ev.Target.CheckCooldown(LevelToken.Detonate, 1))
             ev.Target.AddExp(LevelToken.Detonate, 20);
@@ -201,6 +206,8 @@ public class PlayerHandler
             if (ev.Killer.GetUses(LevelToken.Erase) == 10)
                 ev.Killer.AddExp(LevelToken.SerialKiller, 100);
         }
+        
+        ev.Killer.AddKill();
             
         if(LevelManager.FirstKill)
             return;
@@ -211,6 +218,8 @@ public class PlayerHandler
 
     private void OnEscaping(EscapingEventArgs ev)
     {
+        ev.Player.AddEscape();
+        
         if(ev.Player.Role.Type == RoleType.ClassD && ev.Player.CheckCooldown(LevelToken.Disappear, 1))
             ev.Player.AddExp(LevelToken.Disappear, 250);
         else if(ev.Player.Role.Type == RoleType.Scientist && ev.Player.CheckCooldown(LevelToken.Renounce, 1))

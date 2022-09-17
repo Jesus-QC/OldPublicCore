@@ -21,8 +21,6 @@ public static class PlayerExtensions
 
     public static void AddToTheHub(this Player player) => Hubs.Add(player, player.GameObject.AddComponent<Components.PlayerManager>());
     public static void RemoveFromTheHub(this Player player) => Hubs.Remove(player);
-        
-    public static Components.PlayerManager GetManager(this Player player) => Hubs[player];
 
     public static bool Exists(this Player player) => Core.Database.PlayerExists(player);
     public static void AddToTheDatabase(this Player player) => Core.Database.InsertNewPlayer(player);
@@ -55,6 +53,9 @@ public static class PlayerExtensions
             player.RemoveFromTheHub();
         }
             
+        if(player.DoNotTrack)
+            return;
+        
         int id = player.GetId();
         await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET RoundsPlayed=RoundsPlayed+1, TimePlayed=TimePlayed+{secs}, LastSeen='{DateTime.UtcNow.Ticks}' WHERE PlayerId='{id}';");
     }

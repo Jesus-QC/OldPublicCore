@@ -52,7 +52,7 @@ public static class LevelExtensions
 
         player.ShowBadge();
 
-        DateTime lastSeen = new DateTime((long) Core.Database.ExecuteScalar($"SELECT LastSeen FROM SlStats WHERE PlayerId='{player.GetId()}';"));
+        DateTime lastSeen = new((long) Core.Database.ExecuteScalar($"SELECT LastSeen FROM SlStats WHERE PlayerId='{player.GetId()}';"));
 
         if (lastSeen.DayOfYear < DateTime.UtcNow.DayOfYear || lastSeen.Year < DateTime.UtcNow.Year) 
             player.AddExp(LevelToken.Welcome, 50);
@@ -150,4 +150,11 @@ public static class LevelExtensions
         SpecialAdvancements[player] = buffer;
         await Core.Database.ExecuteNonQueryAsync($"UPDATE Leveling SET Achievements='{buffer}' WHERE PlayerId='{player.GetId()}';");
     }
+
+    public static async void AddKill(this Player player) => await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET Kills=Kills+1 WHERE PlayerId='{player.GetId()}';");
+    public static async void AddDeath(this Player player) => await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET Deaths=Deaths+1 WHERE PlayerId='{player.GetId()}';");
+    public static async void AddEscape(this Player player) => await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET Escapes=Escapes+1 WHERE PlayerId='{player.GetId()}';");
+    public static async void AddTimeMvp(this Player player) => await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET TimesMVP=TimesMVP+1 WHERE PlayerId='{player.GetId()}';");
+    public static async void AddMedicalItemUse(this Player player) => await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET MedicalItemsUsed=MedicalItemsUsed+1 WHERE PlayerId='{player.GetId()}';");
+    public static async void AddScpItemUse(this Player player) => await Core.Database.ExecuteNonQueryAsync($"UPDATE SlStats SET SCPItemsUsed=SCPItemsUsed+1 WHERE PlayerId='{player.GetId()}';");
 }

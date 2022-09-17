@@ -43,14 +43,14 @@ public class Database
 
         int id = player.GetId();
         ExecuteNonQuery($"INSERT INTO Leveling (PlayerId, Exp, Achievements) VALUES ('{id}', 0, '');");
-        ExecuteNonQuery($"INSERT INTO SlStats (PlayerId, RoundsPlayed, TimePlayed, LastSeen) VALUES ('{id}', 0, 0, '{DateTime.UtcNow.Ticks}');");
+        ExecuteNonQuery($"INSERT INTO SlStats VALUES ('{id}', 0, 0, {(player.DoNotTrack ? 0 : DateTime.UtcNow.Ticks)}, {(player.DoNotTrack ? 0 : DateTime.UtcNow.Ticks)}, 0, 0, 0, 0, 0, 0, 0);");
     }
 
     public bool PlayerExists(Player player)
     {
         using MySqlConnection con = Connection.Clone();
         con.Open();
-        using MySqlCommand cmd = new MySqlCommand($"SELECT EXISTS(SELECT Id FROM NewPlayers WHERE {player.GetQuery()});", con);
+        using MySqlCommand cmd = new ($"SELECT EXISTS(SELECT Id FROM NewPlayers WHERE {player.GetQuery()});", con);
         int exists = (int)(cmd.ExecuteScalar() ?? 0);
         return exists != 0;
     }

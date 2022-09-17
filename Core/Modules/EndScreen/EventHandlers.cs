@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Core.Features.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 
@@ -99,6 +100,10 @@ public class EventHandlers
         string escapeText = _firstEscapist == null ? "<color=#6cd0f5>Nobody</color> did <color=#86eb5b>escape</color>" : $"<color=#6cd0f5>{_firstEscapist.Nickname}</color> was the first one to <color=#86eb5b>escape</color>";
         string scpKillsText = RoundSummary.KilledBySCPs < 1 ? "<color=#854ede>SCPs</color> made no <color=#ed3b41>kills</color>" : $"<color=#854ede>SCPs </color>killed a total of <color=#ed3b41>{RoundSummary.KilledBySCPs} humans</color>";
             
+        kills?.AddTimeMvp();
+        damage?.AddTimeMvp();
+        _firstEscapist?.AddTimeMvp();
+
         return $"<size=28><b>✮ MVP SCREEN ✮</b>\n«────── « ⋅ʚ♡ɞ⋅ » ──────»\n{killsText}\n{damageText}\n{escapeText}\n{scpKillsText}\n</size>";
     }
 }
