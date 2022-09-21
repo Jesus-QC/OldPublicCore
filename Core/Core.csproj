@@ -222,6 +222,8 @@
         <Compile Include="Modules\RespawnTimer\RespawnTimerModule.cs" />
         <Compile Include="Modules\SCP1162\Scp1162Config.cs" />
         <Compile Include="Modules\SCP1162\Scp1162Module.cs" />
+        <Compile Include="Modules\ScpSwap\ScpSwapCommand.cs" />
+        <Compile Include="Modules\ScpSwap\ScpSwapModule.cs" />
         <Compile Include="Modules\SpectatorCount\Commands\ToggleListCommand.cs" />
         <Compile Include="Modules\SpectatorCount\DisabledManager.cs" />
         <Compile Include="Modules\SpectatorCount\SpectatorCountModule.cs" />

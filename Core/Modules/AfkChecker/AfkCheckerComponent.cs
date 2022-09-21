@@ -30,7 +30,7 @@ public class AfkCheckerComponent : MonoBehaviour
             {
                 Player.Broadcast(1, $"<b><color=#ff4940>You were detected as afk.</color>\nMove in less than {AfkCheckerModule.StaticConfig.AfkTime - _afkTime} seconds or you will be kicked.</b>");
 
-                if (_afkTime == AfkCheckerModule.StaticConfig.AfkTime)
+                if (_afkTime >= AfkCheckerModule.StaticConfig.AfkTime)
                 {
                     if (PermissionsHandler.IsPermitted(Player.Group.Permissions, PlayerPermissions.AFKImmunity))
                     {
