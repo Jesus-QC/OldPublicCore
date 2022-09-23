@@ -19,10 +19,14 @@
           "Discord.Net.Core": "3.7.2"
         },
         "compile": {
-          "lib/net6.0/Discord.Net.Commands.dll": {}
+          "lib/net6.0/Discord.Net.Commands.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Discord.Net.Commands.dll": {}
+          "lib/net6.0/Discord.Net.Commands.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Discord.Net.Core/3.7.2": {
@@ -34,10 +38,14 @@
           "System.ValueTuple": "4.5.0"
         },
         "compile": {
-          "lib/net6.0/Discord.Net.Core.dll": {}
+          "lib/net6.0/Discord.Net.Core.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Discord.Net.Core.dll": {}
+          "lib/net6.0/Discord.Net.Core.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Discord.Net.Interactions/3.7.2": {
@@ -51,10 +59,14 @@
           "System.Reactive": "5.0.0"
         },
         "compile": {
-          "lib/net6.0/Discord.Net.Interactions.dll": {}
+          "lib/net6.0/Discord.Net.Interactions.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Discord.Net.Interactions.dll": {}
+          "lib/net6.0/Discord.Net.Interactions.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Discord.Net.Rest/3.7.2": {
@@ -63,10 +75,14 @@
           "Discord.Net.Core": "3.7.2"
         },
         "compile": {
-          "lib/net6.0/Discord.Net.Rest.dll": {}
+          "lib/net6.0/Discord.Net.Rest.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Discord.Net.Rest.dll": {}
+          "lib/net6.0/Discord.Net.Rest.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Discord.Net.Webhook/3.7.2": {
@@ -76,10 +92,14 @@
           "Discord.Net.Rest": "3.7.2"
         },
         "compile": {
-          "lib/net6.0/Discord.Net.Webhook.dll": {}
+          "lib/net6.0/Discord.Net.Webhook.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Discord.Net.Webhook.dll": {}
+          "lib/net6.0/Discord.Net.Webhook.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Discord.Net.WebSocket/3.7.2": {
@@ -89,68 +109,120 @@
           "Discord.Net.Rest": "3.7.2"
         },
         "compile": {
-          "lib/net6.0/Discord.Net.WebSocket.dll": {}
+          "lib/net6.0/Discord.Net.WebSocket.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Discord.Net.WebSocket.dll": {}
+          "lib/net6.0/Discord.Net.WebSocket.dll": {
+            "related": ".xml"
+          }
         }
       },
-      "EXILED/5.3.0-rc.1": {
+      "EXILED/5.3.0": {
         "type": "package",
         "compile": {
           "lib/net472/Assembly-CSharp-Publicized.dll": {},
           "lib/net472/CommandSystem.Core.dll": {},
-          "lib/net472/Exiled.API.dll": {},
-          "lib/net472/Exiled.Bootstrap.dll": {},
-          "lib/net472/Exiled.CreditTags.dll": {},
-          "lib/net472/Exiled.CustomItems.dll": {},
-          "lib/net472/Exiled.CustomRoles.dll": {},
-          "lib/net472/Exiled.Events.dll": {},
-          "lib/net472/Exiled.Loader.dll": {},
-          "lib/net472/Exiled.Permissions.dll": {},
-          "lib/net472/Exiled.Updater.dll": {},
+          "lib/net472/Exiled.API.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Bootstrap.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.CreditTags.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.CustomItems.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.CustomRoles.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Events.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Loader.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Permissions.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Updater.dll": {
+            "related": ".xml"
+          },
           "lib/net472/NorthwoodLib.dll": {}
         },
         "runtime": {
           "lib/net472/Assembly-CSharp-Publicized.dll": {},
           "lib/net472/CommandSystem.Core.dll": {},
-          "lib/net472/Exiled.API.dll": {},
-          "lib/net472/Exiled.Bootstrap.dll": {},
-          "lib/net472/Exiled.CreditTags.dll": {},
-          "lib/net472/Exiled.CustomItems.dll": {},
-          "lib/net472/Exiled.CustomRoles.dll": {},
-          "lib/net472/Exiled.Events.dll": {},
-          "lib/net472/Exiled.Loader.dll": {},
-          "lib/net472/Exiled.Permissions.dll": {},
-          "lib/net472/Exiled.Updater.dll": {},
+          "lib/net472/Exiled.API.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Bootstrap.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.CreditTags.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.CustomItems.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.CustomRoles.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Events.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Loader.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Permissions.dll": {
+            "related": ".xml"
+          },
+          "lib/net472/Exiled.Updater.dll": {
+            "related": ".xml"
+          },
           "lib/net472/NorthwoodLib.dll": {}
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Collections.Immutable/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Interactive.Async/5.0.0": {
@@ -159,28 +231,40 @@
           "System.Linq.Async": "5.0.0"
         },
         "compile": {
-          "lib/netcoreapp3.1/System.Interactive.Async.dll": {}
+          "lib/netcoreapp3.1/System.Interactive.Async.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp3.1/System.Interactive.Async.dll": {}
+          "lib/netcoreapp3.1/System.Interactive.Async.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Linq.Async/5.0.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp3.1/System.Linq.Async.dll": {}
+          "ref/netcoreapp3.1/System.Linq.Async.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp3.1/System.Linq.Async.dll": {}
+          "lib/netcoreapp3.1/System.Linq.Async.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Reactive/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/net5.0/System.Reactive.dll": {}
+          "lib/net5.0/System.Reactive.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net5.0/System.Reactive.dll": {}
+          "lib/net5.0/System.Reactive.dll": {
+            "related": ".xml"
+          }
         },
         "build": {
           "buildTransitive/net5.0/_._": {}
@@ -339,14 +423,14 @@
         "lib/netstandard2.1/Discord.Net.WebSocket.xml"
       ]
     },
-    "EXILED/5.3.0-rc.1": {
-      "sha512": "sO2jSYlLkh8mn7c5xGpSGPHQlMyWmFXbGpTJ9Mw0TVpsmu9anxAwbn4ot8uJ0TJ3ihAvciTz0mOs8IkWbndDgw==",
+    "EXILED/5.3.0": {
+      "sha512": "RxD1NPR2VgqCNd5Dcr4YRq2Ci6FZF6pIGFzc4Pz6jj/2TeGeS2dn5a+dK/wg8ZPjhMUwHdJbbYE3QzPbiwY4cA==",
       "type": "package",
-      "path": "exiled/5.3.0-rc.1",
+      "path": "exiled/5.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "exiled.5.3.0-rc.1.nupkg.sha512",
+        "exiled.5.3.0.nupkg.sha512",
         "exiled.nuspec",
         "images/Exiled_Icon.jpg",
         "lib/net472/Assembly-CSharp-Publicized.dll",
@@ -568,7 +652,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Discord.Net >= 3.7.2",
-      "EXILED >= 5.3.0-rc.1"
+      "EXILED >= 5.3.0"
     ]
   },
   "packageFolders": {
@@ -616,7 +700,7 @@
           },
           "EXILED": {
             "target": "Package",
-            "version": "[5.3.0-rc.1, )"
+            "version": "[5.3.0, )"
           }
         },
         "imports": [
@@ -644,7 +728,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'EXILED 5.3.0-rc.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'EXILED 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "EXILED",
       "targetGraphs": [
         "net6.0"

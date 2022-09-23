@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Core.Features.Logger;
 using Exiled.API.Features;
 
 namespace Core.Modules.Subclasses.Features.Extensions;
@@ -13,7 +14,7 @@ public static class PlayerExtensions
             SubclassesByPlayer.Add(player, null);
 
         SubclassesByPlayer[player] = subclass;
-        Log.Info($"{player.Nickname} is now a {subclass?.Name ?? "null"} subclass.");
+        Log.Info($"{LogUtils.GetColor(LogColor.Red)}{player.Nickname} {LogUtils.GetColor(LogColor.Cyan)}is now a {LogUtils.GetColor(LogColor.BrightMagenta)}{subclass?.Name ?? "null"}.");
     }
     
     public static Subclass GetSubclass(this Player player)

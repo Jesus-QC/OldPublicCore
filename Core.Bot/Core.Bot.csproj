@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="Discord.Net" Version="3.7.2" />
-      <PackageReference Include="EXILED" Version="5.3.0-rc.1" />
+      <PackageReference Include="EXILED" Version="5.3.0" />
     </ItemGroup>
 
 </Project>

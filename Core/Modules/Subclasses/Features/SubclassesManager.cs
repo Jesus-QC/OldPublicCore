@@ -23,7 +23,7 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.ClassD.FighterSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.ChadSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.MidgetSubclass));
-        RegisterSubclass(typeof(Subclasses.ClassD.HusterSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.HustlerSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.ChadSubclass));
         
         RegisterSubclass(typeof(Subclasses.Scientist.DefaultSubclass));

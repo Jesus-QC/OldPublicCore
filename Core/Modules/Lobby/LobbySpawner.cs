@@ -145,7 +145,11 @@ public class LobbySpawner
                 ev.Ammo.Add(am.Key, am.Value);
 
             if (_overwatch.Contains(ev.Player))
-                ev.Player.IsOverwatchEnabled = true;
+            {
+                ev.NewRole = RoleType.Spectator;
+                Timing.CallDelayed(2, () => ev.Player.IsOverwatchEnabled = true);
+            }
+                
         }
     }
 

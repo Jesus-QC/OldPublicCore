@@ -87,7 +87,7 @@ public class PlayerHandler
         if (s.Health > 0)
             ev.Player.Health = s.Health;
         if (s.Ahp > 0)
-            ev.Player.AddAhp(s.Ahp);
+            ev.Player.AddAhp(s.Ahp, decay: 0);
         
         ev.Player.Broadcast(10, $"\n<b><color={s.SpawnAs.GetColor().ToHex()}>{s.Description}</color></b>", shouldClearPrevious: true);
         
@@ -145,6 +145,19 @@ public class PlayerHandler
             ev.Attacker.Broadcast(5, "\n<b>You have been discovered!</b>");
             _undisguisedPlayers.Add(ev.Attacker);
             ev.Attacker.ChangeAppearance(s.SpawnAs);
+        }
+    }
+
+    public void OnDying(DyingEventArgs ev)
+    {
+        if(ev.Target is null)
+            return;
+        
+        Subclass tS = ev.Target.GetSubclass();
+
+        if (ev.Handler.Type is DamageType.Explosion && tS.Abilities.HasFlag(SubclassAbility.GrenadeImmunity))
+        {
+            ev.IsAllowed = false;
         }
     }
 

@@ -28,7 +28,7 @@ public class ScpSwapModule : CoreModule<EmptyConfig>
     private void OnRoundStarted()
     {
         ScpSwapCommand.IsOpened = true;
-        Timing.CallDelayed(1, ShowScp);
+        Timing.CallDelayed(3, ShowScp);
         Timing.CallDelayed(30, () => ScpSwapCommand.IsOpened = false);
     }
 
@@ -44,6 +44,6 @@ public class ScpSwapModule : CoreModule<EmptyConfig>
         }
 
         foreach (Player scpP in scp)
-            scpP.Broadcast(10, $@"\n<size=30><b>You don't like your SCP?\nUse <color=#aaa>.scpswap</color> to swap it!\n<color=#EC2121><size=20>TEAMMATES:</size>\n{msg.TrimStart(' ').TrimEnd(' ')}</color></b></size>");
+            scpP.Broadcast(10, $@"\n<size=30><b>Don't you like your SCP?\nUse <color=#aaa>.scpswap</color> to swap it!\n<color=#EC2121><size=20>TEAMMATES:</size>\n{msg.TrimStart(' ').TrimEnd(' ')}</color></b></size>");
     }
 }
