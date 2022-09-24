@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.Features.Data.Enums;
 using Core.Features.Data.UI;
 using Core.Features.Extensions;
+using Core.Features.Handlers;
 using Core.Features.Wrappers;
 using Exiled.API.Features;
 using Hints;
@@ -135,8 +136,16 @@ public class CustomHUD : MonoBehaviour
         _builder = _builder.Replace("[0]", FormatStringForHud(_messages[0], MessageLines[0]));
         _builder = _builder.Replace("[5]", $"<color={color}>" + _topBar + '\n');
         _builder = _builder.Replace("[6]", _secondaryTopBar + "</color>\n");
+
+        int i = 1;
+
+        if (PollHandler.Enabled)
+        {
+            i++;
+            _builder = _builder.Replace("[1]", FormatStringForHud($"<align=right><size=75%><u>poll by <color=#299>{PollHandler.PollAuthor}</color></u>\n{PollHandler.PollName}\n\n<color=green>.vote yes - {PollHandler.YesVotes}</color>\n<color=red>.vote no - {PollHandler.NoVotes}</color>\n<size=60%>time left: {PollHandler.TimeLeft}</size></size></align>", MessageLines[i]));
+        }
         
-        for (int i = 1; i < _timers.Count; i++)
+        for (; i < _timers.Count; i++)
         {
             if (_timers[i] >= 0)
                 _timers[i] -= 0.5f;

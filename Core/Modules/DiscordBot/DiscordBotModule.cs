@@ -51,7 +51,7 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
 
     private static async Task BotTask(int port, string ip)
     {
-        await Task.Delay(15000);
+        await Task.Delay(30000);
         
         try
         {

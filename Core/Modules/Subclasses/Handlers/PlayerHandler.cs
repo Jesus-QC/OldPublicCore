@@ -155,10 +155,11 @@ public class PlayerHandler
         
         Subclass tS = ev.Target.GetSubclass();
 
+        if (tS is null)
+            return;
+        
         if (ev.Handler.Type is DamageType.Explosion && tS.Abilities.HasFlag(SubclassAbility.GrenadeImmunity))
-        {
             ev.IsAllowed = false;
-        }
     }
 
     public void OnExplodingGrenade(ExplodingGrenadeEventArgs ev)

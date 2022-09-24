@@ -25,7 +25,7 @@ public class AfkCheckerComponent : MonoBehaviour
         Vector3 pos = Player.Position; 
         Vector2 rot = Player.Rotation;
             
-        if (Player.Role != RoleType.Spectator && Player.Role != RoleType.Tutorial && _lastPos == pos && _lastRot == rot)
+        if (Player.Role != RoleType.Spectator && Player.Role != RoleType.Tutorial && Player.Role != RoleType.Scp079 && _lastPos == pos && _lastRot == rot)
         {
             _afkTime++;
 

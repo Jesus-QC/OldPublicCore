@@ -10,7 +10,7 @@
       "Core.Bot/1.0.0": {
         "dependencies": {
           "Discord.Net": "3.7.2",
-          "EXILED": "5.3.0-rc.1",
+          "EXILED": "5.3.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.linux-x64": "6.0.8"
         },
         "runtime": {
@@ -811,7 +811,7 @@
           }
         }
       },
-      "EXILED/5.3.0-rc.1": {
+      "EXILED/5.3.0": {
         "runtime": {
           "lib/net472/Assembly-CSharp-Publicized.dll": {
             "assemblyVersion": "0.0.0.0",
@@ -970,12 +970,12 @@
       "path": "discord.net.websocket/3.7.2",
       "hashPath": "discord.net.websocket.3.7.2.nupkg.sha512"
     },
-    "EXILED/5.3.0-rc.1": {
+    "EXILED/5.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sO2jSYlLkh8mn7c5xGpSGPHQlMyWmFXbGpTJ9Mw0TVpsmu9anxAwbn4ot8uJ0TJ3ihAvciTz0mOs8IkWbndDgw==",
-      "path": "exiled/5.3.0-rc.1",
-      "hashPath": "exiled.5.3.0-rc.1.nupkg.sha512"
+      "sha512": "sha512-RxD1NPR2VgqCNd5Dcr4YRq2Ci6FZF6pIGFzc4Pz6jj/2TeGeS2dn5a+dK/wg8ZPjhMUwHdJbbYE3QzPbiwY4cA==",
+      "path": "exiled/5.3.0",
+      "hashPath": "exiled.5.3.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
       "type": "package",

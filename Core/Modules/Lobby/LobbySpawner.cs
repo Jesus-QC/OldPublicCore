@@ -91,7 +91,7 @@ public class LobbySpawner
         _map.Add(parent);
     }
 
-    private Transform CreateToy(Transform parent, Vector3 pos, Vector3 scale, Color color)
+    private static Transform CreateToy(Transform parent, Vector3 pos, Vector3 scale, Color color)
     {
         Primitive big = Primitive.Create(PrimitiveType.Cylinder, null, null, scale, false);
         Transform bigT = big.Base.transform;
