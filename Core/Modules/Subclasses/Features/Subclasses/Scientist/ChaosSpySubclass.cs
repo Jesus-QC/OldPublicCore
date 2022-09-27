@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Core.Features.Attribute;
 using Core.Features.Data.Enums;
 using Core.Modules.Subclasses.Features.Enums;
+using Core.Modules.Subclasses.Features.Extensions;
 using Exiled.API.Enums;
-using Exiled.API.Extensions;
 using Exiled.API.Features;
 using MEC;
 
@@ -30,6 +29,6 @@ public class ChaosSpySubclass : Subclass
 
     public override void OnSpawning(Player player)
     {
-        Timing.CallDelayed(1, () => player.ChangeAppearance(RoleType.Scientist));
+        Timing.CallDelayed(1, () => player.Disguise(RoleType.Scientist, new HashSet<Side> {Side.ChaosInsurgency, Side.Scp}));
     }
 }

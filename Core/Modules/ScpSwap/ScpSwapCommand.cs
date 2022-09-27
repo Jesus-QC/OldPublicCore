@@ -100,8 +100,6 @@ public class ScpSwapCommand : ICommand
         {"shyguy", RoleType.Scp096},
         {"049", RoleType.Scp049},
         {"doctor", RoleType.Scp049},
-        {"0492", RoleType.Scp0492},
-        {"zombie", RoleType.Scp0492},
     };
 
     public static bool IsOpened;

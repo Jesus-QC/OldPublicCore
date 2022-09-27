@@ -236,6 +236,7 @@
         <Compile Include="Modules\Subclasses\Features\Commands\AbilityCommand.cs" />
         <Compile Include="Modules\Subclasses\Features\Enums\SubclassAbility.cs" />
         <Compile Include="Modules\Subclasses\Features\Extensions\RoleExtensions.cs" />
+        <Compile Include="Modules\Subclasses\Features\IAbility.cs" />
         <Compile Include="Modules\Subclasses\Features\ISubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\ChaosJuggernautSubclass.cs" />
@@ -283,6 +284,9 @@
     <ItemGroup>
       <None Include="App.config" />
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Modules\Subclasses\Features\Abilities" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

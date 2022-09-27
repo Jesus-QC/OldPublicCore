@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core.Features.Logger;
+using Exiled.API.Enums;
+using Exiled.API.Extensions;
 using Exiled.API.Features;
 
 namespace Core.Modules.Subclasses.Features.Extensions;
@@ -23,5 +26,26 @@ public static class PlayerExtensions
             return null;
 
         return SubclassesByPlayer[player];
+    }
+
+    public static void TryMainAbility(this Player player)
+    {
+        
+    }
+    
+    public static void TrySecondaryAbility(this Player player)
+    {
+        
+    }
+    
+    public static void TryTertiaryAbility(this Player player)
+    {
+        
+    }
+    
+    public static void Disguise(this Player player, RoleType type, HashSet<Side> playerSide)
+    {
+        foreach (Player target in Player.List.Where(x => x != player && !playerSide.Contains(x.Role.Side)))
+            target.SendFakeSyncVar(player.ReferenceHub.networkIdentity, typeof(CharacterClassManager), nameof(CharacterClassManager.NetworkCurClass), (sbyte)type);
     }
 }

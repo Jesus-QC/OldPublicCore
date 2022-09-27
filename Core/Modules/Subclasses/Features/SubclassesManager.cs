@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Features.Attribute;
 using Core.Features.Data.Enums;
+using Core.Features.Extensions;
 using Core.Features.Logger;
-using Core.Modules.Subclasses.Features.Enums;
-using Core.Modules.Subclasses.Features.Subclasses.ClassD;
-using Core.Modules.Subclasses.Features.Subclasses.Scientist;
 using Exiled.API.Features;
 
 namespace Core.Modules.Subclasses.Features;
@@ -65,20 +63,25 @@ public class SubclassesManager
         int count = SubclassesById.Count;
         subclass.Id = count;
 
-
         subclass.TopBar = subclass.Color is null
-            ? $"subclass: {subclass.Name} ({subclass.Rarity.ToString().ToLower()})"
-            : $"subclass: <color={subclass.Color}>{subclass.Name} ({subclass.Rarity.ToString().ToLower()})</color>";
-        if (subclass.CommandAbilities == SubclassAbility.None)
-        {
-            
-            subclass.SecondaryTopBar = "abilities: " + subclass.Abilities.ToString().ToLower();
-        }
+            ? $"subclass: {subclass.Name} ({subclass.Rarity.GetIcon()})"
+            : $"subclass: <color={subclass.Color}>{subclass.Name} ({subclass.Rarity.GetIcon()})</color>";
         
-        subclass.TopBar = subclass.Color is null
-            ? $"subclass: {subclass.Name} ({subclass.Rarity.ToString().ToLower()})"
-            : $"subclass: <color={subclass.Color}>{subclass.Name} ({subclass.Rarity.ToString().ToLower()})</color>";
         subclass.SecondaryTopBar = "abilities: " + subclass.Abilities.ToString().ToLower();
+        
+        if (subclass.MainAbility is not null)
+        {
+            subclass.TopBar += " | abilities " + subclass.Abilities.ToString().ToLower();
+            subclass.SecondaryTopBar = "main: " + subclass.MainAbility.Ability.ToString().ToLower();
+
+            if (subclass.SecondaryAbility is not null)
+            {
+                subclass.SecondaryTopBar += " | secondary: " + subclass.SecondaryAbility.Ability.ToString().ToLower();
+
+                if (subclass.TertiaryAbility is not null)
+                    subclass.SecondaryTopBar += " | tertiary: " + subclass.TertiaryAbility.Ability.ToString().ToLower();
+            }
+        }
         
         SubclassesById.Add(count, subclass);
 

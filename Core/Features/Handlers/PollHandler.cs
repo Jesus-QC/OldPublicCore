@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Exiled.API.Features;
-using MEC;
 
 namespace Core.Features.Handlers;
 

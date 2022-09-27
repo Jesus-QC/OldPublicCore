@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using CommandSystem;
 using Core.Features.Handlers;
 using Exiled.API.Features;

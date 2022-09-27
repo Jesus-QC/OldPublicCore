@@ -108,4 +108,17 @@ public static class TokenExtensions
             _ => string.Empty,
         };
     }
+    
+    public static string GetIcon(this CoreRarity rarity)
+    {
+        return rarity switch
+        {
+            CoreRarity.Common => "<color=#aeff70>◉</color>",
+            CoreRarity.Rare => "<color=#70b0ff>◈</color>",
+            CoreRarity.Epic => "<color=#e070ff>❖</color>",
+            CoreRarity.Legendary => "<color=#ffc670>✴</color>",
+            CoreRarity.Mythic => "<color=#f7ff66>✽</color>",
+            _ => string.Empty,
+        };
+    }
 }

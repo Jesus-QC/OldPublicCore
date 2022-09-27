@@ -22,4 +22,5 @@ public class DoctorSubclass : Subclass
     };
 
     public override SubclassAbility Abilities { get; set; } = SubclassAbility.HealCmd;
+    //public override IAbility MainAbility { get; set; } = 
 }

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
 using Core.Modules.Subclasses.Features.Enums;
-using Exiled.API.Extensions;
+using Core.Modules.Subclasses.Features.Extensions;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using MEC;
 
@@ -22,6 +23,6 @@ public class MtfSpySubclass : Subclass
     
     public override void OnSpawning(Player player)
     {
-        Timing.CallDelayed(1, () => player.ChangeAppearance(RoleType.NtfPrivate));
+        Timing.CallDelayed(1, () => player.Disguise(RoleType.NtfPrivate, new HashSet<Side> {Side.ChaosInsurgency, Side.Scp}));
     }
 }

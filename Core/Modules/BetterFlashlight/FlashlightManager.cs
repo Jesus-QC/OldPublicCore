@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Features.Data.Enums;
-using Core.Features.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
 
@@ -51,11 +49,10 @@ public class FlashlightManager
                 if (_batteries[serial] == 0)
                 {
                     player.RemoveItem(flashlight);
-                    player.SendHint(ScreenZone.Bottom, "\n\n<color=#ff7070>Your flashlight was broken!</color>", 3);
+                    player.Broadcast(5, "\n\n<color=#ff7070>Your flashlight was broken!</color>");
                     _batteries.Remove(serial);
                 }
-
-                player.SendHint(ScreenZone.Bottom, $"\n\nBattery: <color=#ffe08c>{_batteries[serial]}%</color>", 1);
+                
                 _batteries[serial] -= 2;
             }
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Data.Enums;
 using Core.Modules.Subclasses.Features.Enums;
-using Exiled.API.Enums;
 using Exiled.API.Features;
 using UnityEngine;
 
@@ -22,7 +21,11 @@ public interface ISubclass
     List<ItemType> SpawnInventory { get; set; }
     Dictionary<ItemType, ushort> SpawnAmmo { get; set; }
     SubclassAbility Abilities { get; set; }
-    SubclassAbility CommandAbilities { get; set; }
+    
+    IAbility MainAbility { get; set; }
+    IAbility SecondaryAbility { get; set; }
+    IAbility TertiaryAbility { get; set; }
+    
     Vector3 Scale { get; set; }
     float Health { get; set; }
     float Ahp { get; set; }
