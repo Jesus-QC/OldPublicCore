@@ -36,10 +36,11 @@ public class EventHandler
     
     private async Task Timer()
     {
+        Log.Info("Started RespawnTimer Timer");
         int i = 0;
         string tip = "This is a secret message, wow.";
-        StringBuilder builder = new StringBuilder();
-        StringBuilder tipBuilder = new StringBuilder();
+        StringBuilder builder = new ();
+        StringBuilder tipBuilder = new ();
         for (;;)
         {
             if (_cancellation.IsCancellationRequested)

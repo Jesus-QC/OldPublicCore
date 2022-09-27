@@ -36,7 +36,7 @@ public class VoteKickCommand : ICommand
             return false;
         }
         
-        PollHandler.AddPoll(send.Nickname.ToLower(), $"kick <color=red>{player.Nickname.ToLower()}</color>", 15, () => KickPlayer(player));
+        PollHandler.AddPoll(send.Nickname.ToLower(), $"kick <color=red>{player.Nickname.ToLower()}</color>", 30, () => KickPlayer(player));
         response = "Done!";
         return true;
     }

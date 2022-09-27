@@ -24,6 +24,7 @@ public abstract class Subclass : ISubclass
     public virtual List<ItemType> SpawnInventory { get; set; } = null;
     public virtual Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = null;
     public virtual SubclassAbility Abilities { get; set; } = SubclassAbility.None;
+    public virtual SubclassAbility CommandAbilities { get; set; } = SubclassAbility.None;
     public virtual Vector3 Scale { get; set; } = Vector3.one;
     public virtual float Health { get; set; } = -1;
     public virtual float Ahp { get; set; } = -1;

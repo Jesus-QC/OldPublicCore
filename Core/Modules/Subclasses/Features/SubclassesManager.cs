@@ -64,6 +64,16 @@ public class SubclassesManager
 
         int count = SubclassesById.Count;
         subclass.Id = count;
+
+
+        subclass.TopBar = subclass.Color is null
+            ? $"subclass: {subclass.Name} ({subclass.Rarity.ToString().ToLower()})"
+            : $"subclass: <color={subclass.Color}>{subclass.Name} ({subclass.Rarity.ToString().ToLower()})</color>";
+        if (subclass.CommandAbilities == SubclassAbility.None)
+        {
+            
+            subclass.SecondaryTopBar = "abilities: " + subclass.Abilities.ToString().ToLower();
+        }
         
         subclass.TopBar = subclass.Color is null
             ? $"subclass: {subclass.Name} ({subclass.Rarity.ToString().ToLower()})"

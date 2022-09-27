@@ -233,6 +233,7 @@
         <Compile Include="Modules\Stalky\Components\StalkController.cs" />
         <Compile Include="Modules\Stalky\StalkyConfig.cs" />
         <Compile Include="Modules\Stalky\StalkyModule.cs" />
+        <Compile Include="Modules\Subclasses\Features\Commands\AbilityCommand.cs" />
         <Compile Include="Modules\Subclasses\Features\Enums\SubclassAbility.cs" />
         <Compile Include="Modules\Subclasses\Features\Extensions\RoleExtensions.cs" />
         <Compile Include="Modules\Subclasses\Features\ISubclass.cs" />

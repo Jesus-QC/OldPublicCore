@@ -22,6 +22,7 @@ public interface ISubclass
     List<ItemType> SpawnInventory { get; set; }
     Dictionary<ItemType, ushort> SpawnAmmo { get; set; }
     SubclassAbility Abilities { get; set; }
+    SubclassAbility CommandAbilities { get; set; }
     Vector3 Scale { get; set; }
     float Health { get; set; }
     float Ahp { get; set; }

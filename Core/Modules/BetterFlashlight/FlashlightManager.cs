@@ -29,6 +29,7 @@ public class FlashlightManager
 
     private async Task CheckFlashlights()
     {
+        Log.Info("Started Flashlight Timer");
         while (true)
         {
             if(_cancellation.IsCancellationRequested)

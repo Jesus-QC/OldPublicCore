@@ -13,37 +13,15 @@ public class PocketSuckModule : CoreModule<PocketSuckConfig>
     {
         _events = new EventsHandler();
 
-        if (Config.SinkholesEnabled)
-        {
-            Player.StayingOnEnvironmentalHazard += _events.OnStayingOnEnvironmentalHazard;
-        }
+        Player.StayingOnEnvironmentalHazard += _events.OnStayingOnEnvironmentalHazard;
 
-        if (Config.PortalEnabled)
-        {
-            Scp106.CreatingPortal += _events.OnCreatingPortal;
-
-            Server.RestartingRound += _events.OnRestartingRound;
-            Server.WaitingForPlayers += _events.OnWaitingForPlayers;
-        }
-        
         base.OnEnabled();
     }
 
     public override void OnDisabled()
     {
-        if (Config.SinkholesEnabled)
-        {
-            Player.StayingOnEnvironmentalHazard -= _events.OnStayingOnEnvironmentalHazard;
-        }
+        Player.StayingOnEnvironmentalHazard -= _events.OnStayingOnEnvironmentalHazard;
 
-        if (Config.PortalEnabled)
-        {
-            Scp106.CreatingPortal -= _events.OnCreatingPortal;
-
-            Server.RestartingRound -= _events.OnRestartingRound;
-            Server.WaitingForPlayers -= _events.OnWaitingForPlayers;
-        }
-        
         _events = null;
         
         base.OnDisabled();

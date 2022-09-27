@@ -11,24 +11,8 @@ namespace Core.Modules.PocketSuck;
 
 public class EventsHandler
 {
-    private CoroutineHandle _positionCoroutine;
-    private GameObject _scp106Portal;
     private readonly HashSet<Player> _affectedPlayers  = new();
 
-    private bool _isActivated = true;
-
-    public void OnWaitingForPlayers()
-    {
-        _isActivated = true;
-        _positionCoroutine = Timing.RunCoroutine(CheckPositions());
-    }
-    
-    public void OnRestartingRound()
-    {
-        if (_positionCoroutine.IsRunning)
-            Timing.KillCoroutines(_positionCoroutine);
-    }
-    
     public void OnStayingOnEnvironmentalHazard(StayingOnEnvironmentalHazardEventArgs ev)
     {
         if (ev.Player is null || ev.Player.IsScp)
@@ -40,46 +24,6 @@ public class EventsHandler
         }
     }
 
-    public void OnCreatingPortal(CreatingPortalEventArgs ev)
-    {
-        _isActivated = false;
-        Timing.CallDelayed(4, () => _isActivated = true);
-    }
-    
-    private IEnumerator<float> CheckPositions()
-    {
-        while (true)
-        {
-            yield return Timing.WaitForSeconds(0.1f);
-            
-            if (Warhead.IsDetonated)
-                yield break;
-
-            if (_scp106Portal != null)
-            {
-                if(!_isActivated)
-                    continue;
-                    
-                foreach (Player player in Player.List)
-                {
-                    if (player is null
-                        || !player.IsAlive
-                        || player.Role.Team == Team.SCP)
-                        continue;
-
-                    if (Vector3.Distance(player.Position, _scp106Portal.transform.position) <= 2.5f)
-                    {
-                        Timing.RunCoroutine(PortalAnimation(player));
-                    }
-                }
-            }
-            else
-            {
-                _scp106Portal = GameObject.Find("SCP106_PORTAL");
-            }
-        }
-    }
-    
     private IEnumerator<float> PortalAnimation(Player player)
     {
         if(_affectedPlayers.Contains(player))

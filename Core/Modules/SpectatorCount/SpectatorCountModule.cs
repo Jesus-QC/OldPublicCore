@@ -51,6 +51,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     private async Task Timer()
     {
+        Log.Info("Started SpectatorCount Timer");
         StringBuilder builder = StringBuilderPool.Shared.Rent();
         while (true)
         {
