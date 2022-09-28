@@ -14,7 +14,7 @@ public class ReconSubclass : Subclass
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
     {
-        ItemType.GunE11SR, ItemType.Flashlight, ItemType.GrenadeFlash, ItemType.KeycardNTFLieutenant, ItemType.Radio,
+        ItemType.GunE11SR, ItemType.GrenadeFlash, ItemType.KeycardNTFLieutenant, ItemType.Radio,
         ItemType.ArmorCombat, ItemType.Medkit
     };
     

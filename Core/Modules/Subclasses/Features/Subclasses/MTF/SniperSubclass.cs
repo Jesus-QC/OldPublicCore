@@ -14,7 +14,7 @@ public class SniperSubclass : Subclass
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
     {
-        ItemType.GunE11SR, ItemType.GunRevolver, ItemType.Flashlight, ItemType.GrenadeFlash,
+        ItemType.GunE11SR, ItemType.GunRevolver, ItemType.GrenadeFlash,
         ItemType.KeycardNTFLieutenant, ItemType.Radio, ItemType.ArmorCombat
     };
     

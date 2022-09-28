@@ -16,7 +16,6 @@ public class JammerSubclass : Subclass
     {
         ItemType.GunCrossvec,
         ItemType.KeycardChaosInsurgency,
-        ItemType.Flashlight,
         ItemType.Painkillers,
         ItemType.ArmorHeavy,
         ItemType.Radio

@@ -17,7 +17,7 @@ public class ChaosJuggernautSubclass : Subclass
 
     public override List<ItemType> SpawnInventory { get; set; } = new ()
     {
-        ItemType.GunLogicer, ItemType.ArmorCombat, ItemType.KeycardChaosInsurgency, ItemType.Flashlight,
+        ItemType.GunLogicer, ItemType.ArmorCombat, ItemType.KeycardChaosInsurgency,
         ItemType.GrenadeHE, ItemType.GrenadeFlash
     };
 

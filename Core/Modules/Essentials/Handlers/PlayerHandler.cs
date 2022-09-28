@@ -38,8 +38,7 @@ public class PlayerHandler
         if (ev.Items.Count == 8 || ev.NewRole.GetSide() == Side.Scp)
             return;
             
-        if (Random.Range(0,100) <= EssentialsModule.PluginConfig.FlashlightChance)
-            ev.Items.Add(ItemType.Flashlight);
+        ev.Items.Add(ItemType.Flashlight);
     }
 
     public void OnDied(DiedEventArgs ev)

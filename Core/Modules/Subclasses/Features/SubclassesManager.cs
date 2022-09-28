@@ -11,6 +11,8 @@ namespace Core.Modules.Subclasses.Features;
 
 public class SubclassesManager
 {
+    public bool IsEnabled = true;
+    
     public void Load()
     {
         RegisterSubclass(typeof(Subclasses.ClassD.DefaultSubclass));

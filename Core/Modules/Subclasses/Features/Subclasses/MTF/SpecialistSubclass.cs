@@ -18,7 +18,6 @@ public class SpecialistSubclass : Subclass
         ItemType.MicroHID,
         ItemType.GunShotgun,
         ItemType.GrenadeHE,
-        ItemType.Flashlight,
         ItemType.KeycardNTFLieutenant,
         ItemType.Radio,
         ItemType.ArmorHeavy,

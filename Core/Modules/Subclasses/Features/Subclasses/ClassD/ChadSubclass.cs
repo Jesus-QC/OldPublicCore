@@ -14,5 +14,5 @@ public class ChadSubclass : Subclass
     public override Team Team { get; set; } = Team.CDP;
     public override float Health { get; set; } = 175;
     public override Vector3 Scale { get; set; } = Vector3.one * 1.1f;
-    public override List<ItemType> SpawnInventory { get; set; } = new () { ItemType.Medkit, ItemType.Flashlight };
+    public override List<ItemType> SpawnInventory { get; set; } = new () { ItemType.Medkit };
 }

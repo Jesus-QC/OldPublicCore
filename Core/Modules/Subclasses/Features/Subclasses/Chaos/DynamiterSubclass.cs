@@ -15,7 +15,7 @@ public class DynamiterSubclass : Subclass
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
     {
-        ItemType.KeycardChaosInsurgency, ItemType.GunLogicer, ItemType.Flashlight, ItemType.ArmorHeavy, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeHE
+        ItemType.KeycardChaosInsurgency, ItemType.GunLogicer, ItemType.ArmorHeavy, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeHE
     };
     
     public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()

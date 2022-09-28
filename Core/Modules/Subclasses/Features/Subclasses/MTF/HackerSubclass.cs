@@ -15,7 +15,7 @@ public class HackerSubclass : Subclass
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
     {
-        ItemType.GunCrossvec, ItemType.Flashlight, ItemType.KeycardChaosInsurgency, ItemType.Medkit,
+        ItemType.GunCrossvec, ItemType.KeycardChaosInsurgency, ItemType.Medkit,
         ItemType.Adrenaline, ItemType.ArmorLight, ItemType.Radio,
     };
 

@@ -15,7 +15,7 @@ namespace Core.Modules.Subclasses.Handlers;
 public class PlayerHandler
 {
     private readonly HashSet<Player> _undisguisedPlayers = new ();
-    
+
     public void OnChangingRole(ChangingRoleEventArgs ev)
     {
         if (ev.NewRole is RoleType.Tutorial or RoleType.Spectator)
@@ -24,6 +24,10 @@ public class PlayerHandler
             ev.Player.ClearHint(ScreenZone.TopBarSecondary);
             ev.Player.CustomInfo = string.Empty;
             ev.Player.SetSubclass(null);
+
+            if (ev.NewRole is RoleType.Spectator)
+                ev.Player.UnDisguiseAll();
+            
             return;
         }
 

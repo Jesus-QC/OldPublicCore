@@ -14,7 +14,6 @@ public class InsiderSubclass : Subclass
     public override Team Team { get; set; } = Team.RSC;
 
     public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
-    {
-        ItemType.Flashlight, ItemType.KeycardResearchCoordinator, ItemType.Medkit, ItemType.Coin
+    { ItemType.KeycardResearchCoordinator, ItemType.Medkit, ItemType.Coin
     };
 }

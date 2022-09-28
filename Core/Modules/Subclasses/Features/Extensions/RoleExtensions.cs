@@ -8,6 +8,9 @@ public static class RoleExtensions
 {
     public static Subclass GetRandomSubclass(this RoleType role)
     {
+        if (!SubclassesModule.SubclassesManager.IsEnabled)
+            return null;
+        
         Dictionary<RoleType, Dictionary<CoreRarity, List<Subclass>>> dic = SubclassesModule.SubclassesManager.SubclassesByRole;
 
         if (!dic.ContainsKey(role))
