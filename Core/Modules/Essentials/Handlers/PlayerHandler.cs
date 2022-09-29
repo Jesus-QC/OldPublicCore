@@ -48,7 +48,7 @@ public class PlayerHandler
         
         foreach (Player player in players)
         {
-            player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
+            player.Broadcast(10, "\n<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
         }
     }
 
@@ -59,7 +59,7 @@ public class PlayerHandler
         
         foreach (Player player in players)
         {
-            player.Broadcast(10, "<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
+            player.Broadcast(10, "\n<b>You're the <color=#ff4545>last one</color> on your team, don't disappoint others.</b>");
         }
     }
 
@@ -67,7 +67,7 @@ public class PlayerHandler
     {
         if (ev.IsAllowed && ev.KnobSetting is Scp914KnobSetting.VeryFine)
         {
-            if (Random.Range(0, 101) < 10)
+            if (Random.Range(0, 101) < 20)
             {
                 ev.OutputPosition = RoleType.Scp93989.GetRandomSpawnProperties().Item1;
             }

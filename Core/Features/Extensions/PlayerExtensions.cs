@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Features.Components;
 using Core.Features.Data.Enums;
+using Core.Modules.Subclasses.Features;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Object = UnityEngine.Object;
@@ -10,7 +12,7 @@ namespace Core.Features.Extensions;
 
 public static class PlayerExtensions
 {
-    private static readonly Dictionary<Player, Components.PlayerManager> Hubs = new();
+    private static readonly Dictionary<Player, CorePlayerManager> Hubs = new();
     private static readonly Dictionary<Player, int> Ids = new();
 
     public static void ClearHubs()
@@ -19,7 +21,7 @@ public static class PlayerExtensions
         Ids.Clear();
     }
 
-    public static void AddToTheHub(this Player player) => Hubs.Add(player, player.GameObject.AddComponent<Components.PlayerManager>());
+    public static void AddToTheHub(this Player player) => Hubs.Add(player, player.GameObject.AddComponent<CorePlayerManager>());
     public static void RemoveFromTheHub(this Player player) => Hubs.Remove(player);
 
     public static bool Exists(this Player player) => Core.Database.PlayerExists(player);
@@ -47,7 +49,7 @@ public static class PlayerExtensions
 
         if (Hubs.ContainsKey(player))
         {
-            Components.PlayerManager hub = Hubs[player];
+            CorePlayerManager hub = Hubs[player];
             secs = hub.GetSeconds;
             Object.Destroy(Hubs[player]);
             player.RemoveFromTheHub();
@@ -89,12 +91,18 @@ public static class PlayerExtensions
     public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 10)
     {
         if(Hubs.ContainsKey(player))
-            Hubs[player].SendHint(zone, message, duration);
+            Hubs[player].AddMessage(zone, message, duration);
     }
 
     public static void ClearHint(this Player player, ScreenZone zone)
     {
         if (Hubs.ContainsKey(player))
-            Hubs[player].ClearHint(zone);
+            Hubs[player].ClearZone(zone);
+    }
+
+    public static void SetDisplaySubclass(this Player player, Subclass subclass)
+    {
+        if (Hubs.ContainsKey(player))
+            Hubs[player].SetSubclass(subclass);
     }
 }

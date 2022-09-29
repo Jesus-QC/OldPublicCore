@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Core.Features.Data.Enums;
+using Core.Features.Extensions;
 using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -57,5 +59,6 @@ public class EventsHandler
         player.EnableEffect<Corroding>();
 
         _affectedPlayers.Remove(player);
+        player.SendHint(ScreenZone.InteractionMessage, "<b>you have been sucked by a sinkhole</b>");
     }
 }

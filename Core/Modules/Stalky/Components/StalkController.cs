@@ -22,7 +22,7 @@ public class StalkController : MonoBehaviour
     {
         _player = Player.Get(gameObject);
         StalkyModule.Controllers.Add(_player, this);
-        _player.SendHint(ScreenZone.Center, "\n\n\n\nI<lowercase>n this server, scp <color=#ff8297>106</color> can <color=#82ff88>stalk</color>\n<uppercase>M</uppercase>ake <color=#82d5ff>two portals</color> to <color=#82ff88>stalk</color> humans</lowercase>", 20);
+        _player.SendHint(ScreenZone.CenterBottom, "\n\n\n\nI<lowercase>n this server, scp <color=#ff8297>106</color> can <color=#82ff88>stalk</color>\n<uppercase>M</uppercase>ake <color=#82d5ff>two portals</color> to <color=#82ff88>stalk</color> humans</lowercase>", 20);
     }
 
     private void OnDestroy()
@@ -54,7 +54,7 @@ public class StalkController : MonoBehaviour
 
     private void AnnounceReady()
     {
-        _player.SendHint(ScreenZone.Center, "\n\n\n\nyou can\n<b><color=#ff75a8>STALK</color></b>", 5);
+        _player.SendHint(ScreenZone.CenterBottom, "\n\n\n\nyou can\n<b><color=#ff75a8>STALK</color></b>", 5);
     }
 
     private IEnumerator<float> AnnounceCooldown(int cooldown)
@@ -64,7 +64,7 @@ public class StalkController : MonoBehaviour
             if (cooldown - i < 0)
                 yield break;
                 
-            _player.SendHint(ScreenZone.Center, $"\n\n\n\ncooldown\n<b><color=#f2fc92>{cooldown - i} seconds</color></b>",1);
+            _player.SendHint(ScreenZone.CenterBottom, $"\n\n\n\ncooldown\n<b><color=#f2fc92>{cooldown - i} seconds</color></b>",1);
             yield return Timing.WaitForSeconds(1f);
         }
     }
@@ -91,7 +91,7 @@ public class StalkController : MonoBehaviour
 
         if (availablePlayers.Count == 0)
         {
-            _player.SendHint(ScreenZone.Center, "\n\n\nThere are not\n<b><color=#ff6257>available players</color></b>", 4);
+            _player.SendHint(ScreenZone.CenterBottom, "\n\n\nThere are not\n<b><color=#ff6257>available players</color></b>", 4);
             return true;
         }
 
@@ -101,18 +101,18 @@ public class StalkController : MonoBehaviour
 
         if (rndPlayer is null)
         {
-            _player.SendHint(ScreenZone.Center, "\n\n\nThere are not\n<b><color=#ff6257>available players</color></b>", 4);
+            _player.SendHint(ScreenZone.CenterBottom, "\n\n\nThere are not\n<b><color=#ff6257>available players</color></b>", 4);
             return true;
         }
             
         if (!Physics.Raycast(rndPlayer.Position, Vector3.down, out RaycastHit raycastHit, 10f, script.teleportPlacementMask))
         {
-            _player.SendHint(ScreenZone.Center, "\n\n\n<color=red>ERROR</color>", 3);
+            _player.SendHint(ScreenZone.CenterBottom, "\n\n\n<color=red>ERROR</color>", 3);
             return false;
         }
 
         Timing.RunCoroutine(StartStalk(raycastHit.point, rndPlayer.CurrentRoom));
-        _player.SendHint(ScreenZone.Center, $"\n\n\n\nyou are stalking \n<b><color={rndPlayer.Role.Color.ToHex()}>{rndPlayer.Nickname}</color></b>", 5);
+        _player.SendHint(ScreenZone.CenterBottom, $"\n\n\n\nyou are stalking \n<b><color={rndPlayer.Role.Color.ToHex()}>{rndPlayer.Nickname}</color></b>", 5);
 
         _cooldown = StalkyModule.ModuleConfig.Cooldown;
         _inCooldown = true;

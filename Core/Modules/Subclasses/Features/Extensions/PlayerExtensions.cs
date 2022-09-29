@@ -18,6 +18,9 @@ public static class PlayerExtensions
             SubclassesByPlayer.Add(player, null);
 
         SubclassesByPlayer[player] = subclass;
+        
+        player.ClearCooldown();
+        
         Log.Info($"{LogUtils.GetColor(LogColor.Red)}{player.Nickname} {LogUtils.GetColor(LogColor.Cyan)}is now a {LogUtils.GetColor(LogColor.BrightMagenta)}{subclass?.Name ?? "null"}.");
     }
     
@@ -29,20 +32,9 @@ public static class PlayerExtensions
         return SubclassesByPlayer[player];
     }
 
-    public static void TryMainAbility(this Player player)
-    {
-        
-    }
-    
-    public static void TrySecondaryAbility(this Player player)
-    {
-        
-    }
-    
-    public static void TryTertiaryAbility(this Player player)
-    {
-        
-    }
+    public static void TryMainAbility(this Player player) => player?.GetSubclass().MainAbility?.OnUsing(player);
+    public static void TrySecondaryAbility(this Player player) => player?.GetSubclass().SecondaryAbility?.OnUsing(player);
+    public static void TryTertiaryAbility(this Player player) => player?.GetSubclass().TertiaryAbility?.OnUsing(player);
     
     public static void Disguise(this Player player, RoleType type, HashSet<Side> playerSide)
     {

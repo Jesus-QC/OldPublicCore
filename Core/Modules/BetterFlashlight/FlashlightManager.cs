@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.Features.Data.Enums;
+using Core.Features.Extensions;
+using Core.Features.Logger;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
 
@@ -27,7 +30,7 @@ public class FlashlightManager
 
     private async Task CheckFlashlights()
     {
-        Log.Info("Started Flashlight Timer");
+        Log.Info($"{LogUtils.GetColor(LogColor.Yellow)}Started Flashlight Timer");
         while (true)
         {
             if(_cancellation.IsCancellationRequested)
@@ -49,7 +52,7 @@ public class FlashlightManager
                 if (_batteries[serial] == 0)
                 {
                     player.RemoveItem(flashlight);
-                    player.Broadcast(5, "\n\n<color=#ff7070>Your flashlight was broken!</color>");
+                    player.SendHint(ScreenZone.InteractionMessage,"<color=#ff7070>Your flashlight was broken!</color>", 5);
                     _batteries.Remove(serial);
                 }
                 

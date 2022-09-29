@@ -17,12 +17,6 @@ public class CoreHintSendCommand : ICommand
             return false;
         }
 
-        if (!Player.TryGet(arguments.At(0), out Player ply))
-        {
-            response = "Player not found";
-            return false;
-        }
-
         ScreenZone zone = (ScreenZone)int.Parse(arguments.At(1));
 
         string msg = "";
@@ -30,9 +24,24 @@ public class CoreHintSendCommand : ICommand
         {
             msg += arguments.At(i) + " ";
         }
+
+        if (arguments.At(0) != "*")
+        {
+            foreach (Player player in Player.List)
+                player.SendHint(zone, msg);
+            
+            response = "Sent hint to all players.";
+            return true;
+        }
+        
+        if (!Player.TryGet(arguments.At(0), out Player ply))
+        {
+            response = "Player not found";
+            return false;
+        }
         
         ply.SendHint(zone, msg);
-        
+
         response = "Sent hint to player " + ply.Nickname;
         return true;
     }

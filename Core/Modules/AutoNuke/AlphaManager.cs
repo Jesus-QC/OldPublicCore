@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Core.Features.Data.Enums;
+using Core.Features.Extensions;
+using Core.Features.Wrappers;
 using Core.Modules.AutoNuke.Features;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
@@ -38,7 +41,7 @@ public class AlphaManager
             return;
 
         ev.IsAllowed = false;
-        ev.Player.ShowHint("<color=red>The automatic warhead can't be disabled.</color>", 5);
+        ev.Player.SendHint(ScreenZone.InteractionMessage,"<color=red>The automatic warhead can't be disabled.</color>", 5);
     }
 
     public void OnDetonated()
@@ -64,7 +67,7 @@ public class AlphaManager
         yield return Timing.WaitForSeconds(delay);
 
         _canBeDisabled = false;
-        Map.ShowHint("<sprite=12> <color=red>the automatic alpha warhead procedure has started</color> <sprite=12>", 5);
+        MapCore.SendHint(ScreenZone.InteractionMessage,"<sprite=12> <color=red>the automatic alpha warhead procedure has started</color> <sprite=12>", 5);
         Warhead.Start();
     }
 }

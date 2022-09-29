@@ -21,5 +21,11 @@ public class ChaosJuggernautSubclass : Subclass
         ItemType.GrenadeHE, ItemType.GrenadeFlash
     };
 
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
+    {
+        [ItemType.Ammo9x19] = 30, [ItemType.Ammo556x45] = 20, [ItemType.Ammo762x39] = 200, [ItemType.Ammo12gauge] = 0,
+        [ItemType.Ammo44cal] = 20
+    };
+    
     public override Vector3 Scale { get; set; } = Vector3.one * 1.1f;
 }

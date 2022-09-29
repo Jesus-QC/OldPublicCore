@@ -20,8 +20,7 @@ public class PlayerHandler
     {
         if (ev.NewRole is RoleType.Tutorial or RoleType.Spectator)
         {
-            ev.Player.ClearHint(ScreenZone.TopBar);
-            ev.Player.ClearHint(ScreenZone.TopBarSecondary);
+            ev.Player.SetDisplaySubclass(null);
             ev.Player.CustomInfo = string.Empty;
             ev.Player.SetSubclass(null);
 
@@ -33,17 +32,16 @@ public class PlayerHandler
 
         Subclass subclass = ev.NewRole.GetRandomSubclass();
 
+        ev.Player.SetDisplaySubclass(subclass);
+        
         if (subclass is null)
         {
-            ev.Player.ClearHint(ScreenZone.TopBar);
-            ev.Player.ClearHint(ScreenZone.TopBarSecondary);
             ev.Player.CustomInfo = string.Empty;
             ev.Player.SetSubclass(null);
             
             foreach (Player player in ev.Player.CurrentSpectatingPlayers)
             {
-                player.ClearHint(ScreenZone.TopBar);
-                player.ClearHint(ScreenZone.TopBarSecondary);
+                player.SetDisplaySubclass(null);
             }
             
             return;
@@ -99,12 +97,10 @@ public class PlayerHandler
         
         foreach (Player player in ev.Player.CurrentSpectatingPlayers)
         {
-            player.SendHint(ScreenZone.TopBar, s.TopBar);
-            player.SendHint(ScreenZone.TopBarSecondary, s.SecondaryTopBar);
+            player.SetDisplaySubclass(s);
         }
 
-        ev.Player.SendHint(ScreenZone.TopBar, s.TopBar);
-        ev.Player.SendHint(ScreenZone.TopBarSecondary, s.SecondaryTopBar);
+        ev.Player.SetDisplaySubclass(s);
         
         if (s.Scale != Vector3.one)
             ev.Player.Scale = s.Scale;
@@ -182,17 +178,7 @@ public class PlayerHandler
     {
         if(ev.Player == ev.NewTarget)
             return;
-
-        Subclass subclass = ev.NewTarget.GetSubclass();
         
-        if (subclass is null)
-        {
-            ev.Player.ClearHint(ScreenZone.TopBar);
-            ev.Player.ClearHint(ScreenZone.TopBarSecondary);
-            return;
-        }
-        
-        ev.Player.SendHint(ScreenZone.TopBar, subclass.TopBar);
-        ev.Player.SendHint(ScreenZone.TopBarSecondary, subclass.SecondaryTopBar);
+        ev.Player.SetDisplaySubclass(ev.NewTarget.GetSubclass());
     }
 }

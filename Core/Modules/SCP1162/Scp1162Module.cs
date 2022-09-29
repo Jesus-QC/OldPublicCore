@@ -39,7 +39,7 @@ public class Scp1162Module : CoreModule<Scp1162Config>
         if (!ev.IsAllowed || Vector3.Distance(ev.Player.Position, _cachedPos) > 8.2f)
             return;
         
-        ev.Player.SendHint(ScreenZone.Center, Config.ItemDropMessage, Config.ItemDropMessageDuration);
+        ev.Player.SendHint(ScreenZone.InteractionMessage, Config.ItemDropMessage, Config.ItemDropMessageDuration);
         ev.IsAllowed = false;
         ev.Player.RemoveItem(ev.Item);
         if(ev.Player.CheckCooldown(LevelToken.Gambling, 3))

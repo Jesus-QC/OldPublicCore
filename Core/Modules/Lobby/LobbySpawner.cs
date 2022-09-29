@@ -120,7 +120,7 @@ public class LobbySpawner
         Timing.CallDelayed(0.5f, () =>
         {
             ev.Player.SetRole(RoleType.Tutorial);
-            ev.Player.SendHint(ScreenZone.TopBar, LobbyModule.LobbyConfig.ServerAnnouncement);
+            ev.Player.SendHint(ScreenZone.Top, LobbyModule.LobbyConfig.ServerAnnouncement);
         });
     }
         
@@ -168,12 +168,6 @@ public class LobbySpawner
             _status = LobbyStatus.Starting;
             
             Map.ClearBroadcasts();
-            MapCore.ClearHintZone(ScreenZone.Bottom);
-            MapCore.ClearHintZone(ScreenZone.Center);
-            MapCore.ClearHintZone(ScreenZone.Top);
-            MapCore.ClearHintZone(ScreenZone.CenterTop);
-            MapCore.ClearHintZone(ScreenZone.TopBar);
-            MapCore.ClearHintZone(ScreenZone.TopBarSecondary);
 
             Dictionary<Team, List<int>> classElections = new Dictionary<Team, List<int>>() { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new(), [Team.TUT] = new()};
 
@@ -374,9 +368,13 @@ public class LobbySpawner
 
         for (;;)
         {
-            MapCore.SendHint(ScreenZone.Top, welcome, 1.2f);
-            MapCore.SendHint(ScreenZone.Bottom, discord, 1.2f);
-            MapCore.SendHint(ScreenZone.CenterTop, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 1.2f);
+            //MapCore.SendHint(ScreenZone.InteractionMessage1, "Top");
+            //MapCore.SendHint(ScreenZone.KillMessage1, "Top");
+            //MapCore.SendHint(ScreenZone.SubclassAlert1, "Top");
+            
+            // MapCore.SendHint(ScreenZone.Top1, welcome, 1.2f);
+            // MapCore.SendHint(ScreenZone.Bottom1, discord, 1.2f);
+            // MapCore.SendHint(ScreenZone.CenterTop1, GetMessage(GetStatus(RoundStart.singleton.NetworkTimer)), 1.2f);
             yield return Timing.WaitForSeconds(0.95f);
         }
     }

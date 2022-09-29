@@ -12,6 +12,7 @@ public class PollCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
+        //TODO: remember polls
         if (!sender.CheckPermission("cursed.owner"))
         {
             response = "You don't have perms to do that.";

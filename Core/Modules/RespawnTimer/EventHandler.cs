@@ -3,10 +3,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Features.Data.Enums;
-using Core.Features.Extensions;
+using Core.Features.Logger;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
+using NorthwoodLib.Pools;
 using Respawning;
 using Random = UnityEngine.Random;
 
@@ -25,67 +25,57 @@ public class EventHandler
 
     public void OnRoundStarted()
     {
-        if (_cancellation is not null)
-        {
-            _cancellation.Dispose();
-        }
-        
+        _cancellation?.Dispose();
+
         _cancellation = new CancellationTokenSource();
         Task.Run(Timer, _cancellation.Token);
     }
+
+    public static string Tip = string.Empty;
+    public static string RenderedZone = string.Empty;
     
     private async Task Timer()
     {
-        Log.Info("Started RespawnTimer Timer");
+        Log.Info($"{LogUtils.GetColor(LogColor.Yellow)}Started RespawnTimer Timer");
+        
         int i = 0;
-        string tip = "This is a secret message, wow.";
-        StringBuilder builder = new ();
-        StringBuilder tipBuilder = new ();
+        StringBuilder builder = StringBuilderPool.Shared.Rent();
         for (;;)
         {
             if (_cancellation.IsCancellationRequested)
+            {
+                StringBuilderPool.Shared.Return(builder);
                 return;
+            }
 
             builder.Clear();
-            tipBuilder.Clear();
+            
+            if (Respawn.NextKnownTeam != SpawnableTeamType.None)
+            {
+                builder.Append("a ");
+                builder.Append(Respawn.NextKnownTeam == SpawnableTeamType.ChaosInsurgency
+                    ? "<color=#18f240>chaos</color>"
+                    : "<color=#2542e6>m.t.f.</color>");
+            }
 
-            builder.Append(Respawn.IsSpawning ? "\n\n\n\nN<lowercase>ext team will respawn in:</lowercase>\n" : "\n\n\n\nN<lowercase>ext team is on the way!</lowercase>\n");
-            tipBuilder.AppendLine();
-                
-            if (i == 16)
+            builder.AppendLine();
+            builder.AppendLine(Respawn.IsSpawning ? "W<lowercase>ave will spawn in:</lowercase>" : "N<lowercase>ext team is on the way!</lowercase>");
+
+            if (i == 25)
             {
                 i = 0;
-                tip = Tips[Random.Range(0, Tips.Count)];
+                Tip = "<color=#9342f5>❓</color>" + Tips[Random.Range(0, Tips.Count)];
             }
             
             await Task.Delay(1000);
                 
             if (Respawn.TimeUntilSpawnWave.Minutes != 0)
                 builder.Append(Respawn.TimeUntilSpawnWave.Minutes + " minutes ");
-            builder.Append(Respawn.TimeUntilSpawnWave.Seconds + " seconds");
+            builder.AppendLine(Respawn.TimeUntilSpawnWave.Seconds + " seconds\n");
 
-                
-            if (Respawn.NextKnownTeam != SpawnableTeamType.None)
-            {
-                tipBuilder.Append("as ");
-                tipBuilder.Append(Respawn.NextKnownTeam == SpawnableTeamType.ChaosInsurgency
-                    ? "<color=#18f240>chaos</color>"
-                    : "<color=#2542e6>m.t.f.</color>");
-            }
+            builder.Append("\n" + GetCount());
 
-            tipBuilder.Append("\n\n" + GetCount() + "<size=70%><color=#9342f5>❓</color>" + tip + "</size>");
-
-            string text = builder.ToString();
-            string tipText = tipBuilder.ToString();
-                
-            foreach (Player player in Player.List)
-            {
-                if(player.Role.Type != RoleType.Spectator)
-                    continue;
-                
-                player.SendHint(ScreenZone.Center, text, 1.2f);
-                player.SendHint(ScreenZone.Bottom, tipText, 1.2f);
-            }
+            RenderedZone = builder.ToString();
 
             i++;
         }
@@ -93,6 +83,6 @@ public class EventHandler
 
     private static string GetCount()
     {
-        return $"<color=#9effe0>👻 spectators:</color> {Player.List.Count(x => x.Role.Type == RoleType.Spectator)} | <color=#9ecfff>▣ mtf tickets:</color> {Respawn.NtfTickets} | <color=#9effa6>⛔ chaos tickets:</color> {Respawn.ChaosTickets}\n";
+        return $"<size=90%><color=#9effe0>👻 spectators:</color> {Player.List.Count(x => x.Role.Type == RoleType.Spectator)} | <color=#9ecfff>▣ mtf tickets:</color> {Respawn.NtfTickets} | <color=#9effa6>⛔ chaos tickets:</color> {Respawn.ChaosTickets}</size>";
     }
 }

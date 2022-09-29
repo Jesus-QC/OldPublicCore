@@ -14,12 +14,11 @@ public class CoreVersionCommand : ICommand
     {
         if (Player.TryGet(sender, out Player player))
         {
-            player.SendHint(ScreenZone.Notifications, $"⌈ <color=#aeff70>◉</color> | Core Test Token | <color=#aeff70>+ 0XP</color> ⌋");
-            player.SendHint(ScreenZone.Notifications, $"⌈ <color=#70b0ff>◈</color> | Core Test Token | <color=#70b0ff>+ 0XP</color> ⌋");
-            player.SendHint(ScreenZone.Notifications, $"⌈ <color=#e070ff>❖</color> | Core Test Token | <color=#e070ff>+ 0XP</color> ⌋");
-            player.SendHint(ScreenZone.Notifications, $"⌈ <color=#ffc670>✴</color> | Core Test Token | <color=#ffc670>+ 0XP</color> ⌋");
-            player.SendHint(ScreenZone.Notifications, $"⌈ <color=#f7ff66>✽</color> | Core Test Token | <color=#f7ff66>+ 0XP</color> ⌋");
-            player.Position = Vector3.forward * 300 + Vector3.up * 5;
+            player.SendHint(ScreenZone.Notifications, "⌈ <color=#aeff70>◉</color> | Core Test Token | <color=#aeff70>+ 0XP</color> ⌋");
+            player.SendHint(ScreenZone.Notifications, "⌈ <color=#70b0ff>◈</color> | Core Test Token | <color=#70b0ff>+ 0XP</color> ⌋");
+            player.SendHint(ScreenZone.Notifications, "⌈ <color=#e070ff>❖</color> | Core Test Token | <color=#e070ff>+ 0XP</color> ⌋");
+            player.SendHint(ScreenZone.Notifications, "⌈ <color=#ffc670>✴</color> | Core Test Token | <color=#ffc670>+ 0XP</color> ⌋");
+            player.SendHint(ScreenZone.Notifications, "⌈ <color=#f7ff66>✽</color> | Core Test Token | <color=#f7ff66>+ 0XP</color> ⌋");
         }
         
         response = "The server is running the version: " + Core.GlobalVersion;

@@ -208,6 +208,8 @@ public class PlayerHandler
         }
         
         ev.Killer.AddKill();
+        
+        ev.Killer.SendHint(ScreenZone.KillMessage, $"<i>killed <color=#f04a58>{ev.Target.Nickname}</color></i>");
             
         if(LevelManager.FirstKill)
             return;

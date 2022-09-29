@@ -2,11 +2,13 @@ namespace Core.Features.Data.Enums;
 
 public enum ScreenZone
 {
-    Notifications,
+    Notifications = -1,
     Top,
     CenterTop,
     Center,
+    CenterBottom,
     Bottom,
-    TopBar,
-    TopBarSecondary
+    InteractionMessage,
+    KillMessage,
+    SubclassAlert,
 }

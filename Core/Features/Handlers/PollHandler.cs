@@ -35,7 +35,6 @@ public static class PollHandler
             {
                 await Task.Delay(1000);
                 TimeLeft--;
-                Log.Info(TimeLeft);
             }
 
             Enabled = false;

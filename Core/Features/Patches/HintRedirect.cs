@@ -20,7 +20,7 @@ public static class HintRedirect
         if (type == typeof(TextHint))
         {
             TextHint t = hint as TextHint;
-            Player.Get(__instance.gameObject).SendHint(ScreenZone.Center ,t.Text, t.DurationScalar);
+            Player.Get(__instance.gameObject).SendHint(ScreenZone.CenterBottom ,t.Text, t.DurationScalar);
             return false;
         }
 
