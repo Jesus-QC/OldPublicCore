@@ -128,12 +128,11 @@
         <Compile Include="Features\Attribute\DisabledFeatureAttribute.cs" />
         <Compile Include="Features\Commands\CoreHintSendCommand.cs" />
         <Compile Include="Features\Commands\CoreVersionCommand.cs" />
-        <Compile Include="Features\Commands\DiscordSync\DiscordDeSyncCommand.cs" />
-        <Compile Include="Features\Commands\DiscordSync\DiscordSyncCommand.cs" />
+        <Compile Include="Features\Commands\DisableHudCommand.cs" />
         <Compile Include="Features\Commands\DisguiseCommand.cs" />
-        <Compile Include="Features\Commands\PollCommand.cs" />
+        <Compile Include="Features\Commands\Poll\PollCommand.cs" />
+        <Compile Include="Features\Commands\Poll\VoteCommand.cs" />
         <Compile Include="Features\Commands\TpsViewerCommand.cs" />
-        <Compile Include="Features\Commands\VoteCommand.cs" />
         <Compile Include="Features\Components\CorePlayerManager.cs" />
         <Compile Include="Features\Data\Configs\EmptyConfig.cs" />
         <Compile Include="Features\Data\Database.cs" />
@@ -148,6 +147,7 @@
         <Compile Include="Features\Events\Levels.cs" />
         <Compile Include="Features\Extensions\LevelExtensions.cs" />
         <Compile Include="Features\Extensions\PlayerExtensions.cs" />
+        <Compile Include="Features\Extensions\TeamExtensions.cs" />
         <Compile Include="Features\Extensions\TokenExtensions.cs" />
         <Compile Include="Features\Handlers\PlayerHandler.cs" />
         <Compile Include="Features\Handlers\PollHandler.cs" />

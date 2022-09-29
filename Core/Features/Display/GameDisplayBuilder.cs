@@ -2,10 +2,13 @@
 using System.Linq;
 using System.Text;
 using Core.Features.Data.Enums;
+using Core.Features.Extensions;
 using Core.Features.Handlers;
 using Core.Features.Wrappers;
+using Core.Modules.Lobby;
 using Core.Modules.RespawnTimer;
 using Core.Modules.Subclasses.Features;
+using Exiled.API.Features;
 using NorthwoodLib.Pools;
 
 namespace Core.Features.Display;
@@ -94,6 +97,38 @@ public class GameDisplayBuilder
         _builder.AppendLine();
 
         _builder.AppendLine($"<b><size=50%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}");
+        _builder.Append($"{_name} | {_level} | tps: {ServerCore.Tps}");
+
+        return _builder.ToString();
+    }
+    
+    public string BuildForLobby(Player player)
+    {
+        _builder.Clear();
+        _builder.Append("<size=60%><line-height=100%><voffset=14em><color=#FC00AB>");
+        _builder.Append(LobbyModule.LobbyConfig.ServerAnnouncement);
+        _builder.Append("\n\n</color>");
+        _builder.AppendLine(LobbyModule.Status);
+
+        int i = 0;
+
+        for (; i < _notifications.Count; i++)
+            _builder.AppendLine(_notifications[i]);
+        for (; i < 6; i++)
+            _builder.AppendLine();
+        
+        if (PollHandler.Enabled)
+            _builder.AppendLine($"<align=left>Poll by <color=#FC00AB>{PollHandler.PollAuthor}</color>\n<i>{PollHandler.PollName}</i>\n\n{PollHandler.YesVotes} - <color=#84ff80>.vote yes</color>\n{PollHandler.NoVotes} - <color=#ff8080>.vote no</color>\n<size=40%>time left: {PollHandler.TimeLeft}</size></align>");
+        else
+            _builder.Append(RenderZone(ScreenZone.Top));
+        
+        _builder.Append(RenderZone(ScreenZone.CenterTop));
+        _builder.Append(RenderZone(ScreenZone.Center));
+        _builder.Append(RenderZone(ScreenZone.CenterBottom));
+        _builder.Append($"class selected\n\n<size=140%>{LobbyModule.LobbySpawner.GetPlayerElection(player).GetLobbyName()}</size>\n\n\n\n");
+        _builder.AppendLine("<size=100%>W<lowercase>elcome!</lowercase></size>\n");
+        _builder.AppendLine("<size=80%><b>J<lowercase>oin us <color=#ff3995>d</color><color=#f639a6>i</color><color=#ec39b6>s</color><color=#e339c7>c</color><color=#d938d8>o</color><color=#d038e9>r</color><color=#c638f9>d</color><color=#bd40ff>.</color><color=#b34cff>c</color><color=#aa58ff>u</color><color=#a065ff>r</color><color=#9771ff>s</color><color=#8d7dff>e</color><color=#8788ff>d</color><color=#8692ff>s</color><color=#869cff>l</color><color=#85a6ff>.</color><color=#85afff>x</color><color=#84b9ff>y</color><color=#84c3ff>z</color>!</b></lowercase></size>");
+        _builder.AppendLine($"<color=#FC00AB><b><size=50%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}");
         _builder.Append($"{_name} | {_level} | tps: {ServerCore.Tps}");
 
         return _builder.ToString();

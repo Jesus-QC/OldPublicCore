@@ -3,7 +3,7 @@ using CommandSystem;
 using Core.Features.Handlers;
 using Exiled.API.Features;
 
-namespace Core.Features.Commands;
+namespace Core.Features.Commands.Poll;
 
 [CommandHandler(typeof(ClientCommandHandler))]
 public class VoteCommand : ICommand

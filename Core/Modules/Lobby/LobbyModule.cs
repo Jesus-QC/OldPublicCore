@@ -9,37 +9,38 @@ public class LobbyModule : CoreModule<LobbyConfig>
     public override string Name { get; } = "Lobby";
     public override byte Priority { get; } = 15;
 
-    private LobbySpawner _lobbySpawner;
+    public static LobbySpawner LobbySpawner;
     public static LobbyConfig LobbyConfig;
+    public static string Status = string.Empty;
         
     public override void OnEnabled()
     {
         LobbyConfig = Config;
             
-        _lobbySpawner = new LobbySpawner();
+        LobbySpawner = new LobbySpawner();
 
-        Server.WaitingForPlayers += _lobbySpawner.OnWaitingForPlayers;
-        Server.RoundStarted += _lobbySpawner.OnStarting;
+        Server.WaitingForPlayers += LobbySpawner.OnWaitingForPlayers;
+        Server.RoundStarted += LobbySpawner.OnStarting;
 
-        Player.TogglingOverwatch += _lobbySpawner.OnTogglingOverwatch;
-        Player.ChangingRole += _lobbySpawner.OnChangingRole;
-        Player.Spawning += _lobbySpawner.OnSpawning;
-        Player.Verified += _lobbySpawner.OnVerified;
+        Player.TogglingOverwatch += LobbySpawner.OnTogglingOverwatch;
+        Player.ChangingRole += LobbySpawner.OnChangingRole;
+        Player.Spawning += LobbySpawner.OnSpawning;
+        Player.Verified += LobbySpawner.OnVerified;
 
         base.OnEnabled();
     }
 
     public override void OnDisabled()
     {
-        Server.WaitingForPlayers -= _lobbySpawner.OnWaitingForPlayers;
-        Server.RoundStarted -= _lobbySpawner.OnStarting;
+        Server.WaitingForPlayers -= LobbySpawner.OnWaitingForPlayers;
+        Server.RoundStarted -= LobbySpawner.OnStarting;
             
-        Player.TogglingOverwatch -= _lobbySpawner.OnTogglingOverwatch;
-        Player.ChangingRole -= _lobbySpawner.OnChangingRole;
-        Player.Spawning -= _lobbySpawner.OnSpawning;
-        Player.Verified -= _lobbySpawner.OnVerified;
+        Player.TogglingOverwatch -= LobbySpawner.OnTogglingOverwatch;
+        Player.ChangingRole -= LobbySpawner.OnChangingRole;
+        Player.Spawning -= LobbySpawner.OnSpawning;
+        Player.Verified -= LobbySpawner.OnVerified;
 
-        _lobbySpawner = null;
+        LobbySpawner = null;
 
         LobbyConfig = null;
             

@@ -6,6 +6,8 @@ namespace Core.Features.Wrappers;
 
 public static class MapCore
 {
+    public static bool IsHudEnabled = true;
+    
     public static void SendHint(ScreenZone zone, string message, float duration = 10)
     {
         foreach (Player player in Player.List)

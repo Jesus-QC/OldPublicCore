@@ -17,7 +17,7 @@ public static class PollHandler
 
     public static void AddPoll(string author, string description, int time, Action todo)
     {
-        if(Enabled)
+        if (Enabled)
             return;
         
         Voted.Clear();
@@ -30,7 +30,6 @@ public static class PollHandler
         
         Task.Run(async () =>
         {
-            Log.Info(TimeLeft);
             while (TimeLeft >= 0)
             {
                 await Task.Delay(1000);

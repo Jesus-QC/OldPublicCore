@@ -6,6 +6,7 @@ using Core.Features.Data.UI;
 using Core.Features.Display;
 using Core.Features.Extensions;
 using Core.Features.Logger;
+using Core.Features.Wrappers;
 using Core.Modules.Subclasses.Features;
 using Exiled.API.Features;
 using Hints;
@@ -49,7 +50,8 @@ public class CorePlayerManager : MonoBehaviour
         if (_counter < .5f)
             return;
         
-        DrawHud();
+        if(MapCore.IsHudEnabled)
+            DrawHud();
 
         _counter = 0;
     }
@@ -60,6 +62,10 @@ public class CorePlayerManager : MonoBehaviour
         {
             UpdateMessage();
             UpdateNotifications();
+
+            if (Round.IsLobby)
+                return _mainDisplay.BuildForLobby(_player);
+                
             return _player.IsDead ? _mainDisplay.BuildForSpectator() : _mainDisplay.BuildForHuman();
         });
 
