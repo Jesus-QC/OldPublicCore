@@ -72,11 +72,11 @@ public static class LevelExtensions
         if (player.DoNotTrack)
             return;
 
-        exp *= ExpMultiplier;
-
         player.SendHint(ScreenZone.Notifications, perk.GetString(exp));
 
-        if(Exp.ContainsKey(player))
+        exp *= ExpMultiplier;
+        
+        if (Exp.ContainsKey(player))
             Exp[player] += exp;
         
         RoundExp[player] += exp;

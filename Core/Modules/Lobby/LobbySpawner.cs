@@ -138,7 +138,7 @@ public class LobbySpawner
             Dictionary<Team, List<int>> classElections = new () { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new(), [Team.TUT] = new()};
 
             foreach (Player player in Player.List)
-                classElections[GetPlayerElection(player)].Add(player.Id);
+                classElections[GetPlayerElection(player,false)].Add(player.Id);
 
             ClearDummies();
 
@@ -261,10 +261,13 @@ public class LobbySpawner
         Timing.CallDelayed(1, () => _status = LobbyStatus.Close);
     }
 
-    public Team GetPlayerElection(Player player)
+    public Team GetPlayerElection(Player player, bool overwatch = true)
     {
-        if (_overwatch.Contains(player))
-            return Team.RIP;
+        if (overwatch)
+        {
+            if (_overwatch.Contains(player))
+                return Team.RIP;
+        }
 
         foreach (TeamTrigger t in _triggers.Where(t => t.ContainsPlayer(player)))
         {

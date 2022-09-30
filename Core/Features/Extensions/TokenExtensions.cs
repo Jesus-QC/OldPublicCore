@@ -98,6 +98,19 @@ public static class TokenExtensions
 
     public static string GetString(this LevelToken token, int exp)
     {
+        if (LevelExtensions.ExpMultiplier != 1)
+        {
+            return token.GetRarity() switch
+            {
+                CoreRarity.Common => $"⌈ <color=#aeff70>◉</color> | {token.GetName()} | <color=#aeff70>+ {exp}XP</color> <color=#fce188>{LevelExtensions.ExpMultiplier}x</color> ⌋",
+                CoreRarity.Rare => $"⌈ <color=#70b0ff>◈</color> | {token.GetName()} | <color=#70b0ff>+ {exp}XP</color> <color=#fce188>{LevelExtensions.ExpMultiplier}x</color> ⌋",
+                CoreRarity.Epic => $"⌈ <color=#e070ff>❖</color> | {token.GetName()} | <color=#e070ff>+ {exp}XP</color> <color=#fce188>{LevelExtensions.ExpMultiplier}x</color> ⌋",
+                CoreRarity.Legendary => $"⌈ <color=#ffc670>✴</color> | {token.GetName()} | <color=#ffc670>+ {exp}XP</color> <color=#fce188>{LevelExtensions.ExpMultiplier}x</color> ⌋",
+                CoreRarity.Mythic => $"⌈ <color=#f7ff66>✽</color> | {token.GetName()} | <color=#f7ff66>+ {exp}XP</color> <color=#fce188>{LevelExtensions.ExpMultiplier}x</color> ⌋",
+                _ => string.Empty,
+            };
+        }
+        
         return token.GetRarity() switch
         {
             CoreRarity.Common => $"⌈ <color=#aeff70>◉</color> | {token.GetName()} | <color=#aeff70>+ {exp}XP</color> ⌋",
