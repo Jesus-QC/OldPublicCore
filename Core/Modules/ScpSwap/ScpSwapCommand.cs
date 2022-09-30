@@ -74,7 +74,7 @@ public class ScpSwapCommand : ICommand
                 
                 if (!Requests.ContainsKey(player))
                 {
-                    p.Broadcast(8, "\n<b>You have received a Swap Request by <color=");
+                    p.Broadcast(8, $"\n<b>You have received a Swap Request by <color=red>{player.Nickname}</color>\n</b>Type <color=grey>.scpswap accept</color> to accept it.");
                     Requests.Add(player, role);
                 }
 
@@ -90,7 +90,7 @@ public class ScpSwapCommand : ICommand
     {
         {"173", RoleType.Scp173},
         {"peanut", RoleType.Scp173},
-        {"939", RoleType.Scp93953},
+        {"939", RoleType.Scp93989},
         {"dog", RoleType.Scp93953},
         {"079", RoleType.Scp079},
         {"computer", RoleType.Scp079},

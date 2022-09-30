@@ -105,8 +105,7 @@ public class CorePlayerManager : MonoBehaviour
         _mainDisplay.Clear();
         _mainDisplay.WithColor(color);
         _mainDisplay.WithLevelMessage(GetLevelMessage());
-        _mainDisplay.WithSpectators(_player.ReferenceHub.spectatorManager.ServerCurrentSpectatingPlayers.Count - 1);
-        
+
         for (int i = 0; i < _timers.Count; i++)
         {
             ScreenZone zone = (ScreenZone)i;

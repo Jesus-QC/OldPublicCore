@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandSystem;
 using Core.Features.Data.Enums;
+using Core.Features.Display;
 using Core.Features.Extensions;
 using Core.Features.Wrappers;
 using Exiled.API.Features;
@@ -9,7 +10,7 @@ using Exiled.Permissions.Extensions;
 namespace Core.Features.Commands;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler)), CommandHandler(typeof(GameConsoleCommandHandler))]
-public class DisableHudCommand : ICommand
+public class PinMessageCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
@@ -21,23 +22,24 @@ public class DisableHudCommand : ICommand
         
         if (arguments.Count < 1)
         {
-            response = "no enough arguments";
+            GameDisplayBuilder.PinnedMessage = string.Empty;
+            response = "cleared pin";
             return false;
         }
 
-        if (arguments.At(0) is "off")
+        string msg = "";
+        for (int i = 0; i < arguments.Count; i++)
         {
-            MapCore.IsHudEnabled = false;
-            response = "disabled hud.";
-            return false;
+            msg += arguments.At(i) + " ";
         }
 
-        MapCore.IsHudEnabled = true;
-        response = "enabled hud";
+        GameDisplayBuilder.PinnedMessage = msg;
+        
+        response = $"pinned: {msg}";
         return true;
     }
 
-    public string Command { get; } = "disablehud";
+    public string Command { get; } = "pin";
     public string[] Aliases { get; } = Array.Empty<string>();
-    public string Description { get; } = "Allows admins to disable the hud for any user.";
+    public string Description { get; } = "Allows admins to pin a msg for any user.";
 }

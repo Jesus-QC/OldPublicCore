@@ -10,5 +10,5 @@ public enum ScreenZone
     Bottom,
     InteractionMessage,
     KillMessage,
-    SubclassAlert,
+    SubclassAlert
 }

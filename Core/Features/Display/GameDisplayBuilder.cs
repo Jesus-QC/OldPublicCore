@@ -13,8 +13,12 @@ using NorthwoodLib.Pools;
 
 namespace Core.Features.Display;
 
-public class GameDisplayBuilder 
+public class GameDisplayBuilder
 {
+    public const string ServerName = $"<b><size=50%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}";
+    
+    public static string PinnedMessage = string.Empty;
+
     private readonly StringBuilder _builder;
     
     public GameDisplayBuilder(StringBuilder builder) => _builder = builder;
@@ -27,13 +31,11 @@ public class GameDisplayBuilder
     private string _color = "#fff";
     private string _level = string.Empty;
     private string _name = string.Empty;
-    private int _spectators;
-    
+
     public void Clear()
     {
         _saved.Clear();
         _notifications.Clear();
-        _spectators = 0;
     }
     
     public void WithContent(ScreenZone zone, string content)
@@ -52,7 +54,6 @@ public class GameDisplayBuilder
     public void WithColor(string color) => _color = color;
     public void WithLevelMessage(string levelMsg) => _level = levelMsg;
     public void WithName(string name) => _name = name;
-    public void WithSpectators(int number) => _spectators = number;
     
     public string BuildForHuman()
     {
@@ -88,15 +89,11 @@ public class GameDisplayBuilder
         _builder.Append(RenderZone(ScreenZone.Bottom));
         _builder.Append(FormatStringForHud(GetZone(ScreenZone.InteractionMessage), 1));
         _builder.Append(FormatStringForHud(GetZone(ScreenZone.KillMessage), 1));
-
-        _builder.Append($"<color={_color}>");
         
-        if (_spectators != 0)
-            _builder.Append($"<align=right>👥 S<lowercase>pectators: {_spectators}</lowercase></align>");
-
-        _builder.AppendLine();
-
-        _builder.AppendLine($"<b><size=50%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}");
+        _builder.AppendLine(PinnedMessage);
+        
+        _builder.Append($"<color={_color}>");
+        _builder.AppendLine(ServerName);
         _builder.Append($"{_name} | {_level} | tps: {ServerCore.Tps}");
 
         return _builder.ToString();
@@ -128,7 +125,7 @@ public class GameDisplayBuilder
         _builder.Append($"class selected\n\n<size=140%>{LobbyModule.LobbySpawner.GetPlayerElection(player).GetLobbyName()}</size>\n\n\n\n");
         _builder.AppendLine("<size=100%>W<lowercase>elcome!</lowercase></size>\n");
         _builder.AppendLine("<size=80%><b>J<lowercase>oin us <color=#ff3995>d</color><color=#f639a6>i</color><color=#ec39b6>s</color><color=#e339c7>c</color><color=#d938d8>o</color><color=#d038e9>r</color><color=#c638f9>d</color><color=#bd40ff>.</color><color=#b34cff>c</color><color=#aa58ff>u</color><color=#a065ff>r</color><color=#9771ff>s</color><color=#8d7dff>e</color><color=#8788ff>d</color><color=#8692ff>s</color><color=#869cff>l</color><color=#85a6ff>.</color><color=#85afff>x</color><color=#84b9ff>y</color><color=#84c3ff>z</color>!</b></lowercase></size>");
-        _builder.AppendLine($"<color=#FC00AB><b><size=50%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}");
+        _builder.AppendLine(ServerName);
         _builder.Append($"{_name} | {_level} | tps: {ServerCore.Tps}");
 
         return _builder.ToString();
@@ -167,11 +164,12 @@ public class GameDisplayBuilder
         _builder.Append(RenderZone(ScreenZone.CenterBottom));
         _builder.Append(FormatStringForHud(EventHandler.RenderedZone));
         _builder.Append(FormatStringForHud(GetZone(ScreenZone.InteractionMessage), 1));
-        _builder.Append(FormatStringForHud(GetZone(ScreenZone.KillMessage), 1));
-
-        _builder.Append($"<color={_color}>");
+        
         _builder.AppendLine(EventHandler.Tip);
-        _builder.AppendLine($"<b><size=50%><color=#c862ff>C</color><color=#c684ff>u</color><color=#c4a7ff>r</color><color=#c1c9ff>s</color><color=#bfebff>e</color><color=#cbf0eb>d</color> <color=#e3fac4>S</color><color=#efffb0>L</color> - {Core.GlobalVersion}");
+        _builder.AppendLine(PinnedMessage);
+        
+        _builder.Append($"<color={_color}>");
+        _builder.AppendLine(ServerName);
         _builder.Append($"{_name} | {_level} | tps: {ServerCore.Tps}");
 
         return _builder.ToString();
@@ -181,7 +179,7 @@ public class GameDisplayBuilder
 
     private string RenderZone(ScreenZone zone) => FormatStringForHud(GetZone(zone));
     
-    private string FormatStringForHud(string text, int linesNeeded = 6)
+    private static string FormatStringForHud(string text, int linesNeeded = 6)
     {
         int textLines = text.Count(x => x == '\n');
 
