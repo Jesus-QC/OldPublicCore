@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Core.Features.Data.Enums;
 using Core.Features.Extensions;
 using Core.Modules.Subclasses.Features;
 using Core.Modules.Subclasses.Features.Enums;
@@ -33,17 +32,17 @@ public class PlayerHandler
         Subclass subclass = ev.NewRole.GetRandomSubclass();
 
         ev.Player.SetDisplaySubclass(subclass);
+        foreach (Player player in ev.Player.CurrentSpectatingPlayers)
+        {
+            if(player.IsDead)
+                player.SetDisplaySubclass(subclass);
+        }
         
         if (subclass is null)
         {
             ev.Player.CustomInfo = string.Empty;
             ev.Player.SetSubclass(null);
-            
-            foreach (Player player in ev.Player.CurrentSpectatingPlayers)
-            {
-                player.SetDisplaySubclass(null);
-            }
-            
+
             return;
         }
         
@@ -94,11 +93,6 @@ public class PlayerHandler
         ev.Player.Broadcast(10, $"\n<b><color={s.SpawnAs.GetColor().ToHex()}>{s.Description}</color></b>", shouldClearPrevious: true);
         
         ev.Player.CustomInfo = $"<color=#50C878>{(s.Abilities.HasFlag(SubclassAbility.Disguised) ? "Default" : s.Name)}\n(Custom Subclass)</color>";
-        
-        foreach (Player player in ev.Player.CurrentSpectatingPlayers)
-        {
-            player.SetDisplaySubclass(s);
-        }
 
         ev.Player.SetDisplaySubclass(s);
         
@@ -176,7 +170,7 @@ public class PlayerHandler
     
     public void OnChangingSpectatedPlayer(ChangingSpectatedPlayerEventArgs ev)
     {
-        if(ev.Player == ev.NewTarget)
+        if(ev.Player == ev.NewTarget || ev.Player.IsAlive)
             return;
         
         ev.Player.SetDisplaySubclass(ev.NewTarget.GetSubclass());

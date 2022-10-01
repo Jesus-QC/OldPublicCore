@@ -151,9 +151,7 @@ public class PlayerHandler
     {
         if(ev.Target is null)
             return;
-        
-        ev.Target.AddDeath();
-            
+
         if(ev.Handler.Type is DamageType.Warhead && ev.Target.CheckCooldown(LevelToken.Detonate, 1))
             ev.Target.AddExp(LevelToken.Detonate, 20);
         else if(ev.Handler.Type is DamageType.Falldown && ev.Target.CheckCooldown(LevelToken.Deplete, 1))
@@ -177,7 +175,9 @@ public class PlayerHandler
                     ev.Killer.AddExp(LevelToken.MonsterHunter, 100);
             }
         }
-
+        else
+            ev.Target.AddDeath();
+        
         if (ev.Killer.Role.Side is Side.Scp)
         {
             switch (ev.Killer.Role.Type)
@@ -199,15 +199,18 @@ public class PlayerHandler
                     break;
             }
         }
-        else if (ev.Killer.Role.Team != Team.SCP && ev.TargetOldRole.GetTeam() != Team.SCP)
+        else if (ev.Killer.Role.Team != Team.SCP)
         {
-            ev.Killer.AddExp(LevelToken.Erase, 15);
+            ev.Killer.AddKill();
+            
+            if (ev.TargetOldRole.GetTeam() != Team.SCP)
+            {
+                ev.Killer.AddExp(LevelToken.Erase, 15);
                 
-            if (ev.Killer.GetUses(LevelToken.Erase) == 10)
-                ev.Killer.AddExp(LevelToken.SerialKiller, 100);
+                if (ev.Killer.GetUses(LevelToken.Erase) == 10)
+                    ev.Killer.AddExp(LevelToken.SerialKiller, 100);
+            }
         }
-        
-        ev.Killer.AddKill();
         
         ev.Killer.SendHint(ScreenZone.KillMessage, $"<i><size=80%>killed <color=#f04a58>{ev.Target.Nickname}</color></size></i>");
             
