@@ -37,8 +37,13 @@ public class PlayerHandler
     {
         if (ev.Items.Count == 8 || ev.NewRole.GetSide() == Side.Scp)
             return;
-            
+        
         ev.Items.Add(ItemType.Flashlight);
+        
+        if (ev.Items.Count == 8) // TODO: Halloween patch
+            return;
+        
+        ev.Items.Add(ItemType.SCP330);
     }
 
     public void OnDied(DiedEventArgs ev)

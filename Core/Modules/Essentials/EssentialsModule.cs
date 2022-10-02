@@ -28,6 +28,8 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Server.RespawningTeam += _serverHandler.OnRespawningTeam;
         Server.RestartingRound += _serverHandler.OnRestartingRound;
         Server.WaitingForPlayers += _playerHandler.OnWaitingForPlayers;
+        Server.RoundEnded += _serverHandler.OnRoundEnded;
+        Server.RoundStarted += _serverHandler.OnRoundStarted;
             
         Player.Hurting += _playerHandler.OnHurting;
         Player.Died += _playerHandler.OnDied;
@@ -50,9 +52,11 @@ public class EssentialsModule : CoreModule<EssentialsConfig>
         Player.ChangingRole -= _playerHandler.OnChangingRole;
         
         Server.RestartingRound -= _serverHandler.OnRestartingRound;
+        Server.RoundStarted -= _serverHandler.OnRoundStarted;
         Server.WaitingForPlayers -= _playerHandler.OnWaitingForPlayers;
         Server.RespawningTeam -= _serverHandler.OnRespawningTeam;
         Map.AnnouncingNtfEntrance -= _serverHandler.OnAnnouncingMtfEntrance;
+        Server.RoundEnded -= _serverHandler.OnRoundEnded;
         
         Exiled.Events.Handlers.Scp914.UpgradingPlayer -= _playerHandler.OnUpgradingPlayer;
         

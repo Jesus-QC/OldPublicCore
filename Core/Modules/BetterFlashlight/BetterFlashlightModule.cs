@@ -1,5 +1,6 @@
 ﻿using Core.Features.Data.Configs;
 using Core.Loader.Features;
+using Exiled.API.Features;
 
 namespace Core.Modules.BetterFlashlight;
 
@@ -11,6 +12,7 @@ public class BetterFlashlightModule : CoreModule<EmptyConfig>
     
     public override void OnEnabled()
     {
+        Log.Info(1);
         FlashlightManager = new FlashlightManager();
         
         Exiled.Events.Handlers.Server.RestartingRound += FlashlightManager.OnRestartingRound;

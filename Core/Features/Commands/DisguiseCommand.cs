@@ -30,6 +30,15 @@ public class DisguiseCommand : ICommand
                 response = "Undisguised.";
                 return true;
             }
+
+            if (arguments.Count == 1 && sender.CheckPermission("cursed.owner"))
+            {
+                DisguisedStaff.Add(player.UserId, arguments.At(0));
+                player.ShowBadge();
+            
+                response = "Disguised.";
+                return true;
+            }
             
             DisguisedStaff.Add(player.UserId, EssentialsModule.PluginConfig.DisguiseNicknames[Random.Range(0, EssentialsModule.PluginConfig.DisguiseNicknames.Count)]);
             player.ShowBadge();

@@ -1,7 +1,9 @@
-﻿using Exiled.API.Features;
+﻿using Core.Features.Components;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
 using Respawning;
+using UnityEngine;
 
 namespace Core.Modules.Essentials.Handlers;
 
@@ -17,9 +19,14 @@ public class ServerHandler
         CoroutinesHandler.Coroutines.Clear();
             
         _rounds++;
-            
+
         if (_rounds == EssentialsModule.PluginConfig.RoundsToRestart)
+        {
             Server.Restart();
+            return;
+        }
+
+        Server.FriendlyFire = false;
     }
 
     public void OnAnnouncingMtfEntrance(AnnouncingNtfEntranceEventArgs ev)
@@ -36,5 +43,14 @@ public class ServerHandler
                 
         Cassie.MessageTranslated(EssentialsModule.PluginConfig.ChaosAnnouncement,
             "Emergency Alert, Unauthorized Military Group... Scaning threat... Threat designated as <color=green>Chaos Insurgency</color>");
+    }
+
+    public void OnRoundEnded(RoundEndedEventArgs ev) => Server.FriendlyFire = true;
+    public void OnRoundStarted()
+    {
+        GameObject gameObject = new GameObject("SCP-106 Fix");
+        gameObject.transform.position = Vector3.down * 2005;
+        gameObject.transform.localScale = new Vector3(100,1,100);
+        gameObject.AddComponent<JumpTrigger>();
     }
 }

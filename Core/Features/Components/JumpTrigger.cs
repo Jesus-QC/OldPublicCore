@@ -1,7 +1,8 @@
-﻿using Exiled.API.Features;
+﻿using Exiled.API.Enums;
+using Exiled.API.Features;
 using UnityEngine;
 
-namespace Core.Modules.Lobby.Components;
+namespace Core.Features.Components;
 
 public class JumpTrigger : MonoBehaviour
 {
@@ -13,11 +14,7 @@ public class JumpTrigger : MonoBehaviour
     }
     
     private void OnTriggerEnter(Collider other)
-    {
-        Player ply = Player.Get(other.gameObject);
-        if (ply is null)
-            return;
-
-        ply.Position = Vector3.forward * 300 + Vector3.up * 5;
+    { 
+        Player.Get(other.gameObject)?.Kill(DamageType.PocketDimension);
     }
 }
