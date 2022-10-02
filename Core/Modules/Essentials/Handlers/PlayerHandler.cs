@@ -40,7 +40,7 @@ public class PlayerHandler
         
         ev.Items.Add(ItemType.Flashlight);
         
-        if (ev.Items.Count == 8) // TODO: Halloween patch
+        if (ev.Items.Count == 8 && Random.Range(0, 100) > 75) // TODO: Halloween patch
             return;
         
         ev.Items.Add(ItemType.SCP330);
