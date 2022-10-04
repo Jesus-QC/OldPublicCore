@@ -32,9 +32,53 @@ public static class PlayerExtensions
         return SubclassesByPlayer[player];
     }
 
-    public static void TryMainAbility(this Player player) => player?.GetSubclass().MainAbility?.OnUsing(player);
-    public static void TrySecondaryAbility(this Player player) => player?.GetSubclass().SecondaryAbility?.OnUsing(player);
-    public static void TryTertiaryAbility(this Player player) => player?.GetSubclass().TertiaryAbility?.OnUsing(player);
+    public static void TryMainAbility(this Player player)
+    {
+        if (player.IsPrimaryInCooldown())
+        {
+            player.ShowHint($"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>");
+            return;
+        }
+
+        IAbility ability = player?.GetSubclass().MainAbility;
+
+        if (ability is null)
+            return;
+        
+        if (ability.OnUsing(player)) AbilityManager.MainCooldown[player] += ability.Cooldown;
+    }
+    
+    public static void TrySecondaryAbility(this Player player)
+    {
+        if (player.IsSecondaryInCooldown())
+        {
+            player.ShowHint($"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>");
+            return;
+        }
+
+        IAbility ability = player?.GetSubclass().SecondaryAbility;
+
+        if (ability is null)
+            return;
+        
+        if (ability.OnUsing(player)) AbilityManager.SecondaryCooldown[player] += ability.Cooldown;
+    }
+    
+    public static void TryTertiaryAbility(this Player player)
+    {
+        if (player.IsTertiaryInCooldown())
+        {
+            player.ShowHint($"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>");
+            return;
+        }
+
+        IAbility ability = player?.GetSubclass().TertiaryAbility;
+
+        if (ability is null)
+            return;
+        
+        if (ability.OnUsing(player)) AbilityManager.TertiaryCooldown[player] += ability.Cooldown;
+    }
     
     public static void Disguise(this Player player, RoleType type, HashSet<Side> playerSide)
     {

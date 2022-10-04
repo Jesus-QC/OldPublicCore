@@ -234,6 +234,9 @@
         <Compile Include="Modules\Stalky\Components\StalkController.cs" />
         <Compile Include="Modules\Stalky\StalkyConfig.cs" />
         <Compile Include="Modules\Stalky\StalkyModule.cs" />
+        <Compile Include="Modules\Subclasses\Features\Abilities\DruggistAbility.cs" />
+        <Compile Include="Modules\Subclasses\Features\Abilities\HealCmdAbility.cs" />
+        <Compile Include="Modules\Subclasses\Features\Abilities\PickPocketAbility.cs" />
         <Compile Include="Modules\Subclasses\Features\AbilityManager.cs" />
         <Compile Include="Modules\Subclasses\Features\Commands\AbilityCommand.cs" />
         <Compile Include="Modules\Subclasses\Features\Commands\SubclassCommand.cs" />
@@ -248,12 +251,14 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\JammerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Chaos\PeaceBreakerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\AdventurerSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\BaddieSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\ChadSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CleanerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\CollectorSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\DoctorSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\FighterSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\HalloweenEnjoyerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\HustlerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\ClassD\MidgetSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Guard\CommanderSubclass.cs" />
@@ -264,6 +269,7 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\HackerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\MtfSpySubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\NightSpecialistSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\ReconSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\SlayerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\MTF\SniperSubclass.cs" />
@@ -273,6 +279,7 @@
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\DefaultSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\EngineerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\InsiderSubclass.cs" />
+        <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\MrWhiteSubclass.cs" />
         <Compile Include="Modules\Subclasses\Features\Subclasses\Scientist\RunnerSubclass.cs" />
         <Compile Include="Modules\Subclasses\Handlers\PlayerHandler.cs" />
         <Compile Include="Modules\Subclasses\SubclassesConfig.cs" />
@@ -287,9 +294,6 @@
     <ItemGroup>
       <None Include="App.config" />
       <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Modules\Subclasses\Features\Abilities" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

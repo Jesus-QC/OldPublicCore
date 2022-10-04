@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Core.Features.Attribute;
 using Core.Features.Data.Enums;
+using Core.Modules.Subclasses.Features.Abilities;
 using Core.Modules.Subclasses.Features.Enums;
 
 namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 
-[DisabledFeature]
 public class DoctorSubclass : Subclass
 {
     public override string Name { get; set; } = "doctor";
@@ -22,5 +22,5 @@ public class DoctorSubclass : Subclass
     };
 
     public override SubclassAbility Abilities { get; set; } = SubclassAbility.HealCmd;
-    //public override IAbility MainAbility { get; set; } = 
+    public override IAbility MainAbility { get; set; } = new HealCmdAbility();
 }

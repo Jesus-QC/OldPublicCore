@@ -75,11 +75,15 @@ public class LobbySpawner
         if (_status != LobbyStatus.Open)
             return;
 
-        if (_overwatch.Contains(ev.Player))
+        if (_overwatch.Contains(ev.Player) && !ev.IsEnabled)
         {
+            ev.IsAllowed = false;
             _overwatch.Remove(ev.Player);
             return;
         }
+        
+        if(!ev.IsEnabled)
+            return;
         
         ev.IsAllowed = false;
         _overwatch.Add(ev.Player);

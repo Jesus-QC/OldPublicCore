@@ -25,7 +25,7 @@ public class PollCommand : ICommand
             return true;
         }
         
-        PollHandler.AddPoll("dedicated server", arguments.Aggregate("", (current, s) => current + (s + ' ')), 30, () => {Log.Info("Poll ended.");});
+        PollHandler.AddPoll("dedicated server", arguments.Aggregate("", (current, s) => current + (s + ' ')), 60, () => {Log.Info("Poll ended.");});
         
         response = "Done!";
         return true;

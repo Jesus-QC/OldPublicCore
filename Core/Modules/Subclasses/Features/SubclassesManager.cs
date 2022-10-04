@@ -25,12 +25,15 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.ClassD.MidgetSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.HustlerSubclass));
         RegisterSubclass(typeof(Subclasses.ClassD.ChadSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.BaddieSubclass));
+        RegisterSubclass(typeof(Subclasses.ClassD.HalloweenEnjoyer));
         
         RegisterSubclass(typeof(Subclasses.Scientist.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.InsiderSubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.RunnerSubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.ChaosSpySubclass));
         RegisterSubclass(typeof(Subclasses.Scientist.EngineerSubclass));
+        RegisterSubclass(typeof(Subclasses.Scientist.MrWhiteSubclass));
         
         RegisterSubclass(typeof(Subclasses.Guard.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Guard.BreacherSubclass));
@@ -46,6 +49,7 @@ public class SubclassesManager
         RegisterSubclass(typeof(Subclasses.MTF.TankSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.BomberSubclass));
         RegisterSubclass(typeof(Subclasses.MTF.SlayerSubclass));
+        RegisterSubclass(typeof(Subclasses.MTF.NightSpecialistSubclass));
 
         RegisterSubclass(typeof(Subclasses.Chaos.DefaultSubclass));
         RegisterSubclass(typeof(Subclasses.Chaos.ChaosJuggernautSubclass));

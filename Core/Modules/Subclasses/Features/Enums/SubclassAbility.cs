@@ -9,5 +9,7 @@ public enum SubclassAbility
     HealCmd,
     GrenadeImmunity,
     Disguised,
-    InfiniteStamina
+    InfiniteStamina,
+    Pickpocket,
+    Druggist
 }

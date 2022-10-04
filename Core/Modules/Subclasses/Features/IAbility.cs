@@ -6,6 +6,6 @@ namespace Core.Modules.Subclasses.Features;
 public interface IAbility
 {
     public SubclassAbility Ability { get; set; }
-    public int Cooldown { get; set; }
-    public void OnUsing(Player player);
+    public uint Cooldown { get; set; }
+    public bool OnUsing(Player player);
 }

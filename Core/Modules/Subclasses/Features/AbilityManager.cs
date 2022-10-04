@@ -9,9 +9,9 @@ namespace Core.Modules.Subclasses.Features;
 
 public static class AbilityManager
 {
-    private static readonly Dictionary<Player, uint> MainCooldown = new ();
-    private static readonly Dictionary<Player, uint> SecondaryCooldown = new ();
-    private static readonly Dictionary<Player, uint> TertiaryCooldown = new ();
+    public static readonly Dictionary<Player, uint> MainCooldown = new ();
+    public static readonly Dictionary<Player, uint> SecondaryCooldown = new ();
+    public static readonly Dictionary<Player, uint> TertiaryCooldown = new ();
 
     private static CancellationTokenSource _cancellation;
     
@@ -51,11 +51,11 @@ public static class AbilityManager
                 return;
 
             foreach (Player p in MainCooldown.Keys.ToArray())
-                MainCooldown[p]--;
+                if(MainCooldown[p] > 0) MainCooldown[p]--;
             foreach (Player p in SecondaryCooldown.Keys.ToArray())
-                SecondaryCooldown[p]--;
+                if(SecondaryCooldown[p] > 0) SecondaryCooldown[p]--;
             foreach (Player p in TertiaryCooldown.Keys.ToArray())
-                TertiaryCooldown[p]--;
+                if(TertiaryCooldown[p] > 0) TertiaryCooldown[p]--;
             
             await Task.Delay(1000);
         }
