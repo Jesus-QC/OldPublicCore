@@ -64,7 +64,7 @@ public class GameDisplayBuilder
         {
             _builder.AppendLine($"<color={_color}>" + _subclass.TopBar);
             _builder.AppendLine(_subclass.SecondaryTopBar + "</color>");
-            _builder.Append(GetZone(ScreenZone.SubclassAlert));
+            _builder.Append(FormatStringForHud(GetZone(ScreenZone.SubclassAlert), 1));
         }
         else
         {

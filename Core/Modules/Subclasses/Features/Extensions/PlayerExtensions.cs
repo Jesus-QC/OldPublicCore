@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Core.Features.Data.Enums;
+using Core.Features.Extensions;
 using Core.Features.Logger;
 using Core.Modules.Subclasses.Features.Enums;
 using Exiled.API.Enums;
@@ -36,7 +38,7 @@ public static class PlayerExtensions
     {
         if (player.IsPrimaryInCooldown())
         {
-            player.ShowHint($"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>");
+            player.SendHint(ScreenZone.SubclassAlert, $"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>", 5);
             return;
         }
 
@@ -52,7 +54,7 @@ public static class PlayerExtensions
     {
         if (player.IsSecondaryInCooldown())
         {
-            player.ShowHint($"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>");
+            player.SendHint(ScreenZone.SubclassAlert, $"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>", 5);
             return;
         }
 
@@ -68,7 +70,7 @@ public static class PlayerExtensions
     {
         if (player.IsTertiaryInCooldown())
         {
-            player.ShowHint($"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>");
+            player.SendHint(ScreenZone.SubclassAlert, $"<color=red>the ability is in cooldown for {AbilityManager.MainCooldown[player]} seconds</color>", 5);
             return;
         }
 

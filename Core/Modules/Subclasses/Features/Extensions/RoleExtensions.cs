@@ -23,6 +23,9 @@ public static class RoleExtensions
             List<Subclass> list = dic[role][randomRarity];
             return list[Random.Range(0, list.Count)];
         }
+
+        if (!dic[role].ContainsKey(CoreRarity.Common))
+            return null;
         
         List<Subclass> finalList = dic[role][CoreRarity.Common];
         return finalList[Random.Range(0, finalList.Count)];

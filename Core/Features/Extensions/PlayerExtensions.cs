@@ -88,7 +88,7 @@ public static class PlayerExtensions
         return id;
     }
 
-    public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 10)
+    public static void SendHint(this Player player, ScreenZone zone, string message, float duration = 7)
     {
         if(Hubs.ContainsKey(player))
             Hubs[player].AddMessage(zone, message, duration);
