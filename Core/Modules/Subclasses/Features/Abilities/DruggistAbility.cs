@@ -17,7 +17,7 @@ public class DruggistAbility : IAbility
 
         if (cur?.Type is not ItemType.Coin)
         {
-            player.SendHint(ScreenZone.SubclassAlert, "<color=red>you have to hold a coin to use the subclass.</color>");
+            player.SendHint(ScreenZone.SubclassAlert, "<color=red>you have to hold a coin to use the ability.</color>");
             return false;
         }
 
