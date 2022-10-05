@@ -44,7 +44,6 @@ public class Database
         int id = player.GetId();
         ExecuteNonQuery($"INSERT INTO Leveling (PlayerId, Exp, Achievements) VALUES ('{id}', 0, '');");
         ExecuteNonQuery($"INSERT INTO SlStats VALUES ('{id}', 0, 0, {(player.DoNotTrack ? 0 : DateTime.UtcNow.Ticks)}, {(player.DoNotTrack ? 0 : DateTime.UtcNow.Ticks)}, 0, 0, 0, 0, 0, 0, 0);");
-        ExecuteNonQuery($"INSERT INTO MonthlyStats VALUES ('{id}', 0, 0, 0, 0);");
     }
 
     public bool PlayerExists(Player player)

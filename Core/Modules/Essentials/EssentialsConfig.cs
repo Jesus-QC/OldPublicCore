@@ -8,8 +8,6 @@ public class EssentialsConfig : IConfig
 {
     public bool IsEnabled { get; set; } = true;
 
-    public int RoundsToRestart { get; set; } = 1;
-    
     [Description("Player Management")]
     public List<string> DisallowedWordsInName { get; set; } = new() { ".org" };
     public bool CanCuffedPlayersBeDamaged { get; set; } = false;

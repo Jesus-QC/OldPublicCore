@@ -9,22 +9,12 @@ namespace Core.Modules.Essentials.Handlers;
 
 public class ServerHandler
 {
-    private int _rounds;
-        
     public void OnRestartingRound()
     {
         foreach (CoroutineHandle c in CoroutinesHandler.Coroutines)
             Timing.KillCoroutines(c);
             
         CoroutinesHandler.Coroutines.Clear();
-            
-        _rounds++;
-
-        if (_rounds == EssentialsModule.PluginConfig.RoundsToRestart)
-        {
-            Server.Restart();
-            return;
-        }
 
         Server.FriendlyFire = false;
     }
