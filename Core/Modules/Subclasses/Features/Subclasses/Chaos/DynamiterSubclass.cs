@@ -9,7 +9,7 @@ public class DynamiterSubclass : Subclass
     public override string Name { get; set; } = "dynamiter";
     public override string Color { get; set; } = "#e84f4f";
     public override string Description { get; set; } = "You are a dynamiter.\nYou like to explode everything.";
-    public override CoreRarity Rarity { get; set; } = CoreRarity.Common;
+    public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.ChaosConscript, RoleType.ChaosMarauder, RoleType.ChaosRepressor, RoleType.ChaosRifleman };
     public override Team Team { get; set; } = Team.CHI;
 

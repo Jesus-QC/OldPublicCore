@@ -164,6 +164,8 @@
         <Compile Include="Loader\Features\ICoreModule.cs" />
         <Compile Include="Loader\Features\PriorityComparer.cs" />
         <Compile Include="Loader\ModuleLoader.cs" />
+        <Compile Include="Modules\AdminTools\Commands\GravityCommand.cs" />
+        <Compile Include="Modules\AdminTools\Commands\VanishCommand.cs" />
         <Compile Include="Modules\AfkChecker\AfkCheckerComponent.cs" />
         <Compile Include="Modules\AfkChecker\AfkCheckerConfig.cs" />
         <Compile Include="Modules\AfkChecker\AfkCheckerModule.cs" />

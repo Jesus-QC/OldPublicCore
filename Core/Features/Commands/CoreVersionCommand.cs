@@ -20,7 +20,7 @@ public class CoreVersionCommand : ICommand
             player.SendHint(ScreenZone.Notifications, "⌈ <color=#ffc670>✴</color> | Core Test Token | <color=#ffc670>+ 0XP</color> ⌋");
             player.SendHint(ScreenZone.Notifications, "⌈ <color=#f7ff66>✽</color> | Core Test Token | <color=#f7ff66>+ 0XP</color> ⌋");
         }
-        
+
         response = "The server is running the version: " + Core.GlobalVersion;
         return true;
     }
