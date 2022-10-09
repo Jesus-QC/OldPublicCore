@@ -25,17 +25,17 @@ public class Database
 
     public void InsertNewPlayer(Player player)
     {
-        string query = "INSERT INTO NewPlayers (SteamId, DiscordId, NorthWoodId, Username, SubscriptionType) VALUES ";
+        string query = "INSERT INTO NewPlayers (SteamId, DiscordId, NorthWoodId, Username) VALUES ";
         switch (player.AuthenticationType)
         {
             case AuthenticationType.Steam:
-                query += $"('{player.RawUserId}', NULL, NULL, '{player.Nickname.Replace("'", "\\'")}', '0');";
+                query += $"('{player.RawUserId}', NULL, NULL, '{player.Nickname.Replace("'", "\\'").Replace("\\", "\\\\")}');";
                 break;
             case AuthenticationType.Discord:
-                query += $"(NULL, '{player.RawUserId}', NULL, '{player.Nickname}', '0');";
+                query += $"(NULL, '{player.RawUserId}', NULL, '{player.Nickname.Replace("'", "\\'").Replace("\\", "\\\\")}');";
                 break;
             default:
-                query += $"(NULL, NULL, '{player.UserId}', '{player.Nickname}', '0');";
+                query += $"(NULL, NULL, '{player.UserId}', '{player.Nickname.Replace("'", "\\'").Replace("\\", "\\\\")}');";
                 break;
         }
 
@@ -44,6 +44,7 @@ public class Database
         int id = player.GetId();
         ExecuteNonQuery($"INSERT INTO Leveling (PlayerId, Exp, Achievements) VALUES ('{id}', 0, '');");
         ExecuteNonQuery($"INSERT INTO SlStats VALUES ('{id}', 0, 0, {(player.DoNotTrack ? 0 : DateTime.UtcNow.Ticks)}, {(player.DoNotTrack ? 0 : DateTime.UtcNow.Ticks)}, 0, 0, 0, 0, 0, 0, 0);");
+        ExecuteNonQuery($"INSERT INTO Inventory (PlayerId) VALUES ('{id}')");
     }
 
     public bool PlayerExists(Player player)

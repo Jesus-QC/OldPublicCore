@@ -10,7 +10,7 @@ namespace Core.Modules.Essentials;
 public class EssentialsModule : CoreModule<EssentialsConfig>
 {
     public override string Name => "Essentials";
-    public override byte Priority => 5;
+    public override byte Priority => 15;
 
     public static EssentialsConfig PluginConfig { get; private set; }
 

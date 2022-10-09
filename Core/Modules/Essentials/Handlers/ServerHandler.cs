@@ -2,6 +2,7 @@
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
+using Mirror;
 using Respawning;
 using UnityEngine;
 
@@ -38,6 +39,8 @@ public class ServerHandler
     public void OnRoundEnded(RoundEndedEventArgs ev) => Server.FriendlyFire = true;
     public void OnRoundStarted()
     {
+        ServerStatic.StopNextRound = ServerStatic.NextRoundAction.Restart;
+        
         GameObject gameObject = new GameObject("SCP-106 Fix");
         gameObject.transform.position = Vector3.down * 2005;
         gameObject.transform.localScale = new Vector3(100,1,100);
