@@ -34,7 +34,10 @@ public class FlashlightManager
         while (true)
         {
             if(_cancellation.IsCancellationRequested)
+            {
+                Log.Info($"{LogUtils.GetColor(LogColor.Red)}Ended Flashlight Cooldown Timer");
                 return;
+            }
             
             foreach (Player player in Player.List)
             {

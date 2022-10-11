@@ -45,6 +45,7 @@ public class EventHandler
             if (_cancellation.IsCancellationRequested)
             {
                 StringBuilderPool.Shared.Return(builder);
+                Log.Info($"{LogUtils.GetColor(LogColor.Red)}Ended RespawnTimer Timer");
                 return;
             }
 

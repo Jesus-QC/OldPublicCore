@@ -29,11 +29,11 @@ public static class LevelExtensions
     {
         if (DisguiseCommand.DisguisedStaff.ContainsKey(player.UserId))
         {
-            player.DisplayNickname = $"Lvl: {player.GetLevel()} |  {DisguiseCommand.DisguisedStaff[player.UserId]}";
+            player.DisplayNickname = $"Lvl: {player.GetLevel()} | {DisguiseCommand.DisguisedStaff[player.UserId]}";
             return;
         }
         
-        player.DisplayNickname = $"Lvl: {player.GetLevel()} |  {player.Nickname}";
+        player.DisplayNickname = $"(lvl: {player.GetLevel()}) {player.Nickname}";
     }
     public static void SetUpLevels(this Player player)
     {
@@ -95,6 +95,7 @@ public static class LevelExtensions
         //     return;
             
         await Core.Database.ExecuteNonQueryAsync($"UPDATE Leveling SET Exp=Exp+{exp} WHERE PlayerId={player.GetId()};");
+        await Core.Database.ExecuteNonQueryAsync($"UPDATE Inventory SET Balance=Balance+{exp} WHERE PlayerId={player.GetId()};");
 
         player.ShowBadge();
     }

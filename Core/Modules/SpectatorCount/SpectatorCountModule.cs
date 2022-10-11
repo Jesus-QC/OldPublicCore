@@ -60,6 +60,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
             if (_cancellation.IsCancellationRequested)
             {
                 StringBuilderPool.Shared.Return(builder);
+                Log.Info($"{LogUtils.GetColor(LogColor.Red)}Ended SpectatorCount Cooldown Timer");
                 return;
             }
             

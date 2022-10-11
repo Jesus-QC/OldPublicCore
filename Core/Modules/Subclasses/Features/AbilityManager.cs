@@ -47,9 +47,12 @@ public static class AbilityManager
         Log.Info($"{LogUtils.GetColor(LogColor.Yellow)}Started Subclasses Cooldown Timer");
         while (true)
         {
-            if(_cancellation.IsCancellationRequested)
+            if (_cancellation.IsCancellationRequested)
+            {
+                Log.Info($"{LogUtils.GetColor(LogColor.Red)}Ended Subclasses Cooldown Timer");
                 return;
-
+            }
+                
             foreach (Player p in MainCooldown.Keys.ToArray())
                 if(MainCooldown[p] > 0) MainCooldown[p]--;
             foreach (Player p in SecondaryCooldown.Keys.ToArray())
