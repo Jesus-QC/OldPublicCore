@@ -38,7 +38,7 @@ public class Bot
         }
     }
 
-    private byte _oldStatus = 0;
+    private byte _oldStatus;
 
     private async Task RefreshStatus()
     {
@@ -47,14 +47,12 @@ public class Bot
         switch (_status)
         {
             case 1:
-                await _client.SetActivityAsync(new Game(_playerCount + "/35"));
+                await _client.SetActivityAsync(new Game((_playerCount == 0 && _oldStatus != 0 ? _oldStatus : _playerCount) + "/35"));
                 break;
             case 2:
                 await _client.SetActivityAsync(new Game("Restarting round..."));
                 break;
             case 3:
-                
-                
                 await _client.SetActivityAsync(new Game($"Waiting ({(_playerCount == 0 && _oldStatus != 0 ? _oldStatus : _playerCount)}/35)"));
                 break;
         }

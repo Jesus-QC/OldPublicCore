@@ -41,6 +41,8 @@ public static class AbilityManager
         TertiaryCooldown.Add(player, 0);
         return false;
     }
+
+    private static bool _already;
     
     private static async Task CooldownCheck()
     {
@@ -66,6 +68,9 @@ public static class AbilityManager
 
     public static void OnRoundStarted()
     {
+        if(!_cancellation.IsCancellationRequested)
+            return;
+        
         _cancellation?.Dispose();
         _cancellation = new CancellationTokenSource();
         Task.Run(CooldownCheck, _cancellation.Token);

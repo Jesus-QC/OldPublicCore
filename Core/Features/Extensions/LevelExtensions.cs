@@ -29,18 +29,18 @@ public static class LevelExtensions
     {
         if (DisguiseCommand.DisguisedStaff.ContainsKey(player.UserId))
         {
-            player.DisplayNickname = $"Lvl: {player.GetLevel()} | {DisguiseCommand.DisguisedStaff[player.UserId]}";
+            player.DisplayNickname = $"ᴸᵉᵛᵉˡ{player.GetLevel().ToString().PadLeft(3,'0')} › {DisguiseCommand.DisguisedStaff[player.UserId]}";
             return;
         }
         
-        player.DisplayNickname = $"(lvl: {player.GetLevel()}) {player.Nickname}";
+        player.DisplayNickname = $"ᴸᵉᵛᵉˡ{player.GetLevel().ToString().PadLeft(3,'0')} › {player.Nickname}";
     }
     public static void SetUpLevels(this Player player)
     {
         if (player.DoNotTrack)
         {
             player.OpenReportWindow("Do Not Track: you have do not track enabled, therefore your data won't be saved, this includes info as exp and stats, in order to level up and have custom stats we recommend you disabling do not track.\n\nPress [ESC] to close this.");
-            player.DisplayNickname = $"DNT | {player.Nickname}";
+            player.DisplayNickname = $"ᴰᵒᴺᵒᵗᵀʳᵃᶜᵏ › {player.Nickname}";
             return;
         }
         

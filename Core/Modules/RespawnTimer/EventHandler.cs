@@ -25,15 +25,17 @@ public class EventHandler
 
     public void OnRoundStarted()
     {
+        if(!_cancellation.IsCancellationRequested)
+            return;
+        
         _cancellation?.Dispose();
-
         _cancellation = new CancellationTokenSource();
         Task.Run(Timer, _cancellation.Token);
     }
 
     public static string Tip = string.Empty;
     public static string RenderedZone = string.Empty;
-    
+
     private async Task Timer()
     {
         Log.Info($"{LogUtils.GetColor(LogColor.Yellow)}Started RespawnTimer Timer");

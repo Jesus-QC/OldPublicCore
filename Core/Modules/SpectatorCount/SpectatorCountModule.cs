@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Features.Attribute;
+using Core.Features.Commands;
 using Core.Features.Data.Configs;
 using Core.Features.Data.Enums;
 using Core.Features.Extensions;
@@ -21,8 +22,6 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     public override void OnEnabled()
     {
-        DisabledManager.Load();
-        
         Server.RoundEnded += OnEndedRound;
         Server.RoundStarted += OnRoundStarted;
         
@@ -46,6 +45,9 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
 
     private void OnRoundStarted()
     {
+        if(!_cancellation.IsCancellationRequested)
+            return;
+
         _cancellation?.Dispose();
         _cancellation = new CancellationTokenSource();
         Task.Run(Timer, _cancellation.Token);
@@ -66,7 +68,7 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
             
             foreach (Player player in Player.List)
             {
-                if(player is null || player.IsDead || DisabledManager.IsHidden(player))
+                if(player is null || player.IsDead)
                     continue;
 
                 string color = player.Role.Color.ToHex();
@@ -88,6 +90,12 @@ public class SpectatorCountModule : CoreModule<EmptyConfig>
                         break;
                     }
 
+                    if (DisguiseCommand.DisguisedStaff.ContainsKey(spectator.UserId))
+                    {
+                        builder.Append("\n- " + DisguiseCommand.DisguisedStaff[player.UserId]);
+                        continue;
+                    }
+                    
                     builder.Append("\n- " + spectator.Nickname);
                 }
 

@@ -7,12 +7,12 @@ namespace Core.Features.Wrappers;
 public static class ServerCore
 {
     public static double Tps;
-    
+
     public static async Task CheckTps()
     {
         while (true)
         {
-            Tps = Math.Round(1.0 / Time.smoothDeltaTime);
+            Tps = Math.Round(1.0f / Time.smoothDeltaTime);
             await Task.Delay(1000);
         }
     }

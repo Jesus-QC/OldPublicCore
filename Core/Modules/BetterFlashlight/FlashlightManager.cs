@@ -23,6 +23,9 @@ public class FlashlightManager
 
     public void OnRoundStarted()
     {
+        if(!_cancellation.IsCancellationRequested)
+            return;
+        
         _cancellation?.Dispose();
         _cancellation = new CancellationTokenSource();
         Task.Run(CheckFlashlights, _cancellation.Token);
