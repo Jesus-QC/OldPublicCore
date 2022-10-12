@@ -73,10 +73,4 @@ public class PlayerHandler
             }
         }
     }
-    
-    public void OnWaitingForPlayers()
-    {
-        CoroutinesHandler.Coroutines.Add(Timing.RunCoroutine(CoroutinesHandler.BetterDisarm()));
-        CoroutinesHandler.Coroutines.Add(Timing.RunCoroutine(CoroutinesHandler.CleanerCoroutine()));
-    }
 }

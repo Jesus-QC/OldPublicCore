@@ -183,7 +183,6 @@
         <Compile Include="Modules\Essentials\EssentialsConfig.cs" />
         <Compile Include="Modules\Essentials\EssentialsModule.cs" />
         <Compile Include="Modules\Essentials\Extensions\PlayerExtensions.cs" />
-        <Compile Include="Modules\Essentials\Handlers\CoroutinesHandler.cs" />
         <Compile Include="Modules\Essentials\Handlers\PlayerHandler.cs" />
         <Compile Include="Modules\Essentials\Handlers\ServerHandler.cs" />
         <Compile Include="Modules\Essentials\Patches\RaNamesPatch.cs" />

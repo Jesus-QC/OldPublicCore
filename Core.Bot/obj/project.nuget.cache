@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FPfatFw4ncudKCsZ0YciSavvLXuDNM7T5tCcNyLNqRTaODcPEGH5+XOWYOhEFUpSGRd+t81pd2Oj+Sglgpe2Dw==",
+  "dgSpecHash": "EEwRNocj56AloXbSb9W8ShSYmLQIlol8u0ZbicDj4rsA8bnY4+aduUnF20OfW2li/XQ2wE4euY/bA29/sPcJfw==",
   "success": true,
   "projectFilePath": "D:\\_Coding\\SCPSL\\Plugins\\Exiled\\Private\\_Paid\\TheWolfPack\\MainCore\\Core.Bot\\Core.Bot.csproj",
   "expectedPackageFiles": [
@@ -18,14 +18,17 @@
     "C:\\Users\\jesus\\.nuget\\packages\\system.interactive.async\\5.0.0\\system.interactive.async.5.0.0.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\system.linq.async\\5.0.0\\system.linq.async.5.0.0.nupkg.sha512",
     "C:\\Users\\jesus\\.nuget\\packages\\system.reactive\\5.0.0\\system.reactive.5.0.0.nupkg.sha512",
-    "C:\\Users\\jesus\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+    "C:\\Users\\jesus\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\jesus\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\6.0.8\\microsoft.netcore.app.runtime.linux-x64.6.0.8.nupkg.sha512",
+    "C:\\Users\\jesus\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\6.0.8\\microsoft.aspnetcore.app.runtime.linux-x64.6.0.8.nupkg.sha512",
+    "C:\\Users\\jesus\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\6.0.8\\microsoft.netcore.app.host.linux-x64.6.0.8.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'EXILED 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"EXILED 5.3.0\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "EXILED",
       "targetGraphs": [
         "net6.0"

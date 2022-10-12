@@ -68,7 +68,7 @@ public static class AbilityManager
 
     public static void OnRoundStarted()
     {
-        if(!_cancellation.IsCancellationRequested)
+        if(!_cancellation?.IsCancellationRequested ?? false)
             return;
         
         _cancellation?.Dispose();

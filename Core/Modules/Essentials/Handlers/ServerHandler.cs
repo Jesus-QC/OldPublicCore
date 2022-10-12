@@ -1,8 +1,6 @@
 ﻿using Core.Features.Components;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
-using MEC;
-using Mirror;
 using Respawning;
 using UnityEngine;
 
@@ -10,15 +8,7 @@ namespace Core.Modules.Essentials.Handlers;
 
 public class ServerHandler
 {
-    public void OnRestartingRound()
-    {
-        foreach (CoroutineHandle c in CoroutinesHandler.Coroutines)
-            Timing.KillCoroutines(c);
-            
-        CoroutinesHandler.Coroutines.Clear();
-
-        Server.FriendlyFire = false;
-    }
+    public void OnRestartingRound() => Server.FriendlyFire = false;
 
     public void OnAnnouncingMtfEntrance(AnnouncingNtfEntranceEventArgs ev)
     {
@@ -32,8 +22,7 @@ public class ServerHandler
         if (ev.NextKnownTeam != SpawnableTeamType.ChaosInsurgency)
             return;
                 
-        Cassie.MessageTranslated(EssentialsModule.PluginConfig.ChaosAnnouncement,
-            "Emergency Alert, Unauthorized Military Group... Scaning threat... Threat designated as <color=green>Chaos Insurgency</color>");
+        Cassie.MessageTranslated(EssentialsModule.PluginConfig.ChaosAnnouncement, "Emergency Alert, Unauthorized Military Group... Scaning threat... Threat designated as <color=green>Chaos Insurgency</color>");
     }
 
     public void OnRoundEnded(RoundEndedEventArgs ev) => Server.FriendlyFire = true;
