@@ -1,3 +1,3 @@
 # MainCore
 
-TheWolfPack - Official Plugin Core
+Cursed - Official Plugin Core
