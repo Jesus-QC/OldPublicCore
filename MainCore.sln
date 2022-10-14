@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Bot", "Core.Bot\Core.Bot.csproj", "{57C6A2FC-6F8E-4474-9D74-EDE287BF4BAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Website", "Core.Website\Core.Website.csproj", "{C8F36DE4-A9E0-4272-9566-A82BAA90F897}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{57C6A2FC-6F8E-4474-9D74-EDE287BF4BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57C6A2FC-6F8E-4474-9D74-EDE287BF4BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57C6A2FC-6F8E-4474-9D74-EDE287BF4BAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8F36DE4-A9E0-4272-9566-A82BAA90F897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8F36DE4-A9E0-4272-9566-A82BAA90F897}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8F36DE4-A9E0-4272-9566-A82BAA90F897}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8F36DE4-A9E0-4272-9566-A82BAA90F897}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
