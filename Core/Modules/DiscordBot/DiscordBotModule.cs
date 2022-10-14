@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using Core.Loader.Features;
@@ -27,7 +28,9 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
                     }
                 }
                 
-                ProcessStartInfo p = new ProcessStartInfo(Config.Path, (Server.Port + 2000).ToString());
+                File.Copy(Config.Path, Config.Path + ".bak", true);
+                
+                ProcessStartInfo p = new(Config.Path + ".bak", (Server.Port + 2000).ToString());
                 Process.Start(p);
                 Log.Warn("Bot started!");
             }
@@ -55,12 +58,12 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
         
         try
         {
-            TcpClient c = new TcpClient();
+            TcpClient c = new ();
             await c.ConnectAsync(ip, port);
             
             while (true)
             {
-                await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus()}, 0, 2);
+                await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus(), (byte)Server.Tps}, 0, 3);
                 await Task.Delay(20000);
             }
         }
