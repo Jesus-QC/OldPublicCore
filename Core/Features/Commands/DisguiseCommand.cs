@@ -31,7 +31,7 @@ public class DisguiseCommand : ICommand
                 return true;
             }
 
-            if (arguments.Count == 1 && sender.CheckPermission("cursed.owner"))
+            if (arguments.Count > 0 && sender.CheckPermission("cursed.owner"))
             {
                 DisguisedStaff.Add(player.UserId, arguments.At(0));
                 player.ShowBadge();

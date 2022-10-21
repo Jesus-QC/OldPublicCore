@@ -6,7 +6,7 @@ namespace Core.Modules.Subclasses.Features.Subclasses.ClassD;
 
 public class MidgetSubclass : Subclass
 {
-    public override string Name { get; set; } = "midget";
+    public override string Name { get; set; } = "midget ghost";
     public override string Color { get; set; } = "#aaa";
     public override string Description { get; set; } = "You are short, use this perk correctly!\nOh, but you have less health.";
     public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;

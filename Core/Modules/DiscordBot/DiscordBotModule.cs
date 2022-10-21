@@ -27,10 +27,8 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
                         process.Kill();
                     }
                 }
-                
-                File.Copy(Config.Path, Config.Path + ".bak", true);
-                
-                ProcessStartInfo p = new(Config.Path + ".bak", (Server.Port + 2000).ToString());
+
+                ProcessStartInfo p = new(Config.Path, (Server.Port + 2000).ToString() + ' ' + Config.Token);
                 Process.Start(p);
                 Log.Warn("Bot started!");
             }
@@ -63,7 +61,7 @@ public class DiscordBotModule : CoreModule<DiscordBotConfig>
             
             while (true)
             {
-                await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus(), (byte)Server.Tps}, 0, 3);
+                await c.GetStream().WriteAsync(new [] {(byte)Player.Dictionary.Count, GetStatus()}, 0, 2);
                 await Task.Delay(20000);
             }
         }

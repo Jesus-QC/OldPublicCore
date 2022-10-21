@@ -19,14 +19,14 @@ public class Bot
         _client.Ready += async () => await _client.SetStatusAsync(UserStatus.Idle);
     }
     
-    public async Task Run()
+    public async Task Run(string token)
     {
-        await _client.LoginAsync(TokenType.Bot, "ODYzMDEzNjA0MTI1OTY2MzU2.GQ0khu.b9sFDkM7QAq8ewwmiNwEdIvIZ8f-HTH3RsLgIg");
+        await _client.LoginAsync(TokenType.Bot, token);
         await _client.StartAsync();
 
         _tcpListener.Start();
 
-        Socket? s = await _tcpListener.AcceptSocketAsync();
+        Socket s = await _tcpListener.AcceptSocketAsync();
         
         byte[] buf = new byte[2];
         while (true)

@@ -14,7 +14,7 @@ public class Database
     public Database()
     {
         Log.Warn("Instantiating connection to database...");
-        Connection = new MySqlConnection("Server=213.133.103.149; Port=3306; Database=s1_scpsl; Uid=u1_HJ9YFjKFvJ; Pwd=GlY^yN.33rK.f2tMHb6D@oG2;");
+        Connection = new MySqlConnection("Server=167.235.97.154; Port=3306; Database=s1_scpsl; Uid=u1_eGA9so2cOK; Pwd=HKVE!gdkFQqReQG!@m=x94y3;");
         Log.Warn("Successfully connected!");
     }
 
@@ -26,18 +26,13 @@ public class Database
     public void InsertNewPlayer(Player player)
     {
         string query = "INSERT INTO NewPlayers (SteamId, DiscordId, NorthWoodId, Username) VALUES ";
-        switch (player.AuthenticationType)
+        
+        query += player.AuthenticationType switch
         {
-            case AuthenticationType.Steam:
-                query += $"('{player.RawUserId}', NULL, NULL, '{player.Nickname.Replace("'", "\\'").Replace("\\", "\\\\")}');";
-                break;
-            case AuthenticationType.Discord:
-                query += $"(NULL, '{player.RawUserId}', NULL, '{player.Nickname.Replace("'", "\\'").Replace("\\", "\\\\")}');";
-                break;
-            default:
-                query += $"(NULL, NULL, '{player.UserId}', '{player.Nickname.Replace("'", "\\'").Replace("\\", "\\\\")}');";
-                break;
-        }
+            AuthenticationType.Steam => $"('{player.RawUserId}', NULL, NULL, '{player.Nickname.Replace("\\", "\\\\").Replace("'", "\\'")}');",
+            AuthenticationType.Discord => $"(NULL, '{player.RawUserId}', NULL, '{player.Nickname.Replace("\\", "\\\\").Replace("'", "\\'")}');",
+            _ => $"(NULL, NULL, '{player.UserId}', '{player.Nickname.Replace("\\", "\\\\").Replace("'", "\\'")}');"
+        };
 
         ExecuteNonQuery(query);
 

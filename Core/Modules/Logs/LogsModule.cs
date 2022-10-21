@@ -41,11 +41,6 @@ public class LogsModule : CoreModule<LogsConfig>
         base.OnDisabled();
     }
 
-    public override void UnPatch()
-    {
-        Core.Harmony.Unpatch(typeof(CommandProcessor).GetMethod(nameof(CommandProcessor.ProcessQuery)), HarmonyPatchType.Prefix, Core.Harmony.Id);
-    }
-
     private void OnVerified(VerifiedEventArgs ev) => WebhookSender.AddMessage($"`Join ✨` >> {ev.Player.Nickname.DiscordParse()} ({ev.Player.UserId}) [{ev.Player.IPAddress}]", WebhookType.GameLogs);
     private void OnLeft(LeftEventArgs ev) => WebhookSender.AddMessage($"`Left ⛔` >> {ev.Player.Nickname.DiscordParse()} ({ev.Player.UserId}) [{ev.Player.IPAddress}] as {ev.Player.Role}", WebhookType.GameLogs); 
 
