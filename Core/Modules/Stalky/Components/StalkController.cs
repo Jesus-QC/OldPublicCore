@@ -83,7 +83,7 @@ public class StalkController : MonoBehaviour
             return false;
         }
             
-        List<Player> availablePlayers = new List<Player>();
+        List<Player> availablePlayers = new();
 
         foreach (Player player in Player.List)
             if ((player.Role.Team == Team.CDP || player.Role.Team == Team.MTF || player.Role.Team == Team.RSC) && player.CurrentRoom is not { Type: RoomType.Pocket or RoomType.Unknown })

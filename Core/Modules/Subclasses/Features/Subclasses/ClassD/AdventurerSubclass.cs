@@ -13,7 +13,7 @@ public class AdventurerSubclass : Subclass
     public override RoleType SpawnAs { get; set; } = RoleType.ClassD;
     public override Team Team { get; set; } = Team.CDP;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.Coin, ItemType.Coin, ItemType.Coin
     };

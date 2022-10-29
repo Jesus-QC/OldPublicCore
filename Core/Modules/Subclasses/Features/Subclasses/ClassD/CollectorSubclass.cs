@@ -13,7 +13,7 @@ public class CollectorSubclass : Subclass
     public override RoleType SpawnAs { get; set; } = RoleType.ClassD;
     public override Team Team { get; set; } = Team.CDP;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.KeycardJanitor, ItemType.Medkit, ItemType.Flashlight, ItemType.Painkillers, ItemType.Adrenaline
     };

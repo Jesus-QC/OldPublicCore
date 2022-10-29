@@ -13,7 +13,7 @@ public class BomberSubclass : Subclass
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.NtfPrivate, RoleType.NtfSergeant, RoleType.NtfSpecialist };
     public override Team Team { get; set; } = Team.MTF;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.KeycardNTFLieutenant, ItemType.Radio, ItemType.GunFSP9, ItemType.Adrenaline, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeFlash, ItemType.GrenadeFlash
     };

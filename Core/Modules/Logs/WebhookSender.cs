@@ -26,8 +26,8 @@ public static class WebhookSender
         if (string.IsNullOrWhiteSpace(url))
             yield break;
 
-        UnityWebRequest webRequest = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
-        UploadHandlerRaw uploadHandler = new UploadHandlerRaw(JsonSerializer.Serialize(message));
+        UnityWebRequest webRequest = new(url, UnityWebRequest.kHttpVerbPOST);
+        UploadHandlerRaw uploadHandler = new(JsonSerializer.Serialize(message));
         uploadHandler.contentType = "application/json";
         webRequest.uploadHandler = uploadHandler;
 
@@ -45,7 +45,7 @@ public static class WebhookSender
         {
             foreach (KeyValuePair<WebhookType, List<string>> webhook in MsgQueue)
             {
-                StringBuilder builder = new StringBuilder("");
+                StringBuilder builder = new("");
 
                 foreach (string message in webhook.Value.ToList())
                 {

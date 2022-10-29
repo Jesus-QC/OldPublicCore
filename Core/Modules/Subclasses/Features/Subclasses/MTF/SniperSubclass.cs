@@ -12,15 +12,14 @@ public class SniperSubclass : Subclass
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.NtfPrivate, RoleType.NtfSergeant, RoleType.NtfSpecialist, RoleType.NtfCaptain };
     public override Team Team { get; set; } = Team.MTF;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.GunE11SR, ItemType.GunRevolver, ItemType.GrenadeFlash,
         ItemType.KeycardNTFLieutenant, ItemType.Radio, ItemType.ArmorCombat
     };
     
-    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new()
     {
-        [ItemType.Ammo9x19] = 100, [ItemType.Ammo556x45] = 100, [ItemType.Ammo762x39] = 100, [ItemType.Ammo12gauge] = 0,
-        [ItemType.Ammo44cal] = 100
+        [ItemType.Ammo9x19] = 40, [ItemType.Ammo556x45] = 160, [ItemType.Ammo44cal] = 40
     };
 }

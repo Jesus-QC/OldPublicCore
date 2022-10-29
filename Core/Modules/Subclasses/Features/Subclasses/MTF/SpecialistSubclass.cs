@@ -13,7 +13,7 @@ public class SpecialistSubclass : Subclass
     public override Team Team { get; set; } = Team.MTF;
     public override float Ahp { get; set; } = 50;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.MicroHID,
         ItemType.GunShotgun,
@@ -23,9 +23,8 @@ public class SpecialistSubclass : Subclass
         ItemType.ArmorHeavy,
     };
     
-    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
-    {
-        [ItemType.Ammo9x19] = 20, [ItemType.Ammo556x45] = 30, [ItemType.Ammo762x39] = 20, [ItemType.Ammo12gauge] = 100,
-        [ItemType.Ammo44cal] = 20
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new()
+    { 
+        [ItemType.Ammo12gauge] = 42, [ItemType.Ammo44cal] = 24
     };
 }

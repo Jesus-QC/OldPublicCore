@@ -12,7 +12,7 @@ public class DoctorSubclass : Subclass
     public override string Color { get; set; } = "#98e3ff";
     public override string Description { get; set; } = "You were once a medical student.\nYou can heal allies without items.";
     public override CoreRarity Rarity { get; set; } = CoreRarity.Rare;
-    public override List<RoleType> AffectedRoles { get; set; } = new List<RoleType>() { RoleType.ClassD };
+    public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.ClassD };
     public override RoleType SpawnAs { get; set; } = RoleType.ClassD;
     public override Team Team { get; set; } = Team.CDP;
 

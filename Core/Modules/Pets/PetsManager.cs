@@ -11,7 +11,7 @@ public static class PetsManager
 
     public static void SpawnHat(Player player)
     {
-        List<GameObject> pets = new List<GameObject>();
+        List<GameObject> pets = new();
         
         Transform go = new GameObject("Hat").transform;
         go.SetParent(player.GameObject.transform);

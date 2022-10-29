@@ -39,7 +39,7 @@ public class Leaderboard : ICommand
         
         using MySqlConnection anotherCon = Core.Database.Connection.Clone();
         anotherCon.Open();
-        using MySqlCommand cmd = new MySqlCommand("SELECT PlayerId, Exp FROM Leveling ORDER BY Exp DESC LIMIT 5", anotherCon);
+        using MySqlCommand cmd = new("SELECT PlayerId, Exp FROM Leveling ORDER BY Exp DESC LIMIT 5", anotherCon);
             
         int number = 0;
 

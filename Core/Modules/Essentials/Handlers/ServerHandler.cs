@@ -30,7 +30,7 @@ public class ServerHandler
     {
         ServerStatic.StopNextRound = ServerStatic.NextRoundAction.Restart;
         
-        GameObject gameObject = new GameObject("SCP-106 Fix");
+        GameObject gameObject = new("SCP-106 Fix");
         gameObject.transform.position = Vector3.down * 2005;
         gameObject.transform.localScale = new Vector3(100,1,100);
         gameObject.AddComponent<JumpTrigger>();

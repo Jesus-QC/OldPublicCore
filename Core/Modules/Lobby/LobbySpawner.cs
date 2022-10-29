@@ -149,7 +149,7 @@ public class LobbySpawner
 
             ClearDummies();
 
-            Dictionary<Team, ushort> classCounts = new Dictionary<Team, ushort> {[Team.CDP] = 0, [Team.RSC] = 0, [Team.MTF] = 0, [Team.SCP] = 0, [Team.TUT] = 0};
+            Dictionary<Team, ushort> classCounts = new() {[Team.CDP] = 0, [Team.RSC] = 0, [Team.MTF] = 0, [Team.SCP] = 0, [Team.TUT] = 0};
             string queue = ConfigFile.ServerConfig.GetString("team_respawn_queue", "401431403144144");
 
             for (int i = 0; i < Player.Dictionary.Count; i++)
@@ -175,7 +175,7 @@ public class LobbySpawner
             }
 
             List<int> notChosenIds = Player.List.Select(player => player.Id).ToList();
-            Dictionary<Team, List<int>> chosenTeams = new Dictionary<Team, List<int>> { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new()};
+            Dictionary<Team, List<int>> chosenTeams = new() { [Team.CDP] = new(), [Team.RSC] = new(), [Team.MTF] = new(), [Team.SCP] = new()};
 
             foreach (Team team in chosenTeams.Keys.ToList())
             {
@@ -245,7 +245,7 @@ public class LobbySpawner
                 }
             }
             
-            List<RoleType> scpRoles = new List<RoleType> { RoleType.Scp049, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp93953, RoleType.Scp93989 };
+            List<RoleType> scpRoles = new() { RoleType.Scp049, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp93953, RoleType.Scp93989 };
 
             if(Server.PlayerCount > 15)
                 scpRoles.Add(RoleType.Scp079);

@@ -12,7 +12,7 @@ public class JammerSubclass : Subclass
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.ChaosConscript, RoleType.ChaosMarauder, RoleType.ChaosRepressor, RoleType.ChaosRifleman };
     public override Team Team { get; set; } = Team.CHI;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.GunCrossvec,
         ItemType.KeycardChaosInsurgency,
@@ -21,9 +21,8 @@ public class JammerSubclass : Subclass
         ItemType.Radio
     };
     
-    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new()
     {
-        [ItemType.Ammo9x19] = 100, [ItemType.Ammo556x45] = 100, [ItemType.Ammo762x39] = 100, [ItemType.Ammo12gauge] = 100,
-        [ItemType.Ammo44cal] = 100
+        [ItemType.Ammo9x19] = 120, [ItemType.Ammo556x45] = 40,
     };
 }

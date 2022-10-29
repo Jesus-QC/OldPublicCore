@@ -12,15 +12,14 @@ public class NightSpecialistSubclass : Subclass
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.NtfCaptain };
     public override Team Team { get; set; } = Team.MTF;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.GunAK, ItemType.Medkit, ItemType.Painkillers, ItemType.KeycardNTFCommander,
         ItemType.ArmorCombat, ItemType.Radio, ItemType.GrenadeFlash
     };
     
-    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new()
     {
-        [ItemType.Ammo9x19] = 20, [ItemType.Ammo556x45] = 20, [ItemType.Ammo762x39] = 100, [ItemType.Ammo12gauge] = 0,
-        [ItemType.Ammo44cal] = 20
+        [ItemType.Ammo762x39] = 100
     };
 }

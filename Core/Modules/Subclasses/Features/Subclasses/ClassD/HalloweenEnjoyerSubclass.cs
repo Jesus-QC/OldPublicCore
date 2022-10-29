@@ -12,5 +12,5 @@ public class HalloweenEnjoyer : Subclass
     public override RoleType SpawnAs { get; set; } = RoleType.None;
     public override Team Team { get; set; } = Team.CDP;
     public override string Color { get; set; } = "#e87f2e";
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>() { ItemType.SCP330 };
+    public override List<ItemType> SpawnInventory { get; set; } = new() { ItemType.SCP330 };
 }

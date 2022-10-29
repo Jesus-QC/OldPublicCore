@@ -13,15 +13,14 @@ public class HackerSubclass : Subclass
     public override RoleType SpawnAs { get; set; } = RoleType.None;
     public override Team Team { get; set; } = Team.MTF;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.GunCrossvec, ItemType.KeycardChaosInsurgency, ItemType.Medkit,
         ItemType.Adrenaline, ItemType.ArmorLight, ItemType.Radio,
     };
 
-    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new()
     {
-        [ItemType.Ammo9x19] = 120, [ItemType.Ammo556x45] = 80, [ItemType.Ammo762x39] = 80, [ItemType.Ammo12gauge] = 0,
-        [ItemType.Ammo44cal] = 28
+        [ItemType.Ammo9x19] = 120, [ItemType.Ammo556x45] = 40
     };
 }

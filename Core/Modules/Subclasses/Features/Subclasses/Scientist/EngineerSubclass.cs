@@ -12,9 +12,14 @@ public class EngineerSubclass : Subclass
     public override List<RoleType> AffectedRoles { get; set; } = new() { RoleType.Scientist };
     public override Team Team { get; set; } = Team.RSC;
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.GunFSP9, ItemType.KeycardContainmentEngineer, ItemType.Radio, ItemType.ArmorLight, ItemType.Medkit,
         ItemType.GrenadeFlash, ItemType.GrenadeHE
+    };
+
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new ()
+    {
+        [ItemType.Ammo9x19] = 60
     };
 }

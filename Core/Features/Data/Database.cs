@@ -57,7 +57,7 @@ public class Database
         {
             using MySqlConnection con = Connection.Clone();
             con.Open();
-            using MySqlCommand cmd = new MySqlCommand(command, con);
+            using MySqlCommand cmd = new(command, con);
             cmd.ExecuteNonQuery();
         }
         catch (Exception e)
@@ -74,7 +74,7 @@ public class Database
             MySqlConnection con = Connection.Clone();
             await con.OpenAsync(); 
             
-            MySqlCommand cmd = new MySqlCommand(command, con);
+            MySqlCommand cmd = new(command, con);
             await cmd.ExecuteNonQueryAsync();
             
             await cmd.DisposeAsync();
@@ -93,7 +93,7 @@ public class Database
         {
             using MySqlConnection con = Connection.Clone();
             con.Open();
-            using MySqlCommand cmd = new MySqlCommand(command, con);
+            using MySqlCommand cmd = new(command, con);
             return cmd.ExecuteScalar();
         }
         catch (Exception e)

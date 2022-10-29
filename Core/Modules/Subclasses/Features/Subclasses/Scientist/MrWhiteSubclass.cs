@@ -16,7 +16,7 @@ public class MrWhiteSubclass : Subclass
     public override SubclassAbility Abilities { get; set; } = SubclassAbility.Druggist;
     public override IAbility MainAbility { get; set; } = new DruggistAbility();
 
-    public override List<ItemType> SpawnInventory { get; set; } = new List<ItemType>()
+    public override List<ItemType> SpawnInventory { get; set; } = new()
     {
         ItemType.KeycardScientist, ItemType.Medkit, ItemType.Coin, ItemType.Coin, ItemType.Coin
     };
