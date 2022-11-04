@@ -35,7 +35,7 @@ public static class PlayerExtensions
 
             int id = player.GetId();
                 
-            await Core.Database.ExecuteNonQueryAsync($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("'", "\\'")}' WHERE Id='{id}';");
+            await Core.Database.ExecuteNonQueryAsync($"UPDATE NewPlayers SET Username='{player.Nickname.Replace("\\", "\\\\").Replace("'", "\\'")}' WHERE Id='{id}';");
         }
         catch (Exception e)
         {
