@@ -42,8 +42,6 @@ public static class AbilityManager
         return false;
     }
 
-    private static bool _already;
-    
     private static async Task CooldownCheck()
     {
         Log.Info($"{LogUtils.GetColor(LogColor.Yellow)}Started Subclasses Cooldown Timer");

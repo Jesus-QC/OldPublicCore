@@ -18,6 +18,11 @@ public class DynamiterSubclass : Subclass
         ItemType.KeycardChaosInsurgency, ItemType.GunLogicer, ItemType.ArmorHeavy, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeHE, ItemType.GrenadeHE
     };
 
+    public override Dictionary<ItemType, ushort> SpawnAmmo { get; set; } = new Dictionary<ItemType, ushort>()
+    {
+        [ItemType.Ammo762x39] = 120
+    };
+
     public override Vector3 Scale { get; set; } = new(1.1f, 1.1f, 1.1f);
     public override float Ahp { get; set; } = 50;
 }
