@@ -2,6 +2,8 @@
 
 This is an EXILED plugin made entirely by me that contains multiple plugins inside denominated modules. It is based on a MariaDB database. This is basically for devs to use at their discretion.
 
+It contains even its own module loader.
+
 The modules are the following:
 - AfkChecker
 - AutoNuke
